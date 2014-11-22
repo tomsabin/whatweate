@@ -9,11 +9,17 @@ gem 'turbolinks'
 gem 'rails_config'
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
   gem 'pry'
 end
 
 group :development do
   gem 'spring'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'poltergeist'
 end
 
 ruby '2.1.5'
