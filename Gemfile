@@ -6,6 +6,7 @@ gem 'uglifier',   '>= 1.3.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'rails_config'
 
 group :development, :test do
   gem 'pry'
