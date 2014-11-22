@@ -1,0 +1,187 @@
+.newsletter {
+  background-color: $primary-background-color;
+  padding: 18px 14px 14px;
+
+  p {
+    margin-bottom: 14px;
+    word-spacing: 1px;
+    font-family: $secondary-font;
+    text-align: center;
+    font-size: 1.3em;
+    display: block;
+  }
+
+  .input-container {
+    display: block;
+    margin: 0 auto;
+    width: 280px;
+
+    .input,
+    .submit {
+      background-color: $secondary-background-color;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      border: none;
+
+      word-spacing: 1px;
+      font-family: $secondary-font;
+      text-align: center;
+      font-size: 0.9em;
+      padding: 8px;
+
+      &:focus {
+        outline: 2px solid $primary-color;
+      }
+    }
+
+    .email,
+    .submit {
+      display: block;
+      width: 100%;
+    }
+
+    .name {
+      display: inline-block;
+      width: 50%;
+    }
+
+    .input {
+      margin-bottom: 4px;
+      border: 1px solid $secondary-border-color;
+    }
+
+    .first-name {
+      border-right: none;
+    }
+
+    .submit {
+      background-color: $primary-color;
+      border: 1px solid $primary-color-hover;
+      cursor: pointer;
+      color: white;
+
+      &:hover {
+        background-color: $primary-color-hover;
+      }
+    }
+  }
+
+  .response {
+    padding-top: 8px;
+    text-align: center;
+    max-width: 280px;
+    margin: 0 auto;
+
+    @include breakpoint(tablet) {
+      max-width: 532px;
+    }
+
+    @include breakpoint(desktop) {
+      max-width: 834px;
+    }
+  }
+
+  @include breakpoint(tablet) {
+    .input-container {
+      margin: 0 auto;
+      width: 532px;
+
+      .input {
+        text-align: left;
+      }
+
+      .name,
+      .submit {
+        width: 128px;
+      }
+
+      .email {
+        border-right: none;
+        border-left: none;
+        width: 196px;
+      }
+
+      .submit {
+        width: 80px;
+      }
+
+      .email,
+      .submit {
+        display: inline-block;
+      }
+    }
+
+    @include breakpoint(desktop) {
+      text-align: center;
+
+      p {
+        display: inline;
+      }
+
+      .input-container {
+        margin-left: 20px;
+        display: inline-block;
+        width: auto;
+      }
+    }
+  }
+
+ /* .input-container {
+    background-color: white;
+    border: 1px solid $secondary-border-color;
+    display: block;
+    margin: 0 auto;
+
+    .input,
+    .submit {
+      vertical-align: top;
+
+      border: none;
+      margin: 0;
+    }
+
+    .input {
+      background: white;
+      word-spacing: 2px;
+      outline: none;
+      color: black;
+    }
+
+    .submit {
+      background: $primary-color;
+      -webkit-border-radius: 0;
+      -webkit-appearance: none;
+      outline: 1px solid $primary-color;
+      cursor: pointer;
+      float: right;
+      color: white;
+      width: 66px;
+
+      &:hover {
+        background: $primary-color-hover;
+        outline: 1px solid $primary-color-hover;
+      }
+    }
+
+    width: 290px;
+    .name { width: 66px }
+    .email { width: 126px }
+    .submit { width: 66px }
+
+    @media (min-width: 380px) {
+      width: 352px;
+      .name { width: 90px }
+      .email { width: 164px }
+      .submit { width: 66px }
+    }
+
+    @media (min-width: 560px) {
+      width: 560px;
+      .name { width: 114px }
+      .email { width: 202px }
+      .submit { width: 66px }
+    }
+  }*/
+
+}
