@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+
+development:
+  <<: *default
+  database: whatweate_development
+
+test:
+  <<: *default
+  database: whatweate_test
+
+production: &production
+  <<: *default
+  database: <%= ENV['WHATWEATE_DATABASE_NAME'] %>
+  username: <%= ENV['WHATWEATE_DATABASE_USERNAME'] %>
+  password: <%= ENV['WHATWEATE_DATABASE_PASSWORD'] %>
+
+staging:
+  <<: *production

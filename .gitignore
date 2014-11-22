@@ -1,0 +1,6 @@
+.ruby-version
+.ruby-gemset
+/.bundle
+/log/*.log
+/tmp
+.env
