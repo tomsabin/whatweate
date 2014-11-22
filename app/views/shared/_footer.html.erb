@@ -1,0 +1,37 @@
+<footer class="footer">
+  <div class="container">
+    <ul class="social">
+      <a href="https://www.facebook.com/whatweate.co" class="facebook" data-ga="social">
+        Facebook
+      </a>
+      <a href="https://twitter.com/WhatWeAteCo" class="twitter" data-ga="social">
+        Twitter
+      </a>
+      <a href="http://instagram.com/whatweate.co" class="instagram" data-ga="social">
+        Instagram
+      </a>
+      <a href="mailto:hello@whatweate.co" class="email" data-ga="social">
+        Email
+      </a>
+    </ul>
+
+    <ul class="links">
+      <li><%= link_to 'How it works', root_path(anchor: 'how_it_works') %></li>
+      <li><a href="https://whatweate.typeform.com/to/IXZyhO" class="cta typeform-share" data-mode="1" target="_blank">Become a host</a></li>
+    </ul>
+
+    <div class="legal">
+      <ul>
+        <%= link_to root_path do %>
+          <li>Terms of use</li>
+        <% end %>
+
+        <%= link_to root_path do %>
+          <li>Privacy policy</li>
+        <% end %>
+      </ul>
+
+      <p>&copy; Copyright WhatWeAte Ltd <%= Time.now.year %></p>
+    </div>
+  </div>
+</footer>

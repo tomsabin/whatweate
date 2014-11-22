@@ -1,0 +1,160 @@
+.how-it-works {
+  background-color: $secondary-background-color;
+  padding: 14px 0;
+
+  .label-container {
+    text-align: center;
+    position: relative;
+    overflow: visible;
+    z-index: 3;
+    width: auto;
+  }
+
+  label {
+    background-color: $secondary-background-color;
+    display: inline-block;
+    width: 120px;
+
+    font-family: $secondary-font;
+    font-size: 1.2em;
+    padding: 10px 0;
+    cursor: pointer;
+
+    &.guests { margin-right: 14px; }
+
+    &:hover,
+    &.active {
+      background-color: $primary-color;
+      color: white;
+    }
+
+    &.active {
+      position: relative;
+
+      &:after {
+        position: absolute;
+        bottom: -11px;
+        left: 50px;
+
+        display: block;
+        content: '';
+        height: 0;
+        width: 0;
+
+        border-style: solid;
+        border-width: 12px 10px 0 10px;
+        border-color: $primary-color transparent transparent transparent;
+      }
+    }
+  }
+
+  .content-container {
+    position: relative;
+    height: 380px;
+  }
+
+  .toggle {
+    position: absolute;
+    left: -999px;
+  }
+
+  .toggle:not(:checked) + .togglable-content {
+    z-index: 1;
+  }
+
+  .toggle:checked + .togglable-content {
+    z-index: 2;
+  }
+
+  .togglable-content {
+    background-color: $secondary-background-color;
+    background: linear-gradient($secondary-background-color, white,  $secondary-background-color);
+
+    padding-top: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+  }
+
+  @include breakpoint(desktop) {
+
+    .toggle:checked + .togglable-content,
+    .toggle:not(:checked) + .togglable-content {
+      z-index: 1;
+    }
+
+    .content-container {
+      margin: 0 auto;
+      width: 728px;
+    }
+
+    .togglable-content {
+      background: $secondary-background-color;
+      position: relative;
+      margin: 0 7px;
+      float: left;
+      width: 350px;
+      top: 0;
+    }
+
+    label {
+      background-color: $primary-color;
+      position: relative;
+      cursor: default;
+      color: white;
+
+      &.guests { margin-right: 240px; }
+      &:after {
+        position: absolute;
+        bottom: -11px;
+        left: 50px;
+
+        display: block;
+        content: '';
+        height: 0;
+        width: 0;
+
+        border-style: solid;
+        border-width: 12px 10px 0 10px;
+        border-color: $primary-color transparent transparent transparent;
+      }
+    }
+  }
+
+  .step {
+    margin: 0 auto;
+    width: 320px;
+
+    .content {
+      display: table;
+      padding: 7px 28px;
+      height: 100px;
+    }
+
+    .text-container,
+    .image-container {
+      vertical-align: middle;
+      display: table-cell;
+    }
+
+    .image-container {
+      text-align: center;
+      height: 84px;
+      width: 84px;
+      img { height: 64px }
+    }
+
+    .text-container {
+      padding-left: 28px;
+    }
+
+    h2 {
+      padding-bottom: 8px;
+      word-spacing: 2px;
+      font-family: $secondary-font;
+      font-size: 1em;
+    }
+  }
+}

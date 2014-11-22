@@ -1,0 +1,157 @@
+header {
+  background-color: $primary-background-color;
+  position: fixed;
+  z-index: 4;
+  right: 0;
+  left: 0;
+  top: 0;
+
+  .container {
+    max-width: 1146px;
+    margin: 0 auto;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  nav,
+  .logo {
+    margin: 0 14px;
+  }
+
+  .logo {
+    img {
+      vertical-align: middle;
+      padding: 18px 0;
+    }
+
+    .logo-icon {
+      height: 36px;
+
+      @include breakpoint(tablet) {
+        height: 40px;
+      }
+    }
+
+    .logo-text {
+      margin-left: 10px;
+      height: 24px;
+
+      @include breakpoint(tablet) {
+        height: 30px;
+      }
+    }
+  }
+
+  nav {
+    position: relative;
+    padding-top: 32px;
+    float: right;
+
+    input {
+      position: absolute;
+      left: -999px;
+      top: -999px;
+    }
+
+    label {
+      font-family: $secondary-font;
+      padding: 8px 12px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $primary-color;
+        color: white;
+      }
+    }
+
+    ul {
+      position: absolute;
+      display: none;
+      right: 0;
+      top: 72px;
+
+      &:before {
+        position: absolute;
+        right: 17px;
+        top: -10px;
+
+        display: block;
+        content: '';
+        height: 0;
+        width: 0;
+
+        border-style: solid;
+        border-width: 0 12px 10px 10px;
+        border-color: transparent transparent $primary-color transparent;
+      }
+    }
+
+    li {
+      background-color: $primary-color;
+      word-spacing: 1px;
+      font-family: $secondary-font;
+      padding: 10px 12px;
+      width: 90px;
+      color: white;
+
+      &:hover {
+        background-color: $primary-color-hover;
+      }
+    }
+
+    input:checked {
+      & + label {
+        background-color: $primary-color;
+        color: white;
+      }
+
+      & ~ ul {
+        display: block;
+      }
+    }
+
+    @include breakpoint(desktop) {
+      padding-top: 22px;
+
+      label {
+        display: none;
+      }
+
+      ul {
+        position: relative;
+        top: 0;
+        display: block;
+
+        &:before {
+          display: none;
+        }
+      }
+
+      li {
+        background-color: $primary-background-color;
+        margin-left: 10px;
+        display: inline-block;
+        color: black;
+        width: auto;
+
+        &:hover {
+          background-color: $primary-color;
+          color: white;
+        }
+
+      }
+
+      .cta li {
+        background-color: $primary-color;
+        color: white;
+
+        &:hover  {
+          background-color: $primary-color-hover;
+        }
+      }
+    }
+  }
+}
