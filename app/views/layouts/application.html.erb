@@ -3,7 +3,15 @@
   <head>
     <%= render 'layouts/head' %>
   </head>
-  <body>
-    <%= yield -%>
+  <body class="<%= controller.controller_name %>">
+
+    <%= render 'shared/header' -%>
+
+    <main>
+      <%= yield -%>
+    </main>
+
+    <%= render 'shared/footer' -%>
+
   </body>
 </html>

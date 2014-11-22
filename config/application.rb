@@ -5,5 +5,6 @@ Bundler.require(*Rails.groups)
 
 module WhatWeAte
   class Application < Rails::Application
+    config.exceptions_app = self.routes
   end
 end
