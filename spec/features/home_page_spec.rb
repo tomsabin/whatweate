@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'the home page' do
-  before { visit '/' }
+  before { visit root_path }
 
   context 'header' do
     it 'shows the expected content' do
