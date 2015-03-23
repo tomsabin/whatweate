@@ -7,6 +7,7 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'rails_config'
+gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
@@ -22,4 +23,4 @@ group :test do
   gem 'poltergeist'
 end
 
-ruby '2.1.5'
+ruby '2.2.1'
