@@ -55,6 +55,11 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.2)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     hike (1.2.3)
     i18n (0.6.11)
     jquery-rails (3.1.2)
@@ -159,6 +164,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   devise
+  factory_girl_rails
   jquery-rails
   pg
   poltergeist

@@ -10,7 +10,7 @@ describe 'users and profiles' do
     expect(page).to have_content 'Please provide an email address'
     expect(page).to have_content 'Please provide a password'
 
-    fill_in 'email_address', with: 'foo@bar.com'
+    fill_in 'email_address', with: 'user@example.com'
     fill_in 'first_name', with: 'Cookie'
     fill_in 'last_name', with: 'Monster'
     fill_in 'password', with: 'letmein!!'
@@ -29,7 +29,7 @@ describe 'users and profiles' do
 
       expect(page).to have_content 'Your email/password combination was incorrect'
 
-      fill_in 'email_address', with: 'foo@bar.com'
+      fill_in 'email_address', with: 'user@example.com'
       fill_in 'password', with: 'letmein!!'
       click_button 'Sign in'
 
@@ -68,7 +68,7 @@ describe 'users and profiles' do
 
       expect(page).to have_content 'Your email/password combination was incorrect'
 
-      fill_in 'email_address', with: 'foo@bar.com'
+      fill_in 'email_address', with: 'user@example.com'
       fill_in 'password', with: 'letmein!!'
       click_button 'Sign in'
 
@@ -80,7 +80,7 @@ describe 'users and profiles' do
       before(:all) do
         visit root_path
         click_link 'Sign in'
-        fill_in 'email_address', with: 'foo@bar.com'
+        fill_in 'email_address', with: 'user@example.com'
         fill_in 'password', with: 'letmein!!'
         click_button 'Sign in'
       end
@@ -128,7 +128,7 @@ describe 'users and profiles' do
 
         click_button 'Sign in'
 
-        fill_in 'email_address', with: 'foo@bar.com'
+        fill_in 'email_address', with: 'user@example.com'
         fill_in 'password', with: 'letmein!!'
         click_button 'Sign in'
 
@@ -148,7 +148,7 @@ describe 'users and profiles' do
         click_link 'Sign out'
         click_link 'Sign in'
 
-        fill_in 'email_address', with: 'foo@bar.com'
+        fill_in 'email_address', with: 'user@example.com'
         fill_in 'password', with: 'letmein!!'
         click_button 'Sign in'
 
