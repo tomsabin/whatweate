@@ -7,17 +7,16 @@ describe 'users and profiles' do
 
     click_button 'Sign up'
 
-    expect(page).to have_content 'Please provide an email address'
-    expect(page).to have_content 'Please provide a password'
+    expect(page).to have_content "4 errors prohibited this user from being saved"
 
-    fill_in 'email_address', with: 'user@example.com'
-    fill_in 'first_name', with: 'Cookie'
-    fill_in 'last_name', with: 'Monster'
-    fill_in 'password', with: 'letmein!!'
-    fill_in 'password_confirmation', with: 'letmein!!'
+    fill_in 'Email', with: 'user@example.com'
+    fill_in 'First name', with: 'Cookie'
+    fill_in 'Last name', with: 'Monster'
+    fill_in 'Password', with: 'letmein!!'
+    fill_in 'Password confirmation', with: 'letmein!!'
     click_button 'Sign up'
 
-    expect(page).to have_content 'Signed up successfully'
+    expect(page).to have_content 'Welcome! You have signed up successfully.'
   end
 
   context 'as a user that has not completed their profile' do
@@ -29,8 +28,8 @@ describe 'users and profiles' do
 
       expect(page).to have_content 'Your email/password combination was incorrect'
 
-      fill_in 'email_address', with: 'user@example.com'
-      fill_in 'password', with: 'letmein!!'
+      fill_in 'Email', with: 'user@example.com'
+      fill_in 'Password', with: 'letmein!!'
       click_button 'Sign in'
 
       expect(page).to_not have_content 'Signed in successfully'
@@ -68,8 +67,8 @@ describe 'users and profiles' do
 
       expect(page).to have_content 'Your email/password combination was incorrect'
 
-      fill_in 'email_address', with: 'user@example.com'
-      fill_in 'password', with: 'letmein!!'
+      fill_in 'Email', with: 'user@example.com'
+      fill_in 'Password', with: 'letmein!!'
       click_button 'Sign in'
 
       expect(page).to have_content 'Signed in successfully'
@@ -80,8 +79,8 @@ describe 'users and profiles' do
       before(:all) do
         visit root_path
         click_link 'Sign in'
-        fill_in 'email_address', with: 'user@example.com'
-        fill_in 'password', with: 'letmein!!'
+        fill_in 'Email', with: 'user@example.com'
+        fill_in 'Password', with: 'letmein!!'
         click_button 'Sign in'
       end
 
@@ -128,8 +127,8 @@ describe 'users and profiles' do
 
         click_button 'Sign in'
 
-        fill_in 'email_address', with: 'user@example.com'
-        fill_in 'password', with: 'letmein!!'
+        fill_in 'Email', with: 'user@example.com'
+        fill_in 'Password', with: 'letmein!!'
         click_button 'Sign in'
 
         expect(page).to have_content 'Your email/password combination was incorrect'
@@ -148,13 +147,13 @@ describe 'users and profiles' do
         click_link 'Sign out'
         click_link 'Sign in'
 
-        fill_in 'email_address', with: 'user@example.com'
-        fill_in 'password', with: 'letmein!!'
+        fill_in 'Email', with: 'user@example.com'
+        fill_in 'Password', with: 'letmein!!'
         click_button 'Sign in'
 
         expect(page).to have_content 'Your email/password combination was incorrect'
 
-        fill_in 'password', with: 'newpassword'
+        fill_in 'Password', with: 'newpassword'
         click_button 'Sign in'
 
         expect(page).to have_content 'Signed in successfully'
