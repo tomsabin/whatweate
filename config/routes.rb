@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :profile, only: [:new, :create]
+  get 'profile', to: 'profile#show'
 
   root 'welcome#home'
 

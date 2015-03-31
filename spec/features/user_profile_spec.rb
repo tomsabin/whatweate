@@ -19,13 +19,14 @@ describe 'users and profiles' do
   end
 
   context 'as a user that has not completed their profile' do
-    before { FactoryGirl.create(:user_without_profile) }
+    before { FactoryGirl.create(:user_without_profile, email: 'user@example.com', password: 'letmein!!') }
 
     scenario 'guest signs in from the homepage' do
       visit root_path
       click_link 'Sign in'
+      click_button 'Sign in'
 
-      expect(page).to have_content 'Your email/password combination was incorrect'
+      expect(page).to have_content 'Invalid email or password'
 
       fill_in 'Email', with: 'user@example.com'
       fill_in 'Password', with: 'letmein!!'
@@ -36,22 +37,23 @@ describe 'users and profiles' do
 
       click_button 'Save profile'
       expect(page).to have_content 'Please fill in the required fields'
+      expect(page).to have_content '5 errors prohibited this profile from being saved'
 
-      fill_in 'date_of_birth', with: '01/01/1990'
-      check 'hide_date_of_birth'
-      fill_in 'profession', with: 'Cookie monster'
-      fill_in 'bio', with: 'I like cookies'
-      fill_in 'greeting', with: 'Cookies cookies cookies'
-      fill_in 'mobile_number', with: '0123456789'
-      check 'hide_mobile_number'
-      fill_in 'favourite_cuisine', with: 'Chocolate'
+      fill_in 'profile_date_of_birth', with: '01/01/1990'
+      # check 'hide_date_of_birth'
+      fill_in 'profile_profession', with: 'Cookie monster'
+      fill_in 'profile_greeting', with: 'Cookies cookies cookies'
+      fill_in 'profile_bio', with: 'I like cookies'
+      fill_in 'profile_mobile_number', with: '0123456789'
+      # check 'hide_mobile_number'
+      fill_in 'profile_favorite_cuisine', with: 'Chocolate'
 
       click_button 'Save profile'
-      expect(page).to have_content 'Successfully saved profile'
-      expect(page).to have_content 'Date of birth: 01/01/1990'
+      expect(page).to have_content 'Thanks! Your profile has successfully been saved'
+      expect(page).to have_content 'Date of birth: 1990-01-01'
       expect(page).to have_content 'Profession: Cookie monster'
-      expect(page).to have_content 'Bio: I like cookies'
       expect(page).to have_content 'Greeting: Cookies cookies cookies'
+      expect(page).to have_content 'Bio: I like cookies'
       expect(page).to have_content 'Mobile number: 0123456789'
       expect(page).to have_content 'Favourite cuisine: Chocolate'
     end
@@ -97,7 +99,7 @@ describe 'users and profiles' do
         fill_in 'favourite_cuisine', with: 'Chocolate'
 
         click_button 'Save profile'
-        expect(page).to have_content 'Successfully saved profile'
+        expect(page).to have_content 'Thanks! Your profile has successfully been saved'
         expect(page).to_not have_content 'Date of birth: 01/01/1990'
         expect(page).to have_content 'Profession: Cookie monster'
         expect(page).to have_content 'Bio: I like cookies'
