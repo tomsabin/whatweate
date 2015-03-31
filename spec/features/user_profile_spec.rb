@@ -40,21 +40,22 @@ describe 'users and profiles' do
       expect(page).to have_content '5 errors prohibited this profile from being saved'
 
       fill_in 'profile_date_of_birth', with: '01/01/1990'
-      # check 'hide_date_of_birth'
+      expect(page).to have_field('profile_date_of_birth_visible', checked: false)
       fill_in 'profile_profession', with: 'Cookie monster'
       fill_in 'profile_greeting', with: 'Cookies cookies cookies'
       fill_in 'profile_bio', with: 'I like cookies'
       fill_in 'profile_mobile_number', with: '0123456789'
-      # check 'hide_mobile_number'
+      expect(page).to have_field('profile_mobile_number_visible', checked: false)
       fill_in 'profile_favorite_cuisine', with: 'Chocolate'
 
       click_button 'Save profile'
       expect(page).to have_content 'Thanks! Your profile has successfully been saved'
-      expect(page).to have_content 'Date of birth: 1990-01-01'
+
+      expect(page).to_not have_content 'Date of birth: 1990-01-01'
       expect(page).to have_content 'Profession: Cookie monster'
       expect(page).to have_content 'Greeting: Cookies cookies cookies'
       expect(page).to have_content 'Bio: I like cookies'
-      expect(page).to have_content 'Mobile number: 0123456789'
+      expect(page).to_not have_content 'Mobile number: 0123456789'
       expect(page).to have_content 'Favourite cuisine: Chocolate'
     end
   end

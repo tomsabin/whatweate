@@ -1,5 +1,7 @@
-Date of birth:
-<%= @profile.date_of_birth %>
+<% if @profile.date_of_birth_visible? %>
+  Date of birth:
+  <%= @profile.date_of_birth %>
+<% end %>
 
 Profession:
 <%= @profile.profession %>
@@ -10,8 +12,10 @@ Greeting:
 Bio:
 <%= @profile.bio %>
 
-Mobile number:
-<%= @profile.mobile_number %>
+<% if @profile.mobile_number_visible? %>
+  Mobile number:
+  <%= @profile.mobile_number %>
+<% end %>
 
 Favourite cuisine:
 <%= @profile.favorite_cuisine %>

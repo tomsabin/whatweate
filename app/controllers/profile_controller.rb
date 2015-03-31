@@ -29,7 +29,11 @@ class ProfileController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:date_of_birth, :profession, :greeting, :bio, :mobile_number, :favorite_cuisine)
+    params.require(:profile).permit(profile_attributes)
+  end
+
+  def profile_attributes
+    %i(date_of_birth profession greeting bio mobile_number favorite_cuisine date_of_birth_visible mobile_number_visible)
   end
 
   def profile

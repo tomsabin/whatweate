@@ -14,6 +14,8 @@
   <div class="field">
     <%= f.label :date_of_birth %><br />
     <%= f.date_field :date_of_birth %>
+    <%= f.label :date_of_birth_visible %><br />
+    <%= f.check_box :date_of_birth_visible, checked: false %>
   </div>
 
   <div class="field">
@@ -34,6 +36,8 @@
   <div class="field">
     <%= f.label :mobile_number %><br />
     <%= f.text_field :mobile_number %>
+    <%= f.label :mobile_number_visible %><br />
+    <%= f.check_box :mobile_number_visible, checked: false %>
   </div>
 
   <div class="field">
