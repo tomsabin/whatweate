@@ -18,6 +18,7 @@ end
 
 group :development do
   gem 'spring'
+  gem 'rubocop'
 end
 
 group :test do

@@ -1,0 +1,16 @@
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+Style/Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Enabled: false
+Style/BracesAroundHashParameters:
+  Enabled: false

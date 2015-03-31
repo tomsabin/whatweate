@@ -6,7 +6,7 @@ FactoryGirl.define do
     password   { Faker::Internet.password }
 
     factory :user_with_profile, aliases: [:user] do
-      after :build do |user, evaluator|
+      after :build do |user, _|
         user.profile = FactoryGirl.build(:profile, user: user)
       end
     end
