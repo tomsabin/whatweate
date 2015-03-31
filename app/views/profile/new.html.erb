@@ -1,0 +1,35 @@
+<%= form_for(@profile, url: { action: 'create' }) do |f| %>
+  <div class="field">
+    <%= f.label :date_of_birth %><br />
+    <%= f.date_field :date_of_birth %> <%# 3 numeric fields? %%>
+  </div>
+
+  <div class="field">
+    <%= f.label :profession %><br />
+    <%= f.text_field :profession %>
+  </div>
+
+  <div class="field">
+    <%= f.label :greeting %><br />
+    <%= f.text_field :greeting %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bio %><br />
+    <%= f.text_field :bio %>
+  </div>
+
+  <div class="field">
+    <%= f.label :mobile_number %><br />
+    <%= f.text_field :mobile_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :favorite_cuisine %><br />
+    <%= f.text_field :favorite_cuisine %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Save profile' %>
+  </div>
+<% end %>

@@ -4,10 +4,9 @@ describe 'users and profiles' do
   scenario 'guest signs up from the homepage' do
     visit root_path
     click_link 'Sign up'
-
     click_button 'Sign up'
 
-    expect(page).to have_content "4 errors prohibited this user from being saved"
+    expect(page).to have_content '4 errors prohibited this user from being saved'
 
     fill_in 'Email', with: 'user@example.com'
     fill_in 'First name', with: 'Cookie'
@@ -16,7 +15,7 @@ describe 'users and profiles' do
     fill_in 'Password confirmation', with: 'letmein!!'
     click_button 'Sign up'
 
-    expect(page).to have_content 'Welcome! You have signed up successfully.'
+    expect(page).to have_content 'Please complete your profile'
   end
 
   context 'as a user that has not completed their profile' do
