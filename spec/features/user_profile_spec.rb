@@ -19,7 +19,11 @@ describe 'users and profiles' do
   end
 
   scenario 'user that has not completed their profile signs in from the homepage' do
-    FactoryGirl.create(:user_without_profile, email: 'user@example.com', password: 'letmein!!')
+    FactoryGirl.create(:user_without_profile,
+                       first_name: 'Cookie',
+                       last_name: 'Monster',
+                       email: 'user@example.com',
+                       password: 'letmein!!')
 
     visit root_path
     click_link 'Sign in'
@@ -51,6 +55,9 @@ describe 'users and profiles' do
     click_button 'Save profile'
     expect(page).to have_content 'Thanks! Your profile has successfully been saved'
 
+    expect(page).to have_content 'Email: user@example.com'
+    expect(page).to have_content 'First name: Cookie'
+    expect(page).to have_content 'Last name: Monster'
     expect(page).to_not have_content 'Date of birth: 1990-01-01'
     expect(page).to have_content 'Profession: Cookie monster'
     expect(page).to have_content 'Greeting: Cookies cookies cookies'
