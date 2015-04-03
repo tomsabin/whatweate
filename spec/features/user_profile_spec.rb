@@ -18,54 +18,53 @@ describe 'users and profiles' do
     expect(page).to have_content 'Please complete your profile'
   end
 
-  context 'as a user that has not completed their profile' do
-    before { FactoryGirl.create(:user_without_profile, email: 'user@example.com', password: 'letmein!!') }
+  scenario 'user that has not completed their profile signs in from the homepage' do
+    FactoryGirl.create(:user_without_profile, email: 'user@example.com', password: 'letmein!!')
 
-    scenario 'guest signs in from the homepage' do
-      visit root_path
-      click_link 'Sign in'
-      click_button 'Sign in'
+    visit root_path
+    click_link 'Sign in'
+    click_button 'Sign in'
 
-      expect(page).to have_content 'Invalid email or password'
+    expect(page).to have_content 'Your email/password combination was incorrect'
 
-      fill_in 'Email', with: 'user@example.com'
-      fill_in 'Password', with: 'letmein!!'
-      click_button 'Sign in'
+    fill_in 'Email', with: 'user@example.com'
+    fill_in 'Password', with: 'letmein!!'
+    click_button 'Sign in'
 
-      expect(page).to_not have_content 'Signed in successfully'
-      expect(page).to have_content 'Please complete your profile'
+    expect(page).to_not have_content 'Signed in successfully'
+    expect(page).to have_content 'Please complete your profile'
 
-      click_button 'Save profile'
-      expect(page).to have_content 'Please fill in the required fields'
-      expect(page).to have_content '5 errors prohibited this profile from being saved'
+    click_button 'Save profile'
+    expect(page).to have_content 'Please fill in the required fields'
+    expect(page).to have_content '5 errors prohibited this profile from being saved'
 
-      fill_in 'profile_date_of_birth', with: '01/01/1990'
-      expect(page).to have_field('profile_date_of_birth_visible', checked: false)
-      fill_in 'profile_profession', with: 'Cookie monster'
-      fill_in 'profile_greeting', with: 'Cookies cookies cookies'
-      fill_in 'profile_bio', with: 'I like cookies'
-      fill_in 'profile_mobile_number', with: '0123456789'
-      expect(page).to have_field('profile_mobile_number_visible', checked: false)
-      fill_in 'profile_favorite_cuisine', with: 'Chocolate'
+    fill_in 'profile_date_of_birth', with: '01/01/1990'
+    expect(page).to have_field('profile_date_of_birth_visible', checked: false)
+    fill_in 'profile_profession', with: 'Cookie monster'
+    fill_in 'profile_greeting', with: 'Cookies cookies cookies'
+    fill_in 'profile_bio', with: 'I like cookies'
+    fill_in 'profile_mobile_number', with: '0123456789'
+    expect(page).to have_field('profile_mobile_number_visible', checked: false)
+    fill_in 'profile_favorite_cuisine', with: 'Chocolate'
 
-      click_button 'Save profile'
-      expect(page).to have_content 'Thanks! Your profile has successfully been saved'
+    click_button 'Save profile'
+    expect(page).to have_content 'Thanks! Your profile has successfully been saved'
 
-      expect(page).to_not have_content 'Date of birth: 1990-01-01'
-      expect(page).to have_content 'Profession: Cookie monster'
-      expect(page).to have_content 'Greeting: Cookies cookies cookies'
-      expect(page).to have_content 'Bio: I like cookies'
-      expect(page).to_not have_content 'Mobile number: 0123456789'
-      expect(page).to have_content 'Favourite cuisine: Chocolate'
-    end
+    expect(page).to_not have_content 'Date of birth: 1990-01-01'
+    expect(page).to have_content 'Profession: Cookie monster'
+    expect(page).to have_content 'Greeting: Cookies cookies cookies'
+    expect(page).to have_content 'Bio: I like cookies'
+    expect(page).to_not have_content 'Mobile number: 0123456789'
+    expect(page).to have_content 'Favourite cuisine: Chocolate'
   end
 
   context 'as a user that has completed their profile' do
-    before { FactoryGirl.create(:user) }
+    before { FactoryGirl.create(:user, email: 'user@example.com', password: 'letmein!!') }
 
     scenario 'receives login error messages' do
       visit root_path
       click_link 'Sign in'
+      click_button 'Sign in'
 
       expect(page).to have_content 'Your email/password combination was incorrect'
 
@@ -74,7 +73,7 @@ describe 'users and profiles' do
       click_button 'Sign in'
 
       expect(page).to have_content 'Signed in successfully'
-      expect(current_path).to eq root_path
+      expect(page).to_not have_content 'Please complete your profile'
     end
 
     context 'having successfully signed in' do

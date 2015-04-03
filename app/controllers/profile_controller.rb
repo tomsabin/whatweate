@@ -7,7 +7,7 @@ class ProfileController < ApplicationController
   end
 
   def new
-    redirect_to(profile_path) and return if profile.present?
+    redirect_to(profile_path) && return if profile.present?
     @profile = Profile.new
   end
 
