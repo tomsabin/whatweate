@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :profile, only: [:new, :create]
   get 'profile', to: 'profile#show'
+  get 'profile/edit', to: 'profile#edit', as: 'edit_profile'
+  patch 'profile', to: 'profile#update', as: 'update_profile'
 
   root 'welcome#home'
 

@@ -37,6 +37,7 @@ describe 'users and profiles' do
     click_button 'Save profile'
     expect(page).to have_content 'Please fill in the required fields'
     expect(page).to have_content '5 errors prohibited this profile from being saved'
+    # change to 'please review the following errors'
 
     fill_in 'profile_date_of_birth', with: '01/01/1990'
     expect(page).to have_field('profile_date_of_birth_visible', checked: false)
@@ -77,7 +78,7 @@ describe 'users and profiles' do
     end
 
     context 'having successfully signed in' do
-      before(:all) do
+      before(:each) do
         visit root_path
         click_link 'Sign in'
         fill_in 'Email', with: 'user@example.com'
@@ -89,32 +90,29 @@ describe 'users and profiles' do
         click_link 'Profile'
         click_link 'Edit profile'
 
-        fill_in 'date_of_birth', with: '01/01/1990'
-        check 'hide_date_of_birth'
-        fill_in 'profession', with: 'Cookie monster'
-        fill_in 'bio', with: 'I like cookies'
-        fill_in 'greeting', with: 'Cookies cookies cookies'
-        fill_in 'mobile_number', with: '0123456789'
-        check 'hide_mobile_number'
-        fill_in 'favourite_cuisine', with: 'Chocolate'
+        fill_in 'profile_date_of_birth', with: ''
 
         click_button 'Save profile'
-        expect(page).to have_content 'Thanks! Your profile has successfully been saved'
-        expect(page).to_not have_content 'Date of birth: 01/01/1990'
+
+        expect(page).to have_content '1 error prohibited this profile from being saved'
+
+        fill_in 'profile_date_of_birth', with: '01/01/1990'
+        check 'profile_date_of_birth_visible'
+        fill_in 'profile_profession', with: 'Cookie monster'
+        fill_in 'profile_bio', with: 'I like cookies'
+        fill_in 'profile_greeting', with: 'Cookies cookies cookies'
+        fill_in 'profile_mobile_number', with: '0123456789'
+        check 'profile_mobile_number_visible'
+        fill_in 'profile_favorite_cuisine', with: 'Chocolate'
+
+        click_button 'Save profile'
+        expect(page).to have_content 'Your profile has successfully been saved'
+        expect(page).to have_content 'Date of birth: 1990-01-01'
         expect(page).to have_content 'Profession: Cookie monster'
         expect(page).to have_content 'Bio: I like cookies'
         expect(page).to have_content 'Greeting: Cookies cookies cookies'
-        expect(page).to_not have_content 'Mobile number: 0123456789'
-        expect(page).to have_content 'Favourite cuisine: Chocolate'
-
-        click_link 'Edit profile'
-
-        check 'hide_date_of_birth'
-        check 'hide_mobile_number'
-
-        click_button 'Save profile'
-        expect(page).to have_content 'Date of birth: 01/01/1990'
         expect(page).to have_content 'Mobile number: 0123456789'
+        expect(page).to have_content 'Favourite cuisine: Chocolate'
       end
 
       scenario 'deletes their account' do
