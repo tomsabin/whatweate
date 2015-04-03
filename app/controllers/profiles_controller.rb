@@ -26,7 +26,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    if profile.update(profile_params)
+    if profile.update(profile_params.merge(user_attributes: user_params.merge(id: current_user.id)))
       redirect_to(profile_path, notice: 'Your profile has successfully been saved')
     else
       render(:edit)
@@ -45,6 +45,10 @@ class ProfilesController < ApplicationController
 
   def profile
     current_user.profile
+  end
+
+  def user_params
+    params.require(:user).permit(:email, :first_name, :last_name)
   end
 
   def profile_params

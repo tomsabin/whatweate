@@ -97,12 +97,18 @@ describe 'users and profiles' do
         click_link 'Profile'
         click_link 'Edit profile'
 
+        fill_in 'user_email', with: 'invalid'
         fill_in 'profile_date_of_birth', with: ''
 
         click_button 'Save profile'
 
-        expect(page).to have_content '1 error prohibited this profile from being saved'
+        expect(page).to have_content '2 errors prohibited this profile from being saved'
+        expect(page).to have_content 'User email is invalid'
+        expect(page).to have_content "Date of birth can't be blank"
 
+        fill_in 'user_email', with: 'me@cookie.com'
+        fill_in 'user_first_name', with: 'Cookie'
+        fill_in 'user_last_name', with: 'Monster'
         fill_in 'profile_date_of_birth', with: '01/01/1990'
         check 'profile_date_of_birth_visible'
         fill_in 'profile_profession', with: 'Cookie monster'
@@ -114,6 +120,9 @@ describe 'users and profiles' do
 
         click_button 'Save profile'
         expect(page).to have_content 'Your profile has successfully been saved'
+        expect(page).to have_content 'Email: me@cookie.com'
+        expect(page).to have_content 'First name: Cookie'
+        expect(page).to have_content 'Last name: Monster'
         expect(page).to have_content 'Date of birth: 1990-01-01'
         expect(page).to have_content 'Profession: Cookie monster'
         expect(page).to have_content 'Bio: I like cookies'
