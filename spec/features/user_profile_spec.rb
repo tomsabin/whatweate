@@ -115,33 +115,24 @@ describe 'users and profiles' do
         expect(page).to have_content 'Favourite cuisine: Chocolate'
       end
 
-      scenario 'deletes their account' do
-        click_link 'Edit profile'
-        click_link 'Delete my account'
-
-        expect(page).to have_content 'Are you sure you want to delete your account?'
-        click_button 'Yes, delete my account'
-
-        expect(current_path).to eq root_path
-
-        click_button 'Sign in'
-
-        fill_in 'Email', with: 'user@example.com'
-        fill_in 'Password', with: 'letmein!!'
-        click_button 'Sign in'
-
-        expect(page).to have_content 'Your email/password combination was incorrect'
-      end
-
       scenario 'user updates their password' do
         click_link 'Profile'
         click_link 'Edit profile'
-        click_link 'Change my password'
+        click_link 'Change your password'
 
-        fill_in 'current_password', with: 'letmein!!'
-        fill_in 'new_password', with: 'newpassword'
-        fill_in 'new_password_confirmation', with: 'newpassword'
+        fill_in 'user_current_password', with: 'this-is-not-my-password'
+        fill_in 'user_password', with: 'newpassword'
+        fill_in 'user_password_confirmation', with: 'newpassword'
         click_button 'Update password'
+
+        expect(page).to have_content 'Current password was incorrect'
+
+        fill_in 'user_current_password', with: 'letmein!!'
+        fill_in 'user_password', with: 'newpassword'
+        fill_in 'user_password_confirmation', with: 'newpassword'
+        click_button 'Update password'
+
+        expect(page).to have_content 'Your password was successfully updated'
 
         click_link 'Sign out'
         click_link 'Sign in'
@@ -156,6 +147,25 @@ describe 'users and profiles' do
         click_button 'Sign in'
 
         expect(page).to have_content 'Signed in successfully'
+      end
+
+      scenario 'deletes their account' do
+        click_link 'Profile'
+        click_link 'Edit profile'
+        click_link 'Delete your account'
+
+        expect(page).to have_content 'Are you sure you want to delete your account?'
+        click_button 'Yes, delete my account'
+
+        expect(current_path).to eq root_path
+
+        click_button 'Sign in'
+
+        fill_in 'Email', with: 'user@example.com'
+        fill_in 'Password', with: 'letmein!!'
+        click_button 'Sign in'
+
+        expect(page).to have_content 'Your email/password combination was incorrect'
       end
 
       xscenario 'uploads a profile picture' do
