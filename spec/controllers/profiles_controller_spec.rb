@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ProfileController do
+describe ProfilesController do
   describe 'GET new' do
     it 'redirects to the registration page for unauthenticated users' do
       sign_in(nil)

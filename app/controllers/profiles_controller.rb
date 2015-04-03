@@ -1,4 +1,4 @@
-class ProfileController < ApplicationController
+class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :complete_profile, only: [:show, :edit]
   before_action :assign_profile, only: [:show, :edit, :update]
