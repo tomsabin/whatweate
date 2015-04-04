@@ -6,7 +6,7 @@ describe 'users and profiles' do
     click_link 'Sign up'
     click_button 'Sign up'
 
-    expect(page).to have_content '4 errors prohibited this user from being saved'
+    expect(page).to have_content 'Please review the following errors'
 
     fill_in 'Email', with: 'user@example.com'
     fill_in 'First name', with: 'Cookie'
@@ -39,9 +39,7 @@ describe 'users and profiles' do
     expect(page).to have_content 'Please complete your profile'
 
     click_button 'Save profile'
-    expect(page).to have_content 'Please fill in the required fields'
-    expect(page).to have_content '5 errors prohibited this profile from being saved'
-    # change to 'please review the following errors'
+    expect(page).to have_content 'Please review the following errors'
 
     fill_in 'profile_date_of_birth', with: '01/01/1990'
     expect(page).to have_field('profile_date_of_birth_visible', checked: false)
@@ -97,18 +95,18 @@ describe 'users and profiles' do
         click_link 'Profile'
         click_link 'Edit profile'
 
-        fill_in 'user_email', with: 'invalid'
+        fill_in 'profile_user_email', with: 'invalid'
         fill_in 'profile_date_of_birth', with: ''
 
         click_button 'Save profile'
 
-        expect(page).to have_content '2 errors prohibited this profile from being saved'
-        expect(page).to have_content 'User email is invalid'
-        expect(page).to have_content "Date of birth can't be blank"
+        expect(page).to have_content 'Please review the following errors'
+        within('.profile_user_email') { expect(page).to have_content 'is invalid' }
+        within('.profile_date_of_birth') { expect(page).to have_content "can't be blank" }
 
-        fill_in 'user_email', with: 'me@cookie.com'
-        fill_in 'user_first_name', with: 'Cookie'
-        fill_in 'user_last_name', with: 'Monster'
+        fill_in 'profile_user_email', with: 'me@cookie.com'
+        fill_in 'profile_user_first_name', with: 'Cookie'
+        fill_in 'profile_user_last_name', with: 'Monster'
         fill_in 'profile_date_of_birth', with: '01/01/1990'
         check 'profile_date_of_birth_visible'
         fill_in 'profile_profession', with: 'Cookie monster'
@@ -141,7 +139,7 @@ describe 'users and profiles' do
         fill_in 'user_password_confirmation', with: 'newpassword'
         click_button 'Update password'
 
-        expect(page).to have_content 'Current password was incorrect'
+        within('.user_current_password') { expect(page).to have_content 'was incorrect' }
 
         fill_in 'user_current_password', with: 'letmein!!'
         fill_in 'user_password', with: 'newpassword'
