@@ -1,6 +1,6 @@
-require 'capybara/rspec'
-require 'capybara/poltergeist'
-Dir['./spec/support/**/*.rb'].each { |f| require f }
+require "capybara/rspec"
+require "capybara/poltergeist"
+Dir["./spec/support/**/*.rb"].each { |f| require f }
 
 Capybara.javascript_driver = :poltergeist
 

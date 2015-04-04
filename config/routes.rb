@@ -5,14 +5,14 @@ Rails.application.routes.draw do
 
   resource :user, only: [] do
     collection do
-      get 'delete'
-      get 'edit_password'
-      patch 'update_password'
+      get "delete"
+      get "edit_password"
+      patch "update_password"
     end
   end
 
-  root 'welcome#home'
+  root "welcome#home"
 
-  get '/404', to: 'errors#not_found'
-  get '/500', to: 'errors#internal_error'
+  get "/404", to: "errors#not_found"
+  get "/500", to: "errors#internal_error"
 end

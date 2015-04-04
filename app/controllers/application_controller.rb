@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     if resource.profile.present?
       super
     else
-      flash.notice = 'Please complete your profile'
+      flash.notice = "Please complete your profile"
       new_profile_path
     end
   end

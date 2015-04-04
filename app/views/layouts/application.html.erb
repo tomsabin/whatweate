@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%= render 'layouts/head' %>
+    <%= render "layouts/head" %>
   </head>
   <body class="<%= controller.controller_name %>">
 
-    <%= render 'shared/header' -%>
+    <%= render "shared/header" -%>
 
     <main>
 
@@ -31,7 +31,7 @@
       <%= yield -%>
     </main>
 
-    <%= render 'shared/footer' -%>
+    <%= render "shared/footer" -%>
 
   </body>
 </html>

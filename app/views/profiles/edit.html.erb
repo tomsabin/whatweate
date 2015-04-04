@@ -1,4 +1,4 @@
-<%= simple_form_for @profile, url: { action: 'update' } do |f| %>
+<%= simple_form_for @profile, url: { action: "update" } do |f| %>
   <%= f.error_notification %>
 
   <%= f.simple_fields_for @profile.user do |user_form| %>
@@ -15,7 +15,7 @@
   <%= f.input :mobile_number, as: :tel, html5: true %>
   <%= f.input :mobile_number_visible %>
   <%= f.input :favorite_cuisine %>
-  <%= f.button :submit, 'Save profile' %>
+  <%= f.button :submit, "Save profile" %>
 <% end %>
 
 <%= link_to "Delete your account", delete_user_path %>
