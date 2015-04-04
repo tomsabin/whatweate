@@ -1,4 +1,5 @@
 require "rails_helper"
+include OmniAuthHelpers
 
 describe "users and profiles" do
   scenario "guest signs up from the homepage" do
@@ -36,6 +37,9 @@ describe "users and profiles" do
     click_button "Sign in"
 
     expect(page).to_not have_content "Signed in successfully"
+    expect(page).to have_field "profile_user_email", with: "user@example.com"
+    expect(page).to have_field "profile_user_first_name", with: "Cookie"
+    expect(page).to have_field "profile_user_last_name", with: "Monster"
     expect(page).to have_content "Please complete your profile"
 
     click_button "Save profile"
@@ -206,24 +210,38 @@ describe "users and profiles" do
         expect(page).to have_content "Your email/password combination was incorrect"
       end
 
-      xscenario "adds social networks to verify my account" do
+      scenario "adds social networks to verify account and uses them to sign in" do
+        setup_omniauth
+        setup_valid_facebook_callback
+        setup_valid_twitter_callback
+
         click_link "Profile"
         click_link "Verify your account"
         click_link "Facebook"
 
-        # facebook setup
-
         expect(page).to have_content "Successfully verified your account with Facebook"
-        expect(page).to have_content "Verified"
         expect(page).to have_content "Verified with Facebook"
 
         click_link "Verify your account"
         click_link "Twitter"
 
-        # twitter setup
-
         expect(page).to have_content "Successfully verified your account with Twitter"
-        expect(page).to have_content "Verified"
+        expect(page).to have_content "Verified with Facebook"
+        expect(page).to have_content "Verified with Twitter"
+
+        click_link "Sign out"
+        click_link "Sign in"
+        within(".social-networks") { click_link "Facebook" }
+
+        expect(page).to have_content "Signed in successfully"
+        expect(page).to have_content "Verified with Facebook"
+        expect(page).to have_content "Verified with Twitter"
+
+        click_link "Sign out"
+        click_link "Sign in"
+        within(".social-networks") { click_link "Twitter" }
+
+        expect(page).to have_content "Signed in successfully"
         expect(page).to have_content "Verified with Facebook"
         expect(page).to have_content "Verified with Twitter"
       end
@@ -231,30 +249,74 @@ describe "users and profiles" do
   end
 
   context "guests sign up using a social network" do
-    xscenario "chooses facebook" do
+    before(:each) { setup_omniauth }
+
+    scenario "valid facebook authentication" do
+      setup_valid_facebook_callback
+
       visit root_path
       click_link "Sign up"
-      click_link "Sign up with your Facebook account"
+      within(".social-networks") { click_link "Facebook" }
 
-      # facebook setup
-
+      expect(page).to have_content "Successfully authenticated from Facebook account"
       expect(page).to have_content "Please complete your profile"
+      expect(page).to have_field "user_email", with: "user@example.com"
+      expect(page).to have_field "user_first_name", with: "Cookie"
+      expect(page).to have_field "user_last_name", with: "Monster"
+      fill_in "profile_date_of_birth", with: "01/01/1990"
+      fill_in "profile_profession", with: "Cookie monster"
+      fill_in "profile_greeting", with: "Cookies cookies cookies"
+      fill_in "profile_bio", with: "I like cookies"
+      fill_in "profile_mobile_number", with: "0123456789"
+      fill_in "profile_favorite_cuisine", with: "Chocolate"
 
-      # what can we get from facebook to populate the profile?
+      click_button "Save profile"
+      expect(page).to have_content "Thanks! Your profile has successfully been saved"
     end
 
-    xscenario "chooses twitter" do
+    scenario "invalid facebook authentication" do
+      setup_invalid_facebook_callback
+
       visit root_path
       click_link "Sign up"
-      click_link "Sign up with your Facebook account"
+      within(".social-networks") { click_link "Facebook" }
 
-      # twitter setup
-
-      expect(page).to have_content "Please complete your profile"
-
-      # what can we get from twitter to populate the profile?
+      expect(page).to have_content 'Could not authenticate you from Facebook because "Invalid credentials"'
+      expect(current_path).to eq new_user_registration_path
     end
 
-    # some scenario to try and get conflicts :(
+    scenario "valid twitter authentication" do
+      setup_valid_twitter_callback
+
+      visit root_path
+      click_link "Sign up"
+      within(".social-networks") { click_link "Twitter" }
+
+      expect(page).to have_content "Successfully authenticated from Twitter account"
+      expect(page).to have_content "Please complete your profile"
+      fill_in "user_email", with: "user@example.com"
+      fill_in "user_first_name", with: "Cookie"
+      fill_in "user_last_name", with: "Monster"
+      fill_in "profile_date_of_birth", with: "01/01/1990"
+      fill_in "profile_profession", with: "Cookie monster"
+      fill_in "profile_greeting", with: "Cookies cookies cookies"
+      expect(page).to have_field 'profile_bio', with: 'I like cookies'
+      fill_in "profile_mobile_number", with: "0123456789"
+      fill_in "profile_favorite_cuisine", with: "Chocolate"
+
+      click_button "Save profile"
+      expect(page).to have_content "Thanks! Your profile has successfully been saved"
+    end
+
+    scenario "invalid twitter authentication" do
+      setup_invalid_twitter_callback
+
+      visit root_path
+      click_link "Sign up"
+      within(".social-networks") { click_link "Twitter" }
+
+      expect(page).to have_content 'Could not authenticate you from Twitter because "Invalid credentials"'
+      expect(current_path).to eq new_user_registration_path
+    end
   end
 end

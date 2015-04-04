@@ -10,6 +10,9 @@ gem "rails_config"
 gem "devise"
 gem "gravatar_image_tag"
 gem "simple_form"
+gem "omniauth"
+gem "omniauth-twitter"
+gem "omniauth-facebook"
 
 group :development, :test do
   gem "rspec-rails", "~> 3.0"
