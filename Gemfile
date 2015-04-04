@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'rails_config'
 gem 'devise'
+gem 'gravatar_image_tag'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
