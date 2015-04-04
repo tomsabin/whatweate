@@ -185,12 +185,6 @@ describe 'users and profiles' do
         expect(page).to have_content 'Your email/password combination was incorrect'
       end
 
-      xscenario 'uploads a profile picture' do
-      end
-
-      xscenario 'chooses an avatar' do
-      end
-
       xscenario 'adds social networks to verify my account' do
         click_link 'Profile'
         click_link 'Verify your account'
