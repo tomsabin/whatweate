@@ -8,6 +8,7 @@ Rails.application.configure do
   config.action_dispatch.show_exceptions = false
   config.action_controller.allow_forgery_protection = false
   config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = { only_path: true }
   config.active_support.deprecation = :stderr
   config.allow_concurrency = false
 end

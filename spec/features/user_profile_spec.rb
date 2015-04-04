@@ -67,19 +67,40 @@ describe 'users and profiles' do
   context 'as a user that has completed their profile' do
     before { FactoryGirl.create(:user, email: 'user@example.com', password: 'letmein!!') }
 
-    scenario 'receives login error messages' do
+    scenario 'forgets their password' do
       visit root_path
       click_link 'Sign in'
       click_button 'Sign in'
 
       expect(page).to have_content 'Your email/password combination was incorrect'
 
-      fill_in 'Email', with: 'user@example.com'
-      fill_in 'Password', with: 'letmein!!'
+      click_link 'Forgot your password?'
+
+      fill_in 'user_email', with: 'user@example.com'
+      click_button 'Send me password reset instructions'
+
+      expect(ActionMailer::Base.deliveries.first.subject).to eq 'Reset password instructions'
+      visit edit_user_password_path(reset_password_token)
+
+      fill_in 'user_password', with: 'newpassword'
+      fill_in 'user_password_confirmation', with: 'newpassword'
+      click_button 'Change my password'
+
+      expect(page).to have_content 'Your password has been changed successfully. You are now signed in.'
+
+      click_link 'Sign out'
+      click_link 'Sign in'
+
+      fill_in 'user_email', with: 'user@example.com'
+      fill_in 'user_password', with: 'newpassword'
       click_button 'Sign in'
 
       expect(page).to have_content 'Signed in successfully'
       expect(page).to_not have_content 'Please complete your profile'
+    end
+
+    def reset_password_token
+      { reset_password_token: ActionMailer::Base.deliveries.first.body.raw_source.match(/reset_password_token=(.*)\"/)[1] }
     end
 
     context 'having successfully signed in' do
