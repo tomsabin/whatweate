@@ -171,11 +171,14 @@ describe 'users and profiles' do
         click_link 'Delete your account'
 
         expect(page).to have_content 'Are you sure you want to delete your account?'
-        click_button 'Yes, delete my account'
+        expect(page).to have_link 'No, cancel'
+        click_link 'Yes, delete my account'
 
         expect(current_path).to eq root_path
 
-        click_button 'Sign in'
+        expect(page).to have_content 'Your account has been successfully been deleted. We hope to see you again soon'
+
+        click_link 'Sign in'
 
         fill_in 'Email', with: 'user@example.com'
         fill_in 'Password', with: 'letmein!!'

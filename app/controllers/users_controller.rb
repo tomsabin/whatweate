@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
 
+  def delete
+  end
+
   def edit_password
     @user = current_user
   end
@@ -12,7 +15,7 @@ class UsersController < ApplicationController
       sign_in(@user, bypass: true)
       redirect_to(profile_path, notice: 'Your password was successfully updated')
     else
-      @user.errors.add(:current_password, 'was incorrect') if !valid_password
+      @user.errors.add(:current_password, 'was incorrect') unless valid_password
       render(:edit_password)
     end
   end

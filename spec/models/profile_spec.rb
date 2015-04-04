@@ -16,7 +16,7 @@ describe Profile do
     let!(:profile) { FactoryGirl.create(:profile) }
 
     it 'updates the associated user as well' do
-      attributes = { bio: 'My new bio', user_attributes: { email: 'user@example.com', id: profile.user.id }}
+      attributes = { bio: 'My new bio', user_attributes: { email: 'user@example.com', id: profile.user.id } }
       profile.update(attributes)
       profile.reload
       expect(profile.errors).to be_empty

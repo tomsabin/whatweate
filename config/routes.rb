@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resource :user, only: [] do
     collection do
+      get 'delete'
       get 'edit_password'
       patch 'update_password'
     end
