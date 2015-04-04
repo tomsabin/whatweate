@@ -1,5 +1,7 @@
 require 'capybara/rspec'
 require 'capybara/poltergeist'
+Dir['./spec/support/**/*.rb'].each { |f| require f }
+
 Capybara.javascript_driver = :poltergeist
 
 RSpec.configure do |config|
@@ -10,4 +12,6 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end
+
+  config.order = :random
 end

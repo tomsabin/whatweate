@@ -1,0 +1,13 @@
+<%= simple_form_for @profile, url: { action: 'create' }, defaults: { required: false } do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :date_of_birth, html5: true %>
+  <%= f.input :date_of_birth_visible %>
+  <%= f.input :profession %>
+  <%= f.input :greeting %>
+  <%= f.input :bio, as: :string %>
+  <%= f.input :mobile_number, as: :tel, html5: true %>
+  <%= f.input :mobile_number_visible %>
+  <%= f.input :favorite_cuisine %>
+  <%= f.button :submit, 'Save profile' %>
+<% end %>
