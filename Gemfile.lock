@@ -57,6 +57,9 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    dotenv (2.0.1)
+    dotenv-rails (2.0.1)
+      dotenv (= 2.0.1)
     erubis (2.7.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -220,6 +223,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   devise
+  dotenv-rails
   factory_girl_rails
   faker
   gravatar_image_tag

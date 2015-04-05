@@ -20,6 +20,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "faker"
   gem "letter_opener"
+  gem "dotenv-rails"
 end
 
 group :development do
