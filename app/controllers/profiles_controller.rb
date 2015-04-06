@@ -2,10 +2,9 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :complete_profile, only: [:show, :edit]
   before_action :assign_profile, only: [:show, :edit, :update]
+  before_action :assign_verifications, only: [:show, :edit]
 
   def show
-    @verified_with_facebook = Identity.facebook(current_user)
-    @verified_with_twitter = Identity.twitter(current_user)
   end
 
   def new
@@ -51,6 +50,11 @@ class ProfilesController < ApplicationController
 
   def profile
     current_user.profile
+  end
+
+  def assign_verifications
+    @verified_with_facebook = Identity.facebook(current_user)
+    @verified_with_twitter = Identity.twitter(current_user)
   end
 
   def user_params

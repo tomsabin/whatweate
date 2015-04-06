@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :identity, only: :destroy
+
   root "welcome#home"
 
   get "/404", to: "errors#not_found"

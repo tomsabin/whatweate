@@ -20,3 +20,11 @@
 
 <%= link_to "Delete your account", delete_user_path %>
 <%= link_to "Change your password", edit_password_user_path %>
+
+<% if @verified_with_facebook %>
+  <%= link_to "Disconnect Facebook from your account", identity_path(provider: :facebook), method: :delete %>
+<% end %>
+
+<% if @verified_with_twitter %>
+  <%= link_to "Disconnect Twitter from your account", identity_path(provider: :twitter), method: :delete %>
+<% end %>

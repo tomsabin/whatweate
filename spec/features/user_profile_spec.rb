@@ -210,7 +210,7 @@ describe "users and profiles" do
         expect(page).to have_content "Your email/password combination was incorrect"
       end
 
-      scenario "adds social networks to verify account and uses them to sign in" do
+      scenario "adds social networks to verify account, uses them to sign in and unlinks them from the account" do
         setup_omniauth
         setup_valid_facebook_callback
         setup_valid_twitter_callback
@@ -244,6 +244,19 @@ describe "users and profiles" do
         click_link "Profile"
         expect(page).to have_content "Verified with Facebook"
         expect(page).to have_content "Verified with Twitter"
+
+        click_link "Edit profile"
+        click_link "Disconnect Facebook from your account"
+        expect(page).to have_content "Successfully disconnected Facebook from your account"
+        click_link "Disconnect Twitter from your account"
+        expect(page).to have_content "Successfully disconnected Twitter from your account"
+
+        click_link "Sign out"
+        click_link "Sign up"
+
+        within(".social-networks") { click_link "Facebook" }
+        expect(page).to have_content "Please complete your profile"
+        expect(page).to_not have_field "profile_user_email", with: "user@example.com"
       end
     end
   end
