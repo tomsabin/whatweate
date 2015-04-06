@@ -1,4 +1,4 @@
-module OmniAuthHelpers
+module OmniauthHelpers
   def setup_omniauth
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:facebook] = nil

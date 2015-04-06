@@ -6,24 +6,6 @@ class User < ActiveRecord::Base
   validates :email, :first_name, :last_name, presence: true
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
-    identity = Identity.find_for_oauth(auth)
-    user = signed_in_resource ? signed_in_resource : identity.user
-
-    if user.nil?
-      user = User.new(
-        email: auth["info"]["email"] || "",
-        first_name: auth["info"]["first_name"],
-        last_name: auth["info"]["last_name"],
-        password: Devise.friendly_token[0, 20]
-      )
-      user.save(validate: false)
-    end
-
-    if identity.user != user
-      identity.user = user
-      identity.save!
-    end
-
-    user
+    OmniauthUser.find(auth, signed_in_resource)
   end
 end

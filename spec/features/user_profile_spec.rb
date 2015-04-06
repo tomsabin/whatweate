@@ -1,5 +1,5 @@
 require "rails_helper"
-include OmniAuthHelpers
+include OmniauthHelpers
 
 describe "users and profiles" do
   scenario "guest signs up from the homepage" do
