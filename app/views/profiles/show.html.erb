@@ -32,3 +32,16 @@ Bio:
 
 Favourite cuisine:
 <%= @profile.favorite_cuisine %>
+
+<% if @verified_with_facebook %>
+  Verified with Facebook
+<% end %>
+
+<% if @verified_with_twitter %>
+  Verified with Twitter
+<% end %>
+
+<div class="social-networks">
+  <%= link_to "Verify your account with Facebook", user_omniauth_authorize_path(:facebook) unless @verified_with_facebook %>
+  <%= link_to "Verify your account with Twitter", user_omniauth_authorize_path(:twitter) unless @verified_with_twitter%>
+</div>

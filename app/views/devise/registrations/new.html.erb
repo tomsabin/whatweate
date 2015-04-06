@@ -9,3 +9,8 @@
   <%= f.input :password_confirmation %>
   <%= f.button :submit, "Sign up" %>
 <% end %>
+
+<div class="social-networks">
+  <%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %>
+  <%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %>
+</div>

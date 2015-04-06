@@ -10,6 +10,9 @@ gem "rails_config"
 gem "devise"
 gem "gravatar_image_tag"
 gem "simple_form"
+gem "omniauth"
+gem "omniauth-twitter"
+gem "omniauth-facebook"
 
 group :development, :test do
   gem "rspec-rails", "~> 3.0"
@@ -17,6 +20,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "faker"
   gem "letter_opener"
+  gem "dotenv-rails"
 end
 
 group :development do

@@ -2,23 +2,28 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :complete_profile, only: [:show, :edit]
   before_action :assign_profile, only: [:show, :edit, :update]
+  before_action :assign_verifications, only: [:show, :edit]
 
   def show
   end
 
   def new
-    redirect_to(profile_path) && return if profile.present?
+    redirect_to(profile_url) && return if profile.present?
     @profile = Profile.new
   end
 
   def create
-    @profile = Profile.new(profile_params)
-    @profile.user = current_user
-    if @profile.save
-      redirect_to(profile_path, notice: "Thanks! Your profile has successfully been saved")
-    else
-      flash.alert = "Please fill in the required fields"
-      render(:new)
+    @profile = Profile.new(user: current_user)
+
+    Profile.transaction do
+      begin
+        @profile.user.update!(user_params)
+        @profile.update!(profile_params)
+        redirect_to(profile_path, notice: "Thanks! Your profile has successfully been saved")
+      rescue ActiveRecord::RecordInvalid
+        flash.alert = "Please fill in the required fields"
+        render(:new)
+      end
     end
   end
 
@@ -27,7 +32,7 @@ class ProfilesController < ApplicationController
 
   def update
     if profile.update(profile_params.merge(user_attributes: user_params.merge(id: current_user.id)))
-      redirect_to(profile_path, notice: "Your profile has successfully been saved")
+      redirect_to(profile_url, notice: "Your profile has successfully been saved")
     else
       render(:edit)
     end
@@ -36,7 +41,7 @@ class ProfilesController < ApplicationController
   private
 
   def complete_profile
-    redirect_to(new_profile_path, notice: "Please complete your profile") if profile.blank?
+    redirect_to(new_profile_url, profile_prompt: "Please complete your profile") if profile.blank?
   end
 
   def assign_profile
@@ -45,6 +50,11 @@ class ProfilesController < ApplicationController
 
   def profile
     current_user.profile
+  end
+
+  def assign_verifications
+    @verified_with_facebook = Identity.facebook(current_user)
+    @verified_with_twitter = Identity.twitter(current_user)
   end
 
   def user_params

@@ -10,6 +10,12 @@ FactoryGirl.define do
         user.profile = FactoryGirl.build(:profile, user: user)
       end
     end
+
+    trait :authorised_with_facebook do
+      after :create do |user, _|
+        FactoryGirl.create(:facebook_identity, user: user)
+      end
+    end
   end
 
   factory :profile do

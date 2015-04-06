@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
 
   resource :profile, except: [:destroy]
 
@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       patch "update_password"
     end
   end
+
+  resource :identity, only: :destroy
 
   root "welcome#home"
 

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     valid_password = @user.valid_password?(current_password)
     if valid_password && @user.update(user_params)
       sign_in(@user, bypass: true)
-      redirect_to(profile_path, notice: "Your password was successfully updated")
+      redirect_to(profile_url, notice: "Your password was successfully updated")
     else
       @user.errors.add(:current_password, "was incorrect") unless valid_password
       render(:edit_password)
