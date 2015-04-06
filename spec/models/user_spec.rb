@@ -44,7 +44,7 @@ describe User do
       expect(Identity.count).to eq(1)
       expect(user).to_not be_valid
       expect(user.persisted?).to be_truthy
-      expect(user.email).to be_blank
+      expect(user.email).to eq("user@example.com")
       expect(user.first_name).to eq("Cookie")
       expect(user.last_name).to eq("Monster")
       expect(identity.user).to eq(user)

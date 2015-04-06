@@ -12,7 +12,7 @@ FactoryGirl.define do
     end
 
     trait :authorised_with_facebook do
-      after :build do |user, _|
+      after :create do |user, _|
         FactoryGirl.create(:facebook_identity, user: user)
       end
     end

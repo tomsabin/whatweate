@@ -37,7 +37,7 @@ describe "users and profiles" do
     click_button "Sign in"
 
     expect(page).to_not have_content "Signed in successfully"
-    expect(page).to_not have_field "profile_user_email"
+    expect(page).to have_field "profile_user_email", with: "user@example.com"
     expect(page).to have_field "profile_user_first_name", with: "Cookie"
     expect(page).to have_field "profile_user_last_name", with: "Monster"
     expect(page).to have_content "Please complete your profile"
@@ -260,7 +260,7 @@ describe "users and profiles" do
 
       expect(page).to have_content "Successfully authenticated from Facebook account"
       expect(page).to have_content "Please complete your profile"
-      expect(page).to_not have_field "profile_user_email"
+      expect(page).to have_field "profile_user_email", with: "user@example.com"
       expect(page).to have_field "profile_user_first_name", with: "Cookie"
       expect(page).to have_field "profile_user_last_name", with: "Monster"
       fill_in "profile_user_first_name", with: "C."
@@ -297,7 +297,7 @@ describe "users and profiles" do
 
       expect(page).to have_content "Successfully authenticated from Twitter account"
       expect(page).to have_content "Please complete your profile"
-      expect(page).to_not have_field "profile_user_email"
+      fill_in "profile_user_email", with: "user@example.com"
       fill_in "profile_user_first_name", with: "Cookie"
       fill_in "profile_user_last_name", with: "Monster"
       fill_in "profile_date_of_birth", with: "01/01/1990"

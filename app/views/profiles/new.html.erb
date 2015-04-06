@@ -4,6 +4,7 @@
   <%= f.error_notification %>
 
   <%= f.simple_fields_for current_user do |user_form| %>
+    <%= user_form.input :email %>
     <%= user_form.input :first_name %>
     <%= user_form.input :last_name %>
   <% end %>
