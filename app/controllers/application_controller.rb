@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  add_flash_types :profile_prompt
+
   protected
 
   def configure_permitted_parameters
@@ -13,7 +15,8 @@ class ApplicationController < ActionController::Base
     if resource.profile.present?
       super
     else
-      flash.notice = "Please complete your profile"
+      flash.discard
+      flash[:profile_prompt] = "Please complete your profile"
       new_profile_path
     end
   end

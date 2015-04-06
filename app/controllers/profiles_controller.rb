@@ -36,7 +36,7 @@ class ProfilesController < ApplicationController
   private
 
   def complete_profile
-    redirect_to(new_profile_url, notice: "Please complete your profile") if profile.blank?
+    redirect_to(new_profile_url, profile_prompt: "Please complete your profile") if profile.blank?
   end
 
   def assign_profile
@@ -48,7 +48,7 @@ class ProfilesController < ApplicationController
   end
 
   def user_params
-    params.require(:profile).require(:user).permit(:email, :first_name, :last_name)
+    params.require(:profile).require(:user).permit(:first_name, :last_name)
   end
 
   def profile_params
