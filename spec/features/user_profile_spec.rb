@@ -303,7 +303,7 @@ describe "users and profiles" do
       fill_in "profile_date_of_birth", with: "01/01/1990"
       fill_in "profile_profession", with: "Cookie monster"
       fill_in "profile_greeting", with: "Cookies cookies cookies"
-      expect(page).to have_field 'profile_bio', with: 'I like cookies'
+      fill_in "profile_bio", with: "I like cookies"
       fill_in "profile_mobile_number", with: "0123456789"
       fill_in "profile_favorite_cuisine", with: "Chocolate"
 

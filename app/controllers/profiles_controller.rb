@@ -12,13 +12,17 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.new(profile_params)
-    @profile.user = current_user
-    if @profile.save
-      redirect_to(profile_path, notice: "Thanks! Your profile has successfully been saved")
-    else
-      flash.alert = "Please fill in the required fields"
-      render(:new)
+    @profile = Profile.new(user: current_user)
+
+    Profile.transaction do
+      begin
+        @profile.user.update!(user_params)
+        @profile.update!(profile_params)
+        redirect_to(profile_path, notice: "Thanks! Your profile has successfully been saved")
+      rescue ActiveRecord::RecordInvalid
+        flash.alert = "Please fill in the required fields"
+        render(:new)
+      end
     end
   end
 

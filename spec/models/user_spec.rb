@@ -42,7 +42,7 @@ describe User do
 
       expect(User.count).to eq(1)
       expect(Identity.count).to eq(1)
-      expect(user).to_not be_valid
+      expect(user).to be_valid
       expect(user.persisted?).to be_truthy
       expect(user.email).to eq("user@example.com")
       expect(user.first_name).to eq("Cookie")

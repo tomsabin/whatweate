@@ -23,7 +23,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def after_omniauth_failure_path_for(scope)
+  def after_omniauth_failure_path_for(_scope)
     new_user_registration_url
   end
 
