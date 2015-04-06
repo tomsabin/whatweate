@@ -263,6 +263,7 @@ describe "users and profiles" do
       expect(page).to_not have_field "profile_user_email"
       expect(page).to have_field "profile_user_first_name", with: "Cookie"
       expect(page).to have_field "profile_user_last_name", with: "Monster"
+      fill_in "profile_user_first_name", with: "C."
       fill_in "profile_date_of_birth", with: "01/01/1990"
       fill_in "profile_profession", with: "Cookie monster"
       fill_in "profile_greeting", with: "Cookies cookies cookies"
@@ -272,6 +273,8 @@ describe "users and profiles" do
 
       click_button "Save profile"
       expect(page).to have_content "Thanks! Your profile has successfully been saved"
+      expect(page).to have_content "First name: C."
+      expect(page).to have_content "Last name: Monster"
     end
 
     scenario "invalid facebook authentication" do
