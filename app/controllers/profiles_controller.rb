@@ -4,6 +4,8 @@ class ProfilesController < ApplicationController
   before_action :assign_profile, only: [:show, :edit, :update]
 
   def show
+    @verified_with_facebook = Identity.facebook(current_user)
+    @verified_with_twitter = Identity.twitter(current_user)
   end
 
   def new
