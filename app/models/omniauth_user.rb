@@ -1,5 +1,5 @@
 class OmniauthUser
-  def self.find(auth, signed_in_resource = nil)
+  def self.find_or_create(auth, signed_in_resource = nil)
     identity = Identity.find_for_oauth(auth)
     user = signed_in_resource ? signed_in_resource : identity.user
     user = new(auth).setup if user.nil?

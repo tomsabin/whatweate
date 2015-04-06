@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
   validates :email, :first_name, :last_name, presence: true
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
-    OmniauthUser.find(auth, signed_in_resource)
+    OmniauthUser.find_or_create(auth, signed_in_resource)
   end
 end
