@@ -12,10 +12,10 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profile = Profile.new(user: current_user)
-    @profile.save(validate: false)
-    if @profile.update(profile_params.merge(user_attributes: user_params.merge(id: current_user.id)))
-      redirect_to(profile_url, notice: "Thanks! Your profile has successfully been saved")
+    @profile = Profile.new(profile_params)
+    @profile.user = current_user
+    if @profile.save
+      redirect_to(profile_path, notice: "Thanks! Your profile has successfully been saved")
     else
       flash.alert = "Please fill in the required fields"
       render(:new)

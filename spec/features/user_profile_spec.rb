@@ -216,14 +216,12 @@ describe "users and profiles" do
         setup_valid_twitter_callback
 
         click_link "Profile"
-        click_link "Verify your account"
-        click_link "Facebook"
+        click_link "Verify your account with Facebook"
 
         expect(page).to have_content "Successfully verified your account with Facebook"
         expect(page).to have_content "Verified with Facebook"
 
-        click_link "Verify your account"
-        click_link "Twitter"
+        click_link "Verify your account with Twitter"
 
         expect(page).to have_content "Successfully verified your account with Twitter"
         expect(page).to have_content "Verified with Facebook"
@@ -233,7 +231,8 @@ describe "users and profiles" do
         click_link "Sign in"
         within(".social-networks") { click_link "Facebook" }
 
-        expect(page).to have_content "Signed in successfully"
+        expect(page).to have_content "Successfully authenticated from Facebook account"
+        click_link "Profile"
         expect(page).to have_content "Verified with Facebook"
         expect(page).to have_content "Verified with Twitter"
 
@@ -241,7 +240,8 @@ describe "users and profiles" do
         click_link "Sign in"
         within(".social-networks") { click_link "Twitter" }
 
-        expect(page).to have_content "Signed in successfully"
+        expect(page).to have_content "Successfully authenticated from Twitter account"
+        click_link "Profile"
         expect(page).to have_content "Verified with Facebook"
         expect(page).to have_content "Verified with Twitter"
       end
