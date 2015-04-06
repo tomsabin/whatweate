@@ -4,7 +4,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       sign_in_and_redirect(@user, event: :authentication)
-      set_flash_message("Facebook")
+      flash.notice = flash_message("Facebook")
     else
       session["devise.facebook_data"] = env["omniauth.auth"]
       redirect_to(new_user_registration_url)
@@ -16,7 +16,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       sign_in_and_redirect(@user, event: :authentication)
-      set_flash_message("Twitter")
+      flash.notice = flash_message("Twitter")
     else
       session["devise.twitter_data"] = env["omniauth.auth"]
       redirect_to(new_user_registration_url)
@@ -33,11 +33,11 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
 
-  def set_flash_message(provider)
+  def flash_message(provider)
     if callback_originated_from_profile?
-      flash.notice = "Successfully verified your account with #{provider}"
+      "Successfully verified your account with #{provider}"
     elsif is_navigational_format?
-      super(:notice, :success, kind: provider)
+      "Successfully authenticated from #{provider} account"
     end
   end
 
