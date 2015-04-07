@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%= render 'layouts/head' %>
+    <%= render "layouts/head" %>
   </head>
   <body class="<%= controller.controller_name %>">
 
-    <%= render 'shared/header' -%>
+    <%= render "shared/header" -%>
 
     <main>
+
+      <!--  -->
+
+      <div>
+        <% if user_signed_in? %>
+          <%= link_to("Sign out", destroy_user_session_path, :method => :delete) %>
+          <%= link_to("Profile", profile_path) %>
+        <% else %>
+          <%= link_to("Sign in", new_user_session_path)  %>
+          <%= link_to("Sign up", new_registration_path(:user)) %>
+        <% end %>
+      </div>
+
+      <div class="flash-messages">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+
+      <!--  -->
+
       <%= yield -%>
     </main>
 
-    <%= render 'shared/footer' -%>
+    <%= render "shared/footer" -%>
 
   </body>
 </html>

@@ -1,2 +1,2 @@
-require Rails.root.join('config/environments/production')
+require Rails.root.join("config/environments/production")
 
