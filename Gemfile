@@ -13,6 +13,7 @@ gem "simple_form"
 gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-facebook"
+gem "draper"
 
 group :development, :test do
   gem "rspec-rails", "~> 3.0"

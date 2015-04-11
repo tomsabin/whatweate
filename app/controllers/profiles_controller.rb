@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
   before_action :assign_verifications, only: [:show, :edit]
 
   def show
+    @profile = @profile.decorate
   end
 
   def new

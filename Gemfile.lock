@@ -60,6 +60,11 @@ GEM
     dotenv (2.0.1)
     dotenv-rails (2.0.1)
       dotenv (= 2.0.1)
+    draper (2.1.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0)
     erubis (2.7.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -154,6 +159,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
     rake (10.3.2)
+    request_store (1.1.0)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
     rspec-core (3.1.7)
@@ -224,6 +230,7 @@ DEPENDENCIES
   capybara
   devise
   dotenv-rails
+  draper
   factory_girl_rails
   faker
   gravatar_image_tag
