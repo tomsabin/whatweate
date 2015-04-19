@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
       begin
         @profile.user.update!(user_params)
         @profile.update!(profile_params)
-        redirect_to(profile_path, notice: "Thanks! Your profile has successfully been saved")
+        redirect_to(profile_url, notice: "Thanks! Your profile has successfully been saved")
       rescue ActiveRecord::RecordInvalid
         flash.alert = "Please fill in the required fields"
         render(:new)

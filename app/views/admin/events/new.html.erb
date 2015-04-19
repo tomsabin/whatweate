@@ -1,0 +1,13 @@
+<%= simple_form_for @event, url: { action: "create" } do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :title %>
+  <%= f.input :location %>
+  <%= f.input :description %>
+  <%= f.input :menu %>
+  <%= f.input :seats %>
+  <%= f.input :price_in_pennies %>
+  <%= f.input :currency, input_html: { value: f.object.currency || 'GBP'} %>
+
+  <%= f.button :submit, "Create event" %>
+<% end %>

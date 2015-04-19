@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resource :identity, only: :destroy
 
   namespace :admin do
+    resources :events
+
     root "admin#dashboard"
   end
 

@@ -1,0 +1,5 @@
+<%= link_to "Create new event", new_admin_event_path %>
+
+<% @events.each do |event| %>
+  <%= link_to event.title, admin_event_path(event) %>
+<% end %>
