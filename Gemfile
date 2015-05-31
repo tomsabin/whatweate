@@ -15,6 +15,7 @@ gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-facebook"
 gem "draper"
+gem "rollbar"
 
 group :production do
   gem 'rails_12factor'
