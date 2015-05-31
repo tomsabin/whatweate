@@ -1,10 +1,10 @@
 source "https://rubygems.org"
 
-gem "rails", "4.1.8"
+gem "rails", "4.2.1"
 gem "pg"
 gem "puma"
-gem "uglifier",   ">= 1.3.0"
-gem "sass-rails", "~> 4.0.3"
+gem "uglifier"
+gem "sass-rails"
 gem "jquery-rails"
 gem "turbolinks"
 gem "rails_config"
@@ -40,4 +40,4 @@ group :test do
   gem "shoulda-matchers"
 end
 
-ruby "2.2.1"
+ruby "2.2.2"
