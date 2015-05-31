@@ -13,14 +13,18 @@
 
 ## Staging and Production environments
 
-Hosted on Heroku, [install the CLI](https://toolbelt.heroku.com/).
+Hosted on Heroku, [install the CLI](https://toolbelt.heroku.com/). [CircleCI](https://circleci.com/gh/what-we-ate/what-we-ate) automatically deploys `develop` to QA, `master` to Staging on green builds.
 
+- **QA:** [whatweate-qa.herokuapp.com](http://whatweate-qa.herokuapp.com)
 - **Staging:** [whatweate-staging.herokuapp.com](http://whatweate-staging.herokuapp.com)
-- **Production:** [whatweate.co](http://whatweate.co) / [wwa1.herokuapp.com](http://wwa1.herokuapp.com)
+- **Production:** [whatweate.co](http://whatweate.co) / [whatweate.herokuapp.com](http://whatweate.herokuapp.com)
 
 ### Deployment
 
 ```
+heroku git:remote -a whatweate-qa -r qa
 heroku git:remote -a whatweate-staging -r staging
-git push staging <branch>:master && heroku run rake db:migrate --app whatweate-staging
+heroku git:remote -a whatweate -r production
+
+git push qa <branch>:master && heroku run rake db:migrate --app whatweate-staging
 ```
