@@ -3,3 +3,7 @@ deployment:
     branch: master
     heroku:
       appname: whatweate-staging
+  qa:
+    branch: develop
+    heroku:
+      appname: whatweate-qa
