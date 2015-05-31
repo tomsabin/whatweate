@@ -22,7 +22,5 @@ Hosted on Heroku, [install the CLI](https://toolbelt.heroku.com/).
 
 ```
 heroku git:remote -a whatweate-staging -r staging
-git push staging <branch>:master
-heroku run rake db:migrate --app whatweate-staging
+git push staging <branch>:master && heroku run rake db:migrate --app whatweate-staging
 ```
-
