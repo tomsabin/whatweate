@@ -27,7 +27,7 @@ class OmniauthUser
   private
 
   def email
-    auth_email.blank? || email_exists? ? "" : auth_email
+    auth_email.blank? || email_exists? ? nil : auth_email
   end
 
   def auth_email

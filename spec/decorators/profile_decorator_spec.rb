@@ -11,7 +11,7 @@ describe ProfileDecorator do
 
     context "when empty" do
       let(:date) { nil }
-      it { expect(profile.date_of_birth).to be_blank }
+      it { expect(profile.date_of_birth).to eq("") }
     end
   end
 end

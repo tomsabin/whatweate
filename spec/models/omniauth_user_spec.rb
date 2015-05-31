@@ -18,10 +18,10 @@ describe OmniauthUser do
       expect(User.count).to eq(1)
       expect(Identity.count).to eq(1)
       expect(user).to_not be_valid
-      expect(user.persisted?).to be_truthy
-      expect(user.email).to be_blank
-      expect(user.first_name).to be_blank
-      expect(user.last_name).to be_blank
+      expect(user.persisted?).to eq(true)
+      expect(user.email).to eq(nil)
+      expect(user.first_name).to eq(nil)
+      expect(user.last_name).to eq(nil)
       expect(identity.user).to eq(user)
       expect(identity.provider).to eq("twitter")
     end
@@ -62,7 +62,17 @@ describe OmniauthUser do
     it "does not use the email if it already exists" do
       FactoryGirl.create(:user, email: "user@example.com")
       OmniauthUser.find_or_create(facebook_auth_hash)
-      expect(User.last.email).to be_blank
+      expect(User.last.email).to eq(nil)
+    end
+
+    it "creates an invalid User with email if another User exists" do
+      user_1 = OmniauthUser.find_or_create(twitter_auth_hash)
+      expect(User.count).to eq(1)
+      expect(user_1.email).to eq(nil)
+
+      user_2 = OmniauthUser.find_or_create(twitter_auth_hash.merge("uid" => "abcdef"))
+      expect(User.count).to eq(2)
+      expect(user_2.email).to eq(nil)
     end
   end
 end
