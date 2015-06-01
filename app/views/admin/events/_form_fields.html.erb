@@ -1,5 +1,6 @@
 <%= f.error_notification %>
 
+<%= f.input :host_id, collection: @hosts, label_method: :name, required: true %>
 <%= f.input :title %>
 <%= f.input :location %>
 <%= f.input :description %>

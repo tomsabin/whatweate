@@ -7,12 +7,14 @@ describe "event management" do
   end
 
   scenario "admin creates, views, edits and deletes an event" do
+    FactoryGirl.create(:host, name: "Joe Bloggs")
+
     click_link "Create new event"
     click_button "Create event"
 
     expect(page).to have_content "Please review the following errors"
 
-    # select "Joe Bloggs", from: "event_host"
+    select "Joe Bloggs", from: "event_host_id"
     fill_in "event_title", with: "Sunday Roast"
     fill_in "event_location", with: "London"
     fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
@@ -41,11 +43,11 @@ describe "event management" do
     # end
 
     visit admin_events_path
-    # click_link "'Sunday Roast' hosted by Joe Bloggs"
+    expect(page).to have_content "Sunday Roast hosted by Joe Bloggs"
     click_link "Sunday Roast"
 
     expect(page).to have_content "Sunday Roast"
-    # expect(page).to have_content "Hosted by Joe Bloggs"
+    expect(page).to have_content "Hosted by Joe Bloggs"
     expect(page).to have_content "London"
     expect(page).to have_content "8 seats"
     expect(page).to have_content "£10"

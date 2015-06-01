@@ -1,5 +1,6 @@
 class Admin::EventsController < Admin::AdminController
   before_action :assign_event, except: [:index, :new, :create]
+  before_action :assign_hosts, only: [:new, :create, :edit, :update]
 
   def index
     @events = Event.all
@@ -47,8 +48,12 @@ class Admin::EventsController < Admin::AdminController
     @event = Event.find(params[:id])
   end
 
+  def assign_hosts
+    @hosts = Host.all
+  end
+
   def event_params
-    params.require(:event).permit(:title, :location, :description, :menu, :seats, :price_in_pennies, :currency)
+    params.require(:event).permit(:host_id, :title, :location, :description, :menu, :seats, :price_in_pennies, :currency)
   end
 
 end
