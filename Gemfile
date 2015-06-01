@@ -16,6 +16,7 @@ gem "omniauth-twitter"
 gem "omniauth-facebook"
 gem "draper"
 gem "rollbar"
+gem "money-rails"
 
 group :production do
   gem 'rails_12factor'
