@@ -1,5 +1,6 @@
 <%= simple_form_for [:admin, @event] do |f| %>
   <%= render partial: "form_fields", locals: { f: f } %>
 
-  <%= f.button :submit, "Create event" %>
+  <%= link_to "Delete event", admin_event_path(@event), method: :delete %>
+  <%= f.button :submit, "Save event" %>
 <% end %>
