@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "the home page" do
+describe "Home page" do
   before { visit root_path }
 
   context "header" do

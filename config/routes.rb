@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
 
   resource :profile, except: [:destroy]
@@ -12,6 +13,10 @@ Rails.application.routes.draw do
   end
 
   resource :identity, only: :destroy
+
+  namespace :admin do
+    root "admin#dashboard"
+  end
 
   root "welcome#home"
 
