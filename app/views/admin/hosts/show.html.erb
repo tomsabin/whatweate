@@ -1,0 +1,6 @@
+<%= @host.name %><br />
+<% if @host.profile.present? %>
+  Profile: <%= @host.profile.full_name %><br />
+<% end %>
+
+<%= link_to "Edit host", edit_admin_host_path(@host) %>

@@ -1,0 +1,5 @@
+<%= simple_form_for [:admin, @host] do |f| %>
+  <%= render partial: "form_fields", locals: { f: f } %>
+
+  <%= f.button :submit, "Create host" %>
+<% end %>

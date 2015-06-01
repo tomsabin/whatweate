@@ -1,0 +1,6 @@
+<%= simple_form_for [:admin, @host] do |f| %>
+  <%= render partial: "form_fields", locals: { f: f } %>
+
+  <%= link_to "Delete host", admin_host_path(@host), method: :delete %>
+  <%= f.button :submit, "Save host" %>
+<% end %>
