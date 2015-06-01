@@ -1,5 +1,4 @@
-class Admin::EventsController < ApplicationController
-  # before_action :authenticate_admin!
+class Admin::EventsController < Admin::AdminController
   before_action :assign_event, except: [:index, :new, :create]
 
   def index
