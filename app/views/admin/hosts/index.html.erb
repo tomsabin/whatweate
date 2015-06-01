@@ -1,0 +1,5 @@
+<%= link_to "Create new host", new_admin_host_path %>
+
+<% @hosts.each do |host| %>
+  <%= link_to host.name, admin_host_path(host) %>
+<% end %>

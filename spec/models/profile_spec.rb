@@ -24,4 +24,12 @@ describe Profile do
       expect(profile.email).to eq("user@example.com")
     end
   end
+
+  describe "#name" do
+    let(:user) { FactoryGirl.create(:user, first_name: "Joe", last_name: "Bloggs") }
+
+    it "concatenates first name and last name" do
+      expect(user.profile.full_name).to eq("Joe Bloggs")
+    end
+  end
 end

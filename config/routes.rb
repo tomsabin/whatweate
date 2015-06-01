@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :events
+    resources :hosts
 
     root "admin#dashboard"
   end

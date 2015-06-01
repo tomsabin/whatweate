@@ -1,10 +1,12 @@
 require "rails_helper"
 
 describe "event management" do
-  scenario "admin creates, views, edits and deletes an event" do
+  before do
     sign_in FactoryGirl.create(:admin)
     visit admin_events_path
+  end
 
+  scenario "admin creates, views, edits and deletes an event" do
     click_link "Create new event"
     click_button "Create event"
 
