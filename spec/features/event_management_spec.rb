@@ -53,14 +53,15 @@ describe "event management" do
       expect(page).to have_content "Tiramisu"
     end
 
-    click_button "Edit event"
+    click_link "Edit event"
     fill_in "event_title", with: "Sunday Roast Lamb"
     click_button "Save event"
 
     expect(page).to have_content "Event successfully updated"
     expect(page).to have_content "Sunday Roast Lamb"
 
-    click_button "Delete event"
+    click_link "Edit event"
+    click_link "Delete event"
 
     expect(page).to have_content "Event successfully deleted"
     expect(page).to_not have_content "Sunday Roast Lamb"
