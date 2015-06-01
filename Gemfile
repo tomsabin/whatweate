@@ -17,6 +17,7 @@ gem "omniauth-facebook"
 gem "draper"
 gem "rollbar"
 gem "money-rails"
+gem "redcarpet"
 
 group :production do
   gem 'rails_12factor'

@@ -9,5 +9,7 @@
   <%= f.input :price_in_pennies %>
   <%= f.input :currency, input_html: { value: f.object.currency || 'GBP'} %>
 
+  <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
+
   <%= f.button :submit, "Create event" %>
 <% end %>
