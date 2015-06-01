@@ -1,6 +1,6 @@
 class IdentitiesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :assign_identity
+  before_action :authenticate_user!
+  before_action :assign_identity
 
   def destroy
     if @identity.present?
