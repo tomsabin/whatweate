@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WhatWeAte Admin</title>
+
+    <%#= stylesheet_link_tag "admin", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
+  </head>
+  <body class="<%= controller.controller_name %>">
+
+    <main>
+
+      <!--  -->
+
+      <div>
+        <% if admin_signed_in? %>
+          <%= link_to("Sign out", destroy_admin_session_path, method: :delete) %>
+        <% else %>
+          <%= link_to("Sign in", new_admin_session_path)  %>
+        <% end %>
+      </div>
+
+      <div class="flash-messages">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      </div>
+
+      <!--  -->
+
+      <%= yield -%>
+
+    </main>
+
+  </body>
+</html>

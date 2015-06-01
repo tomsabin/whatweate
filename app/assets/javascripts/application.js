@@ -2,4 +2,5 @@
 //= require jquery_ujs
 //= require_tree ./jquery_modules
 //= require turbolinks
-//= require_tree .
+//= require ga
+//= require welcome_page
