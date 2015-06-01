@@ -31,7 +31,7 @@ describe "event management" do
     # expect(page).to have_content "8 seats"
     # expect(page).to have_content "£10"
     # expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
-    # within("menu") do
+    # within(".menu") do
     #   expect(page).to have_content "Pumpkin Soup"
     #   expect(page).to have_content "Roast Lamb with trimmings"
     #   expect(page).to have_content "Tiramisu"
@@ -47,7 +47,7 @@ describe "event management" do
     expect(page).to have_content "8 seats"
     expect(page).to have_content "£10"
     expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
-    within("menu") do
+    within(".menu") do
       expect(page).to have_content "Pumpkin Soup"
       expect(page).to have_content "Roast Lamb with trimmings"
       expect(page).to have_content "Tiramisu"
