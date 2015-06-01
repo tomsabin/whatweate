@@ -12,12 +12,12 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if resource.profile.present?
-      super
-    else
+    if user_signed_in? && resource.profile.blank?
       flash.discard
       flash[:profile_prompt] = "Please complete your profile"
       new_profile_path
+    else
+      super
     end
   end
 end
