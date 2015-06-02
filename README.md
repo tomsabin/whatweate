@@ -1,4 +1,4 @@
-[![Build status](https://circleci.com/gh/what-we-ate/what-we-ate.svg?style=shield)](https://circleci.com/gh/what-we-ate/what-we-ate)
+[![Build status](https://circleci.com/gh/whatweate/whatweate.svg?style=shield)](https://circleci.com/gh/whatweate/whatweate)
 
 # WhatWeAte
 
