@@ -1,4 +1,16 @@
-<%= f.error_notification %>
+<%= render partial: "form_errors", locals: { object: @host } %>
 
-<%= f.input :name %>
-<%= f.input :profile_id, collection: @profiles, label_method: :full_name %>
+<div class="row">
+  <%= f.input :name, wrapper_html: { class: 'col s12 m12 l8' }, autofocus: true %>
+</div>
+<div class="row">
+  <%= f.input :profile_id, collection: @profiles,
+                           label_method: :full_name,
+                           wrapper_html: { class: 'col s12 m12 l8' },
+                           label: false,
+                           include_blank: "Select user to link (optional)" %>
+</div>
+
+<script>
+  $('select#host_profile_id').material_select();
+</script>

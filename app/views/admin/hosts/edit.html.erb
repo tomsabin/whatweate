@@ -1,6 +1,9 @@
-<%= simple_form_for [:admin, @host] do |f| %>
+<%= simple_form_for [:admin, @host], defaults: { error: false } do |f| %>
   <%= render partial: "form_fields", locals: { f: f } %>
 
-  <%= link_to "Delete host", admin_host_path(@host), method: :delete %>
   <%= f.button :submit, "Save host" %>
+  <%= link_to "Delete host", admin_host_path(@host),
+                             method: :delete,
+                             class: 'btn deep-orange',
+                             data: { confirm: "Are you sure you want to delete this host?" } %>
 <% end %>

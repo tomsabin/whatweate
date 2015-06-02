@@ -29,7 +29,7 @@ describe "host management" do
 
     expect(page).to have_content "Host successfully updated"
     expect(page).to have_content "Joe Bloggs"
-    expect(page).to have_content "Profile: Joseph Bloggs"
+    expect(page).to have_content "User: Joseph Bloggs"
 
     click_link "Edit host"
     click_link "Delete host"

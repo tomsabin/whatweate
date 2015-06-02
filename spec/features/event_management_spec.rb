@@ -43,7 +43,8 @@ describe "event management" do
     # end
 
     visit admin_events_path
-    expect(page).to have_content "Sunday Roast hosted by Joe Bloggs"
+    expect(page).to have_content "Sunday Roast"
+    expect(page).to have_content "Joe Bloggs"
     click_link "Sunday Roast"
 
     expect(page).to have_content "Sunday Roast"

@@ -37,8 +37,16 @@
     <div class="container">
 
       <div class="flash-messages">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <div class="row">
+          <div class="col s12 m12 l12">
+            <% if notice.present? %>
+              <p class="notice"><%= notice %></p>
+            <% end %>
+            <% if alert.present? %>
+              <p class="alert"><%= alert %></p>
+            <% end %>
+          </div>
+        </div>
       </div>
 
       <%= yield -%>

@@ -36,7 +36,7 @@ class Admin::HostsController < Admin::AdminController
   def destroy
     if @host.present?
       @host.destroy
-      redirect_to(root_path, notice: "Host successfully deleted")
+      redirect_to(admin_hosts_url, notice: "Host successfully deleted")
     else
       redirect_to(edit_admin_host_url(@host))
     end
