@@ -1,47 +1,49 @@
-<%= gravatar_image_tag @profile.email %>
+<div class="wip">
+  <%= gravatar_image_tag @profile.email %>
 
-<%= link_to("Edit profile", edit_profile_path) %>
+  <%= link_to("Edit profile", edit_profile_path) %>
 
-Email:
-<%= @profile.email %>
+  Email:
+  <%= @profile.email %>
 
-First name:
-<%= @profile.first_name %>
+  First name:
+  <%= @profile.first_name %>
 
-Last name:
-<%= @profile.last_name %>
+  Last name:
+  <%= @profile.last_name %>
 
-<% if @profile.date_of_birth_visible? %>
-  Date of birth:
-  <%= @profile.date_of_birth %>
-<% end %>
+  <% if @profile.date_of_birth_visible? %>
+    Date of birth:
+    <%= @profile.date_of_birth %>
+  <% end %>
 
-Profession:
-<%= @profile.profession %>
+  Profession:
+  <%= @profile.profession %>
 
-Greeting:
-<%= @profile.greeting %>
+  Greeting:
+  <%= @profile.greeting %>
 
-Bio:
-<%= @profile.bio %>
+  Bio:
+  <%= @profile.bio %>
 
-<% if @profile.mobile_number_visible? %>
-  Mobile number:
-  <%= @profile.mobile_number %>
-<% end %>
+  <% if @profile.mobile_number_visible? %>
+    Mobile number:
+    <%= @profile.mobile_number %>
+  <% end %>
 
-Favourite cuisine:
-<%= @profile.favorite_cuisine %>
+  Favourite cuisine:
+  <%= @profile.favorite_cuisine %>
 
-<% if @verified_with_facebook %>
-  Verified with Facebook
-<% end %>
+  <% if @verified_with_facebook %>
+    Verified with Facebook
+  <% end %>
 
-<% if @verified_with_twitter %>
-  Verified with Twitter
-<% end %>
+  <% if @verified_with_twitter %>
+    Verified with Twitter
+  <% end %>
 
-<div class="social-networks">
-  <%= link_to "Verify your account with Facebook", user_omniauth_authorize_path(:facebook) unless @verified_with_facebook %>
-  <%= link_to "Verify your account with Twitter", user_omniauth_authorize_path(:twitter) unless @verified_with_twitter%>
+  <div class="social-networks">
+    <%= link_to "Verify your account with Facebook", user_omniauth_authorize_path(:facebook) unless @verified_with_facebook %>
+    <%= link_to "Verify your account with Twitter", user_omniauth_authorize_path(:twitter) unless @verified_with_twitter%>
+  </div>
 </div>
