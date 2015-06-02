@@ -1,7 +1,7 @@
 <div class="wip">
   <%= profile_prompt %>
 
-  <%= simple_form_for @profile, url: { action: "create" }, defaults: { required: false } do |f| %>
+  <%= simple_form_for @profile, url: { action: "create" }, defaults: { required: false, error: true } do |f| %>
     <%= f.error_notification %>
 
     <%= f.simple_fields_for current_user do |user_form| %>

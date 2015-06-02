@@ -1,7 +1,7 @@
 <div class="wip">
   <h2>Sign up</h2>
 
-  <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name), defaults: { required: false } do |f| %>
+  <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name), defaults: { required: false, error: true } do |f| %>
     <%= f.error_notification %>
     <%= f.input :email %>
     <%= f.input :first_name %>

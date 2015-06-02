@@ -1,5 +1,5 @@
 <div class="wip">
-  <%= simple_form_for @profile, url: { action: "update" } do |f| %>
+  <%= simple_form_for @profile, url: { action: "update" }, defaults: { error: true } do |f| %>
     <%= f.error_notification %>
 
     <%= f.simple_fields_for @profile.user do |user_form| %>
