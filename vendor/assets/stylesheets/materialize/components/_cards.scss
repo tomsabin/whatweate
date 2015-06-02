@@ -106,6 +106,10 @@
     padding: $card-padding;
     border-radius: 0 0 2px 2px;
 
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
 
     p {
       margin: 0;

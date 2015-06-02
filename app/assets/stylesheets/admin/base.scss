@@ -1,3 +1,12 @@
 @import "../shared/color";
 @import "../shared/utilities";
 @import "../shared/markdown";
+@import "form";
+
+hr {
+  border: 0;
+  height: 0;
+  border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+  padding-top: 20px;
+  margin-bottom: 20px;
+}

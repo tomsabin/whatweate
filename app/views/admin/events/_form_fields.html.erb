@@ -1,12 +1,23 @@
-<%= f.error_notification %>
+<%= render partial: "admin/shared/form_errors", locals: { object: @event } %>
 
-<%= f.input :host_id, collection: @hosts, label_method: :name, required: true %>
-<%= f.input :title %>
-<%= f.input :location %>
-<%= f.input :description %>
-<%= f.input :menu %>
-<%= f.input :seats %>
-<%= f.input :price_in_pennies, label: 'Price (in pence)' %>
-<%= f.input :currency, input_html: { value: f.object.currency || 'GBP'} %>
+<%= f.input :host_id, collection: @hosts,
+                      label_method: :name,
+                      required: true,
+                      label: false,
+                      include_blank: "Select host",
+                      wrapper_html: { class: 'col s12 m12 l12' } %>
 
-<p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
+<%= f.input :title, wrapper_html: { class: 'col s12 m12 l12' } %>
+<%= f.input :seats, wrapper_html: { class: 'col s12 m3 l2' } %>
+<%= f.input :location, wrapper_html: { class: 'col s12 m9 l10' } %>
+<%= f.input :description, wrapper_html: { class: 'col s12 m12 l12' }, input_html: { class: "materialize-textarea" } %>
+<%= f.input :menu, wrapper_html: { class: 'col s12 m12 l12' }, input_html: { class: "materialize-textarea" } %>
+<div class="col s12 m12 l12">
+  <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
+</div>
+<%= f.input :price_in_pennies, label: 'Price (in pence)', wrapper_html: { class: 'col s6 m6 l6' } %>
+<%= f.input :currency, input_html: { value: f.object.currency || 'GBP'}, wrapper_html: { class: 'col s6 m6 l6' } %>
+
+<script>
+  $('select#event_host_id').material_select();
+</script>

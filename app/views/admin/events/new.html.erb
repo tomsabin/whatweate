@@ -1,5 +1,7 @@
 <%= simple_form_for [:admin, @event] do |f| %>
   <%= render partial: "form_fields", locals: { f: f } %>
 
-  <%= f.button :submit, "Create event" %>
+  <div class="col l12 m12 l12">
+    <%= f.button :submit, "Create event" %>
+  </div>
 <% end %>
