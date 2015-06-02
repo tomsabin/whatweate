@@ -20,6 +20,6 @@ describe "Admins" do
     fill_in "Password", with: admin.password
     click_button "Sign in"
 
-    expect(page).to have_content "Admin dashboard"
+    expect(page).to have_content "Dashboard"
   end
 end

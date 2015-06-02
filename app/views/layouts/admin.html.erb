@@ -13,28 +13,37 @@
   </head>
   <body class="<%= controller.controller_name %>">
 
-    <main>
-
-      <!--  -->
-
-      <div>
-        <% if admin_signed_in? %>
-          <%= link_to("Sign out", destroy_admin_session_path, method: :delete) %>
-        <% else %>
-          <%= link_to("Sign in", new_admin_session_path)  %>
-        <% end %>
+    <nav class="primary-background-color">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+          <ul class="left hide-on-med-and-down">
+            <%= render partial: 'admin/shared/navigation' %>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <%= render partial: 'admin/shared/navigation' %>
+          </ul>
+          <ul class="right">
+            <li>
+              <%= link_to("Sign out", destroy_admin_session_path, method: :delete) if admin_signed_in? %>
+            </li>
+          </ul>
+        </div>
       </div>
+    </nav>
+
+    <script>$(".button-collapse").sideNav();</script>
+
+    <div class="container">
 
       <div class="flash-messages">
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
       </div>
 
-      <!--  -->
-
       <%= yield -%>
 
-    </main>
+    </div>
 
   </body>
 </html>

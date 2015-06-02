@@ -1,0 +1,11 @@
+<li class="<%= 'active' if is_active_controller?('admin') %>">
+  <%= link_to 'Dashboard', admin_root_path %>
+</li>
+
+<li class="<%= 'active' if is_active_controller?('events') %>">
+  <%= link_to 'Events', admin_events_path %>
+</li>
+
+<li class="<%= 'active' if is_active_controller?('hosts') %>">
+  <%= link_to 'Hosts', admin_hosts_path %>
+</li>

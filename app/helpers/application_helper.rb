@@ -7,4 +7,8 @@ module ApplicationHelper
     })
     @markdown.render(content)
   end
+
+  def is_active_controller?(controller)
+    'active' if params[:controller] == "admin/#{controller}"
+  end
 end
