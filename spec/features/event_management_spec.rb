@@ -2,12 +2,12 @@ require "rails_helper"
 
 describe "event management" do
   before do
+    FactoryGirl.create(:host, name: "Joe Bloggs")
     sign_in FactoryGirl.create(:admin)
     visit admin_events_path
   end
 
   scenario "admin creates, views, edits and deletes an event" do
-    FactoryGirl.create(:host, name: "Joe Bloggs")
 
     click_link "Create new event"
     click_button "Create event"
@@ -75,5 +75,21 @@ describe "event management" do
     visit root_path
 
     expect(page).to_not have_content "Sunday Roast Lamb"
+  end
+
+  scenario "orders the most recently created" do
+    2.times do |number|
+      click_link "Create new event"
+      select "Joe Bloggs", from: "event_host_id"
+      fill_in "event_title", with: "Event #{number + 1}"
+      fill_in "event_location", with: "London"
+      fill_in "event_description", with: "Description"
+      fill_in "event_menu", with: "Menu"
+      fill_in "event_seats", with: "10"
+      fill_in "event_price_in_pennies", with: "1000"
+      click_button "Create event"
+    end
+
+    expect("Event 2").to appear_before "Event 1"
   end
 end

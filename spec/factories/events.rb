@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :event do
+    association      :host
     title            { Faker::Company.catch_phrase }
     location         { Faker::Address.city }
     description      { Faker::Lorem.paragraph }

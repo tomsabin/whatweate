@@ -3,7 +3,7 @@ class Admin::EventsController < Admin::AdminController
   before_action :assign_hosts, only: [:new, :create, :edit, :update]
 
   def index
-    @events = Event.all
+    @events = Event.most_recent
   end
 
   def show
