@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     root "admin#dashboard"
   end
 
-  root "welcome#home"
+  root "pages#home"
 
   get "/404", to: "errors#not_found"
   get "/500", to: "errors#internal_error"
