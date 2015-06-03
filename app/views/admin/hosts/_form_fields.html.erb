@@ -1,16 +1,10 @@
 <%= render partial: "admin/shared/form_errors", locals: { object: @host } %>
 
 <div class="row">
-  <%= f.input :name, wrapper_html: { class: 'col s12 m12 l8' }, autofocus: true %>
-</div>
-<div class="row">
-  <%= f.input :profile_id, collection: @profiles,
-                           label_method: :full_name,
-                           wrapper_html: { class: 'col s12 m12 l8' },
-                           label: false,
-                           include_blank: "Select user to link (optional)" %>
+  <%= f.input :name, wrapper_html: { class: "col s12 l8" }, autofocus: true %>
 </div>
 
-<script>
-  $('select#host_profile_id').material_select();
-</script>
+<div class="row">
+  <%= f.input :profile_id, collection: @profiles, label_method: :full_name,
+                           wrapper_html: { class: "col s12 l8" }, label_html: { class: "active" } %>
+</div>

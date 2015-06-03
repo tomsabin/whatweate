@@ -8,3 +8,10 @@
                              data: { confirm: "Are you sure you want to delete this host?" } %>
   <%= link_to "Cancel", admin_host_path(@host), class: "btn grey" %>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+    $("select#host_profile_id").material_select();
+    Materialize.updateTextFields();
+  });
+</script>

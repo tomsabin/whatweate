@@ -3,10 +3,6 @@
 @import "../shared/markdown";
 @import "form";
 
-hr {
-  border: 0;
-  border-bottom: 1px solid rgba(160, 160, 160, 0.2);
-  height: 0;
-  margin-bottom: 20px;
-  padding-top: 20px;
+.card .divider {
+  background-color: rgba(160, 160, 160, 0.2);
 }

@@ -1,7 +1,13 @@
 <%= simple_form_for [:admin, @event] do |f| %>
   <%= render partial: "form_fields", locals: { f: f } %>
 
-  <div class="col l12 m12 l12">
+  <div class="col s12">
     <%= f.button :submit, "Create event" %>
   </div>
 <% end %>
+
+<script>
+  $(document).ready(function() {
+    $("select#event_host_id").material_select();
+  });
+</script>

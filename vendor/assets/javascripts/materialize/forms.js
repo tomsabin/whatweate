@@ -89,7 +89,7 @@
     }
     var text_area_selector = '.materialize-textarea';
 
-    function textareaAutoResize($textarea) {
+    Materialize.textareaAutoResize = function($textarea) {
       hiddenDiv.text($textarea.val() + '\n');
       var content = hiddenDiv.html().replace(/\n/g, '<br>');
       hiddenDiv.html(content);
@@ -110,12 +110,12 @@
     $(text_area_selector).each(function () {
       var $textarea = $(this);
       if ($textarea.val().length) {
-        textareaAutoResize($textarea);
+        Materialize.textareaAutoResize($textarea);
       }
     });
 
     $('body').on('keyup keydown', text_area_selector, function () {
-      textareaAutoResize($(this));
+      Materialize.textareaAutoResize($(this));
     });
 
 
