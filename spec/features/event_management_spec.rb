@@ -27,20 +27,23 @@ describe "Event management" do
     expect(page).to have_content "Event successfully created"
     expect(page).to have_content "Sunday Roast"
 
-    # visit root_path
-    # click_link "Sunday Roast"
+    visit root_path
+    click_link "Sunday Roast"
 
-    # expect(page).to have_content "Sunday Roast"
-    # expect(page).to have_content "Hosted by Joe Bloggs"
-    # expect(page).to have_content "London"
-    # expect(page).to have_content "8 seats"
-    # expect(page).to have_content "£10"
-    # expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
-    # within(".menu") do
-    #   expect(page).to have_content "Pumpkin Soup"
-    #   expect(page).to have_content "Roast Lamb with trimmings"
-    #   expect(page).to have_content "Tiramisu"
-    # end
+    expect(page).to have_content "Sunday Roast"
+    expect(page).to have_content "Hosted by Joe Bloggs"
+    # expect(page).to have_link "View on map"
+    expect(page).to have_content "London"
+    expect(page).to have_link "Book seat"
+    expect(page).to have_content "£10"
+    within(".description") do
+      expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
+    end
+    within(".menu") do
+      expect(page).to have_content "Pumpkin Soup"
+      expect(page).to have_content "Roast Lamb with trimmings"
+      expect(page).to have_content "Tiramisu"
+    end
 
     visit admin_events_path
     expect(page).to have_content "Sunday Roast"
@@ -52,7 +55,9 @@ describe "Event management" do
     expect(page).to have_content "London"
     expect(page).to have_content "8 seats"
     expect(page).to have_content "£10"
-    expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
+    within(".description") do
+      expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
+    end
     within(".menu") do
       expect(page).to have_content "Pumpkin Soup"
       expect(page).to have_content "Roast Lamb with trimmings"

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   resource :identity, only: :destroy
 
+  resources :events, only: :show
+
   namespace :admin do
     resources :events
     resources :hosts
