@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :complete_profile, only: [:show, :edit]
   before_action :assign_profile, only: [:show, :edit, :update]
-  before_action :assign_verifications, only: [:show, :edit]
+  before_action :assign_identities, only: [:show, :edit]
 
   def show
     @profile = @profile.decorate
@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
       begin
         @profile.user.update!(user_params)
         @profile.update!(profile_params)
-        redirect_to(profile_path, notice: "Thanks! Your profile has successfully been saved")
+        redirect_to(profile_url, notice: "Thanks! Your profile has successfully been saved")
       rescue ActiveRecord::RecordInvalid
         flash.alert = "Please fill in the required fields"
         render(:new)
@@ -53,7 +53,7 @@ class ProfilesController < ApplicationController
     current_user.profile
   end
 
-  def assign_verifications
+  def assign_identities
     @verified_with_facebook = Identity.facebook(current_user)
     @verified_with_twitter = Identity.twitter(current_user)
   end

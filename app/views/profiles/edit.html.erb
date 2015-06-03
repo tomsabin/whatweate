@@ -1,30 +1,32 @@
-<%= simple_form_for @profile, url: { action: "update" } do |f| %>
-  <%= f.error_notification %>
+<div class="wip">
+  <%= simple_form_for @profile, url: { action: "update" }, defaults: { error: true } do |f| %>
+    <%= f.error_notification %>
 
-  <%= f.simple_fields_for @profile.user do |user_form| %>
-    <%= user_form.input :email %>
-    <%= user_form.input :first_name %>
-    <%= user_form.input :last_name %>
+    <%= f.simple_fields_for @profile.user do |user_form| %>
+      <%= user_form.input :email %>
+      <%= user_form.input :first_name %>
+      <%= user_form.input :last_name %>
+    <% end %>
+
+    <%= f.input :date_of_birth, html5: true, placeholder: "YYYY-MM-DD" %>
+    <%= f.input :date_of_birth_visible %>
+    <%= f.input :profession %>
+    <%= f.input :greeting %>
+    <%= f.input :bio, as: :string %>
+    <%= f.input :mobile_number, as: :tel, html5: true %>
+    <%= f.input :mobile_number_visible %>
+    <%= f.input :favorite_cuisine %>
+    <%= f.button :submit, "Save profile" %>
   <% end %>
 
-  <%= f.input :date_of_birth, html5: true, placeholder: "YYYY-MM-DD" %>
-  <%= f.input :date_of_birth_visible %>
-  <%= f.input :profession %>
-  <%= f.input :greeting %>
-  <%= f.input :bio, as: :string %>
-  <%= f.input :mobile_number, as: :tel, html5: true %>
-  <%= f.input :mobile_number_visible %>
-  <%= f.input :favorite_cuisine %>
-  <%= f.button :submit, "Save profile" %>
-<% end %>
+  <%= link_to "Delete your account", delete_user_path %>
+  <%= link_to "Change your password", edit_password_user_path %>
 
-<%= link_to "Delete your account", delete_user_path %>
-<%= link_to "Change your password", edit_password_user_path %>
+  <% if @verified_with_facebook %>
+    <%= link_to "Disconnect Facebook from your account", identity_path(provider: :facebook), method: :delete %>
+  <% end %>
 
-<% if @verified_with_facebook %>
-  <%= link_to "Disconnect Facebook from your account", identity_path(provider: :facebook), method: :delete %>
-<% end %>
-
-<% if @verified_with_twitter %>
-  <%= link_to "Disconnect Twitter from your account", identity_path(provider: :twitter), method: :delete %>
-<% end %>
+  <% if @verified_with_twitter %>
+    <%= link_to "Disconnect Twitter from your account", identity_path(provider: :twitter), method: :delete %>
+  <% end %>
+</div>

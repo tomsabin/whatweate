@@ -1,0 +1,9 @@
+<% if object.errors.any? %>
+  <p>Please review the following errors</p>
+
+  <ul class="col s12">
+    <% object.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,0 +1,11 @@
+<%= simple_form_for [:admin, @host] do |f| %>
+  <%= render partial: "form_fields", locals: { f: f } %>
+
+  <%= f.button :submit, "Create host" %>
+<% end %>
+
+<script>
+  $(document).ready(function() {
+    $("select#host_profile_id").material_select();
+  });
+</script>

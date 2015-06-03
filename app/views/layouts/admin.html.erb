@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WhatWeAte Admin</title>
+
+    <%= stylesheet_link_tag "admin", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "admin", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
+  </head>
+  <body class="<%= controller.controller_name %>">
+
+    <nav class="primary-background-color">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+          <ul class="left hide-on-med-and-down">
+            <%= render partial: 'admin/shared/navigation' %>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+            <%= render partial: 'admin/shared/navigation' %>
+          </ul>
+          <ul class="right">
+            <li>
+              <%= link_to("Sign out", destroy_admin_session_path, method: :delete) if admin_signed_in? %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <script>$(".button-collapse").sideNav();</script>
+
+    <div class="container">
+
+      <div class="flash-messages">
+        <div class="row">
+          <div class="col s12">
+            <% if notice.present? %>
+              <p class="notice"><%= notice %></p>
+            <% end %>
+            <% if alert.present? %>
+              <p class="alert"><%= alert %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <%= yield -%>
+
+    </div>
+
+  </body>
+</html>

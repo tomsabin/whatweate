@@ -1,0 +1,26 @@
+<p>Photos</p>
+
+<%= link_to "Book seat", "#" %>
+<%= humanized_money_with_symbol @event.price %>
+
+<hr>
+
+<p><%= @event.title %></p>
+
+<p>Hosted by</p>
+
+<img src="" alt="">
+
+<p><%= @event.host.name %></p>
+
+<p><%= @event.location %> | <%= link_to "View on map", "#" %> </p>
+
+<h1>Details</h1>
+<div class="markdown description">
+  <%= markdown(@event.description).html_safe %>
+</div>
+
+<h1>Menu</h1>
+<div class="markdown menu">
+  <%= markdown(@event.menu).html_safe %>
+</div>

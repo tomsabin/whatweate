@@ -1,0 +1,10 @@
+<%= render partial: "admin/shared/form_errors", locals: { object: @host } %>
+
+<div class="row">
+  <%= f.input :name, wrapper_html: { class: "col s12 l8" }, autofocus: true %>
+</div>
+
+<div class="row">
+  <%= f.input :profile_id, collection: @profiles, label_method: :full_name,
+                           wrapper_html: { class: "col s12 l8" }, label_html: { class: "active" } %>
+</div>
