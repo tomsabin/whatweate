@@ -39,6 +39,7 @@ group :test do
   gem "capybara"
   gem "poltergeist"
   gem "shoulda-matchers"
+  gem "codeclimate-test-reporter", require: nil
 end
 
 ruby "2.2.2"

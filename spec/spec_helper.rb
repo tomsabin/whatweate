@@ -1,3 +1,5 @@
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
 require "capybara/rspec"
 require "capybara/poltergeist"
 Dir["./spec/support/**/*.rb"].each { |f| require f }
