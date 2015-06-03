@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :event do
     association      :host
+    date             { rand(5..20).days.from_now }
     title            { Faker::Company.catch_phrase }
     location         { Faker::Address.city }
     description      { Faker::Lorem.paragraph }

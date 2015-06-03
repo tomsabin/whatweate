@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "event management" do
+describe "Event management" do
   before do
     FactoryGirl.create(:host, name: "Joe Bloggs")
     sign_in FactoryGirl.create(:admin)
@@ -14,6 +14,7 @@ describe "event management" do
     expect(page).to have_content "Please review the following errors"
 
     select "Joe Bloggs", from: "event_host_id"
+    fill_in "event_date", with: "01/01/2000 19:00"
     fill_in "event_title", with: "Sunday Roast"
     fill_in "event_location", with: "London"
     fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
@@ -80,6 +81,7 @@ describe "event management" do
     2.times do |number|
       click_link "Create new event"
       select "Joe Bloggs", from: "event_host_id"
+      fill_in "event_date", with: "01/01/2000 19:00"
       fill_in "event_title", with: "Event #{number + 1}"
       fill_in "event_location", with: "London"
       fill_in "event_description", with: "Description"
