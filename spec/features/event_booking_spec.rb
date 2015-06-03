@@ -12,7 +12,6 @@ describe "Event booking" do
       expect(page).to have_content "You need to sign in or sign up before continuing"
 
       sign_in
-      click_link event.title
       click_button "Book seat"
       expect(page).to have_content "Thanks! We've booked you a seat"
 
