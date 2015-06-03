@@ -1,4 +1,4 @@
-[![Build status](https://circleci.com/gh/whatweate/whatweate.svg?style=shield)](https://circleci.com/gh/whatweate/whatweate)
+[![Build status](https://circleci-badges.herokuapp.com/whatweate/whatweate/:circle-ci-badge-token)](https://circleci.com/gh/whatweate/whatweate)
 [![Test Coverage](https://codeclimate.com/github/whatweate/whatweate/badges/coverage.svg)](https://codeclimate.com/github/whatweate/whatweate/coverage)
 [![Code Climate](https://codeclimate.com/github/whatweate/whatweate/badges/gpa.svg)](https://codeclimate.com/github/whatweate/whatweate)
 
