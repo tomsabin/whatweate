@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :event, aliases: [:available_event] do
+  factory :event do
     association      :host
     date             { rand(5..20).days.from_now }
     title            { Faker::Company.catch_phrase }
@@ -9,5 +9,13 @@ FactoryGirl.define do
     seats            { rand(5..20) }
     price_in_pennies { rand(500..5000) }
     currency         "GBP"
+
+    trait :sold_out do
+      seats 1
+
+      after(:create) do |event, evaluator|
+        EventBooking.make(event: event, user: FactoryGirl.create(:user))
+      end
+    end
   end
 end

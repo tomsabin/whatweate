@@ -1,11 +1,11 @@
 <div class="wip">
   <p>Photos</p>
 
-  <% unless @event.seated?(current_user) %>
+  <%# unless @event.seated?(current_user) %>
     <%= form_tag event_bookings_path(@event) do %>
       <%= submit_tag 'Book seat' %>
     <% end %>
-  <% end %>
+  <%# end %>
 
   <%= humanized_money_with_symbol @event.price %>
 

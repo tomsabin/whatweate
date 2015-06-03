@@ -39,4 +39,44 @@ describe Event do
       expect(event.seated?(user)).to eq false
     end
   end
+
+  describe "states" do
+    describe "available" do
+      let(:event) { FactoryGirl.create(:event) }
+
+      it "is available" do
+        expect(event.available?).to eq true
+      end
+
+      it "is not sold out" do
+        expect(event.sold_out?).to eq false
+      end
+    end
+
+    describe "sold_out" do
+      let(:event) { FactoryGirl.create(:event, :sold_out) }
+
+      it "is available" do
+        expect(event.available?).to eq false
+      end
+
+      it "is not sold out" do
+        expect(event.sold_out?).to eq true
+      end
+    end
+  end
+
+  describe "events" do
+    describe "fully_booked" do
+      let(:event) { FactoryGirl.create(:event) }
+
+      it "available -> sold_out" do
+        expect(event.available?).to eq(true)
+        expect(event.sold_out?).to eq(false)
+        event.fully_booked
+        expect(event.available?).to eq(false)
+        expect(event.sold_out?).to eq(true)
+      end
+    end
+  end
 end
