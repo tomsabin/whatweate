@@ -8,7 +8,6 @@ describe "event management" do
   end
 
   scenario "admin creates, views, edits and deletes an event" do
-
     click_link "Create new event"
     click_button "Create event"
 
@@ -77,7 +76,7 @@ describe "event management" do
     expect(page).to_not have_content "Sunday Roast Lamb"
   end
 
-  scenario "orders the most recently created" do
+  scenario "orders by the most recently created" do
     2.times do |number|
       click_link "Create new event"
       select "Joe Bloggs", from: "event_host_id"

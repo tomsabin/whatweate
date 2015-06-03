@@ -3,7 +3,7 @@ class Admin::HostsController < Admin::AdminController
   before_action :assign_profiles, only: [:new, :create, :edit, :update]
 
   def index
-    @hosts = Host.all
+    @hosts = Host.alphabetical
   end
 
   def show

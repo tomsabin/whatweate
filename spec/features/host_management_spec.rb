@@ -54,4 +54,16 @@ describe "host management" do
 
     expect(page).to_not have_content "Profile: Joseph Bloggs"
   end
+
+  scenario "orders by the most recently created" do
+    click_link "Create new host"
+    fill_in "host_name", with: "Joe Bloggs"
+    click_button "Create host"
+
+    click_link "Create new host"
+    fill_in "host_name", with: "Zack Richardson"
+    click_button "Create host"
+
+    expect("Joe Bloggs").to appear_before "Zack Richardson"
+  end
 end
