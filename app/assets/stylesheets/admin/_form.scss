@@ -1,7 +1,9 @@
-.form .event_description textarea {
-  height: 6rem;
-}
+.form {
+  .event_description textarea {
+    height: 6rem;
+  }
 
-.form .event_menu textarea {
-  height: 20rem;
+  .event_menu textarea {
+    height: 20rem;
+  }
 }
