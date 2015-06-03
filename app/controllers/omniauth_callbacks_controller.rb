@@ -1,7 +1,6 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-
   def self.provides_callback_for(provider)
-    class_eval %Q{
+    class_eval %{
       def flash_message
         if callback_originated_from_profile?
           :link_success

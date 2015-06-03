@@ -1,8 +1,10 @@
-class Admin::AdminController < ApplicationController
-  before_action :authenticate_admin!
-  layout 'admin'
+class Admin
+  class AdminController < ApplicationController
+    before_action :authenticate_admin!
+    layout "admin"
 
-  def dashboard
-    render 'admin/dashboard'
+    def dashboard
+      render "admin/dashboard"
+    end
   end
 end

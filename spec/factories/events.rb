@@ -13,7 +13,7 @@ FactoryGirl.define do
     trait :sold_out do
       seats 1
 
-      after(:create) do |event, evaluator|
+      after(:create) do |event|
         EventBooking.make(event: event, user: FactoryGirl.create(:user))
       end
     end

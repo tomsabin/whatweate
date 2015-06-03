@@ -8,7 +8,7 @@ describe EventNotifier do
       expect(event.sold_out?).to eq false
       new_booking
       expect(event.sold_out?).to eq true
-      expect{new_booking}.to_not raise_error { AASM::InvalidTransition }
+      expect { new_booking }.to_not raise_error { AASM::InvalidTransition }
       expect(Event.last.sold_out?).to eq true
     end
   end

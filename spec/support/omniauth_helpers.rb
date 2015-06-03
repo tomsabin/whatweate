@@ -1,3 +1,5 @@
+# rubocop:disable all
+
 module OmniauthHelpers
   def setup_omniauth
     OmniAuth.config.test_mode = true

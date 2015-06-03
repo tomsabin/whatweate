@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe "Event booking" do
-
   context "seats are available" do
     let!(:event) { FactoryGirl.create(:event) }
 
@@ -58,5 +57,4 @@ describe "Event booking" do
       click_button "Send"
     end
   end
-
 end
