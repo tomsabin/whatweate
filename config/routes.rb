@@ -14,7 +14,9 @@ Rails.application.routes.draw do
 
   resource :identity, only: :destroy
 
-  resources :events, only: :show
+  resources :events, only: :show do
+    resources :bookings, only: [:create]
+  end
 
   namespace :admin do
     resources :events
@@ -23,7 +25,7 @@ Rails.application.routes.draw do
     root "admin#dashboard"
   end
 
-  root "welcome#home"
+  root "pages#home"
 
   get "/404", to: "errors#not_found"
   get "/500", to: "errors#internal_error"

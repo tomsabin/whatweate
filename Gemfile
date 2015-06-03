@@ -18,6 +18,8 @@ gem "draper"
 gem "rollbar"
 gem "money-rails"
 gem "redcarpet"
+gem "aasm"
+gem "wisper"
 
 group :production do
   gem 'rails_12factor'
