@@ -34,7 +34,7 @@ describe "Event management" do
     expect(page).to have_content "Hosted by Joe Bloggs"
     # expect(page).to have_link "View on map"
     expect(page).to have_content "London"
-    expect(page).to have_link "Book seat"
+    expect(page).to have_button "Book seat"
     expect(page).to have_content "£10"
     within(".description") do
       expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"

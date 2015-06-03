@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :event do
+  factory :event, aliases: [:available_event] do
     association      :host
     date             { rand(5..20).days.from_now }
     title            { Faker::Company.catch_phrase }
