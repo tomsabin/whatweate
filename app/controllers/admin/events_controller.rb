@@ -37,7 +37,7 @@ class Admin
     def destroy
       if @event.present?
         @event.destroy
-        redirect_to(root_path, notice: "Event successfully deleted")
+        redirect_to(admin_events_url, notice: "Event successfully deleted")
       else
         redirect_to(edit_admin_event_url(@event))
       end

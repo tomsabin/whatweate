@@ -77,6 +77,8 @@ describe "Event management" do
     expect(page).to have_content "Event successfully deleted"
     expect(page).to_not have_content "Sunday Roast Lamb"
 
+    expect(current_path).to eq admin_events_path
+
     visit root_path
 
     expect(page).to_not have_content "Sunday Roast Lamb"
