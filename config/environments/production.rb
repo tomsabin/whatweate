@@ -12,12 +12,12 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
   config.log_formatter = ::Logger::Formatter.new
   config.active_record.dump_schema_after_migration = false
-  config.action_mailer.default_url_options = { :host => "whatweate.co" }
+  config.action_mailer.default_url_options = { :host => ENV["MAILER_HOST"] }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              "smtp.gmail.com",
     port:                 587,
-    domain:               "gmail.com",
+    domain:               ENV["MAILER_DOMAIN"],
     user_name:            ENV["MAILER_USER_NAME"],
     password:             ENV["MAILER_PASSWORD"],
     authentication:       :plain,
