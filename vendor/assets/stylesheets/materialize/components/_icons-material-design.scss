@@ -3,11 +3,11 @@ $mdi-prefix : 'mdi-';
 
 @font-face {
     font-family: "#{$font-mdi}";
-    src:url("#{$icons-font-path}#{$font-mdi}.eot?#iefix") format("embedded-opentype"),
-        url("#{$icons-font-path}#{$font-mdi}.woff2") format("woff2"),
-        url("#{$icons-font-path}#{$font-mdi}.woff") format("woff"),
-        url("#{$icons-font-path}#{$font-mdi}.ttf") format("truetype"),
-        url("#{$icons-font-path}#{$font-mdi}.svg##{$font-mdi}") format("svg");
+    src: font-url("#{$font-mdi}.eot?#iefix") format("embedded-opentype"),
+         font-url("#{$font-mdi}.woff2") format("woff2"),
+         font-url("#{$font-mdi}.woff") format("woff"),
+         font-url("#{$font-mdi}.ttf") format("truetype"),
+         font-url("#{$font-mdi}.svg##{$font-mdi}") format("svg");
     font-weight: normal;
     font-style: normal;
 }
