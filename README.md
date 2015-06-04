@@ -26,7 +26,12 @@ Hosted on Heroku, [install the CLI](https://toolbelt.heroku.com/). [CircleCI](ht
 ```
 heroku git:remote -a whatweate-qa -r qa
 heroku git:remote -a whatweate-staging -r staging
-heroku git:remote -a whatweate -r production
-
-git push qa <branch>:master && heroku run rake db:migrate --app whatweate-staging
+heroku git:remote -a whatweate-production -r production
 ```
+
+QA and Staging are [configured](https://github.com/whatweate/whatweate/blob/develop/circle.yml) to be continuously deployed from develop and master respectively. Production deploys are manual using the following.
+
+```
+git push production <branch>:master && heroku run rake db:migrate -r production
+```
+
