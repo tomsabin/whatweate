@@ -77,7 +77,7 @@ describe "Users and profiles" do
       fill_in "user_email", with: "user@example.com"
       click_button "Send me password reset instructions"
 
-      expect(ActionMailer::Base.deliveries.first.subject).to eq "Reset password instructions"
+      expect(ActionMailer::Base.deliveries.last.subject).to eq "Reset password instructions"
       visit edit_user_password_path(reset_password_token)
 
       fill_in "user_password", with: "newpassword"
