@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.find_for_oauth(auth, signed_in_resource = nil)
-    OmniauthUser.find_or_create(auth, signed_in_resource)
+  def self.find_for_oauth!(auth, signed_in_resource = nil)
+    OmniauthUser.find_or_create!(auth, signed_in_resource)
   end
 end

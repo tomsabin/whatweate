@@ -10,7 +10,11 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
 
       def #{provider}
-        @user = User.find_for_oauth(env["omniauth.auth"], current_user)
+        begin
+          @user = User.find_for_oauth!(env["omniauth.auth"], current_user)
+        rescue OmniauthConflict
+          redirect_to(user_url, notice: t("failure.omniauth_conflict", provider: "#{provider}".capitalize)) && return
+        end
 
         if @user.persisted?
           sign_in_and_redirect(@user, event: :authentication)

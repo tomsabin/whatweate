@@ -331,5 +331,49 @@ describe "Users and profiles" do
       expect(page).to have_content 'Could not authenticate you from Twitter because "Invalid credentials"'
       expect(current_path).to eq new_user_registration_path
     end
+
+    scenario "user tries to associate an existing social network to another profile" do
+      setup_valid_facebook_callback
+
+      visit root_path
+      click_link "Sign up"
+      within(".social-networks") { click_link "Facebook" }
+
+      fill_in "user_first_name", with: "C."
+      fill_in "user_date_of_birth", with: "1990-06-18"
+      fill_in "user_profession", with: "Cookie monster"
+      fill_in "user_greeting", with: "Cookies cookies cookies"
+      fill_in "user_bio", with: "I like cookies"
+      fill_in "user_mobile_number", with: "0123456789"
+      fill_in "user_favorite_cuisine", with: "Chocolate"
+
+      click_button "Save profile"
+
+      click_link "Sign out"
+
+      setup_valid_twitter_callback
+
+      visit root_path
+      click_link "Sign up"
+      within(".social-networks") { click_link "Twitter" }
+
+      expect(page).to have_content "Successfully authenticated from Twitter account"
+      expect(page).to have_content "Please complete your profile"
+      fill_in "user_email", with: "joe@bloggs.com"
+      fill_in "user_first_name", with: "Joe"
+      fill_in "user_last_name", with: "Bloggs"
+      fill_in "user_date_of_birth", with: "1980-08-23"
+      fill_in "user_profession", with: "Professional human"
+      fill_in "user_bio", with: "Greetings"
+      fill_in "user_mobile_number", with: "0123456789"
+      fill_in "user_favorite_cuisine", with: "Food"
+
+      click_button "Save profile"
+
+      setup_valid_facebook_callback
+
+      click_link "Verify your account with Facebook"
+      expect(page).to have_content "Oops, we detected another account with the same Facebook authentication"
+    end
   end
 end
