@@ -1,12 +1,34 @@
 class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  include AASM
 
-  has_one :profile, dependent: :destroy
   has_many :bookings, dependent: :destroy
 
-  validates :first_name, :last_name, presence: true
+  with_options if: -> { profile_incomplete? } do |u|
+    u.validates :first_name, :last_name, presence: true
+  end
 
-  def self.find_for_oauth(auth, signed_in_resource = nil)
-    OmniauthUser.find_or_create(auth, signed_in_resource)
+  with_options if: -> { devise_complete? || omniauth_complete? || profile_complete? } do |u|
+    u.validates :first_name, :last_name, :date_of_birth, :profession, :bio, :mobile_number, :favorite_cuisine, presence: true
+  end
+
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+
+  aasm column: "state", whiny_transitions: false, skip_validation_on_save: true do
+    state :profile_incomplete, initial: true
+    state :devise_complete
+    state :omniauth_complete
+    state :profile_complete
+
+    event :complete_devise do
+      transitions to: :devise_complete, from: :profile_incomplete
+    end
+
+    event :complete_profile do
+      transitions to: :profile_complete, from: [:devise_complete, :omniauth_complete]
+    end
+  end
+
+  def self.find_for_oauth!(auth, signed_in_resource = nil)
+    OmniauthUser.find_or_create!(auth, signed_in_resource)
   end
 end

@@ -1,21 +1,22 @@
 class Admin
-  class HostsController < Admin::AdminController
+  class HostsController < AdminController
     def index
       @hosts = Host.alphabetical
     end
 
     def show
       @host = find_host
+      @user = @host.user.decorate if @host.user.present?
     end
 
     def new
       @host = Host.new
-      @profiles = find_profiles
+      @users = find_users
     end
 
     def create
       @host = Host.new(host_params)
-      @profiles = find_profiles
+      @users = find_users
       if @host.save
         redirect_to(admin_hosts_url, notice: "Host successfully created")
       else
@@ -25,12 +26,12 @@ class Admin
 
     def edit
       @host = find_host
-      @profiles = find_profiles
+      @users = find_users
     end
 
     def update
       @host = find_host
-      @profiles = find_profiles
+      @users = find_users
       if @host.update(host_params)
         redirect_to(admin_host_url(@host), notice: "Host successfully updated")
       else
@@ -54,12 +55,12 @@ class Admin
       Host.find(params[:id])
     end
 
-    def find_profiles
-      Profile.all
+    def find_users
+      User.all.decorate
     end
 
     def host_params
-      params.require(:host).permit(:name, :profile_id)
+      params.require(:host).permit(:name, :user_id)
     end
   end
 end

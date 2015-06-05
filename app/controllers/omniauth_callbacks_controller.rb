@@ -2,7 +2,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def self.provides_callback_for(provider)
     class_eval %{
       def flash_message
-        if callback_originated_from_profile?
+        if callback_originated_from_user?
           :link_success
         elsif is_navigational_format?
           :auth_success
@@ -10,7 +10,11 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
 
       def #{provider}
-        @user = User.find_for_oauth(env["omniauth.auth"], current_user)
+        begin
+          @user = User.find_for_oauth!(env["omniauth.auth"], current_user)
+        rescue OmniauthConflict
+          redirect_to(user_url, notice: t("failure.omniauth_conflict", provider: "#{provider}".capitalize)) && return
+        end
 
         if @user.persisted?
           sign_in_and_redirect(@user, event: :authentication)
@@ -32,12 +36,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def after_sign_in_path_for(resource)
-    callback_originated_from_profile? ? profile_path : super
+    callback_originated_from_user? ? user_url : super
   end
 
   private
 
-  def callback_originated_from_profile?
-    env["omniauth.origin"] == profile_url
+  def callback_originated_from_user?
+    env["omniauth.origin"] == user_url
   end
 end

@@ -8,6 +8,6 @@ describe "Devise" do
     sign_in user
     sign_in admin
     visit admin_root_path
-    visit profile_path
+    visit user_path
   end
 end

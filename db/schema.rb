@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603143121) do
+ActiveRecord::Schema.define(version: 20150605132339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20150603143121) do
 
   create_table "hosts", force: :cascade do |t|
     t.string  "name"
-    t.integer "profile_id"
+    t.integer "user_id"
   end
 
   create_table "identities", force: :cascade do |t|
@@ -70,28 +70,20 @@ ActiveRecord::Schema.define(version: 20150603143121) do
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
-    t.date     "date_of_birth"
-    t.string   "profession"
-    t.string   "greeting"
-    t.text     "bio"
-    t.string   "mobile_number"
-    t.string   "favorite_cuisine"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.boolean  "date_of_birth_visible", default: false
-    t.boolean  "mobile_number_visible", default: false
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -100,6 +92,15 @@ ActiveRecord::Schema.define(version: 20150603143121) do
     t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
+    t.date     "date_of_birth"
+    t.string   "profession"
+    t.string   "greeting"
+    t.text     "bio"
+    t.string   "mobile_number"
+    t.string   "favorite_cuisine"
+    t.boolean  "date_of_birth_visible",  default: false
+    t.boolean  "mobile_number_visible",  default: false
+    t.string   "state"
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

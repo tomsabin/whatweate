@@ -1,7 +1,27 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :complete_profile, only: :show
 
-  def delete
+  def show
+    @user = current_user.decorate
+    @verified_with_facebook = Identity.facebook(current_user)
+    @verified_with_twitter = Identity.twitter(current_user)
+  end
+
+  def edit
+    @user = current_user.decorate
+    @verified_with_facebook = Identity.facebook(current_user)
+    @verified_with_twitter = Identity.twitter(current_user)
+  end
+
+  def update
+    @user = current_user
+    if @user.update(user_params)
+      @user.complete_profile! if @user.devise_complete? || @user.omniauth_complete?
+      redirect_to(user_url, notice: "Your profile has successfully been saved")
+    else
+      render(:edit)
+    end
   end
 
   def edit_password
@@ -11,18 +31,33 @@ class UsersController < ApplicationController
   def update_password
     @user = User.find(current_user.id)
     valid_password = @user.valid_password?(current_password)
-    if valid_password && @user.update(user_params)
+    if valid_password && @user.update(password_params)
       sign_in(@user, bypass: true)
-      redirect_to(profile_url, notice: "Your password was successfully updated")
+      redirect_to(user_url, notice: "Your password was successfully updated")
     else
       @user.errors.add(:current_password, "was incorrect") unless valid_password
       render(:edit_password)
     end
   end
 
+  def delete
+  end
+
   private
 
+  def complete_profile
+    redirect_to(edit_user_url, profile_prompt: "Please complete your profile") unless current_user.profile_complete?
+  end
+
   def user_params
+    params.require(:user).permit(user_attributes)
+  end
+
+  def user_attributes
+    %i(email first_name last_name date_of_birth profession greeting bio mobile_number favorite_cuisine date_of_birth_visible mobile_number_visible)
+  end
+
+  def password_params
     params.require(:user).permit(:password, :password_confirmation)
   end
 

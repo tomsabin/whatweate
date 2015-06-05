@@ -9,7 +9,7 @@ class CreateBooking
     elsif EventBooking.make(event: event, user: user)
       "Thanks! We've booked you a seat"
     else
-      I18n.t("error")
+      I18n.t("failure.generic")
     end
   end
 end

@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
   devise_for :admins
-  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks", registrations: "registrations" }
 
-  resource :profile, except: [:destroy]
-
-  resource :user, only: [] do
+  resource :user, except: [:new, :create, :destroy] do
     collection do
       get "delete"
       get "edit_password"
@@ -22,7 +20,7 @@ Rails.application.routes.draw do
     resources :events
     resources :hosts
 
-    root "admin#dashboard"
+    root "pages#dashboard"
   end
 
   root "pages#home"

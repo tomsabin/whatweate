@@ -1,6 +1,9 @@
+class OmniauthConflict < StandardError; end
+
 class OmniauthUser
-  def self.find_or_create(auth, signed_in_resource = nil)
+  def self.find_or_create!(auth, signed_in_resource = nil)
     identity = Identity.find_for_oauth(auth)
+    raise OmniauthConflict.new if signed_in_resource.present? && identity.user.present? && signed_in_resource != identity.user
     user = signed_in_resource ? signed_in_resource : identity.user
     user = new(auth).setup if user.nil?
     identity.update!(user: user) if identity.user != user
@@ -18,7 +21,8 @@ class OmniauthUser
       email: email,
       first_name: auth["info"]["first_name"],
       last_name: auth["info"]["last_name"],
-      password: Devise.friendly_token[0, 20]
+      password: Devise.friendly_token[0, 20],
+      state: "omniauth_complete"
     )
     user.save!(validate: false)
     user
