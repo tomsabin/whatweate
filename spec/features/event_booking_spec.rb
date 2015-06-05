@@ -43,18 +43,5 @@ describe "Event booking" do
       click_button "Book seat"
       expect(page).to have_content "Sorry, this event has sold out"
     end
-
-    xscenario "user can request a new date of the event" do
-      visit root_path
-      click_link event.title
-      expect(page).to_not have_button "Book seat"
-      click_button have_button "Request date"
-      expect(page).to have_content "You need to sign in or sign up before continuing"
-
-      sign_in
-      click_button "Request date"
-      fill_in "event_message", with: "Please could you rehost this on 1st January?"
-      click_button "Send"
-    end
   end
 end
