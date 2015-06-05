@@ -22,7 +22,7 @@ describe ApplicationController do
       let(:resource) { FactoryGirl.create(:user_without_profile) }
 
       it "redirects to root" do
-        expect(controller.after_sign_in_path_for(resource)).to eq edit_user_path
+        expect(controller.after_sign_in_path_for(resource)).to eq edit_user_url
       end
     end
 
@@ -30,7 +30,7 @@ describe ApplicationController do
       let(:resource) { FactoryGirl.create(:user_from_omniauth_without_profile) }
 
       it "redirects to root" do
-        expect(controller.after_sign_in_path_for(resource)).to eq edit_user_path
+        expect(controller.after_sign_in_path_for(resource)).to eq edit_user_url
       end
     end
 

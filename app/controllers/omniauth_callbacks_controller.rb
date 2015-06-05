@@ -32,7 +32,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def after_sign_in_path_for(resource)
-    callback_originated_from_user? ? user_path : super
+    callback_originated_from_user? ? user_url : super
   end
 
   private
