@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :events
     resources :hosts
 
-    root "admin#dashboard"
+    root "pages#dashboard"
   end
 
   root "pages#home"

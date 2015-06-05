@@ -1,5 +1,5 @@
 class Admin
-  class HostsController < Admin::AdminController
+  class HostsController < AdminController
     def index
       @hosts = Host.alphabetical
     end

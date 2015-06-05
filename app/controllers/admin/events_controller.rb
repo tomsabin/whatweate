@@ -1,5 +1,5 @@
 class Admin
-  class EventsController < Admin::AdminController
+  class EventsController < AdminController
     def index
       @events = Event.most_recent
     end
