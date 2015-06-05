@@ -1,4 +1,4 @@
-  require "rails_helper"
+require "rails_helper"
 include OmniauthHelpers
 
 describe "Users and profiles" do
@@ -98,7 +98,7 @@ describe "Users and profiles" do
     end
 
     def reset_password_token
-      { reset_password_token: ActionMailer::Base.deliveries.first.body.raw_source.match(/reset_password_token=(.*)\"/)[1] }
+      { reset_password_token: ActionMailer::Base.deliveries.last.body.raw_source.match(/reset_password_token=(.*)\"/)[1] }
     end
 
     context "having successfully signed in" do
