@@ -1,15 +1,16 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   before_action :complete_profile, only: [:show, :edit]
-  before_action :assign_profile, only: [:show, :edit, :update]
-  before_action :assign_identities, only: [:show, :edit]
 
   def show
-    @profile = @profile.decorate
+    @profile = find_profile.decorate
+    @verified_with_facebook = Identity.facebook(current_user)
+    @verified_with_twitter = Identity.twitter(current_user)
   end
 
   def new
-    redirect_to(profile_url) && return if profile.present?
+    @profile = find_profile
+    redirect_to(profile_url) && return if @profile.present?
     @profile = Profile.new
   end
 
@@ -29,10 +30,14 @@ class ProfilesController < ApplicationController
   end
 
   def edit
+    @profile = find_profile
+    @verified_with_facebook = Identity.facebook(current_user)
+    @verified_with_twitter = Identity.twitter(current_user)
   end
 
   def update
-    if profile.update(profile_params.merge(user_attributes: user_params.merge(id: current_user.id)))
+    @profile = find_profile
+    if @profile.update(profile_params.merge(user_attributes: user_params.merge(id: current_user.id)))
       redirect_to(profile_url, notice: "Your profile has successfully been saved")
     else
       render(:edit)
@@ -42,20 +47,11 @@ class ProfilesController < ApplicationController
   private
 
   def complete_profile
-    redirect_to(new_profile_url, profile_prompt: "Please complete your profile") if profile.blank?
+    redirect_to(new_profile_url, profile_prompt: "Please complete your profile") if find_profile.blank?
   end
 
-  def assign_profile
-    @profile = profile
-  end
-
-  def profile
+  def find_profile
     current_user.profile
-  end
-
-  def assign_identities
-    @verified_with_facebook = Identity.facebook(current_user)
-    @verified_with_twitter = Identity.twitter(current_user)
   end
 
   def user_params

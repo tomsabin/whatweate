@@ -1,8 +1,8 @@
 class IdentitiesController < ApplicationController
   before_action :authenticate_user!
-  before_action :assign_identity
 
   def destroy
+    @identity = find_identity
     if @identity.present?
       @identity.destroy
       redirect_to(edit_profile_url, notice: "Successfully disconnected #{provider.capitalize} from your account")
@@ -13,8 +13,8 @@ class IdentitiesController < ApplicationController
 
   private
 
-  def assign_identity
-    @identity = Identity.public_send(provider, current_user)
+  def find_identity
+    Identity.public_send(provider, current_user)
   end
 
   def provider

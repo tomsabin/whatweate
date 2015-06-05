@@ -1,20 +1,20 @@
 class Admin
   class EventsController < Admin::AdminController
-    before_action :assign_event, except: [:index, :new, :create]
-    before_action :assign_hosts, only: [:new, :create, :edit, :update]
-
     def index
       @events = Event.most_recent
     end
 
     def show
+      @event = find_event
     end
 
     def new
+      @hosts = find_hosts
       @event = Event.new
     end
 
     def create
+      @hosts = find_hosts
       @event = Event.new(event_params)
       if @event.save
         redirect_to(admin_events_url, notice: "Event successfully created")
@@ -24,9 +24,13 @@ class Admin
     end
 
     def edit
+      @hosts = find_hosts
+      @event = find_event
     end
 
     def update
+      @hosts = find_hosts
+      @event = find_event
       if @event.update(event_params)
         redirect_to(admin_event_url(@event), notice: "Event successfully updated")
       else
@@ -35,6 +39,7 @@ class Admin
     end
 
     def destroy
+      @event = find_event
       if @event.present?
         @event.destroy
         redirect_to(admin_events_url, notice: "Event successfully deleted")
@@ -45,12 +50,12 @@ class Admin
 
     private
 
-    def assign_event
-      @event = Event.find(params[:id])
+    def find_event
+      Event.find(params[:id])
     end
 
-    def assign_hosts
-      @hosts = Host.all
+    def find_hosts
+      Host.all
     end
 
     def event_params

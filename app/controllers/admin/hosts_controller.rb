@@ -1,21 +1,21 @@
 class Admin
   class HostsController < Admin::AdminController
-    before_action :assign_host, except: [:index, :new, :create]
-    before_action :assign_profiles, only: [:new, :create, :edit, :update]
-
     def index
       @hosts = Host.alphabetical
     end
 
     def show
+      @host = find_host
     end
 
     def new
       @host = Host.new
+      @profiles = find_profiles
     end
 
     def create
       @host = Host.new(host_params)
+      @profiles = find_profiles
       if @host.save
         redirect_to(admin_hosts_url, notice: "Host successfully created")
       else
@@ -24,9 +24,13 @@ class Admin
     end
 
     def edit
+      @host = find_host
+      @profiles = find_profiles
     end
 
     def update
+      @host = find_host
+      @profiles = find_profiles
       if @host.update(host_params)
         redirect_to(admin_host_url(@host), notice: "Host successfully updated")
       else
@@ -35,6 +39,7 @@ class Admin
     end
 
     def destroy
+      @host = find_host
       if @host.present?
         @host.destroy
         redirect_to(admin_hosts_url, notice: "Host successfully deleted")
@@ -45,12 +50,12 @@ class Admin
 
     private
 
-    def assign_host
-      @host = Host.find(params[:id])
+    def find_host
+      Host.find(params[:id])
     end
 
-    def assign_profiles
-      @profiles = Profile.all
+    def find_profiles
+      Profile.all
     end
 
     def host_params
