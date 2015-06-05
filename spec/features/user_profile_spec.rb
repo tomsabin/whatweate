@@ -1,4 +1,4 @@
-  require "rails_helper"
+require "rails_helper"
 include OmniauthHelpers
 
 describe "Users and profiles" do
@@ -77,7 +77,7 @@ describe "Users and profiles" do
       fill_in "user_email", with: "user@example.com"
       click_button "Send me password reset instructions"
 
-      expect(ActionMailer::Base.deliveries.first.subject).to eq "Reset password instructions"
+      expect(ActionMailer::Base.deliveries.last.subject).to eq "Reset password instructions"
       visit edit_user_password_path(reset_password_token)
 
       fill_in "user_password", with: "newpassword"
@@ -98,7 +98,7 @@ describe "Users and profiles" do
     end
 
     def reset_password_token
-      { reset_password_token: ActionMailer::Base.deliveries.first.body.raw_source.match(/reset_password_token=(.*)\"/)[1] }
+      { reset_password_token: ActionMailer::Base.deliveries.last.body.raw_source.match(/reset_password_token=(.*)\"/)[1] }
     end
 
     context "having successfully signed in" do

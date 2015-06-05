@@ -6,5 +6,6 @@ Bundler.require(*Rails.groups)
 module WhatWeAte
   class Application < Rails::Application
     config.exceptions_app = self.routes
+    config.active_job.queue_adapter = :delayed_job
   end
 end

@@ -16,6 +16,7 @@ class Admin
 
     def create
       @host = Host.new(host_params)
+      @host.subscribe(UserNotifier.new(@host.user)) if @host.user.present?
       @users = find_users
       if @host.save
         redirect_to(admin_hosts_url, notice: "Host successfully created")
