@@ -1,38 +1,38 @@
 <div class="wip">
-  <%= gravatar_image_tag @profile.email %>
+  <%= gravatar_image_tag @user.email %>
 
-  <%= link_to("Edit profile", edit_profile_path) %>
+  <%= link_to("Edit profile", edit_user_path) %>
 
   Email:
-  <%= @profile.email %>
+  <%= @user.email %>
 
   First name:
-  <%= @profile.first_name %>
+  <%= @user.first_name %>
 
   Last name:
-  <%= @profile.last_name %>
+  <%= @user.last_name %>
 
-  <% if @profile.date_of_birth_visible? %>
+  <% if @user.date_of_birth_visible? %>
     Date of birth:
-    <%= @profile.date_of_birth %>
+    <%= @user.date_of_birth %>
   <% end %>
 
   Profession:
-  <%= @profile.profession %>
+  <%= @user.profession %>
 
   Greeting:
-  <%= @profile.greeting %>
+  <%= @user.greeting %>
 
   Bio:
-  <%= @profile.bio %>
+  <%= @user.bio %>
 
-  <% if @profile.mobile_number_visible? %>
+  <% if @user.mobile_number_visible? %>
     Mobile number:
-    <%= @profile.mobile_number %>
+    <%= @user.mobile_number %>
   <% end %>
 
   Favourite cuisine:
-  <%= @profile.favorite_cuisine %>
+  <%= @user.favorite_cuisine %>
 
   <% if @verified_with_facebook %>
     Verified with Facebook

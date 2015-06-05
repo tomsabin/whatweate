@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in? && resource.is_a?(User) && !resource.profile_complete?
       flash.discard
       flash[:profile_prompt] = "Please complete your profile"
-      new_profile_path
+      edit_user_path
     else
       super
     end

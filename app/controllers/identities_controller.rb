@@ -5,9 +5,9 @@ class IdentitiesController < ApplicationController
     @identity = find_identity
     if @identity.present?
       @identity.destroy
-      redirect_to(edit_profile_url, notice: "Successfully disconnected #{provider.capitalize} from your account")
+      redirect_to(edit_user_url, notice: "Successfully disconnected #{provider.capitalize} from your account")
     else
-      redirect_to(edit_profile_url)
+      redirect_to(edit_user_url)
     end
   end
 
