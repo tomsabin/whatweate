@@ -61,6 +61,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    delayed_job (4.0.6)
+      activesupport (>= 3.0, < 5.0)
+    delayed_job_active_record (4.0.3)
+      activerecord (>= 3.0, < 5.0)
+      delayed_job (>= 3.0, < 4.1)
     devise (3.5.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -280,6 +285,7 @@ DEPENDENCIES
   aasm
   capybara
   codeclimate-test-reporter
+  delayed_job_active_record
   devise
   dotenv-rails
   draper

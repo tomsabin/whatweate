@@ -20,6 +20,7 @@ gem "money-rails"
 gem "redcarpet"
 gem "aasm"
 gem "wisper"
+gem "delayed_job_active_record"
 
 group :production do
   gem 'rails_12factor'
