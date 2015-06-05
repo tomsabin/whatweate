@@ -1,0 +1,19 @@
+deployment:
+  staging:
+    branch: master
+    commands:
+      - heroku maintenance:on --app whatweate-staging
+      - heroku scale worker=0 --app whatweate-staging
+      - git push git@heroku.com:whatweate-staging.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app whatweate-staging
+      - heroku scale worker=1 --app whatweate-staging
+      - heroku maintenance:off --app whatweate-staging
+  qa:
+    branch: develop
+    commands:
+      - heroku maintenance:on --app whatweate-qa
+      - heroku scale worker=0 --app whatweate-qa
+      - git push git@heroku.com:whatweate-qa.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app whatweate-qa
+      - heroku scale worker=1 --app whatweate-qa
+      - heroku maintenance:off --app whatweate-qa

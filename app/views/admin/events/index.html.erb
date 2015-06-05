@@ -1,0 +1,12 @@
+<ul class="collection events">
+
+  <% @events.each do |event| %>
+    <%= link_to admin_event_path(event), class: "collection-item" do %>
+      <%= event.title %>
+      <span class="badge"><%= event.host.name %></span>
+    <% end %>
+  <% end %>
+
+  <%= link_to "Create new event", new_admin_event_path, class: 'collection-item active' %>
+
+</ul>

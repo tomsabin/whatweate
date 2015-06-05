@@ -1,0 +1,9 @@
+<ul class="collection">
+
+  <% @hosts.each do |host| %>
+    <%= link_to host.name, admin_host_path(host), class: 'collection-item' %>
+  <% end %>
+
+  <%= link_to "Create new host", new_admin_host_path, class: 'collection-item active' %>
+
+</ul>

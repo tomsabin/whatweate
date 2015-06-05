@@ -1,0 +1,49 @@
+<div class="wip">
+  <%= gravatar_image_tag @user.email %>
+
+  <%= link_to("Edit profile", edit_user_path) %>
+
+  Email:
+  <%= @user.email %>
+
+  First name:
+  <%= @user.first_name %>
+
+  Last name:
+  <%= @user.last_name %>
+
+  <% if @user.date_of_birth_visible? %>
+    Date of birth:
+    <%= @user.date_of_birth %>
+  <% end %>
+
+  Profession:
+  <%= @user.profession %>
+
+  Greeting:
+  <%= @user.greeting %>
+
+  Bio:
+  <%= @user.bio %>
+
+  <% if @user.mobile_number_visible? %>
+    Mobile number:
+    <%= @user.mobile_number %>
+  <% end %>
+
+  Favourite cuisine:
+  <%= @user.favorite_cuisine %>
+
+  <% if @verified_with_facebook %>
+    Verified with Facebook
+  <% end %>
+
+  <% if @verified_with_twitter %>
+    Verified with Twitter
+  <% end %>
+
+  <div class="social-networks">
+    <%= link_to "Verify your account with Facebook", user_omniauth_authorize_path(:facebook) unless @verified_with_facebook %>
+    <%= link_to "Verify your account with Twitter", user_omniauth_authorize_path(:twitter) unless @verified_with_twitter%>
+  </div>
+</div>

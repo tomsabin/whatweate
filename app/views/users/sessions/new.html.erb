@@ -1,0 +1,18 @@
+<div class="wip">
+  <h2>Log in</h2>
+
+  <%= simple_form_for resource, as: resource_name, url: session_path(resource_name), defaults: { required: false, error: true } do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :email, autofocus: true %>
+    <%= f.input :password %>
+    <%= f.input :remember_me, as: :boolean, label: "Remember me" %>
+    <%= f.button :submit, "Sign in" %>
+  <% end %>
+
+  <div class="social-networks">
+    <%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %>
+    <%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %>
+  </div>
+
+  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+</div>

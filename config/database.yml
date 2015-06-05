@@ -15,9 +15,6 @@ test:
 
 production: &production
   <<: *default
-  database: <%= ENV['WHATWEATE_DATABASE_NAME'] %>
-  username: <%= ENV['WHATWEATE_DATABASE_USERNAME'] %>
-  password: <%= ENV['WHATWEATE_DATABASE_PASSWORD'] %>
-
-staging:
-  <<: *production
+  database: <%= ENV["WHATWEATE_DATABASE_NAME"] %>
+  username: <%= ENV["WHATWEATE_DATABASE_USERNAME"] %>
+  password: <%= ENV["WHATWEATE_DATABASE_PASSWORD"] %>

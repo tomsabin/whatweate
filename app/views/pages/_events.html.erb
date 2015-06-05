@@ -1,0 +1,34 @@
+<section class="events">
+  <div class="container">
+    <a name="events"></a>
+    <h1>Upcoming events</h1>
+
+    <% if @events.blank? %>
+      <p class="error">Oops, something went wrong. Check out our upcoming events at <a href="http://www.meetup.com/Food-Lovers-in-London/">our Meetup page</a>.</p>
+    <% else %>
+      <% @events.each do |event| %>
+        <article class="event">
+          <a href="<%= event_path(event) %>" title="<%= event.title %>" data-ga="events">
+            <img src="<%#= event.photo_url %>" alt="<%= event.title %>">
+            <h2><%= event.title %></h2>
+
+            <div class="details">
+              <span class="date"><%= event.date %></span>
+              <span class="price"><%= humanized_money_with_symbol event.price %></span>
+            </div>
+
+            <p class="description">
+              <%= event.description %>
+            </p>
+
+            <% if !event.location.empty? %>
+              <p class="venue">
+                <%= event.location %>
+              </p>
+            <% end %>
+          </a>
+        </article>
+      <% end %>
+    <% end %>
+  </div>
+</section>

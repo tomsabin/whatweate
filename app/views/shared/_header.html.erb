@@ -1,15 +1,15 @@
 <header>
   <div class="container">
-    <%= link_to root_path, alt: 'WhatWeAte', title: 'WhatWeAte', class: 'logo' do %>
-      <%= image_tag 'logo-icon.png', class: 'logo-icon' %>
-      <%= image_tag 'logo-text.png', class: 'logo-text', alt: 'WhatWeAte' %>
+    <%= link_to root_path, alt: "WhatWeAte", title: "WhatWeAte", class: "logo" do %>
+      <%= image_tag "logo-icon.png", class: "logo-icon" %>
+      <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
     <% end %>
 
     <nav>
       <input type="checkbox" id="mobile-nav">
       <label for="mobile-nav">menu</label>
       <ul>
-        <%= link_to root_path(anchor: 'how_it_works') do %>
+        <%= link_to root_path(anchor: "how_it_works") do %>
           <li>How it works</li>
         <% end %>
 
