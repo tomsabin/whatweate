@@ -38,6 +38,19 @@ describe "Host management" do
     expect(page).to_not have_content "Joe Bloggs"
   end
 
+  scenario "admin creates a host with associations and the user is notified" do
+    FactoryGirl.create(:user, first_name: "Joseph", last_name: "Bloggs")
+
+    click_link "Create new host"
+
+    fill_in "host_name", with: "Joe Bloggs"
+    select "Joseph Bloggs", from: "host_profile_id"
+
+    click_button "Create host"
+
+    expect(ActionMailer::Base.deliveries.last.subject).to eq "New host"
+  end
+
   scenario "admin creates a host with associations and the User/Profile is removed" do
     FactoryGirl.create(:user, first_name: "Joseph", last_name: "Bloggs")
 
