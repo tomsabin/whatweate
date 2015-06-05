@@ -44,7 +44,7 @@ describe "Host management" do
     click_link "Create new host"
 
     fill_in "host_name", with: "Joe Bloggs"
-    select "Joseph Bloggs", from: "host_profile_id"
+    select "Joseph Bloggs", from: "host_user_id"
 
     click_button "Create host"
 
