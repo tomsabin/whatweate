@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605124528) do
+ActiveRecord::Schema.define(version: 20150605132339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20150605124528) do
     t.string   "favorite_cuisine"
     t.boolean  "date_of_birth_visible",  default: false
     t.boolean  "mobile_number_visible",  default: false
+    t.string   "state"
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

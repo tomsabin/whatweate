@@ -4,7 +4,7 @@ include OmniauthHelpers
 describe OmniauthUser do
   describe ".find_or_create" do
     it "finds the user by an existing identity (facebook) when the user is not signed in" do
-      user = FactoryGirl.create(:user, :authorised_with_facebook)
+      user = FactoryGirl.create(:user, :facebook)
       expect(OmniauthUser.find_or_create(facebook_auth_hash)).to eq(user)
     end
 
@@ -19,6 +19,7 @@ describe OmniauthUser do
       expect(Identity.count).to eq(1)
       expect(user).to_not be_valid
       expect(user).to be_persisted
+      expect(user.state).to eq("omniauth_complete")
       expect(user.email).to eq(nil)
       expect(user.first_name).to eq(nil)
       expect(user.last_name).to eq(nil)
@@ -37,6 +38,7 @@ describe OmniauthUser do
       expect(Identity.count).to eq(1)
       expect(user).to_not be_valid
       expect(user).to be_persisted
+      expect(user.state).to eq("omniauth_complete")
       expect(user.email).to eq("user@example.com")
       expect(user.first_name).to eq("Cookie")
       expect(user.last_name).to eq("Monster")
