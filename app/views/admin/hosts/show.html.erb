@@ -5,8 +5,8 @@
         <span class="card-title">
           <%= @host.name %>
         </span>
-        <% if @host.profile.present? %>
-          <p>User: <%= @host.profile.full_name %></p>
+        <% if @user.present? %>
+          <p>User: <%= @user.full_name %></p>
         <% end %>
       </div>
       <div class="card-action">
