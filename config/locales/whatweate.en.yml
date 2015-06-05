@@ -1,6 +1,7 @@
-# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
-
 en:
+  profile:
+    prompt: "Please complete your profile."
+    saved: "Your profile has successfully been saved."
   failure:
-    generic: "Oops, something went wrong"
+    generic: "Oops, something went wrong."
     omniauth_conflict: "Oops, we detected another account with the same %{provider} authentication."

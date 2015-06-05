@@ -168,7 +168,7 @@ describe "Users and profiles" do
         fill_in "user_password_confirmation", with: "newpassword"
         click_button "Update password"
 
-        expect(page).to have_content "Your password was successfully updated"
+        expect(page).to have_content "Your password has been changed successfully"
 
         click_link "Sign out"
         click_link "Sign in"

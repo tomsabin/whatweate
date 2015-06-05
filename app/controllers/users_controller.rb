@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update(user_params)
       @user.complete_profile! if @user.devise_complete? || @user.omniauth_complete?
-      redirect_to(user_url, notice: "Your profile has successfully been saved")
+      redirect_to(user_url, notice: t("profile.saved"))
     else
       render(:edit)
     end
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     valid_password = @user.valid_password?(current_password)
     if valid_password && @user.update(password_params)
       sign_in(@user, bypass: true)
-      redirect_to(user_url, notice: "Your password was successfully updated")
+      redirect_to(user_url, notice: t("devise.passwords.updated_not_active"))
     else
       @user.errors.add(:current_password, "was incorrect") unless valid_password
       render(:edit_password)
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   private
 
   def complete_profile
-    redirect_to(edit_user_url, profile_prompt: "Please complete your profile") unless current_user.profile_complete?
+    redirect_to(edit_user_url, profile_prompt: t("profile.prompt")) unless current_user.profile_complete?
   end
 
   def user_params
