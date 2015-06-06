@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605132339) do
+ActiveRecord::Schema.define(version: 20150606061845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20150605132339) do
     t.string   "location"
     t.text     "description"
     t.text     "menu"
-    t.integer  "seats"
+    t.integer  "seats",            default: 8
     t.integer  "price_in_pennies"
     t.string   "currency"
     t.datetime "created_at"
