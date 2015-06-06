@@ -40,7 +40,7 @@ describe "Event management" do
     end
 
     expect(page).to have_button "Create event"
-    click_button "Edit"
+    click_link "Edit"
     fill_in "event_location", with: "London"
     click_button "Create event"
 
@@ -95,7 +95,7 @@ describe "Event management" do
       expect(page).to have_content "A heart warming Sunday Roast Lamb cooked behind decades of experience for the perfect meal"
     end
 
-    expect(page).to have_button "Edit"
+    expect(page).to have_link "Edit"
     click_button "Save event"
 
     expect(page).to have_content "Event successfully updated"

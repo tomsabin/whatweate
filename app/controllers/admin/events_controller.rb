@@ -11,7 +11,7 @@ class Admin
     end
 
     def new
-      @event = Event.new
+      @event = Event.new(session[:event])
       @hosts = find_hosts
     end
 
