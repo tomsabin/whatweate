@@ -27,6 +27,7 @@ describe "Event management" do
     expect(page).to have_content "Sunday Roast"
     expect(page).to have_content "Hosted by Joe Bloggs"
     expect(page).to have_link "View on map"
+    # expect(page).to have_content "date"
     expect(find_link("View on map")[:href]).to eq "http://example.com"
     expect(page).to have_content "Londo"
     expect(page).to have_content "£10"
@@ -53,6 +54,7 @@ describe "Event management" do
     expect(page).to have_content "Sunday Roast"
     expect(page).to have_content "Hosted by Joe Bloggs"
     expect(page).to have_link "View on map"
+    # expect(page).to have_content "date"
     expect(find_link("View on map")[:href]).to eq "http://example.com"
     expect(page).to have_content "London"
     expect(page).to have_button "Book seat"
@@ -74,6 +76,7 @@ describe "Event management" do
     expect(page).to have_content "Sunday Roast"
     expect(page).to have_content "Hosted by Joe Bloggs"
     expect(page).to have_content "London"
+    # expect(page).to have_content "date"
     expect(page).to have_content "8 seats"
     expect(page).to have_content "£10"
     within(".description") do
@@ -87,22 +90,22 @@ describe "Event management" do
 
     click_link "Edit event"
     fill_in "event_title", with: "Sunday Roast Lamb"
-    fill_in "event_description", with: "A heart warming Sunday Roast Lamb cooked behind decades of experience for the perfect meal"
+    # fill_in "event_description", with: "A heart warming Sunday Roast Lamb cooked behind decades of experience for the perfect meal"
 
-    click_button "Preview"
+    # click_button "Preview"
 
-    within(".description") do
-      expect(page).to have_content "A heart warming Sunday Roast Lamb cooked behind decades of experience for the perfect meal"
-    end
+    # within(".description") do
+    #   expect(page).to have_content "A heart warming Sunday Roast Lamb cooked behind decades of experience for the perfect meal"
+    # end
 
-    expect(page).to have_link "Edit"
+    # expect(page).to have_link "Edit"
     click_button "Save event"
 
     expect(page).to have_content "Event successfully updated"
     expect(page).to have_content "Sunday Roast Lamb"
 
     click_link "Edit event"
-    expect(page).to have_button "Preview"
+    # expect(page).to have_button "Preview"
     click_link "Delete event"
 
     expect(page).to have_content "Event successfully deleted"

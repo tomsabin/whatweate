@@ -1,6 +1,6 @@
 class Admin
   class EventsController < AdminController
-    before_action -> { session.delete(:event) }, only: [:create, :edit]
+    before_action -> { session.delete(:event) }, only: :create
 
     def index
       @events = Event.most_recent
@@ -8,6 +8,10 @@ class Admin
 
     def show
       @event = find_event
+    end
+
+    def preview
+      @event = Event.new(session[:event])
     end
 
     def new
@@ -31,10 +35,6 @@ class Admin
     def edit
       @event = find_event
       @hosts = find_hosts
-    end
-
-    def preview
-      @event = Event.new(session[:event])
     end
 
     def update
