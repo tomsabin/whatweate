@@ -17,5 +17,5 @@
   <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
 </div>
 
-<%= f.input :price_in_pennies, label: "Price (in pence)", wrapper_html: { class: "col s6" } %>
+<%= f.input :price, label: "Price (£)", wrapper_html: { class: "col s6" } %>
 <%= f.input :currency, input_html: { value: f.object.currency || "GBP" }, wrapper_html: { class: "col s6" }, label_html: { class: "active" } %>

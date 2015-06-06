@@ -21,8 +21,7 @@ describe "Event management" do
     fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
     fill_in "event_menu", with: "- Pumpkin Soup\n- Roast Lamb with trimmings\n- Tiramisu"
     fill_in "event_seats", with: "8"
-    fill_in "event_price_in_pennies", with: "1000"
-    expect(page).to have_field("event_currency", with: "GBP")
+    fill_in "event_price", with: "10.00"
     click_button "Create event"
 
     expect(page).to have_content "Event successfully created"
@@ -96,8 +95,7 @@ describe "Event management" do
       fill_in "event_location_url", with: "https://example.com"
       fill_in "event_description", with: "Description"
       fill_in "event_menu", with: "Menu"
-      fill_in "event_seats", with: "10"
-      fill_in "event_price_in_pennies", with: "1000"
+      fill_in "event_price", with: "10.00"
       click_button "Create event"
     end
 
