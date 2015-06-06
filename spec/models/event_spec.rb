@@ -14,6 +14,8 @@ describe Event do
     it { should validate_presence_of(:seats) }
     it { should validate_presence_of(:price_in_pennies) }
     it { should validate_presence_of(:currency) }
+    it { should allow_value(1, 2).for(:seats) }
+    it { should_not allow_value(0, -1, "20").for(:seats) }
   end
 
   describe "scopes" do

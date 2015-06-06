@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
   has_many :guests, through: :bookings, source: :user
 
   validates :host_id, :date, :title, :location, :description, :menu, :seats, :price_in_pennies, :currency, presence: true
+  validates :seats, numericality: { only_integer: true, greater_than: 0 }
 
   monetize :price_in_pennies, as: "price", with_model_currency: :currency
 
