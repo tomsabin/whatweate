@@ -4,4 +4,5 @@ en:
     saved: "Your profile has successfully been saved."
   failure:
     generic: "Oops, something went wrong."
+    no_events: "There doesn't seem to be any events coming up."
     omniauth_conflict: "Oops, we detected another account with the same %{provider} authentication."
