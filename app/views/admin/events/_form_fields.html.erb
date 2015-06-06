@@ -1,21 +1,27 @@
 <%= render partial: "admin/shared/form_errors", locals: { object: @event } %>
 
-<%= f.input :host_id, collection: @hosts, label_method: :name, required: true,
-                      wrapper_html: { class: "col s12 l6" }, label_html: { class: "active" } %>
+<div class="row">
+  <%= f.input :host_id, collection: @hosts, label_method: :name, required: true,
+                        wrapper_html: { class: "col s12" }, label_html: { class: "active" } %>
 
-<%= f.input :date, html5: true, placeholder: "YYYY-MM-DD HH:MM",
-                   wrapper_html: { class: "col s12 l6" }, input_html: { type: 'datetime-local' }, label_html: { class: "active" } %>
+  <%= f.input :title, wrapper_html: { class: "col s12" } %>
 
-<%= f.input :title, wrapper_html: { class: "col s12" } %>
-<%= f.input :seats, wrapper_html: { class: "col s12 m3 l2" }, label_html: { class: "active" } %>
-<%= f.input :location, wrapper_html: { class: "col s12 m9 l10" } %>
-<%= f.input :location_url, wrapper_html: { class: "col s12 m9 l10" } %>
-<%= f.input :description, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea" } %>
-<%= f.input :menu, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea" } %>
+  <%= f.input :date, html5: true, placeholder: "YYYY-MM-DD HH:MM",
+                     wrapper_html: { class: "col s12 m8" }, input_html: { type: 'datetime-local' }, label_html: { class: "active" } %>
+  <%= f.input :price, label: "Price (£)", wrapper_html: { class: "col s6 m2" } %>
+  <%= f.input :seats, wrapper_html: { class: "col s6 m2" }, label_html: { class: "active" } %>
 
-<div class="col s12">
-  <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
+  <%= f.input :location, wrapper_html: { class: "col s12 m6" } %>
+  <%= f.input :location_url, wrapper_html: { class: "col s12 m6" } %>
 </div>
 
-<%= f.input :price, label: "Price (£)", wrapper_html: { class: "col s6" } %>
-<%= f.input :currency, input_html: { value: f.object.currency || "GBP" }, wrapper_html: { class: "col s6" }, label_html: { class: "active" } %>
+<div class="row">
+  <div class="col s12">
+    <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
+  </div>
+</div>
+
+<div class="row">
+  <%= f.input :description, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea" } %>
+  <%= f.input :menu, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea" } %>
+</div>
