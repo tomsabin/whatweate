@@ -2,6 +2,7 @@ class Host < ActiveRecord::Base
   include Wisper::Publisher
 
   belongs_to :user
+  has_many :events, dependent: :restrict_with_error
 
   validates :name, presence: true
 

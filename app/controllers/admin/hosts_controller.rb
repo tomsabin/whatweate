@@ -43,8 +43,11 @@ class Admin
     def destroy
       @host = find_host
       if @host.present?
-        @host.destroy
-        redirect_to(admin_hosts_url, notice: "Host successfully deleted")
+        if @host.destroy
+          redirect_to(admin_hosts_url, notice: "Host successfully deleted")
+        else
+          redirect_to(admin_hosts_url, alert: @host.errors.get(:base).first)
+        end
       else
         redirect_to(edit_admin_host_url(@host))
       end

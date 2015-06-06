@@ -79,4 +79,17 @@ describe "Host management" do
 
     expect("Joe Bloggs").to appear_before "Zack Richardson"
   end
+
+  scenario "admin tries to delete a Host that has an event" do
+    host = FactoryGirl.create(:host, name: "Joe Bloggs")
+    FactoryGirl.create(:event, host: host)
+
+    visit admin_hosts_path
+    click_link "Joe Bloggs"
+    click_link "Edit host"
+    click_link "Delete host"
+
+    expect(page).to_not have_content "Host successfully deleted"
+    expect(page).to have_content "Cannot delete record because dependent events exist"
+  end
 end
