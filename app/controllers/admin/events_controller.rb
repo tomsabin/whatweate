@@ -1,5 +1,7 @@
 class Admin
   class EventsController < AdminController
+    before_action -> { session.delete(:event) }, only: [:create, :edit]
+
     def index
       @events = Event.most_recent
     end
@@ -9,31 +11,38 @@ class Admin
     end
 
     def new
-      @hosts = find_hosts
       @event = Event.new
+      @hosts = find_hosts
     end
 
     def create
-      @hosts = find_hosts
       @event = Event.new(event_params)
+
+      handle_preview && return if params["commit"] == "Preview"
+
       if @event.save
         redirect_to(admin_events_url, notice: "Event successfully created")
       else
+        @hosts = find_hosts
         render(:new)
       end
     end
 
     def edit
-      @hosts = find_hosts
       @event = find_event
+      @hosts = find_hosts
+    end
+
+    def preview
+      @event = Event.new(session[:event])
     end
 
     def update
-      @hosts = find_hosts
       @event = find_event
       if @event.update(event_params)
         redirect_to(admin_event_url(@event), notice: "Event successfully updated")
       else
+        @hosts = find_hosts
         render(:edit)
       end
     end
@@ -49,6 +58,15 @@ class Admin
     end
 
     private
+
+    def handle_preview
+      if @event.valid?
+        session[:event] = event_params
+        redirect_to(preview_admin_events_url)
+      else
+        render(:new)
+      end
+    end
 
     def find_event
       Event.find(params[:id])
