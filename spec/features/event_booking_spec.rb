@@ -43,5 +43,14 @@ describe "Event booking" do
       click_button "Book seat"
       expect(page).to have_content "Sorry, this event has sold out"
     end
+
+    scenario "attendees that are going are shown" do
+      visit root_path
+      click_link event.title
+      within ".guests" do
+        expect(page).to have_content attendee.first_name
+        expect(page).to have_content attendee.last_name
+      end
+    end
   end
 end

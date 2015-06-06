@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe Event do
   it { should have_many(:bookings).dependent(:destroy) }
+  it { should have_many(:guests).through(:bookings) }
 
   describe "validations" do
     it { should validate_presence_of(:host_id) }

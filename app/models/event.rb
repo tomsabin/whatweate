@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
 
   belongs_to :host
   has_many :bookings, dependent: :destroy
+  has_many :guests, through: :bookings, source: :user
 
   validates :host_id, :date, :title, :location, :description, :menu, :seats, :price_in_pennies, :currency, presence: true
 

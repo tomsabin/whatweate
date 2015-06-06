@@ -30,4 +30,10 @@
   <div class="markdown menu">
     <%= markdown(@event.menu).html_safe %>
   </div>
+
+  <div class="guests">
+    <% @guests.each do |guest| %>
+      <%= guest.full_name %>
+    <% end %>
+  </div>
 </div>
