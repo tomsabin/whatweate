@@ -9,6 +9,7 @@ describe Event do
     it { should validate_presence_of(:date) }
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:location) }
+    it { should validate_presence_of(:location_url) }
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:menu) }
     it { should validate_presence_of(:seats) }
@@ -16,6 +17,8 @@ describe Event do
     it { should validate_presence_of(:currency) }
     it { should allow_value(1, 2).for(:seats) }
     it { should_not allow_value(0, -1, "20").for(:seats) }
+    it { should allow_value("https://facebook.com", "https://twitter.com", "http://google.com", "http://www.fb.com").for(:location_url) }
+    it { should_not allow_value("www.facebook.com", "facebook.com", "<script>alert('hello')</script>", "ftp://e.com").for(:location_url) }
   end
 
   describe "scopes" do

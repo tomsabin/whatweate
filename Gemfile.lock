@@ -269,6 +269,9 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    validate_url (1.0.0)
+      activemodel (>= 3.0.0)
+      addressable
     warden (1.2.3)
       rack (>= 1.0)
     websocket-driver (0.5.4)
@@ -315,4 +318,5 @@ DEPENDENCIES
   spring
   turbolinks
   uglifier
+  validate_url
   wisper

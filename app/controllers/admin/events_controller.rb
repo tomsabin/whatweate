@@ -59,7 +59,7 @@ class Admin
     end
 
     def event_params
-      params.require(:event).permit(:host_id, :date, :title, :location, :description, :menu, :seats, :price_in_pennies, :currency)
+      params.require(:event).permit(:host_id, :date, :title, :location, :location_url, :description, :menu, :seats, :price_in_pennies, :currency)
     end
   end
 end

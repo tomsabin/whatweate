@@ -19,7 +19,7 @@
 
   <p><%= @event.host.name %></p>
 
-  <p><%= @event.location %> | <%= link_to "View on map", "#" %> </p>
+  <p><%= @event.location %> | <%= link_to "View on map", @event.location_url %> </p>
 
   <h1>Details</h1>
   <div class="markdown description">

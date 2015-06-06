@@ -4,6 +4,7 @@ FactoryGirl.define do
     date             { rand(5..20).days.from_now }
     title            { Faker::Company.catch_phrase }
     location         { Faker::Address.city }
+    location_url     { Faker::Internet.url("example.com") }
     description      { Faker::Lorem.paragraph }
     menu             { Faker::Lorem.paragraph }
     seats            { rand(5..20) }
