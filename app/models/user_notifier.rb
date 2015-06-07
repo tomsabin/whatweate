@@ -1,5 +1,5 @@
 class UserNotifier
-  def new_host(user)
-    UserMailer.new_host(user).deliver_later
+  def create_host_successful(host)
+    UserMailer.new_host(host.user).deliver_later
   end
 end

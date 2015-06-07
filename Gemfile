@@ -23,6 +23,7 @@ gem "wisper"
 gem "delayed_job_active_record"
 gem "validate_url"
 gem "slack-notifier"
+gem "wisper-activerecord"
 
 group :production do
   gem 'rails_12factor'
@@ -50,6 +51,7 @@ group :test do
   gem "wisper-rspec", require: false
   gem "webmock"
   gem "vcr"
+  gem "test_after_commit"
 end
 
 ruby "2.2.2"

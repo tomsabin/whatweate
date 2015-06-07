@@ -1,9 +1,10 @@
 class EventNotifier
-  def new_booking(event)
+  def create_booking_successful(booking)
+    event = booking.event
     event.fully_booked! if event.bookings.size >= event.seats
   end
 
-  def new_event(event)
+  def create_event_successful(event)
     AdminMessenger.broadcast("New event by #{event.host.name} has been submitted for approval")
   end
 end
