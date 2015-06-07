@@ -12,13 +12,13 @@ describe "Public profile" do
     click_button "Sign up"
     click_link "Sign out"
 
-    visit profile_path(User.last)
+    visit member_path(User.last)
     expect(page).to have_content "Looks like we can't find the page you were looking for"
   end
 
   scenario "visits a profile with default visibility options" do
     user = FactoryGirl.create(:user, date_of_birth: Date.new(1980, 1, 1))
-    visit profile_path(user)
+    visit member_path(user)
 
     expect(page).to_not have_content user.email
     expect(page).to have_content user.first_name
@@ -35,7 +35,7 @@ describe "Public profile" do
 
   scenario "visits a profile with all-visible options" do
     user = FactoryGirl.create(:user, date_of_birth: Date.new(1985, 5, 2), date_of_birth_visible: true, mobile_number_visible: true)
-    visit profile_path(user)
+    visit member_path(user)
 
     expect(page).to_not have_content user.email
     expect(page).to have_content "2nd May 1985"
@@ -44,7 +44,7 @@ describe "Public profile" do
 
   scenario "visits a profile with verified social networks" do
     user = FactoryGirl.create(:user, :facebook, :twitter)
-    visit profile_path(user)
+    visit member_path(user)
 
     expect(page).to have_content "Verified with Facebook"
     expect(page).to have_content "Verified with Twitter"

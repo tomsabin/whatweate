@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :profiles, only: :show
+  resources :member, only: :show, controller: "members"
 
   resources :events, only: [:show, :new, :create] do
     resources :bookings, only: [:create]

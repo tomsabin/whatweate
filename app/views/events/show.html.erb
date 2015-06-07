@@ -10,7 +10,7 @@
 
   <div class="guests">
     <% @guests.each do |guest| %>
-      <%= link_to guest.full_name, profile_path(guest) %>
+      <%= link_to guest.full_name, member_path(guest) %>
     <% end %>
   </div>
 </div>
