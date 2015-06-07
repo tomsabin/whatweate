@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      @user.complete_profile! if @user.devise_complete? || @user.omniauth_complete?
+      @user.complete_profile! if @user.completed_devise? || @user.completed_omniauth?
       redirect_to(user_url, notice: t("profile.saved"))
     else
       render(:edit)
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   private
 
   def complete_profile
-    redirect_to(edit_user_url, profile_prompt: t("profile.prompt")) unless current_user.profile_complete?
+    redirect_to(edit_user_url, profile_prompt: t("profile.prompt")) unless current_user.completed_profile?
   end
 
   def user_params

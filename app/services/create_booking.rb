@@ -2,7 +2,7 @@ class CreateBooking
   def self.perform(event, user)
     if user.nil?
       I18n.t("devise.failure.unauthenticated")
-    elsif !user.profile_complete?
+    elsif !user.completed_profile?
       I18n.t("profile.prompt")
     elsif event.sold_out?
       I18n.t("event.booking.sold_out")

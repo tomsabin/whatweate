@@ -7,7 +7,7 @@ FactoryGirl.define do
     password   { Faker::Internet.password }
 
     factory :user, aliases: [:user_with_profile] do
-      state            "profile_complete"
+      state            "completed_profile"
       date_of_birth    { Faker::Date.between(16.years.ago, 100.years.ago) }
       profession       { Faker::Company.catch_phrase }
       bio              { Faker::Lorem.paragraph }
@@ -16,7 +16,7 @@ FactoryGirl.define do
       greeting         { Faker::Lorem.sentence }
 
       factory :user_with_profile_pending_transition do
-        state "devise_complete"
+        state "completed_devise"
       end
     end
 

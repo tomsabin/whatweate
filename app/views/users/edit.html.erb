@@ -18,7 +18,7 @@
     <%= f.button :submit, "Save profile" %>
   <% end %>
 
-  <% if current_user.profile_complete? %>
+  <% if current_user.completed_profile? %>
     <%= link_to "Delete your account", delete_user_path %>
     <%= link_to "Change your password", edit_password_user_path %>
 

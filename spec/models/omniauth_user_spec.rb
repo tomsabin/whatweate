@@ -19,7 +19,7 @@ describe OmniauthUser do
       expect(Identity.count).to eq(1)
       expect(user).to_not be_valid
       expect(user).to be_persisted
-      expect(user.state).to eq("omniauth_complete")
+      expect(user.state).to eq("completed_omniauth")
       expect(user.email).to eq(nil)
       expect(user.first_name).to eq(nil)
       expect(user.last_name).to eq(nil)
@@ -38,7 +38,7 @@ describe OmniauthUser do
       expect(Identity.count).to eq(1)
       expect(user).to_not be_valid
       expect(user).to be_persisted
-      expect(user.state).to eq("omniauth_complete")
+      expect(user.state).to eq("completed_omniauth")
       expect(user.email).to eq("user@example.com")
       expect(user.first_name).to eq("Cookie")
       expect(user.last_name).to eq("Monster")

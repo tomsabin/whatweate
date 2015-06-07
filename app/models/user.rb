@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
     u.validates :first_name, :last_name, presence: true
   end
 
-  with_options if: -> { devise_complete? || omniauth_complete? || profile_complete? } do |u|
+  with_options if: -> { completed_devise? || completed_omniauth? || completed_profile? } do |u|
     u.validates :first_name, :last_name, :date_of_birth, :profession, :bio, :mobile_number, :favorite_cuisine, presence: true
   end
 
@@ -15,16 +15,16 @@ class User < ActiveRecord::Base
 
   aasm column: "state", whiny_transitions: false, skip_validation_on_save: true do
     state :profile_incomplete, initial: true
-    state :devise_complete
-    state :omniauth_complete
-    state :profile_complete
+    state :completed_devise
+    state :completed_omniauth
+    state :completed_profile
 
     event :complete_devise do
-      transitions to: :devise_complete, from: :profile_incomplete
+      transitions to: :completed_devise, from: :profile_incomplete
     end
 
     event :complete_profile do
-      transitions to: :profile_complete, from: [:devise_complete, :omniauth_complete]
+      transitions to: :completed_profile, from: [:completed_devise, :completed_omniauth]
     end
   end
 

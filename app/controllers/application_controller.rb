@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if user_signed_in? && resource.is_a?(User) && !resource.profile_complete?
+    if user_signed_in? && resource.is_a?(User) && !resource.completed_profile?
       flash.discard
       flash[:profile_prompt] = t("profile.prompt")
       edit_user_url
