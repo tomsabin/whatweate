@@ -1,7 +1,7 @@
 class Host < ActiveRecord::Base
   include Wisper::Publisher
 
-  belongs_to :user
+  belongs_to :user, inverse_of: :host
   has_many :events, dependent: :restrict_with_error
 
   validates :name, presence: true

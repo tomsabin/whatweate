@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include AASM
 
   has_many :bookings, dependent: :destroy
+  has_one :host, inverse_of: :user
 
   with_options if: -> { profile_incomplete? } do |u|
     u.validates :first_name, :last_name, presence: true
