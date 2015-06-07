@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://hooks.slack.com/services/
+    body:
+      encoding: US-ASCII
+      string: payload=%7B%22channel%22%3A%22%23dev%22%2C%22username%22%3A%22WhatWeAte+%28dev%29%22%2C%22icon_url%22%3A%22http%3A%2F%2Fwhatweate.co%2Fimages%2Flogo-icon.png%22%2C%22text%22%3A%22New+event+by+Joe+Bloggs+has+been+submitted+for+approval%22%7D
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/html
+      Date:
+      - Sun, 07 Jun 2015 21:31:52 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
+      Content-Length:
+      - '22'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: ok
+    http_version:
+  recorded_at: Sun, 07 Jun 2015 21:31:52 GMT
+recorded_with: VCR 2.9.3

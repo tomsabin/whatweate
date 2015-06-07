@@ -1,0 +1,21 @@
+<%= simple_form_for @event do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :title %>
+  <%= f.input :date, html5: true, placeholder: "YYYY-MM-DD HH:MM", input_html: { type: 'datetime-local' } %>
+  <%= f.input :price, label: "Price (£)" %>
+  <%= f.input :seats %>
+  <%= f.input :location %>
+  <%= f.input :location_url %>
+
+  <div class="row">
+    <div class="col s12">
+      <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
+    </div>
+  </div>
+
+  <%= f.input :description %>
+  <%= f.input :menu %>
+
+  <%= f.button :submit, "Submit event" %>
+<% end %>

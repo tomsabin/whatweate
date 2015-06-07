@@ -4,9 +4,16 @@ if ENV["CODECLIMATE_REPO_TOKEN"]
 end
 require "capybara/rspec"
 require "capybara/poltergeist"
+require "webmock/rspec"
+require "vcr"
 Dir["./spec/support/**/*.rb"].each { |f| require f }
 
 Capybara.javascript_driver = :poltergeist
+
+VCR.configure do |config|
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock
+end
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

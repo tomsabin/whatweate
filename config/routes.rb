@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :profiles, only: :show
 
-  resources :events, only: :show do
+  resources :events, only: [:show, :new, :create] do
     resources :bookings, only: [:create]
   end
 
