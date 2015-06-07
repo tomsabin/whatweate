@@ -1,6 +1,6 @@
 <div class="wip">
 
-  <%# unless @event.seated?(current_user) %>
+  <%# unless @event.booked?(current_user) %>
     <%= form_tag event_bookings_path(@event) do %>
       <%= submit_tag 'Book seat' %>
     <% end %>

@@ -2,12 +2,14 @@ class CreateBooking
   def self.perform(event, user)
     if user.nil?
       I18n.t("devise.failure.unauthenticated")
+    elsif !user.profile_complete?
+      I18n.t("profile.prompt")
     elsif event.sold_out?
-      "Sorry, this event has sold out"
-    elsif event.seated?(user)
-      "You are already booked on this event"
+      I18n.t("event.booking.sold_out")
+    elsif event.booked?(user)
+      I18n.t("event.booking.duplicate")
     elsif EventBooking.make(event: event, user: user)
-      "Thanks! We've booked you a seat"
+      I18n.t("event.booking.success")
     else
       I18n.t("failure.generic")
     end

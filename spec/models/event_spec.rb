@@ -32,17 +32,17 @@ describe Event do
     end
   end
 
-  describe "#seated?" do
+  describe "#booked?" do
     let(:event) { FactoryGirl.create(:event) }
     let(:user) { FactoryGirl.create(:user) }
 
     it "returns true if the user has already made a booking" do
       Booking.create(event: event, user: user)
-      expect(event.seated?(user)).to eq true
+      expect(event.booked?(user)).to eq true
     end
 
     it "returns false when the user hasn't made a booking" do
-      expect(event.seated?(user)).to eq false
+      expect(event.booked?(user)).to eq false
     end
   end
 

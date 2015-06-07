@@ -1,7 +1,7 @@
 require "rails_helper"
 include OmniauthHelpers
 
-describe "Users and profiles" do
+describe "User profile" do
   scenario "guest signs up from the homepage, signs out and then completes their profile" do
     visit root_path
     click_link "Sign up"

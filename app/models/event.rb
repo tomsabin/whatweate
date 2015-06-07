@@ -22,7 +22,7 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def seated?(user)
+  def booked?(user)
     bookings.where(user: user).exists?
   end
 end
