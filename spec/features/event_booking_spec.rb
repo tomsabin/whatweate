@@ -48,8 +48,7 @@ describe "Event booking" do
       visit root_path
       click_link event.title
       within ".guests" do
-        expect(page).to have_content attendee.first_name
-        expect(page).to have_content attendee.last_name
+        expect(page).to have_link "#{attendee.first_name} #{attendee.last_name}", href: profile_path(attendee)
       end
     end
   end
