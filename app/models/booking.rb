@@ -9,6 +9,6 @@ class Booking < ActiveRecord::Base
   after_create :publish_creation_successful
 
   def publish_creation_successful
-    broadcast(:new_booking)
+    broadcast(:new_booking, self.event)
   end
 end

@@ -11,6 +11,6 @@ class Host < ActiveRecord::Base
   after_create :publish_creation_successful
 
   def publish_creation_successful
-    broadcast(:new_host)
+    broadcast(:new_host, self.user)
   end
 end

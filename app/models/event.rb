@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
-  include AASM
   include Wisper::Publisher
+  include AASM
 
   belongs_to :host
   has_many :bookings, dependent: :destroy
@@ -9,6 +9,8 @@ class Event < ActiveRecord::Base
   validates :host_id, :date, :title, :location, :location_url, :description, :menu, :seats, :price_in_pennies, :currency, presence: true
   validates :seats, numericality: { only_integer: true, greater_than: 0 }
   validates :location_url, url: true
+
+  after_create :publish_creation_successful
 
   monetize :price_in_pennies, as: "price", with_model_currency: :currency
 
@@ -23,11 +25,8 @@ class Event < ActiveRecord::Base
     end
   end
 
-# use gem
-  after_create :publish_creation_successful
-
   def publish_creation_successful
-    broadcast(:new_event)
+    broadcast(:new_event, self)
   end
 
   def booked?(user)

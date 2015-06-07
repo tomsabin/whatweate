@@ -1,7 +1,7 @@
 class CreateBooking
   def self.perform(event, user)
     booking = Booking.new(event: event, user: user)
-    booking.subscribe(EventNotifier.new(event))
+    booking.subscribe(EventNotifier.new)
 
     if user.nil?
       I18n.t("devise.failure.unauthenticated")

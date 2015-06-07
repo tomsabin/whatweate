@@ -6,24 +6,17 @@ describe EventNotifier do
   describe ".new_booking" do
     it "progresses the event to sold_out if the seat limit is reached" do
       expect(event.sold_out?).to eq false
-      new_booking
+      Booking.create(event: event, user: FactoryGirl.create(:user))
+      subject.new_booking(event)
       expect(event.sold_out?).to eq true
-      expect { new_booking }.to_not raise_error { AASM::InvalidTransition }
-      expect(Event.last.sold_out?).to eq true
     end
   end
 
-  def new_booking
-    notifier = described_class.new(event)
-    Booking.create(event: event, user: FactoryGirl.create(:user))
-    notifier.new_booking
-  end
-
-  describe ".new_event" do
+  describe ".create_event_successful" do
     it "notifies the admin" do
-      message = "New event by #{event.host} has been submitted for approval"
+      message = "New event by #{event.host.name} has been submitted for approval"
       expect(AdminMessenger).to receive(:broadcast).with(message)
-      described_class.new(event).new_event
+      subject.new_event(event)
     end
   end
 end
