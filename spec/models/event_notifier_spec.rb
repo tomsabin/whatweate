@@ -18,4 +18,12 @@ describe EventNotifier do
     Booking.create(event: event, user: FactoryGirl.create(:user))
     notifier.new_booking
   end
+
+  describe ".new_event" do
+    it "notifies the admin" do
+      message = "New event by #{event.host} has been submitted for approval"
+      expect(AdminNotifier).to receive(:notify).with(message)
+      described_class.new(event).new_event
+    end
+  end
 end

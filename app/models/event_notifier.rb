@@ -6,4 +6,8 @@ class EventNotifier
   def new_booking
     @event.fully_booked! if @event.bookings.size >= @event.seats
   end
+
+  def new_event
+    AdminNotifier.notify("New event by #{@event.host} has been submitted for approval")
+  end
 end

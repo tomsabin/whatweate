@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   include AASM
+  include Wisper::Publisher
 
   belongs_to :host
   has_many :bookings, dependent: :destroy
@@ -20,6 +21,13 @@ class Event < ActiveRecord::Base
     event :fully_booked do
       transitions from: :available, to: :sold_out
     end
+  end
+
+# use gem
+  after_create :publish_creation_successful
+
+  def publish_creation_successful
+    broadcast(:new_event)
   end
 
   def booked?(user)

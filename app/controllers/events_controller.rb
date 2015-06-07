@@ -12,6 +12,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params.merge(host: current_user.host))
+    @event.subscribe(EventNotifier.new(@event))
     if @event.save
       redirect_to(root_url, notice: "Thanks, we will review your listing and your event will be ready soon")
     else
