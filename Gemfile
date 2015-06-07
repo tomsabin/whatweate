@@ -48,6 +48,8 @@ group :test do
   gem "shoulda-matchers"
   gem "codeclimate-test-reporter", require: nil
   gem "wisper-rspec", require: false
+  gem "webmock"
+  gem "vcr"
 end
 
 ruby "2.2.2"

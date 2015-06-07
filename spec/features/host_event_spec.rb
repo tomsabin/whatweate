@@ -9,7 +9,7 @@ describe "Host event" do
   end
 
   scenario "hosts creates an event" do
-    sign_in FactoryGirl.create(:user, :host)
+    sign_in FactoryGirl.create(:user, :host, first_name: "Joe", last_name: "Bloggs")
     click_link "Create an event"
     click_button "Submit event"
     # preview
@@ -24,8 +24,10 @@ describe "Host event" do
     fill_in "event_seats", with: "8"
     fill_in "event_price", with: "10.00"
 
-    expect(AdminMessenger).to receive(:broadcast).with(anything)
-    click_button "Submit event"
+    VCR.use_cassette("slack/host_event_submitted", match_requests_on: [:method, :host]) do
+      expect(AdminMessenger).to receive(:broadcast).with("New event by Joe Bloggs has been submitted for approval").and_call_original
+      click_button "Submit event"
+    end
 
     expect(page).to have_content "Thanks, we will review your listing and your event will be ready soon"
   end
