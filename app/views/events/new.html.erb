@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <%= f.input :title %>
-  <%= f.input :date, html5: true, placeholder: "YYYY-MM-DD HH:MM" %>
+  <%= f.input :date, html5: true, placeholder: "YYYY-MM-DD HH:MM", input_html: { type: 'datetime-local' } %>
   <%= f.input :price, label: "Price (£)" %>
   <%= f.input :seats %>
   <%= f.input :location %>
