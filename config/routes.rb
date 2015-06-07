@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :profiles, only: :show
+
   resources :events, only: :show do
     resources :bookings, only: [:create]
   end
