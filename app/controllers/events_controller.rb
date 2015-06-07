@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :authorise_host, only: [:new, :create]
+
   def show
     @event = Event.find(params[:id])
     @guests = @event.guests.decorate
@@ -18,6 +20,10 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def authorise_host
+    redirect_to(action: :not_found, controller: :errors) unless current_user.host.present?
+  end
 
   def event_params
     params.require(:event).permit(:date, :title, :location, :location_url, :description, :menu, :seats, :price)
