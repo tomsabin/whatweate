@@ -12,10 +12,11 @@ FactoryGirl.define do
     currency         "GBP"
 
     trait :sold_out do
+      state "sold_out"
       seats 1
 
       after(:create) do |event|
-        EventBooking.make(event: event, user: FactoryGirl.create(:user))
+        Booking.create(event: event, user: FactoryGirl.create(:user))
       end
     end
   end
