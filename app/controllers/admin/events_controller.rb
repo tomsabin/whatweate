@@ -22,7 +22,7 @@ class Admin
     def create
       @event = Event.new(event_params)
 
-      handle_preview && return if params["commit"] == "Preview"
+      return handle_preview if params[:commit] == "Preview"
 
       if @event.save
         redirect_to(admin_events_url, notice: "Event successfully created")
