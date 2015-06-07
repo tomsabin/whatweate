@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Host user" do
+describe "Host event" do
   scenario "guests tries to create an event" do
     sign_in FactoryGirl.create(:guest)
     expect(page).to_not have_link "Create an event"
@@ -23,6 +23,8 @@ describe "Host user" do
     fill_in "event_menu", with: "- Pumpkin Soup\n- Roast Lamb with trimmings\n- Tiramisu"
     fill_in "event_seats", with: "8"
     fill_in "event_price", with: "10.00"
+
+    expect(AdminNotifier).to receive(:notify).with(anything)
     click_button "Submit event"
 
     expect(page).to have_content "Thanks, we will review your listing and your event will be ready soon"
