@@ -12,9 +12,10 @@
   Last name:
   <%= @user.last_name %>
 
-  <% if @user.date_of_birth_visible? %>
-    Date of birth:
-    <%= @user.date_of_birth %>
+  Date of birth:
+  <%= @user.date_of_birth %>
+  <% if !@user.date_of_birth_visible? %>
+    Date of birth is hidden on public view
   <% end %>
 
   Profession:
@@ -26,9 +27,10 @@
   Bio:
   <%= @user.bio %>
 
-  <% if @user.mobile_number_visible? %>
-    Mobile number:
-    <%= @user.mobile_number %>
+  Mobile number:
+  <%= @user.mobile_number %>
+  <% if !@user.mobile_number_visible? %>
+    Mobile number is hidden on public view
   <% end %>
 
   Favourite cuisine:

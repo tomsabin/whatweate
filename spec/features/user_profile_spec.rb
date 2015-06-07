@@ -54,11 +54,13 @@ describe "User profile" do
     expect(page).to have_content "Email: user@example.com"
     expect(page).to have_content "First name: Cookie"
     expect(page).to have_content "Last name: Monster"
-    expect(page).to_not have_content "Date of birth: 18th June 1990"
+    expect(page).to have_content "Date of birth: 18th June 1990"
+    expect(page).to have_content "Date of birth is hidden on public view"
     expect(page).to have_content "Profession: Cookie monster"
     expect(page).to have_content "Greeting: Cookies cookies cookies"
     expect(page).to have_content "Bio: I like cookies"
-    expect(page).to_not have_content "Mobile number: 0123456789"
+    expect(page).to have_content "Mobile number: 0123456789"
+    expect(page).to have_content "Mobile number is hidden on public view"
     expect(page).to have_content "Favourite cuisine: Chocolate"
   end
 
