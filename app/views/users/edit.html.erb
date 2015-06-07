@@ -23,11 +23,11 @@
     <%= link_to "Change your password", edit_password_user_path %>
 
     <% if @verified_with_facebook %>
-      <%= link_to "Disconnect Facebook from your account", identity_path(provider: :facebook), method: :delete %>
+      <%= link_to "Disconnect Facebook from your account", disconnect_user_path(provider: :facebook), method: :delete %>
     <% end %>
 
     <% if @verified_with_twitter %>
-      <%= link_to "Disconnect Twitter from your account", identity_path(provider: :twitter), method: :delete %>
+      <%= link_to "Disconnect Twitter from your account", disconnect_user_path(provider: :twitter), method: :delete %>
     <% end %>
   <% end %>
 </div>

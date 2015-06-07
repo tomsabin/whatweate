@@ -7,10 +7,10 @@ Rails.application.routes.draw do
       get "delete"
       get "edit_password"
       patch "update_password"
+      delete "disconnect", controller: "identities"
     end
   end
 
-  resource :identity, only: :destroy
 
   resources :events, only: :show do
     resources :bookings, only: [:create]

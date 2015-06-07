@@ -1,7 +1,7 @@
 class IdentitiesController < ApplicationController
   before_action :authenticate_user!
 
-  def destroy
+  def disconnect
     @identity = find_identity
     if @identity.present?
       @identity.destroy
