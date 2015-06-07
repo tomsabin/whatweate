@@ -1,5 +1,4 @@
 require "rails_helper"
-include OmniauthHelpers
 
 describe "Public profile" do
   scenario "user that has not completed their profile will not be publicly visible" do

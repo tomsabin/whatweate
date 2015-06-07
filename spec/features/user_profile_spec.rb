@@ -1,5 +1,4 @@
 require "rails_helper"
-include OmniauthHelpers
 
 describe "User profile" do
   scenario "guest signs up from the homepage, signs out and then completes their profile" do

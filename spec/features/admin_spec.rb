@@ -1,5 +1,4 @@
 require "rails_helper"
-include OmniauthHelpers
 
 describe "Admins" do
   let(:admin) { FactoryGirl.create(:admin) }
