@@ -22,7 +22,7 @@ describe EventNotifier do
   describe ".new_event" do
     it "notifies the admin" do
       message = "New event by #{event.host} has been submitted for approval"
-      expect(AdminNotifier).to receive(:notify).with(message)
+      expect(AdminMessenger).to receive(:broadcast).with(message)
       described_class.new(event).new_event
     end
   end

@@ -8,6 +8,6 @@ class EventNotifier
   end
 
   def new_event
-    AdminNotifier.notify("New event by #{@event.host} has been submitted for approval")
+    AdminMessenger.broadcast("New event by #{@event.host} has been submitted for approval")
   end
 end

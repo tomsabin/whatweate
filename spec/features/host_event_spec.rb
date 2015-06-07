@@ -24,7 +24,7 @@ describe "Host event" do
     fill_in "event_seats", with: "8"
     fill_in "event_price", with: "10.00"
 
-    expect(AdminNotifier).to receive(:notify).with(anything)
+    expect(AdminMessenger).to receive(:broadcast).with(anything)
     click_button "Submit event"
 
     expect(page).to have_content "Thanks, we will review your listing and your event will be ready soon"
