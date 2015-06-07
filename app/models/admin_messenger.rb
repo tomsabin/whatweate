@@ -7,7 +7,7 @@ class AdminMessenger
 
   def initialize
     @notifier = Slack::Notifier.new(
-      ENV["SLACK_WEBHOOK_URL"],
+      Settings.slack.webhook_url,
       channel: ENV["SLACK_CHANNEL"],
       username: ENV["SLACK_USERNAME"],
       icon_url: ENV["SLACK_ICON_URL"]
