@@ -4,7 +4,7 @@ class Admin
 
     def index
       @pending_events = Event.pending.most_recent
-      @approved_events = Event.current.approved.most_recent
+      @approved_events = Event.upcoming.approved.most_recent
       @past_events = Event.past.most_recent
     end
 
