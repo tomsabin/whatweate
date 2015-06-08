@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
   include AASM
+  extend FriendlyId
 
   has_many :bookings, dependent: :destroy
+  has_many :booked_events, through: :bookings, source: :event
   has_one :host, inverse_of: :user
 
   with_options if: -> { profile_incomplete? } do |u|
@@ -13,6 +15,8 @@ class User < ActiveRecord::Base
   end
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+
+  friendly_id :full_name, use: :slugged
 
   aasm column: "state", whiny_transitions: false, skip_validation_on_save: true do
     state :profile_incomplete, initial: true
@@ -31,5 +35,9 @@ class User < ActiveRecord::Base
 
   def self.find_for_oauth!(auth, signed_in_resource = nil)
     OmniauthUser.find_or_create!(auth, signed_in_resource)
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 end

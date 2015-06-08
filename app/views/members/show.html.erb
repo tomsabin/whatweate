@@ -1,6 +1,9 @@
 <div class="wip">
   <%= gravatar_image_tag @user.email %>
 
+  Full name:
+  <%= @user.full_name %>
+
   First name:
   <%= @user.first_name %>
 
@@ -36,4 +39,16 @@
   <% if @verified_with_twitter %>
     Verified with Twitter
   <% end %>
+
+  <div class="booked-events">
+    <% @current_booked_events.each do |event| %>
+      <%= link_to event.title, event_path(event) %>
+    <% end %>
+  </div>
+
+  <div class="past-events">
+    <% @past_booked_events.each do |event| %>
+      <%= link_to event.title, event_path(event) %>
+    <% end %>
+  </div>
 </div>

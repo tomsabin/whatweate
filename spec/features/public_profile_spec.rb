@@ -18,6 +18,8 @@ describe "Public profile" do
 
   scenario "visits a profile with default visibility options" do
     user = FactoryGirl.create(:user, date_of_birth: Date.new(1980, 1, 1))
+    Booking.create(user: user, event: FactoryGirl.create(:event, title: "Booked event"))
+    Booking.create(user: user, event: FactoryGirl.create(:event, title: "Past event", date: 1.day.ago))
     visit member_path(user)
 
     expect(page).to_not have_content user.email
@@ -31,6 +33,16 @@ describe "Public profile" do
     expect(page).to have_content user.favorite_cuisine
     expect(page).to_not have_content "Verified with Facebook"
     expect(page).to_not have_content "Verified with Twitter"
+
+    within(".booked-events") do
+      expect(page).to have_link "Booked event"
+      expect(page).to_not have_link "Past event"
+    end
+
+    within(".past-events") do
+      expect(page).to_not have_link "Booked event"
+      expect(page).to have_link "Past event"
+    end
   end
 
   scenario "visits a profile with all-visible options" do
@@ -48,5 +60,19 @@ describe "Public profile" do
 
     expect(page).to have_content "Verified with Facebook"
     expect(page).to have_content "Verified with Twitter"
+  end
+
+  scenario "visits a profile from their generated slug and changes their username" do
+    user = FactoryGirl.create(:user, first_name: "Joe", last_name: "Bloggs")
+    visit "/member/joe-bloggs"
+    expect(page).to have_content "Joe Bloggs"
+
+    sign_in user
+    click_link "Profile"
+    click_link "Edit profile"
+    fill_in "user_slug", with: "bloggs-joe"
+    click_button "Save profile"
+    visit "/member/bloggs-joe"
+    expect(page).to have_content "Joe Bloggs"
   end
 end

@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe User do
   it { should have_many(:bookings).dependent(:destroy) }
+  it { should have_many(:booked_events).through(:bookings) }
   it { should have_one(:host).inverse_of(:user) }
 
   describe "validations" do
@@ -136,6 +137,14 @@ describe User do
         subject { FactoryGirl.create(:user_from_omniauth_with_profile) }
         it { expect { subject.complete_profile! }.to_not change { subject.state }.from("completed_profile") }
       end
+    end
+  end
+
+  describe "full_name" do
+    let(:user) { FactoryGirl.build(:user, first_name: "Joe", last_name: "Bloggs").decorate }
+
+    it "concatenates first name and last name" do
+      expect(user.full_name).to eq("Joe Bloggs")
     end
   end
 end
