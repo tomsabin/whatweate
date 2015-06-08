@@ -11,6 +11,8 @@ class CreateBooking
       I18n.t("event.booking.sold_out")
     elsif event.booked?(user)
       I18n.t("event.booking.duplicate")
+    elsif event.host == user.host
+      I18n.t("event.booking.event_host")
     elsif booking.save
       I18n.t("event.booking.success")
     else

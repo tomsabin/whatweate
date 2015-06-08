@@ -17,7 +17,7 @@ describe "Host event" do
 
     fill_in "event_date", with: "01/01/2000 19:00"
     fill_in "event_title", with: "Sunday Roast"
-    fill_in "event_location", with: "Londo"
+    fill_in "event_location", with: "London"
     fill_in "event_location_url", with: "http://example.com"
     fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
     fill_in "event_menu", with: "- Pumpkin Soup\n- Roast Lamb with trimmings\n- Tiramisu"
@@ -30,5 +30,10 @@ describe "Host event" do
     end
 
     expect(page).to have_content "Thanks, we will review your listing and your event will be ready soon"
+
+    visit root_path
+    click_link "Sunday Roast"
+    click_button "Book seat"
+    expect(page).to have_content "You cannot book yourself on your own event"
   end
 end

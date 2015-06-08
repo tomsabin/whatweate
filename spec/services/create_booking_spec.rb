@@ -28,6 +28,12 @@ describe CreateBooking do
     it { expect { described_class.perform(event, user) }.to_not change { Booking.count } }
   end
 
+  context "user is the host of the event" do
+    let(:event) { FactoryGirl.create(:event, host: FactoryGirl.create(:host, user: user)) }
+    it { expect(described_class.perform(event, user)).to eq "You cannot book yourself on your own event." }
+    it { expect { described_class.perform(event, user) }.to_not change { Booking.count } }
+  end
+
   context "booking successfully created" do
     let!(:event) { FactoryGirl.create(:event, seats: 2) }
     it { expect(described_class.perform(event, user)).to eq "Thanks! We've booked you a seat." }
