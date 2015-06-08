@@ -15,6 +15,7 @@
     <%= f.input :mobile_number, as: :tel, html5: true %>
     <%= f.input :mobile_number_visible %>
     <%= f.input :favorite_cuisine %>
+    <%= f.input :slug if current_user.completed_profile? %>
     <%= f.button :submit, "Save profile" %>
   <% end %>
 

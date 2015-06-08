@@ -50,9 +50,17 @@ describe "Public profile" do
     expect(page).to have_content "Verified with Twitter"
   end
 
-  scenario "visits a profile from their generated slug" do
-    FactoryGirl.create(:user, first_name: "Joe", last_name: "Bloggs")
+  scenario "visits a profile from their generated slug and changes their username" do
+    user = FactoryGirl.create(:user, first_name: "Joe", last_name: "Bloggs")
     visit "/member/joe-bloggs"
+    expect(page).to have_content "Joe Bloggs"
+
+    sign_in user
+    click_link "Profile"
+    click_link "Edit profile"
+    fill_in "user_slug", with: "bloggs-joe"
+    click_button "Save profile"
+    visit "/member/bloggs-joe"
     expect(page).to have_content "Joe Bloggs"
   end
 end

@@ -46,6 +46,7 @@ describe "User profile" do
     fill_in "user_mobile_number", with: "0123456789"
     expect(page).to have_field "user_mobile_number_visible", checked: false
     fill_in "user_favorite_cuisine", with: "Chocolate"
+    expect(page).to_not have_field "user_slug"
 
     click_button "Save profile"
     expect(page).to have_content "Your profile has successfully been saved"

@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def user_attributes
-    %i(email first_name last_name date_of_birth profession greeting bio mobile_number favorite_cuisine date_of_birth_visible mobile_number_visible)
+    %i(email first_name last_name date_of_birth profession greeting bio mobile_number favorite_cuisine date_of_birth_visible mobile_number_visible slug)
   end
 
   def password_params
