@@ -133,7 +133,7 @@ describe "Event management" do
       click_button "Create event"
     end
 
-    expect("Event 2").to appear_before "Event 1"
+    expect("Event 2").to appear_before("Event 1")
   end
 
   scenario "admin approves a pending event" do
@@ -150,5 +150,16 @@ describe "Event management" do
     click_link "Event title"
     click_link "Approve"
     expect(page).to have_content "Event could not be approved"
+  end
+
+  scenario "admin sees events grouped by pending, approved, past events" do
+    pending = FactoryGirl.create(:event, :pending)
+    approved = FactoryGirl.create(:event)
+    past = FactoryGirl.create(:event, date: 1.day.ago)
+
+    visit admin_events_path
+    within('.pending') { expect(page).to have_content pending.title }
+    within('.approved') { expect(page).to have_content approved.title }
+    within('.past') { expect(page).to have_content past.title }
   end
 end

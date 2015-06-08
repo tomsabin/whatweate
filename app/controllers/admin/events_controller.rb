@@ -3,7 +3,9 @@ class Admin
     before_action -> { session.delete(:event) }, only: :create
 
     def index
-      @events = Event.most_recent
+      @pending_events = Event.pending.most_recent
+      @approved_events = Event.current.approved.most_recent
+      @past_events = Event.past.most_recent
     end
 
     def show
