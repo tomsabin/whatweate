@@ -13,6 +13,7 @@ class Event < ActiveRecord::Base
 
   scope :most_recent, -> { order(created_at: :desc) }
   scope :approved, -> { where.not(state: :pending) }
+  scope :current, -> { where("DATE >= ?", Date.today) }
   scope :past, -> { where("DATE < ?", Date.today) }
 
   aasm column: "state", whiny_transitions: false do

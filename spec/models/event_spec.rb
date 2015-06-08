@@ -41,6 +41,16 @@ describe Event do
       end
     end
 
+    describe "current" do
+      let!(:tomorrow) { FactoryGirl.create(:event, date: Date.tomorrow) }
+      let!(:today) { FactoryGirl.create(:event, date: Date.today) }
+      let!(:yesterday) { FactoryGirl.create(:event, date: Date.yesterday) }
+
+      it "returns past events" do
+        expect(described_class.current).to match_array [today, tomorrow]
+      end
+    end
+
     describe "past" do
       let!(:tomorrow) { FactoryGirl.create(:event, date: Date.tomorrow) }
       let!(:today) { FactoryGirl.create(:event, date: Date.today) }
