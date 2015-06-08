@@ -20,7 +20,7 @@ class Admin
     end
 
     def create
-      @event = Event.new(event_params)
+      @event = Event.new(event_params.merge(state: "available"))
 
       return handle_preview if params[:commit] == "Preview"
 
