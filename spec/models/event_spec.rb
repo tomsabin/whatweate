@@ -23,11 +23,21 @@ describe Event do
 
   describe "scopes" do
     describe "most_recent" do
-      let(:event_1) { FactoryGirl.create(:event, title: "Event 1", created_at: 2.weeks.ago) }
-      let(:event_2) { FactoryGirl.create(:event, title: "Event 2", created_at: 1.week.ago) }
+      let!(:event_1) { FactoryGirl.create(:event, title: "Event 1", created_at: 2.weeks.ago) }
+      let!(:event_2) { FactoryGirl.create(:event, title: "Event 2", created_at: 1.week.ago) }
 
       it "orders by the most recent first" do
         expect(described_class.most_recent).to eq [event_2, event_1]
+      end
+    end
+
+    describe "approved" do
+      let!(:pending) { FactoryGirl.create(:event, :pending) }
+      let!(:approved) { FactoryGirl.create(:event) }
+      let!(:sold_out) { FactoryGirl.create(:event, :sold_out) }
+
+      it "returns approved and sold out events" do
+        expect(described_class.approved).to match_array([approved, sold_out])
       end
     end
   end
@@ -47,41 +57,33 @@ describe Event do
   end
 
   describe "states" do
+    describe "pending" do
+      it { expect(FactoryGirl.build(:event, :pending).pending?).to eq true }
+    end
+
     describe "available" do
-      let(:event) { FactoryGirl.create(:event) }
-
-      it "is available" do
-        expect(event.available?).to eq true
-      end
-
-      it "is not sold out" do
-        expect(event.sold_out?).to eq false
-      end
+      it { expect(FactoryGirl.build(:event).available?).to eq true }
     end
 
     describe "sold_out" do
-      let(:event) { FactoryGirl.create(:event, :sold_out) }
-
-      it "is available" do
-        expect(event.available?).to eq false
-      end
-
-      it "is not sold out" do
-        expect(event.sold_out?).to eq true
-      end
+      it { expect(FactoryGirl.build(:event, :sold_out).sold_out?).to eq true }
     end
   end
 
-  describe "events" do
+  describe "transistions" do
+    describe "approve" do
+      let(:event) { FactoryGirl.create(:event, :pending) }
+
+      it "pending -> available" do
+        expect { event.approve }.to change { event.available? }.from(false).to(true)
+      end
+    end
+
     describe "fully_booked" do
       let(:event) { FactoryGirl.create(:event) }
 
       it "available -> sold_out" do
-        expect(event.available?).to eq(true)
-        expect(event.sold_out?).to eq(false)
-        event.fully_booked
-        expect(event.available?).to eq(false)
-        expect(event.sold_out?).to eq(true)
+        expect { event.fully_booked }.to change { event.sold_out? }.from(false).to(true)
       end
     end
   end

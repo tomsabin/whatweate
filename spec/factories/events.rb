@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :event do
     association      :host
+    state            "available"
     date             { rand(5..20).days.from_now }
     title            { Faker::Company.catch_phrase }
     location         { Faker::Address.city }
@@ -18,6 +19,10 @@ FactoryGirl.define do
       after(:create) do |event|
         Booking.create(event: event, user: FactoryGirl.create(:user))
       end
+    end
+
+    trait :pending do
+      state "pending"
     end
   end
 end

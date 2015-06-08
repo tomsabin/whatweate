@@ -8,7 +8,7 @@ describe "Host event" do
     expect(page).to have_content "Looks like we can't find the page you were looking for"
   end
 
-  scenario "hosts creates an event" do
+  scenario "hosts creates an event and admin approves the event" do
     sign_in FactoryGirl.create(:user, :host, first_name: "Joe", last_name: "Bloggs")
     click_link "Create an event"
     click_button "Submit event"
@@ -32,6 +32,11 @@ describe "Host event" do
     expect(page).to have_content "Thanks, we will review your listing and your event will be ready soon"
 
     visit root_path
+
+    expect(page).to_not have_link "Sunday Roast"
+
+    # approve
+
     click_link "Sunday Roast"
     click_button "Book seat"
     expect(page).to have_content "You cannot book yourself on your own event"

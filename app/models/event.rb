@@ -12,10 +12,16 @@ class Event < ActiveRecord::Base
   monetize :price_in_pennies, as: "price", with_model_currency: :currency
 
   scope :most_recent, -> { order(created_at: :desc) }
+  scope :approved, -> { where.not(state: :pending) }
 
   aasm column: "state", whiny_transitions: false do
-    state :available, initial: true
+    state :pending, initial: true
+    state :available
     state :sold_out
+
+    event :approve do
+      transitions from: :pending, to: :available
+    end
 
     event :fully_booked do
       transitions from: :available, to: :sold_out
