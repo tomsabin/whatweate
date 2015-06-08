@@ -5,8 +5,4 @@ class UserDecorator < Draper::Decorator
     date = object.date_of_birth
     date.present? ? date.strftime("#{date.day.ordinalize} %B %Y") : ""
   end
-
-  def full_name
-    "#{first_name} #{last_name}"
-  end
 end

@@ -138,4 +138,12 @@ describe User do
       end
     end
   end
+
+  describe "full_name" do
+    let(:user) { FactoryGirl.build(:user, first_name: "Joe", last_name: "Bloggs").decorate }
+
+    it "concatenates first name and last name" do
+      expect(user.full_name).to eq("Joe Bloggs")
+    end
+  end
 end
