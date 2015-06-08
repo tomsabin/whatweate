@@ -105,6 +105,7 @@ describe "Event management" do
     expect(page).to have_content "Sunday Roast Lamb"
 
     click_link "Edit event"
+    expect(page).to_not have_link "Approve"
     # expect(page).to have_button "Preview"
     click_link "Delete event"
 
@@ -133,5 +134,21 @@ describe "Event management" do
     end
 
     expect("Event 2").to appear_before "Event 1"
+  end
+
+  scenario "admin approves a pending event" do
+    FactoryGirl.create(:event, :pending, title: "Event title")
+    visit admin_events_path
+    click_link "Event title"
+    click_link "Approve"
+    expect(page).to have_content "Event successfully approved"
+  end
+
+  scenario "admin tries to approve an already approved event" do
+    FactoryGirl.create(:event, title: "Event title")
+    visit admin_events_path
+    click_link "Event title"
+    click_link "Approve"
+    expect(page).to have_content "Event could not be approved"
   end
 end

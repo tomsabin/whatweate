@@ -35,8 +35,11 @@ describe "Host event" do
 
     expect(page).to_not have_link "Sunday Roast"
 
-    # approve
+    sign_in FactoryGirl.create(:admin)
+    visit admin_event_path(Event.last)
+    click_link "Approve"
 
+    visit root_path
     click_link "Sunday Roast"
     click_button "Book seat"
     expect(page).to have_content "You cannot book yourself on your own event"

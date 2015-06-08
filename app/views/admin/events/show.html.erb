@@ -27,6 +27,7 @@
       </div>
       <div class="card-action">
         <%= link_to "Edit event", edit_admin_event_path(@event) %>
+        <%= link_to "Approve", approve_admin_event_path(@event), method: :patch %>
       </div>
     </div>
   </div>

@@ -47,6 +47,16 @@ class Admin
       end
     end
 
+    def approve
+      @event = find_event
+      if @event.approve!
+        flash[:notice] = "Event successfully approved"
+      else
+        flash[:alert] = "Event could not be approved"
+      end
+      redirect_to(admin_event_url(@event))
+    end
+
     def destroy
       @event = find_event
       if @event.present?
