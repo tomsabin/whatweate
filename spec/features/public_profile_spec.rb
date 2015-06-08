@@ -49,4 +49,10 @@ describe "Public profile" do
     expect(page).to have_content "Verified with Facebook"
     expect(page).to have_content "Verified with Twitter"
   end
+
+  scenario "visits a profile from their generated slug" do
+    FactoryGirl.create(:user, first_name: "Joe", last_name: "Bloggs")
+    visit "/member/joe-bloggs"
+    expect(page).to have_content "Joe Bloggs"
+  end
 end

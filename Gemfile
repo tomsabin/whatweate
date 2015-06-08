@@ -24,6 +24,7 @@ gem "delayed_job_active_record"
 gem "validate_url"
 gem "slack-notifier"
 gem "wisper-activerecord"
+gem "friendly_id"
 
 group :production do
   gem 'rails_12factor'
