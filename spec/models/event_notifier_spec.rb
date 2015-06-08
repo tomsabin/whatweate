@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe EventNotifier do
-  let(:event) { FactoryGirl.create(:event, seats: 1) }
+  let(:event) { FactoryGirl.create(:event, seats: 1, title: "Event Title") }
 
   describe ".create_booking_successful" do
     it "progresses the event to sold_out if the seat limit is reached" do
@@ -14,7 +14,7 @@ describe EventNotifier do
 
   describe ".create_event_successful" do
     it "notifies the admin" do
-      message = "New event by #{event.host.name} has been submitted for approval: http://www.example.com/admin/events/#{event.id}"
+      message = "New event by #{event.host.name} has been submitted for approval: http://www.example.com/admin/events/event-title"
       expect(AdminMessenger).to receive(:broadcast).with(message)
       subject.create_event_successful(event)
     end

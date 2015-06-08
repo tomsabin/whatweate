@@ -24,7 +24,7 @@ describe "Guest event booking" do
 
   context "seats are full" do
     let!(:attendee) { FactoryGirl.create(:user) }
-    let!(:event) { FactoryGirl.create(:event, seats: 1) }
+    let!(:event) { FactoryGirl.create(:event, seats: 1, title: "Event title") }
     let!(:user) { FactoryGirl.create(:user) }
 
     before do
@@ -38,8 +38,7 @@ describe "Guest event booking" do
 
     scenario "user tries to get a seat to a sold out event" do
       sign_in user
-      visit root_path
-      click_link event.title
+      visit "events/event-title"
       click_button "Book seat"
       expect(page).to have_content "Sorry, this event has sold out"
     end

@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  extend FriendlyId
   include AASM
 
   belongs_to :host
@@ -16,6 +17,8 @@ class Event < ActiveRecord::Base
   scope :upcoming, -> { where("DATE >= ?", Date.today) }
   scope :past, -> { where("DATE < ?", Date.today) }
   scope :booked_for, -> (user) { includes(:bookings).where("bookings.user_id = ?", user).references(:bookings) }
+
+  friendly_id :title, use: :slugged
 
   aasm column: "state", whiny_transitions: false do
     state :pending, initial: true
