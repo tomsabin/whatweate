@@ -37,7 +37,17 @@ describe Event do
       let!(:sold_out) { FactoryGirl.create(:event, :sold_out) }
 
       it "returns approved and sold out events" do
-        expect(described_class.approved).to match_array([approved, sold_out])
+        expect(described_class.approved).to match_array [approved, sold_out]
+      end
+    end
+
+    describe "past" do
+      let!(:tomorrow) { FactoryGirl.create(:event, date: Date.tomorrow) }
+      let!(:today) { FactoryGirl.create(:event, date: Date.today) }
+      let!(:yesterday) { FactoryGirl.create(:event, date: Date.yesterday) }
+
+      it "returns past events" do
+        expect(described_class.past).to eq [yesterday]
       end
     end
   end
