@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
 
   scope :most_recent, -> { order(created_at: :desc) }
   scope :approved, -> { where.not(state: :pending) }
-  scope :current, -> { where("DATE >= ?", Date.today) }
+  scope :upcoming, -> { where("DATE >= ?", Date.today) }
   scope :past, -> { where("DATE < ?", Date.today) }
   scope :booked_for, -> (user) { includes(:bookings).where("bookings.user_id = ?", user).references(:bookings) }
 

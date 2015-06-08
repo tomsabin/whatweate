@@ -41,7 +41,7 @@
   <% end %>
 
   <div class="booked-events">
-    <% @current_booked_events.each do |event| %>
+    <% @upcoming_booked_events.each do |event| %>
       <%= link_to event.title, event_path(event) %>
     <% end %>
   </div>
