@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe User do
   it { should have_many(:bookings).dependent(:destroy) }
+  it { should have_many(:booked_events).through(:bookings) }
   it { should have_one(:host).inverse_of(:user) }
 
   describe "validations" do

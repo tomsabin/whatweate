@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   extend FriendlyId
 
   has_many :bookings, dependent: :destroy
+  has_many :booked_events, through: :bookings, source: :event
   has_one :host, inverse_of: :user
 
   with_options if: -> { profile_incomplete? } do |u|

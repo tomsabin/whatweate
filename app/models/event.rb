@@ -15,6 +15,7 @@ class Event < ActiveRecord::Base
   scope :approved, -> { where.not(state: :pending) }
   scope :current, -> { where("DATE >= ?", Date.today) }
   scope :past, -> { where("DATE < ?", Date.today) }
+  scope :booked_for, -> (user) { includes(:bookings).where("bookings.user_id = ?", user).references(:bookings) }
 
   aasm column: "state", whiny_transitions: false do
     state :pending, initial: true
