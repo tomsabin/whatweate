@@ -1,0 +1,16 @@
+<div class="wip">
+  Host name:
+  <%= @host.name %>
+
+  <div class="upcoming-events">
+    <% @upcoming_events.each do |event| %>
+      <%= link_to event.title, event_path(event) %>
+    <% end %>
+  </div>
+
+  <div class="past-events">
+    <% @past_events.each do |event| %>
+      <%= link_to event.title, event_path(event) %>
+    <% end %>
+  </div>
+</div>

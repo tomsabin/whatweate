@@ -56,7 +56,7 @@ class Admin
     private
 
     def find_host
-      Host.find(params[:id])
+      Host.friendly.find(params[:id])
     end
 
     def find_users
