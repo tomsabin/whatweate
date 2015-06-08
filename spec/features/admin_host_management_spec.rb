@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Host management" do
+describe "Admin host management" do
   before do
     sign_in FactoryGirl.create(:admin)
     visit admin_hosts_path

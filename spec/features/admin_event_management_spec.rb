@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Event management" do
+describe "Admin event management" do
   before do
     FactoryGirl.create(:host, name: "Joe Bloggs")
     sign_in FactoryGirl.create(:admin)

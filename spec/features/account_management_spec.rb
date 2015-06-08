@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "User profile" do
+describe "Account management" do
   scenario "guest signs up from the homepage, signs out and then completes their profile" do
     visit root_path
     click_link "Sign up"

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Event booking" do
+describe "Guest event booking" do
   context "seats are available" do
     let!(:event) { FactoryGirl.create(:event) }
 

@@ -21,4 +21,10 @@ describe "Admins" do
 
     expect(page).to have_content "Dashboard"
   end
+
+  scenario "can still sign in to user accounts" do
+    sign_in FactoryGirl.create(:user)
+    visit admin_root_path
+    visit user_path
+  end
 end

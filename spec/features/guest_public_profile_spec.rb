@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Public profile" do
+describe "Guest public profile" do
   scenario "user that has not completed their profile will not be publicly visible" do
     visit root_path
     click_link "Sign up"
