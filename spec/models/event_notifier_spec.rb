@@ -14,7 +14,7 @@ describe EventNotifier do
 
   describe ".create_event_successful" do
     it "notifies the admin" do
-      message = "New event by #{event.host.name} has been submitted for approval"
+      message = "New event by #{event.host.name} has been submitted for approval: http://www.example.com/admin/events/#{event.id}"
       expect(AdminMessenger).to receive(:broadcast).with(message)
       subject.create_event_successful(event)
     end

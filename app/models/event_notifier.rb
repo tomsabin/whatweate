@@ -5,6 +5,7 @@ class EventNotifier
   end
 
   def create_event_successful(event)
-    AdminMessenger.broadcast("New event by #{event.host.name} has been submitted for approval")
+    link = Rails.application.routes.url_helpers.admin_event_url(event, host: Settings.app_host)
+    AdminMessenger.broadcast("New event by #{event.host.name} has been submitted for approval: #{link}")
   end
 end

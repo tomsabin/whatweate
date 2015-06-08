@@ -25,7 +25,9 @@ describe "Host event" do
     fill_in "event_price", with: "10.00"
 
     VCR.use_cassette("slack/host_event_submitted", match_requests_on: [:method, :host]) do
-      expect(AdminMessenger).to receive(:broadcast).with("New event by Joe Bloggs has been submitted for approval").and_call_original
+      link = admin_event_url("X").sub("X", "\\d")
+      expect(AdminMessenger).to receive(:broadcast)
+        .with(/New event by Joe Bloggs has been submitted for approval: #{link}/).and_call_original
       click_button "Submit event"
     end
 
