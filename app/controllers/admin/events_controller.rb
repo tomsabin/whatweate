@@ -7,11 +7,11 @@ class Admin
     end
 
     def show
-      @event = find_event
+      @event = find_event.decorate
     end
 
     def preview
-      @event = Event.new(session[:event])
+      @event = Event.new(session[:event]).decorate
     end
 
     def new

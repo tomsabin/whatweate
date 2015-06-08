@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :authorise_host, only: [:new, :create]
 
   def show
-    @event = Event.find(params[:id])
+    @event = Event.find(params[:id]).decorate
     @guests = @event.guests.decorate
   end
 
