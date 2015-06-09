@@ -42,6 +42,7 @@ describe "Host event" do
 
     visit root_path
     click_link "Sunday Roast"
+    expect(page).to have_link "Joe Bloggs"
     expect(page).to_not have_button "Book seat"
     expect(page).to have_content "This is your own event"
   end

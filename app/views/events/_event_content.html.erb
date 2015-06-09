@@ -12,7 +12,7 @@
 
 <img src="" alt="">
 
-<p><%= event.host.name %></p>
+<p><%= link_to event.host.name, host_path(event.host) %></p>
 
 <p><%= event.location %> | <%= link_to "View on map", event.location_url %> </p>
 
