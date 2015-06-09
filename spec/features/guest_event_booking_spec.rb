@@ -1,20 +1,38 @@
 require "rails_helper"
 
 describe "Guest event booking" do
-  let(:attendee) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.create(:user, email: "user@example.com") }
 
   context "seats are available" do
-    let!(:event) { FactoryGirl.create(:event) }
+    let!(:event) { FactoryGirl.create(:event, title: "Event title", price_in_pennies: 2500) }
 
     scenario "user books a seat when JavaScript is enabled", js: true do
-      sign_in
+      sign_in user
       visit root_path
       click_link event.title
-      click_button "Book seat"
-      # payment
-      expect(page).to have_content "Thanks! We've booked you a seat"
 
-      # expect(current_url).to eq event_url(event)
+      stripe_script = find(:xpath, ".//main//script[@src='https://checkout.stripe.com/checkout.js']", visible: false)
+      expect(stripe_script["data-label"]).to eq "Book seat"
+      expect(stripe_script["data-email"]).to eq "user@example.com"
+      expect(stripe_script["data-name"]).to eq "WhatWeAte"
+      expect(stripe_script["data-description"]).to eq "Event title"
+      expect(stripe_script["data-amount"]).to eq "2500"
+      expect(stripe_script["data-currency"]).to eq "GBP"
+      click_button "Book seat"
+
+      sleep(2) # wait for modal to load
+      stripe_iframe = all("iframe[name=stripe_checkout_app]").last
+      within_frame stripe_iframe do
+        expect(page).to have_content "user@example.com"
+        fill_in "card_number", with: "4242424242424242"
+        fill_in "cc-exp", with: "01/16"
+        fill_in "cc-csc", with: "123"
+        click_button "Pay £25.00"
+        sleep(3) # allows stripe_checkout_app to submit
+      end
+
+      expect(page).to have_content "Thanks! We've booked you a seat"
+      expect(current_url).to eq event_url(event)
       # expect(page).to_not have_button "Book seat"
     end
 
@@ -40,10 +58,10 @@ describe "Guest event booking" do
       expect(page).to have_content "Please complete your profile."
     end
 
-    scenario "attendee is already signed up to the event prevents duplicate bookings" do
-      Booking.create(event: event, user: attendee)
+    scenario "user is already signed up to the event prevents duplicate bookings" do
+      Booking.create(event: event, user: user)
 
-      sign_in attendee
+      sign_in user
       visit root_path
       click_link event.title
       click_button "Book seat"
@@ -62,12 +80,12 @@ describe "Guest event booking" do
       expect(page).to have_content "Sorry, this event has sold out"
     end
 
-    scenario "attendees that are going are displayed on the event page" do
-      Booking.create(event: event, user: attendee)
+    scenario "users that are going are displayed on the event page" do
+      Booking.create(event: event, user: user)
 
       visit "events/event-title"
       within ".guests" do
-        expect(page).to have_link "#{attendee.first_name} #{attendee.last_name}", href: member_path(attendee)
+        expect(page).to have_link "#{user.first_name} #{user.last_name}", href: member_path(user)
       end
     end
   end
