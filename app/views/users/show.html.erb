@@ -2,6 +2,7 @@
   <%= gravatar_image_tag @user.email %>
 
   <%= link_to("Edit profile", edit_user_path) %>
+  <%= link_to "View public profile", member_path(@user) %>
 
   Email:
   <%= @user.email %>

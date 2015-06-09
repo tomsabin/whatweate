@@ -72,7 +72,8 @@ describe "Guest public profile" do
     click_link "Edit profile"
     fill_in "user_slug", with: "bloggs-joe"
     click_button "Save profile"
-    visit "/member/bloggs-joe"
+    click_link "View public profile"
+    expect(current_path).to eq "/member/bloggs-joe"
     expect(page).to have_content "Joe Bloggs"
   end
 end
