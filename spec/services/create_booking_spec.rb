@@ -1,4 +1,5 @@
 require "rails_helper"
+include StripeHelpers
 
 describe CreateBooking do
   let(:event) { FactoryGirl.create(:event, seats: 1) }
@@ -40,20 +41,38 @@ describe CreateBooking do
   end
 
   context "payment was invalid" do
-    it { expect(described_class.perform(event, user, "invalid-token")).to eq "The card number is not a valid credit card number." }
-    it { expect { described_class.perform(event, user, "invalid-token") }.to_not change { Booking.count } }
+    around do |example|
+      VCR.use_cassette("stripe/card_declined") do
+        example.run
+      end
+    end
+
+    it { expect(described_class.perform(event, user, StripeHelpers.card_declined_token)).to eq "The card number is not a valid credit card number." }
+    it { expect { described_class.perform(event, user, StripeHelpers.card_declined_token) }.to_not change { Booking.count } }
   end
 
   context "booking successfully created" do
     let!(:event) { FactoryGirl.create(:event, seats: 2) }
-    it { expect(described_class.perform(event, user, "valid-token")).to eq "Thanks! We've booked you a seat." }
+
+    it "returns the correct message" do
+      VCR.use_cassette("stripe/valid_card") do
+        expect(described_class.perform(event, user, StripeHelpers.valid_card_token)).to eq "Thanks! We've booked you a seat."
+      end
+    end
+
     it "creates the Booking" do
       expect(Booking.count).to eq 0
-      described_class.perform(event, FactoryGirl.create(:user), "valid-token")
+      VCR.use_cassette("stripe/valid_card") do
+        described_class.perform(event, FactoryGirl.create(:user), StripeHelpers.valid_card_token)
+      end
       expect(Booking.count).to eq 1
-      described_class.perform(event, FactoryGirl.create(:user), "valid-token")
+      VCR.use_cassette("stripe/valid_card") do
+        described_class.perform(event, FactoryGirl.create(:user), StripeHelpers.valid_card_token)
+      end
       expect(Booking.count).to eq 2
-      described_class.perform(event, FactoryGirl.create(:user), "valid-token")
+      VCR.use_cassette("stripe/valid_card") do
+        described_class.perform(event, FactoryGirl.create(:user), StripeHelpers.valid_card_token)
+      end
       expect(Booking.count).to eq 2
     end
   end

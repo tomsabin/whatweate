@@ -10,6 +10,21 @@ class BookingPayment
   end
 
   def save
+    send_and_create_payment
+  rescue Stripe::CardError => e
+    errors.add(:base, e.message)
+    false
+  rescue => e
+    Rails.logger.error("BookingPayment failed for #{user.email} for event [#{event.id}]")
+    Rails.logger.error(e.inspect)
+    errors.add(:base, I18n.t("failure.generic"))
+    false
+  end
+
+  private
+  attr_reader :token, :event, :user
+
+  def send_and_create_payment
     customer = Stripe::Customer.create(
       email: user.email,
       card:  token
@@ -22,13 +37,6 @@ class BookingPayment
       currency:    event.currency
     )
 
-    Payment.create(booking: booking, customer_reference: customer.id, charge_reference: charge.id)
-  rescue Stripe::CardError => e
-    errors.add(:base, e.message)
-  rescue => e
-    errors.add(:base, I18n.t("failure.generic"))
+    Payment.create!(booking: booking, customer_reference: customer.id, charge_reference: charge.id)
   end
-
-  private
-  attr_reader :token, :event, :user
 end
