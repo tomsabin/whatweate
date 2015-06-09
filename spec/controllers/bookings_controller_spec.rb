@@ -37,5 +37,15 @@ describe BookingsController do
       post :create, event_id: "event-title"
       expect(flash[:notice]).to eq "Sorry, this event has sold out."
     end
+
+    context "signed in user is the host of the event" do
+      let!(:event) { FactoryGirl.create(:event, title: "Event title", host: host) }
+      let(:host) { FactoryGirl.create(:host, user: user) }
+
+      it "sets the correct message" do
+        post :create, event_id: "event-title"
+        expect(flash[:notice]).to eq "You cannot book yourself on your own event."
+      end
+    end
   end
 end
