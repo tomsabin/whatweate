@@ -102,4 +102,15 @@ describe "Guest event booking" do
       end
     end
   end
+
+  context "past event" do
+    let!(:event) { FactoryGirl.create(:event, date: 1.day.ago) }
+
+    scenario "user cannot see link to event on homepage but can still visit the event page" do
+      visit root_path
+      expect(page).to_not have_link event.title
+      visit event_path(event)
+      expect(page).to have_content event.title
+    end
+  end
 end

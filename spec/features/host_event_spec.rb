@@ -15,7 +15,7 @@ describe "Host event" do
     # preview
     expect(page).to have_content "Please review the following errors"
 
-    fill_in "event_date", with: "01/01/2000 19:00"
+    fill_in "event_date", with: "01/01/#{1.year.from_now.year} 19:00"
     fill_in "event_title", with: "Sunday Roast"
     fill_in "event_location", with: "London"
     fill_in "event_location_url", with: "http://example.com"

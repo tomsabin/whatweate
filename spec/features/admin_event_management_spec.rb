@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe "Admin event management" do
+  let(:year) { 1.year.from_now.year }
+
   before do
     FactoryGirl.create(:host, name: "Joe Bloggs")
     sign_in FactoryGirl.create(:admin)
@@ -14,7 +16,7 @@ describe "Admin event management" do
     expect(page).to have_content "Please review the following errors"
 
     select "Joe Bloggs", from: "event_host_id"
-    fill_in "event_date", with: "01/01/2000 19:00"
+    fill_in "event_date", with: "01/01/#{year} 19:00"
     fill_in "event_title", with: "Sunday Roast"
     fill_in "event_location", with: "Londo"
     fill_in "event_location_url", with: "http://example.com"
@@ -27,7 +29,7 @@ describe "Admin event management" do
     expect(page).to have_content "Sunday Roast"
     expect(page).to have_content "Hosted by Joe Bloggs"
     expect(page).to have_link "View on map"
-    expect(page).to have_content "1st January 2000 7:00pm"
+    expect(page).to have_content "1st January #{year} 7:00pm"
     expect(find_link("View on map")[:href]).to eq "http://example.com"
     expect(page).to have_content "Londo"
     expect(page).to have_content "£10"
@@ -54,7 +56,7 @@ describe "Admin event management" do
     expect(page).to have_content "Sunday Roast"
     expect(page).to have_content "Hosted by Joe Bloggs"
     expect(page).to have_link "View on map"
-    expect(page).to have_content "1st January 2000 7:00pm"
+    expect(page).to have_content "1st January #{year} 7:00pm"
     expect(find_link("View on map")[:href]).to eq "http://example.com"
     expect(page).to have_content "London"
     expect(page).to have_button "Book seat"
@@ -76,7 +78,7 @@ describe "Admin event management" do
     expect(page).to have_content "Sunday Roast"
     expect(page).to have_content "Hosted by Joe Bloggs"
     expect(page).to have_content "London"
-    expect(page).to have_content "1st January 2000 7:00pm"
+    expect(page).to have_content "1st January #{year} 7:00pm"
     expect(page).to have_content "8 seats"
     expect(page).to have_content "£10"
     within(".description") do
