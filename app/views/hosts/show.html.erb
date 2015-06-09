@@ -3,12 +3,14 @@
   <%= @host.name %>
 
   <div class="upcoming-events">
+    <h1>My upcoming events</h1>
     <% @upcoming_events.each do |event| %>
       <%= link_to event.title, event_path(event) %>
     <% end %>
   </div>
 
   <div class="past-events">
+    <h1>my past events</h1>
     <% @past_events.each do |event| %>
       <%= link_to event.title, event_path(event) %>
     <% end %>

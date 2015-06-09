@@ -41,12 +41,14 @@
   <% end %>
 
   <div class="booked-events">
+    <h1>My booked events</h1>
     <% @upcoming_booked_events.each do |event| %>
       <%= link_to event.title, event_path(event) %>
     <% end %>
   </div>
 
   <div class="past-events">
+    <h1>My past events</h1>
     <% @past_booked_events.each do |event| %>
       <%= link_to event.title, event_path(event) %>
     <% end %>
