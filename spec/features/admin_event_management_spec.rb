@@ -105,6 +105,7 @@ describe "Admin event management" do
 
     expect(page).to have_content "Event successfully updated"
     expect(page).to have_content "Sunday Roast Lamb"
+    expect(page).to_not have_link "Approve"
 
     click_link "Edit event"
     expect(page).to_not have_link "Approve"
@@ -144,14 +145,6 @@ describe "Admin event management" do
     click_link "Event title"
     click_link "Approve"
     expect(page).to have_content "Event successfully approved"
-  end
-
-  scenario "admin tries to approve an already approved event" do
-    FactoryGirl.create(:event, title: "Event title")
-    visit admin_events_path
-    click_link "Event title"
-    click_link "Approve"
-    expect(page).to have_content "Event could not be approved"
   end
 
   scenario "admin sees events grouped by pending, approved, past events" do
