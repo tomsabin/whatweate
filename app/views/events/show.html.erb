@@ -1,5 +1,7 @@
 <div class="wip">
 
+  <!-- prevent confusion in view by duplicating logic with button availability -->
+
   <%# unless @event.booked?(current_user) %>
     <%= form_tag event_bookings_path(@event) do %>
       <%= submit_tag 'Book seat', id: "no-js-submit", class: "book-seat" %>

@@ -1,7 +1,8 @@
 class CreateBooking
-  def self.perform(event, user)
+  def self.perform(event, user, payment_token = nil)
     booking = Booking.new(event: event, user: user)
     booking.subscribe(EventNotifier.new)
+    payment = Payment.new(booking, payment_token)
 
     if user.nil?
       I18n.t("devise.failure.unauthenticated")
@@ -13,8 +14,14 @@ class CreateBooking
       I18n.t("event.booking.duplicate")
     elsif event.host == user.host
       I18n.t("event.booking.event_host")
-    else
+    elsif payment_token.blank?
       I18n.t("event.booking.javascript_disabled")
+    elsif payment.save
+      I18n.t("event.booking.success")
+    elsif payment.errors.any?
+      payment.errors.full_message
+    else
+      I18n.t("event.failure.generic")
     end
   end
 end

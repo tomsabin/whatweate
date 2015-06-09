@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609101838) do
+ActiveRecord::Schema.define(version: 20150609102026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,14 @@ ActiveRecord::Schema.define(version: 20150609101838) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+  create_table "payments", force: :cascade do |t|
+    t.integer "booking_id"
+    t.string  "customer_reference"
+    t.string  "charge_reference"
+  end
+
+  add_index "payments", ["booking_id"], name: "index_payments_on_booking_id", using: :btree
+
   create_table "profiles", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -148,4 +156,5 @@ ActiveRecord::Schema.define(version: 20150609101838) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
+  add_foreign_key "payments", "bookings"
 end

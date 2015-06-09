@@ -34,16 +34,26 @@ describe CreateBooking do
     it { expect { described_class.perform(event, user) }.to_not change { Booking.count } }
   end
 
+  context "payment token was not given" do
+    it { expect(described_class.perform(event, user)).to eq "Please enable JavaScript for our payment system to work." }
+    it { expect { described_class.perform(event, user) }.to_not change { Booking.count } }
+  end
+
+  context "payment was invalid" do
+    it { expect(described_class.perform(event, user, "invalid-token")).to eq "The card number is not a valid credit card number." }
+    it { expect { described_class.perform(event, user, "invalid-token") }.to_not change { Booking.count } }
+  end
+
   context "booking successfully created" do
     let!(:event) { FactoryGirl.create(:event, seats: 2) }
-    it { expect(described_class.perform(event, user)).to eq "Thanks! We've booked you a seat." }
+    it { expect(described_class.perform(event, user, "valid-token")).to eq "Thanks! We've booked you a seat." }
     it "creates the Booking" do
       expect(Booking.count).to eq 0
-      described_class.perform(event, FactoryGirl.create(:user))
+      described_class.perform(event, FactoryGirl.create(:user), "valid-token")
       expect(Booking.count).to eq 1
-      described_class.perform(event, FactoryGirl.create(:user))
+      described_class.perform(event, FactoryGirl.create(:user), "valid-token")
       expect(Booking.count).to eq 2
-      described_class.perform(event, FactoryGirl.create(:user))
+      described_class.perform(event, FactoryGirl.create(:user), "valid-token")
       expect(Booking.count).to eq 2
     end
   end
