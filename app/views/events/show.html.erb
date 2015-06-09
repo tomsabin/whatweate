@@ -1,8 +1,10 @@
 <div class="wip">
 
-  <!-- prevent confusion in view by duplicating logic with button availability -->
-
-  <%# unless @event.booked?(current_user) %>
+  <% if @event.booked?(current_user) %>
+    <p>You are booked on to this event</p>
+  <% elsif @event.sold_out? %>
+    <button type="button" class="book-seat" disabled>Book seat</button>
+  <% else %>
     <%= form_tag event_bookings_path(@event) do %>
       <%= submit_tag 'Book seat', id: "no-js-submit", class: "book-seat" %>
       <% if user_signed_in? %>
@@ -20,7 +22,7 @@
         <script>$("#no-js-submit").remove();</script>
       <% end %>
     <% end %>
-  <%# end %>
+  <% end %>
 
   <%= render partial: "event_content", locals: { event: @event } %>
 

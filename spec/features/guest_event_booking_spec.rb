@@ -51,7 +51,6 @@ describe "Guest event booking" do
 
       expect(page).to have_content "Thanks! We've booked you a seat."
       expect(current_url).to eq event_url(event)
-      # expect(page).to_not have_button "Book seat"
     end
 
     scenario "user is prompted to sign in before making a booking" do
@@ -82,8 +81,7 @@ describe "Guest event booking" do
       sign_in user
       visit root_path
       click_link event.title
-      click_button "Book seat"
-      expect(page).to have_content "You are already booked on this event"
+      expect(page).to have_content "You are booked on to this event"
     end
   end
 
@@ -94,8 +92,7 @@ describe "Guest event booking" do
       sign_in
       visit root_path
       click_link event.title
-      click_button "Book seat"
-      expect(page).to have_content "Sorry, this event has sold out"
+      expect(page).to have_button "Book seat", disabled: true
     end
 
     scenario "users that are going are displayed on the event page" do
