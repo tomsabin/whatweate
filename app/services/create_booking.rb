@@ -19,7 +19,7 @@ class CreateBooking
     elsif payment.save
       I18n.t("event.booking.success")
     elsif payment.errors.any?
-      payment.errors.full_messages
+      payment.errors.full_messages.first
     else
       I18n.t("event.failure.generic")
     end

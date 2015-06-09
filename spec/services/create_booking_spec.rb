@@ -42,12 +42,10 @@ describe CreateBooking do
 
   context "payment was invalid" do
     around do |example|
-      VCR.use_cassette("stripe/card_declined") do
-        example.run
-      end
+      VCR.use_cassette("stripe/card_declined") { example.run }
     end
 
-    it { expect(described_class.perform(event, user, StripeHelpers.card_declined_token)).to eq "The card number is not a valid credit card number." }
+    it { expect(described_class.perform(event, user, StripeHelpers.card_declined_token)).to eq "Your card was declined." }
     it { expect { described_class.perform(event, user, StripeHelpers.card_declined_token) }.to_not change { Booking.count } }
   end
 
