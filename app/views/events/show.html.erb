@@ -1,8 +1,8 @@
 <div class="wip">
 
-  <% if @event.booked?(current_user) %>
+  <% if @already_booked %>
     <p>You are booked on to this event</p>
-  <% elsif user_signed_in? && @event.host == current_user.host %>
+  <% elsif @event_host %>
     <p>This is your own event</p>
   <% elsif @event.sold_out? %>
     <button type="button" class="book-seat" disabled>Book seat</button>
