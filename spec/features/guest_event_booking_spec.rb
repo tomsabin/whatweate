@@ -31,8 +31,6 @@ describe "Guest event booking" do
     end
 
     scenario "[smoke-test] user pays for the event booking when JavaScript is enabled", :js, :smoke do
-      # WebMock.allow_net_connect!
-
       sign_in user
       visit root_path
       click_link event.title
