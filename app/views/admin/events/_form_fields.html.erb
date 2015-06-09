@@ -2,14 +2,23 @@
 
 <div class="row">
   <%= f.input :host_id, collection: @hosts, label_method: :name, required: true,
-                        wrapper_html: { class: "col s12" }, label_html: { class: "active" } %>
+                        wrapper_html: { class: "col s12" },
+                        label_html: { class: "active" } %>
 
   <%= f.input :title, wrapper_html: { class: "col s12" } %>
 
   <%= f.input :date, html5: true, placeholder: "YYYY-MM-DD HH:MM",
-                     wrapper_html: { class: "col s12 m8" }, input_html: { type: 'datetime-local' }, label_html: { class: "active" } %>
-  <%= f.input :price, label: "Price (£)", wrapper_html: { class: "col s6 m2" } %>
-  <%= f.input :seats, wrapper_html: { class: "col s6 m2" }, label_html: { class: "active" } %>
+                     wrapper_html: { class: "col s12 m8" },
+                     input_html: { type: 'datetime-local' },
+                     label_html: { class: "active" } %>
+
+  <%= f.input :price, label: "Price (£)",
+                      wrapper_html: { class: "col s6 m2" },
+                      input_html: { type: "number", min: "0", step: "any" } %>
+
+  <%= f.input :seats, wrapper_html: { class: "col s6 m2" },
+                      input_html: { min: "0", step: "1" },
+                      label_html: { class: "active" } %>
 
   <%= f.input :location, wrapper_html: { class: "col s12 m6" } %>
   <%= f.input :location_url, wrapper_html: { class: "col s12 m6" } %>
