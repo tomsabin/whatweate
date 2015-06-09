@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150608160001) do
+ActiveRecord::Schema.define(version: 20150609101838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 20150608160001) do
     t.integer "event_id"
     t.integer "user_id"
   end
+
+  add_index "bookings", ["event_id"], name: "index_bookings_on_event_id", using: :btree
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -72,6 +75,7 @@ ActiveRecord::Schema.define(version: 20150608160001) do
     t.string   "slug"
   end
 
+  add_index "events", ["host_id"], name: "index_events_on_host_id", using: :btree
   add_index "events", ["slug"], name: "index_events_on_slug", unique: true, using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -94,6 +98,7 @@ ActiveRecord::Schema.define(version: 20150608160001) do
   end
 
   add_index "hosts", ["slug"], name: "index_hosts_on_slug", unique: true, using: :btree
+  add_index "hosts", ["user_id"], name: "index_hosts_on_user_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
