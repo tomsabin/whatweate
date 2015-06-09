@@ -20,6 +20,7 @@ describe "Admins" do
     click_button "Sign in"
 
     expect(page).to have_content "Dashboard"
+    within(".nav-wrapper .active", match: :first) { expect(page).to have_content "Events" }
   end
 
   scenario "can still sign in to user accounts" do

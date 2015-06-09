@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    get "dashboard", to: "pages#dashboard"
+
     resources :events do
       collection do
         get "preview"
@@ -28,9 +30,10 @@ Rails.application.routes.draw do
         patch "approve"
       end
     end
+
     resources :hosts
 
-    root "pages#dashboard"
+    root "events#index"
   end
 
   root "pages#home"
