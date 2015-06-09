@@ -54,6 +54,7 @@ group :test do
   gem "webmock"
   gem "vcr"
   gem "test_after_commit"
+  gem "database_cleaner"
 end
 
 ruby "2.2.2"
