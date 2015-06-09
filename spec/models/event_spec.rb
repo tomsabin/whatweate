@@ -15,8 +15,10 @@ describe Event do
     it { should validate_presence_of(:seats) }
     it { should validate_presence_of(:price_in_pennies) }
     it { should validate_presence_of(:currency) }
+    it { should allow_value(1, 23.5, 4.99).for(:price) }
+    it { should_not allow_value(0, -1, -25.30, "20").for(:price) }
     it { should allow_value(1, 2).for(:seats) }
-    it { should_not allow_value(0, -1, "20").for(:seats) }
+    it { should_not allow_value(0, -1, 0.75, "20").for(:seats) }
     it { should allow_value("https://facebook.com", "https://twitter.com", "http://google.com", "http://www.fb.com").for(:location_url) }
     it { should_not allow_value("www.facebook.com", "facebook.com", "<script>alert('hello')</script>", "ftp://e.com").for(:location_url) }
   end
