@@ -25,6 +25,7 @@ gem "validate_url"
 gem "slack-notifier"
 gem "wisper-activerecord"
 gem "friendly_id"
+gem "stripe"
 
 group :production do
   gem 'rails_12factor'
