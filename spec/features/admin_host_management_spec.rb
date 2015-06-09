@@ -52,11 +52,13 @@ describe "Admin host management" do
   end
 
   scenario "admin creates a host with associations and the User/Profile is removed" do
+    FactoryGirl.create(:user_without_profile, first_name: "Zack", last_name: "Richardson")
     FactoryGirl.create(:user, first_name: "Joseph", last_name: "Bloggs")
 
     click_link "Create new host"
 
     fill_in "host_name", with: "Joe Bloggs"
+    expect(page).to have_select("host_user_id", options: ["", "Joseph Bloggs"])
     select "Joseph Bloggs", from: "host_user_id"
 
     click_button "Create host"

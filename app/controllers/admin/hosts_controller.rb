@@ -60,7 +60,7 @@ class Admin
     end
 
     def find_users
-      User.all.decorate
+      User.completed_profile.decorate
     end
 
     def host_params
