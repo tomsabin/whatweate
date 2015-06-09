@@ -2,7 +2,7 @@ class CreateBooking
   def self.perform(event, user, payment_token = nil)
     booking = Booking.new(event: event, user: user)
     booking.subscribe(EventNotifier.new)
-    payment = Payment.new(booking, payment_token)
+    payment = BookingPayment.new(booking, payment_token)
 
     if user.nil?
       I18n.t("devise.failure.unauthenticated")
@@ -19,7 +19,7 @@ class CreateBooking
     elsif payment.save
       I18n.t("event.booking.success")
     elsif payment.errors.any?
-      payment.errors.full_message
+      payment.errors.full_messages
     else
       I18n.t("event.failure.generic")
     end
