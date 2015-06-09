@@ -1,10 +1,28 @@
 <div class="wip">
 
-  <%# unless @event.booked?(current_user) %>
+  <% if @event.booked?(current_user) %>
+    <p>You are booked on to this event</p>
+  <% elsif @event.sold_out? %>
+    <button type="button" class="book-seat" disabled>Book seat</button>
+  <% else %>
     <%= form_tag event_bookings_path(@event) do %>
-      <%= submit_tag 'Book seat' %>
+      <%= submit_tag 'Book seat', id: "no-js-submit", class: "book-seat" %>
+      <% if user_signed_in? %>
+        <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button book-seat"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-label="Book seat"
+          data-email="<%= current_user.email %>"
+          data-image="<%= asset_url("logo-icon-128.jpg") %>"
+          data-name="WhatWeAte"
+          data-description="<%= @event.title %>"
+          data-amount="<%= @event.price_in_pennies %>"
+          data-currency="<%= @event.currency %>">
+        </script>
+        <script>$("#no-js-submit").remove();</script>
+      <% end %>
     <% end %>
-  <%# end %>
+  <% end %>
 
   <%= render partial: "event_content", locals: { event: @event } %>
 

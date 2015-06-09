@@ -25,6 +25,7 @@ gem "validate_url"
 gem "slack-notifier"
 gem "wisper-activerecord"
 gem "friendly_id"
+gem "stripe"
 
 group :production do
   gem 'rails_12factor'
@@ -53,6 +54,7 @@ group :test do
   gem "webmock"
   gem "vcr"
   gem "test_after_commit"
+  gem "database_cleaner"
 end
 
 ruby "2.2.2"
