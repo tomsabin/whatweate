@@ -13,10 +13,8 @@ class CreateBooking
       I18n.t("event.booking.duplicate")
     elsif event.host == user.host
       I18n.t("event.booking.event_host")
-    elsif booking.save
-      I18n.t("event.booking.success")
     else
-      I18n.t("failure.generic")
+      I18n.t("event.booking.javascript_disabled")
     end
   end
 end
