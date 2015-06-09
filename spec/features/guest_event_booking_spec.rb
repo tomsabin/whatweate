@@ -6,7 +6,7 @@ describe "Guest event booking" do
   context "seats are available" do
     let!(:event) { FactoryGirl.create(:event, title: "Event title", price_in_pennies: 2500) }
 
-    scenario "user books a seat when JavaScript is enabled", js: true do
+    scenario "user sees the payment prompt when JavaScript is enabled", :js do
       sign_in user
       visit root_path
       click_link event.title
@@ -20,18 +20,36 @@ describe "Guest event booking" do
       expect(stripe_script["data-currency"]).to eq "GBP"
       click_button "Book seat"
 
-      sleep(2) # wait for modal to load
       stripe_iframe = all("iframe[name=stripe_checkout_app]").last
-      within_frame stripe_iframe do
+      within_frame(stripe_iframe) do
+        expect(page).to have_content "user@example.com"
+        expect(page).to have_field "card_number"
+        expect(page).to have_field "cc-exp"
+        expect(page).to have_field "cc-csc"
+        expect(page).to have_button "Pay £25.00"
+      end
+    end
+
+    scenario "[smoke-test] user pays for the event booking when JavaScript is enabled", :js, :smoke do
+      # WebMock.allow_net_connect!
+
+      sign_in user
+      visit root_path
+      click_link event.title
+      click_button "Book seat"
+
+      sleep(2) # wait for modal to load :(
+      stripe_iframe = all("iframe[name=stripe_checkout_app]").last
+      within_frame(stripe_iframe) do
         expect(page).to have_content "user@example.com"
         fill_in "card_number", with: "4242424242424242"
         fill_in "cc-exp", with: "01/16"
         fill_in "cc-csc", with: "123"
         click_button "Pay £25.00"
-        sleep(3) # allows stripe_checkout_app to submit
+        sleep(5) # wait for payment to process :'(
       end
 
-      expect(page).to have_content "Thanks! We've booked you a seat"
+      expect(page).to have_content "Thanks! We've booked you a seat."
       expect(current_url).to eq event_url(event)
       # expect(page).to_not have_button "Book seat"
     end
