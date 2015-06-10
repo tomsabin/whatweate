@@ -13,6 +13,8 @@ describe "Admin host management" do
     click_button "Create host"
 
     expect(page).to have_content "Please review the following errors"
+    within(".host_name") { expect(page).to_not have_content "can't be blank" }
+    within(".new_host") { expect(page).to have_content "Name can't be blank" }
 
     fill_in "host_name", with: "Joe Bloggs"
     click_button "Create host"
@@ -23,6 +25,13 @@ describe "Admin host management" do
     click_link "Joe Bloggs"
 
     click_link "Edit host"
+    fill_in "host_name", with: ""
+    click_button "Save host"
+
+    expect(page).to have_content "Please review the following errors"
+    within(".host_name") { expect(page).to_not have_content "can't be blank" }
+    within(".edit_host") { expect(page).to have_content "Name can't be blank" }
+
     fill_in "host_name", with: "Joe Bloggs"
     select "Joseph Bloggs", from: "host_user_id"
     click_button "Save host"

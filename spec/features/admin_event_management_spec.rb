@@ -14,6 +14,8 @@ describe "Admin event management" do
     click_button "Create event"
 
     expect(page).to have_content "Please review the following errors"
+    within(".event_title") { expect(page).to_not have_content "can't be blank" }
+    within(".new_event") { expect(page).to have_content "Title can't be blank" }
 
     select "Joe Bloggs", from: "event_host_id"
     fill_in "event_date", with: "01/01/#{year} 19:00"
@@ -91,16 +93,15 @@ describe "Admin event management" do
     end
 
     click_link "Edit event"
+
+    fill_in "event_title", with: ""
+    click_button "Save event"
+
+    expect(page).to have_content "Please review the following errors"
+    within(".event_title") { expect(page).to_not have_content "can't be blank" }
+    within(".edit_event") { expect(page).to have_content "Title can't be blank" }
+
     fill_in "event_title", with: "Sunday Roast Lamb"
-    # fill_in "event_description", with: "A heart warming Sunday Roast Lamb cooked behind decades of experience for the perfect meal"
-
-    # click_button "Preview"
-
-    # within(".description") do
-    #   expect(page).to have_content "A heart warming Sunday Roast Lamb cooked behind decades of experience for the perfect meal"
-    # end
-
-    # expect(page).to have_link "Edit"
     click_button "Save event"
 
     expect(page).to have_content "Event successfully updated"
@@ -109,7 +110,6 @@ describe "Admin event management" do
 
     click_link "Edit event"
     expect(page).to_not have_link "Approve"
-    # expect(page).to have_button "Preview"
     click_link "Delete event"
 
     expect(page).to have_content "Event successfully deleted"

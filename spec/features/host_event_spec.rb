@@ -14,6 +14,7 @@ describe "Host event" do
     click_button "Submit event"
     # preview
     expect(page).to have_content "Please review the following errors"
+    within(".event_title") { expect(page).to have_content "can't be blank" }
 
     fill_in "event_date", with: "01/01/#{1.year.from_now.year} 19:00"
     fill_in "event_title", with: "Sunday Roast"

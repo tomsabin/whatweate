@@ -1,4 +1,5 @@
 require "rails_helper"
+include OmniauthHelpers
 
 describe "Account management" do
   scenario "guest signs up from the homepage, signs out and then completes their profile" do
@@ -7,6 +8,7 @@ describe "Account management" do
     click_button "Sign up"
 
     expect(page).to have_content "Please review the following errors"
+    within(".user_email") { expect(page).to have_content "can't be blank" }
 
     fill_in "Email", with: "user@example.com"
     fill_in "First name", with: "Cookie"
@@ -23,6 +25,8 @@ describe "Account management" do
     click_link "Sign in"
     click_button "Sign in"
 
+    within(".user_email") { expect(page).to_not have_content "can't be blank" }
+    expect(page).to_not have_content "Please review the following errors"
     expect(page).to have_content "Your email/password combination was incorrect"
 
     fill_in "Email", with: "user@example.com"
@@ -75,12 +79,19 @@ describe "Account management" do
       expect(page).to have_content "Your email/password combination was incorrect"
 
       click_link "Forgot your password?"
+      click_button "Send me password reset instructions"
+      expect(page).to have_content "Please review the following errors"
+      within(".user_email") { expect(page).to have_content "can't be blank" }
 
       fill_in "user_email", with: "user@example.com"
       click_button "Send me password reset instructions"
 
       expect(ActionMailer::Base.deliveries.last.subject).to eq "Reset password instructions"
       visit edit_user_password_path(reset_password_token)
+
+      click_button "Change my password"
+      expect(page).to have_content "Please review the following errors"
+      within(".user_password") { expect(page).to have_content "can't be blank" }
 
       fill_in "user_password", with: "newpassword"
       fill_in "user_password_confirmation", with: "newpassword"

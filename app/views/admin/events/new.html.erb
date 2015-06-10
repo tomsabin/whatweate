@@ -1,4 +1,4 @@
-<%= simple_form_for [:admin, @event] do |f| %>
+<%= simple_form_for [:admin, @event], defaults: { error: false } do |f| %>
   <%= render partial: "form_fields", locals: { f: f } %>
 
   <div class="row">
