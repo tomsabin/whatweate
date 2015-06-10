@@ -3,14 +3,15 @@ class BookingPayment
   attr_reader :booking
 
   def initialize(booking, token)
-    @booking = booking
-    @token = token
-    @event = booking.event
-    @user = booking.user
+    @booking  = booking
+    @token    = token
+    @event    = booking.event
+    @user     = booking.user
   end
 
   def save
-    send_and_create_payment
+    @customer = Stripe::Customer.create(email: user.email, card: token)
+    Payment.create!(booking: booking, customer_reference: customer.id, charge_reference: charge.id)
   rescue Stripe::CardError => e
     errors.add(:base, e.message)
     false
@@ -22,21 +23,14 @@ class BookingPayment
   end
 
   private
-  attr_reader :token, :event, :user
+  attr_reader :token, :event, :user, :customer
 
-  def send_and_create_payment
-    customer = Stripe::Customer.create(
-      email: user.email,
-      card:  token
-    )
-
-    charge = Stripe::Charge.create(
+  def charge
+    Stripe::Charge.create(
       customer:    customer.id,
       amount:      event.price_in_pennies,
       description: event.title,
       currency:    event.currency
     )
-
-    Payment.create!(booking: booking, customer_reference: customer.id, charge_reference: charge.id)
   end
 end

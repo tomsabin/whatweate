@@ -14,14 +14,14 @@ describe BookingsController do
 
     it "sets the correct message when using valid card token" do
       VCR.use_cassette("stripe/valid_card") do
-        post :create, event_id: "event-title", stripeToken: StripeHelpers.valid_card_token
+        post :create, event_id: "event-title", stripeToken: StripeHelpers::VALID_CARD_TOKEN
       end
       expect(flash[:notice]).to eq "Thanks! We've booked you a seat."
     end
 
     it "sets the correct message when using an invalid card token" do
       VCR.use_cassette("stripe/card_error") do
-        post :create, event_id: "event-title", stripeToken: StripeHelpers.card_error_token
+        post :create, event_id: "event-title", stripeToken: StripeHelpers::CARD_ERROR_TOKEN
       end
       expect(flash[:notice]).to eq "Your card was declined."
     end

@@ -45,8 +45,8 @@ describe CreateBooking do
       VCR.use_cassette("stripe/card_declined") { example.run }
     end
 
-    it { expect(described_class.perform(event, user, StripeHelpers.card_declined_token)).to eq "Your card was declined." }
-    it { expect { described_class.perform(event, user, StripeHelpers.card_declined_token) }.to_not change { Booking.count } }
+    it { expect(described_class.perform(event, user, StripeHelpers::CARD_DECLINED_TOKEN)).to eq "Your card was declined." }
+    it { expect { described_class.perform(event, user, StripeHelpers::CARD_DECLINED_TOKEN) }.to_not change { Booking.count } }
   end
 
   context "booking successfully created" do
@@ -54,22 +54,22 @@ describe CreateBooking do
 
     it "returns the correct message" do
       VCR.use_cassette("stripe/valid_card") do
-        expect(described_class.perform(event, user, StripeHelpers.valid_card_token)).to eq "Thanks! We've booked you a seat."
+        expect(described_class.perform(event, user, StripeHelpers::VALID_CARD_TOKEN)).to eq "Thanks! We've booked you a seat."
       end
     end
 
     it "creates the Booking" do
       expect(Booking.count).to eq 0
       VCR.use_cassette("stripe/valid_card") do
-        described_class.perform(event, FactoryGirl.create(:user), StripeHelpers.valid_card_token)
+        described_class.perform(event, FactoryGirl.create(:user), StripeHelpers::VALID_CARD_TOKEN)
       end
       expect(Booking.count).to eq 1
       VCR.use_cassette("stripe/valid_card") do
-        described_class.perform(event, FactoryGirl.create(:user), StripeHelpers.valid_card_token)
+        described_class.perform(event, FactoryGirl.create(:user), StripeHelpers::VALID_CARD_TOKEN)
       end
       expect(Booking.count).to eq 2
       VCR.use_cassette("stripe/valid_card") do
-        described_class.perform(event, FactoryGirl.create(:user), StripeHelpers.valid_card_token)
+        described_class.perform(event, FactoryGirl.create(:user), StripeHelpers::VALID_CARD_TOKEN)
       end
       expect(Booking.count).to eq 2
     end

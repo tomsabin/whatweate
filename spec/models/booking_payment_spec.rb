@@ -7,17 +7,19 @@ describe BookingPayment do
   let(:subject) { described_class.new(booking, token) }
 
   describe "charging the user" do
-    let(:token) { StripeHelpers.valid_card_token }
+    let(:token) { StripeHelpers::VALID_CARD_TOKEN }
 
     it "is the correct amount" do
-      expect(Stripe::Charge).to receive(:create).with(hash_including(amount: 1000, currency: "GBP", description: "Event title"))
+      expect(Stripe::Charge).to receive(:create)
+        .with(hash_including(amount: 1000, currency: "GBP", description: "Event title"))
+        .and_call_original
       VCR.use_cassette("stripe/valid_card") { subject.save }
     end
   end
 
   context "tokens from Checkout" do
     context "token validated by Checkout and can be charged" do
-      let(:token) { StripeHelpers.valid_card_token }
+      let(:token) { StripeHelpers::VALID_CARD_TOKEN }
       let(:cassette) { "stripe/valid_card" }
 
       it "saves the Payment" do
@@ -51,7 +53,7 @@ describe BookingPayment do
     end
 
     context "token validated by Checkout but cannot be charged" do
-      let(:token) { StripeHelpers.card_error_token }
+      let(:token) { StripeHelpers::CARD_ERROR_TOKEN }
       let(:cassette) { "stripe/card_error" }
 
       it "does not save a Payment" do
@@ -77,7 +79,7 @@ describe BookingPayment do
     end
 
     context "token validated by Checkout but card was declined" do
-      let(:token) { StripeHelpers.card_declined_token }
+      let(:token) { StripeHelpers::CARD_DECLINED_TOKEN }
       let(:cassette) { "stripe/card_declined" }
 
       it "does not save a Payment" do
@@ -103,7 +105,7 @@ describe BookingPayment do
     end
 
     context "something else goes wrong" do
-      let(:token) { StripeHelpers.valid_card_token }
+      let(:token) { StripeHelpers::VALID_CARD_TOKEN }
       let(:cassette) { "stripe/valid_card" }
 
       before do
