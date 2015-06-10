@@ -7,7 +7,7 @@ describe "Admin host management" do
   end
 
   scenario "admin creates, views, edits and deletes a host" do
-    FactoryGirl.create(:user, first_name: "Joseph", last_name: "Bloggs")
+    user = FactoryGirl.create(:user, first_name: "Joseph", last_name: "Bloggs")
 
     click_link "Create new host"
     click_button "Create host"
@@ -38,7 +38,7 @@ describe "Admin host management" do
 
     expect(page).to have_content "Host successfully updated"
     expect(page).to have_content "Joe Bloggs"
-    expect(page).to have_content "User: Joseph Bloggs"
+    expect(page).to have_link "Joseph Bloggs", href: member_path(user)
 
     click_link "Edit host"
     click_link "Delete host"
