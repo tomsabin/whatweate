@@ -17,7 +17,7 @@
                      input_html: { value: @event.date.try(:strftime, "%R") },
                      label_html: { class: "active" } %>
 
-  <%= f.input :price, label: "Price (£)", placeholder: "25.00",
+  <%= f.input :price, label: "Price (£)", placeholder: "e.g. 25.00",
                       wrapper_html: { class: "col s6 m2" },
                       input_html: { type: "number", min: "0", step: "any" },
                       label_html: { class: "active" } %>
@@ -27,7 +27,7 @@
                       label_html: { class: "active" } %>
 
   <%= f.input :location, wrapper_html: { class: "col s12 m6" } %>
-  <%= f.input :location_url, wrapper_html: { class: "col s12 m6" } %>
+  <%= f.input :location_url, wrapper_html: { class: "col s12 m6" }, placeholder: "e.g. http://example.com" %>
 </div>
 
 <script>
