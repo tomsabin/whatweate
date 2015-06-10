@@ -2,7 +2,7 @@
 
   <% if @already_booked %>
     <p>You are booked on to this event</p>
-  <% elsif @event_host %>
+  <% elsif @current_user_is_event_host %>
     <p>This is your own event</p>
   <% elsif @event.sold_out? %>
     <button type="button" class="book-seat" disabled>Book seat</button>
@@ -26,7 +26,7 @@
     <% end %>
   <% end %>
 
-  <%= render partial: "event_content", locals: { event: @event } %>
+  <%= render partial: "event_content", locals: { event: @event, host: @event_host, user: @event_user } %>
 
   <div class="guests">
     <% @guests.each do |guest| %>

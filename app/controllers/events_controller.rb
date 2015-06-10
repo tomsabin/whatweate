@@ -3,9 +3,11 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.friendly.find(params[:id]).decorate
+    @event_host = @event.host
+    @event_user = @event.host.user
     @guests = @event.guests.decorate
     @already_booked = @event.booked?(current_user)
-    @event_host = user_signed_in? && @event.host == current_user.host
+    @current_user_is_event_host = user_signed_in? && @event.host == current_user.host
   end
 
   def new

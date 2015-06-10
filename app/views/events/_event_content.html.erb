@@ -12,7 +12,13 @@
 
 <img src="" alt="">
 
-<p><%= link_to event.host.name, host_path(event.host) %></p>
+<p>
+  <% if user.present? %>
+    <%= link_to host.name, member_path(user) %>
+  <% else %>
+    <%= host.name %>
+  <% end %>
+</p>
 
 <p><%= event.location %> | <%= link_to "View on map", event.location_url %> </p>
 
