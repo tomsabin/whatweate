@@ -103,4 +103,26 @@ describe "Admin host management" do
     expect(page).to_not have_content "Host successfully deleted"
     expect(page).to have_content "Cannot delete record because dependent events exist"
   end
+
+  scenario "admin does not see users that are already hosts in select" do
+    FactoryGirl.create(:user, first_name: "Joe", last_name: "Bloggs")
+    FactoryGirl.create(:user, first_name: "Zack", last_name: "Richardson")
+
+    click_link "Create new host"
+
+    expect(page).to have_select("host_user_id", options: ["", "Joe Bloggs", "Zack Richardson"])
+
+    select "Joe Bloggs", from: "host_user_id"
+    fill_in "host_name", with: "Joe Bloggs"
+    click_button "Create host"
+    click_link "Joe Bloggs"
+    click_link "Edit host"
+
+    expect(page).to have_select("host_user_id", options: ["", "Joe Bloggs", "Zack Richardson"])
+
+    visit admin_hosts_path
+    click_link "Create new host"
+
+    expect(page).to have_select("host_user_id", options: ["", "Zack Richardson"])
+  end
 end

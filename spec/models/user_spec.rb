@@ -63,6 +63,22 @@ describe User do
     end
   end
 
+  describe "scopes" do
+    describe "not_host" do
+      let!(:user_with_host) { FactoryGirl.create(:user) }
+      let!(:user) { FactoryGirl.create(:user) }
+
+      before do
+        FactoryGirl.create(:host)
+        FactoryGirl.create(:host, user: user_with_host)
+      end
+
+      it "returns only users that are not hosts" do
+        expect(described_class.not_host).to eq [user]
+      end
+    end
+  end
+
   describe "states" do
     context "successfully signed up from devise" do
       it { expect(FactoryGirl.build(:user_without_profile).state).to eq "profile_incomplete" }

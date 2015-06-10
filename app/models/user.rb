@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
     u.validates :first_name, :last_name, :date_of_birth, :profession, :bio, :mobile_number, :favorite_cuisine, presence: true
   end
 
+  scope :not_host, -> { where.not(id: Host.where.not(user_id: nil).select(:user_id).uniq ) }
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   friendly_id :full_name, use: :slugged

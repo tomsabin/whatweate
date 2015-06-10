@@ -27,12 +27,12 @@ class Admin
 
     def edit
       @host = find_host
-      @users = find_users
+      @users = find_users(@host)
     end
 
     def update
       @host = find_host
-      @users = find_users
+      @users = find_users(@host)
       if @host.update(host_params)
         redirect_to(admin_host_url(@host), notice: "Host successfully updated")
       else
@@ -59,8 +59,10 @@ class Admin
       Host.friendly.find(params[:id])
     end
 
-    def find_users
-      User.completed_profile.decorate
+    def find_users(host = nil)
+      users = User.completed_profile.not_host.decorate
+      users << host.user if host.present? && host.user.present?
+      users
     end
 
     def host_params
