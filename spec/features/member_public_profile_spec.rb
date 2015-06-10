@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "Guest public profile" do
+describe "Member public profile" do
   scenario "user that has not completed their profile will not be publicly visible" do
     visit root_path
     click_link "Sign up"
@@ -34,12 +34,12 @@ describe "Guest public profile" do
     expect(page).to_not have_content "Verified with Facebook"
     expect(page).to_not have_content "Verified with Twitter"
 
-    within(".booked-events") do
+    within(".guest .booked-events") do
       expect(page).to have_link "Booked event"
       expect(page).to_not have_link "Past event"
     end
 
-    within(".past-events") do
+    within(".guest .past-events") do
       expect(page).to_not have_link "Booked event"
       expect(page).to have_link "Past event"
     end
@@ -75,5 +75,29 @@ describe "Guest public profile" do
     click_link "View public profile"
     expect(current_path).to eq "/member/bloggs-joe"
     expect(page).to have_content "Joe Bloggs"
+  end
+
+  scenario "visits a profile that is a host" do
+    user = FactoryGirl.create(:user, first_name: "Joeseph", last_name: "Bloggs")
+    host = FactoryGirl.create(:host, name: "Joe Bloggs", user: user)
+    FactoryGirl.create(:event, host: host, title: "Upcoming event")
+    FactoryGirl.create(:event, host: host, title: "Past event", date: 1.day.ago)
+    FactoryGirl.create(:event, title: "Other event")
+
+    visit "member/joeseph-bloggs"
+    expect(page).to have_content "Joeseph Bloggs"
+    expect(page).to_not have_content "Joe Bloggs"
+
+    within(".host .upcoming-events") do
+      expect(page).to have_link "Upcoming event"
+      expect(page).to_not have_link "Past event"
+      expect(page).to_not have_link "Other event"
+    end
+
+    within(".host .past-events") do
+      expect(page).to_not have_link "Upcoming event"
+      expect(page).to have_link "Past event"
+      expect(page).to_not have_link "Other event"
+    end
   end
 end

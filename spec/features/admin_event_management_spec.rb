@@ -30,6 +30,7 @@ describe "Admin event management" do
 
     expect(page).to have_content "Sunday Roast"
     expect(page).to have_content "Hosted by Joe Bloggs"
+    expect(page).to_not have_link "Joe Bloggs"
     expect(page).to have_link "View on map"
     expect(page).to have_content "1st January #{year} 7:00pm"
     expect(find_link("View on map")[:href]).to eq "http://example.com"
@@ -156,5 +157,25 @@ describe "Admin event management" do
     within('.pending') { expect(page).to have_content pending.title }
     within('.approved') { expect(page).to have_content approved.title }
     within('.past') { expect(page).to have_content past.title }
+  end
+
+  scenario "admin previews an event with a host that has a user" do
+    user = FactoryGirl.create(:user, first_name: "Joe", last_name: "Bloggs")
+    host = FactoryGirl.create(:host, user: user, name: "Joeseph Bloggs")
+
+    click_link "Create new event"
+    click_button "Create event"
+
+    select host.name, from: "event_host_id"
+    fill_in "event_date", with: "01/01/#{year} 19:00"
+    fill_in "event_title", with: "Sunday Roast"
+    fill_in "event_location", with: "London"
+    fill_in "event_location_url", with: "http://example.com"
+    fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
+    fill_in "event_menu", with: "- Pumpkin Soup\n- Roast Lamb with trimmings\n- Tiramisu"
+    fill_in "event_seats", with: "8"
+    fill_in "event_price", with: "10.00"
+    click_button "Preview"
+    expect(page).to have_link "Joeseph Bloggs", href: member_path(user)
   end
 end

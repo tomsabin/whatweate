@@ -14,6 +14,8 @@ class Admin
 
     def preview
       @event = Event.new(session[:event]).decorate
+      @event_host = @event.host
+      @event_user = @event_host.user
     end
 
     def new

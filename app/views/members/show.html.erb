@@ -40,17 +40,37 @@
     Verified with Twitter
   <% end %>
 
-  <div class="booked-events">
-    <h1>My booked events</h1>
-    <% @upcoming_booked_events.each do |event| %>
-      <%= link_to event.title, event_path(event) %>
-    <% end %>
+  <div class="guest">
+    <div class="booked-events">
+      <h1>My booked events</h1>
+      <% @upcoming_booked_events.each do |event| %>
+        <%= link_to event.title, event_path(event) %>
+      <% end %>
+    </div>
+
+    <div class="past-events">
+      <h1>My past events</h1>
+      <% @past_booked_events.each do |event| %>
+        <%= link_to event.title, event_path(event) %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="past-events">
-    <h1>My past events</h1>
-    <% @past_booked_events.each do |event| %>
-      <%= link_to event.title, event_path(event) %>
-    <% end %>
-  </div>
+  <% if @user_is_host %>
+    <div class="host">
+      <div class="upcoming-events">
+        <h1>My upcoming events</h1>
+        <% @upcoming_hosted_events.each do |event| %>
+          <%= link_to event.title, event_path(event) %>
+        <% end %>
+      </div>
+
+      <div class="past-events">
+        <h1>my past events</h1>
+        <% @past_hosted_events.each do |event| %>
+          <%= link_to event.title, event_path(event) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>
