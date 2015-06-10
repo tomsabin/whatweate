@@ -18,7 +18,8 @@ describe "Admin event management" do
     within(".new_event") { expect(page).to have_content "Title can't be blank" }
 
     select "Joe Bloggs", from: "event_host_id"
-    fill_in "event_date", with: "01/01/#{year} 19:00"
+    fill_in "event_date_date", with: "#{year}-01-01"
+    fill_in "event_date_time", with: "19:00"
     fill_in "event_title", with: "Sunday Roast"
     fill_in "event_location", with: "Londo"
     fill_in "event_location_url", with: "http://example.com"
@@ -127,7 +128,8 @@ describe "Admin event management" do
     2.times do |number|
       click_link "Create new event"
       select "Joe Bloggs", from: "event_host_id"
-      fill_in "event_date", with: "01/01/2000 19:00"
+      fill_in "event_date_date", with: "2000-01-01"
+      fill_in "event_date_time", with: "19:00"
       fill_in "event_title", with: "Event #{number + 1}"
       fill_in "event_location", with: "London"
       fill_in "event_location_url", with: "https://example.com"
@@ -167,7 +169,8 @@ describe "Admin event management" do
     click_button "Create event"
 
     select host.name, from: "event_host_id"
-    fill_in "event_date", with: "01/01/#{year} 19:00"
+    fill_in "event_date_date", with: "#{year}-01-01"
+    fill_in "event_date_time", with: "19:00"
     fill_in "event_title", with: "Sunday Roast"
     fill_in "event_location", with: "London"
     fill_in "event_location_url", with: "http://example.com"
