@@ -1,25 +1,41 @@
 class Event < ActiveRecord::Base
+  extend FriendlyId
   include AASM
 
   belongs_to :host
   has_many :bookings, dependent: :destroy
+  has_many :guests, through: :bookings, source: :user
 
-  validates :host_id, :date, :title, :location, :description, :menu, :seats, :price_in_pennies, :currency, presence: true
+  validates :host_id, :date, :title, :location, :location_url, :description, :menu, :seats, :price_in_pennies, :currency, presence: true
+  validates :price, numericality: { greater_than: 0 }
+  validates :seats, numericality: { only_integer: true, greater_than: 0 }
+  validates :location_url, url: true
 
   monetize :price_in_pennies, as: "price", with_model_currency: :currency
 
   scope :most_recent, -> { order(created_at: :desc) }
+  scope :approved, -> { where.not(state: :pending) }
+  scope :upcoming, -> { where("DATE >= ?", Date.today) }
+  scope :past, -> { where("DATE < ?", Date.today) }
+  scope :booked_for, -> (user) { includes(:bookings).where("bookings.user_id = ?", user).references(:bookings) }
+
+  friendly_id :title, use: :slugged
 
   aasm column: "state", whiny_transitions: false do
-    state :available, initial: true
+    state :pending, initial: true
+    state :available
     state :sold_out
+
+    event :approve do
+      transitions from: :pending, to: :available
+    end
 
     event :fully_booked do
       transitions from: :available, to: :sold_out
     end
   end
 
-  def seated?(user)
+  def booked?(user)
     bookings.where(user: user).exists?
   end
 end

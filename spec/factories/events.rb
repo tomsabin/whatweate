@@ -1,9 +1,11 @@
 FactoryGirl.define do
   factory :event do
     association      :host
+    state            "available"
     date             { rand(5..20).days.from_now }
     title            { Faker::Company.catch_phrase }
     location         { Faker::Address.city }
+    location_url     { Faker::Internet.url("example.com") }
     description      { Faker::Lorem.paragraph }
     menu             { Faker::Lorem.paragraph }
     seats            { rand(5..20) }
@@ -11,11 +13,16 @@ FactoryGirl.define do
     currency         "GBP"
 
     trait :sold_out do
+      state "sold_out"
       seats 1
 
       after(:create) do |event|
-        EventBooking.make(event: event, user: FactoryGirl.create(:user))
+        Booking.create(event: event, user: FactoryGirl.create(:user))
       end
+    end
+
+    trait :pending do
+      state "pending"
     end
   end
 end

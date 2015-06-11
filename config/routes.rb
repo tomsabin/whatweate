@@ -7,20 +7,32 @@ Rails.application.routes.draw do
       get "delete"
       get "edit_password"
       patch "update_password"
+      delete "disconnect", controller: "identities"
     end
   end
 
-  resource :identity, only: :destroy
+  resources :member, only: :show, controller: "members"
 
-  resources :events, only: :show do
+  resources :events, only: [:show, :new, :create] do
     resources :bookings, only: [:create]
   end
 
   namespace :admin do
-    resources :events
+    get "dashboard", to: "pages#dashboard"
+
+    resources :events do
+      collection do
+        get "preview"
+      end
+
+      member do
+        patch "approve"
+      end
+    end
+
     resources :hosts
 
-    root "pages#dashboard"
+    root "events#index"
   end
 
   root "pages#home"

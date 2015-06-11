@@ -1,0 +1,6 @@
+<% event_collection.each do |event| %>
+  <%= link_to admin_event_path(event), class: "collection-item" do %>
+    <%= event.title %>
+    <span class="badge"><%= event.host.name %></span>
+  <% end %>
+<% end %>

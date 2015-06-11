@@ -6,3 +6,7 @@ module FeatureHelpers
     click_button "Sign in"
   end
 end
+
+RSpec.configure do |config|
+  config.include FeatureHelpers, type: :feature
+end

@@ -2,7 +2,7 @@
   <div class="col s12">
     <div class="card blue-grey darken-1">
       <div class="card-content white-text">
-        <span class="card-title"><%= @event.title %>, <%= @event.location %></span>
+        <span class="card-title"><%= @event.title %>, <%= @event.location %> (<%= @event.formatted_date %>)</span>
 
         <div class="section">
           <p>
@@ -27,6 +27,7 @@
       </div>
       <div class="card-action">
         <%= link_to "Edit event", edit_admin_event_path(@event) %>
+        <%= link_to "Approve", approve_admin_event_path(@event), method: :patch if @event.pending? %>
       </div>
     </div>
   </div>

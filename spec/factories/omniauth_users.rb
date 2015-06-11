@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user_from_omniauth_without_profile, class: User do
-    state    "omniauth_complete"
+    state    "completed_omniauth"
     password { Faker::Internet.password }
 
     to_create { |instance| instance.save(validate: false) }
@@ -22,7 +22,7 @@ FactoryGirl.define do
     end
 
     factory :user_from_omniauth_with_profile do
-      state            "profile_complete"
+      state            "completed_profile"
       email            { Faker::Internet.email }
       first_name       { Faker::Name.first_name }
       last_name        { Faker::Name.last_name }

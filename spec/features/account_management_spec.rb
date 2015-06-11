@@ -1,13 +1,14 @@
 require "rails_helper"
 include OmniauthHelpers
 
-describe "Users and profiles" do
+describe "Account management" do
   scenario "guest signs up from the homepage, signs out and then completes their profile" do
     visit root_path
     click_link "Sign up"
     click_button "Sign up"
 
     expect(page).to have_content "Please review the following errors"
+    within(".user_email") { expect(page).to have_content "can't be blank" }
 
     fill_in "Email", with: "user@example.com"
     fill_in "First name", with: "Cookie"
@@ -24,6 +25,8 @@ describe "Users and profiles" do
     click_link "Sign in"
     click_button "Sign in"
 
+    within(".user_email") { expect(page).to_not have_content "can't be blank" }
+    expect(page).to_not have_content "Please review the following errors"
     expect(page).to have_content "Your email/password combination was incorrect"
 
     fill_in "Email", with: "user@example.com"
@@ -47,6 +50,7 @@ describe "Users and profiles" do
     fill_in "user_mobile_number", with: "0123456789"
     expect(page).to have_field "user_mobile_number_visible", checked: false
     fill_in "user_favorite_cuisine", with: "Chocolate"
+    expect(page).to_not have_field "user_slug"
 
     click_button "Save profile"
     expect(page).to have_content "Your profile has successfully been saved"
@@ -54,11 +58,13 @@ describe "Users and profiles" do
     expect(page).to have_content "Email: user@example.com"
     expect(page).to have_content "First name: Cookie"
     expect(page).to have_content "Last name: Monster"
-    expect(page).to_not have_content "Date of birth: 18th June 1990"
+    expect(page).to have_content "Date of birth: 18th June 1990"
+    expect(page).to have_content "Date of birth is hidden on public view"
     expect(page).to have_content "Profession: Cookie monster"
     expect(page).to have_content "Greeting: Cookies cookies cookies"
     expect(page).to have_content "Bio: I like cookies"
-    expect(page).to_not have_content "Mobile number: 0123456789"
+    expect(page).to have_content "Mobile number: 0123456789"
+    expect(page).to have_content "Mobile number is hidden on public view"
     expect(page).to have_content "Favourite cuisine: Chocolate"
   end
 
@@ -73,12 +79,19 @@ describe "Users and profiles" do
       expect(page).to have_content "Your email/password combination was incorrect"
 
       click_link "Forgot your password?"
+      click_button "Send me password reset instructions"
+      expect(page).to have_content "Please review the following errors"
+      within(".user_email") { expect(page).to have_content "can't be blank" }
 
       fill_in "user_email", with: "user@example.com"
       click_button "Send me password reset instructions"
 
       expect(ActionMailer::Base.deliveries.last.subject).to eq "Reset password instructions"
       visit edit_user_password_path(reset_password_token)
+
+      click_button "Change my password"
+      expect(page).to have_content "Please review the following errors"
+      within(".user_password") { expect(page).to have_content "can't be blank" }
 
       fill_in "user_password", with: "newpassword"
       fill_in "user_password_confirmation", with: "newpassword"
@@ -168,7 +181,7 @@ describe "Users and profiles" do
         fill_in "user_password_confirmation", with: "newpassword"
         click_button "Update password"
 
-        expect(page).to have_content "Your password was successfully updated"
+        expect(page).to have_content "Your password has been changed successfully"
 
         click_link "Sign out"
         click_link "Sign in"

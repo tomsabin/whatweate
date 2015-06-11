@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605132339) do
+ActiveRecord::Schema.define(version: 20150609102026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,9 @@ ActiveRecord::Schema.define(version: 20150605132339) do
     t.integer "user_id"
   end
 
+  add_index "bookings", ["event_id"], name: "index_bookings_on_event_id", using: :btree
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false
@@ -61,19 +64,41 @@ ActiveRecord::Schema.define(version: 20150605132339) do
     t.string   "location"
     t.text     "description"
     t.text     "menu"
-    t.integer  "seats"
+    t.integer  "seats",            default: 8
     t.integer  "price_in_pennies"
     t.string   "currency"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "date"
     t.string   "state"
+    t.string   "location_url"
+    t.string   "slug"
   end
+
+  add_index "events", ["host_id"], name: "index_events_on_host_id", using: :btree
+  add_index "events", ["slug"], name: "index_events_on_slug", unique: true, using: :btree
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "hosts", force: :cascade do |t|
     t.string  "name"
     t.integer "user_id"
+    t.string  "slug"
   end
+
+  add_index "hosts", ["slug"], name: "index_hosts_on_slug", unique: true, using: :btree
+  add_index "hosts", ["user_id"], name: "index_hosts_on_user_id", using: :btree
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -84,6 +109,14 @@ ActiveRecord::Schema.define(version: 20150605132339) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "booking_id"
+    t.string  "customer_reference"
+    t.string  "charge_reference"
+  end
+
+  add_index "payments", ["booking_id"], name: "index_payments_on_booking_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.datetime "created_at"
@@ -117,8 +150,11 @@ ActiveRecord::Schema.define(version: 20150605132339) do
     t.boolean  "date_of_birth_visible",  default: false
     t.boolean  "mobile_number_visible",  default: false
     t.string   "state"
+    t.string   "slug"
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
+  add_foreign_key "payments", "bookings"
 end

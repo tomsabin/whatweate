@@ -1,7 +1,11 @@
-<%= simple_form_for [:admin, @host] do |f| %>
+<%= simple_form_for [:admin, @host], defaults: { error: false } do |f| %>
   <%= render partial: "form_fields", locals: { f: f } %>
 
-  <%= f.button :submit, "Create host" %>
+  <div class="row">
+    <div class="col s12">
+      <%= f.button :submit, "Create host" %>
+    </div>
+  </div>
 <% end %>
 
 <script>

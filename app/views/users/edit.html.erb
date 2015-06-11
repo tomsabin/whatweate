@@ -15,19 +15,20 @@
     <%= f.input :mobile_number, as: :tel, html5: true %>
     <%= f.input :mobile_number_visible %>
     <%= f.input :favorite_cuisine %>
+    <%= f.input :slug if current_user.completed_profile? %>
     <%= f.button :submit, "Save profile" %>
   <% end %>
 
-  <% if current_user.profile_complete? %>
+  <% if current_user.completed_profile? %>
     <%= link_to "Delete your account", delete_user_path %>
     <%= link_to "Change your password", edit_password_user_path %>
 
     <% if @verified_with_facebook %>
-      <%= link_to "Disconnect Facebook from your account", identity_path(provider: :facebook), method: :delete %>
+      <%= link_to "Disconnect Facebook from your account", disconnect_user_path(provider: :facebook), method: :delete %>
     <% end %>
 
     <% if @verified_with_twitter %>
-      <%= link_to "Disconnect Twitter from your account", identity_path(provider: :twitter), method: :delete %>
+      <%= link_to "Disconnect Twitter from your account", disconnect_user_path(provider: :twitter), method: :delete %>
     <% end %>
   <% end %>
 </div>

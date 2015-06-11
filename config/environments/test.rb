@@ -11,4 +11,5 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { only_path: true }
   config.active_support.deprecation = :stderr
   config.allow_concurrency = false
+  config.active_record.raise_in_transactional_callbacks = true
 end

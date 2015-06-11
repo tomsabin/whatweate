@@ -1,1 +1,4 @@
+app_host: <%= ENV["APP_HOST"] %>
 ga_tracking_id: <%= ENV["GA_TRACKING_ID"] %>
+slack:
+  webhook_url: <%= ENV["SLACK_WEBHOOK_URL"] %>

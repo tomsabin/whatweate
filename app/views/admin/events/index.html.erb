@@ -1,12 +1,24 @@
-<ul class="collection events">
+<% if @pending_events.any? %>
+  <ul class="collection with-header events pending">
+    <li class="collection-header"><h5>Pending</h5></li>
+    <%= render partial: "event_collection", object: @pending_events %>
+  </ul>
+<% end %>
 
-  <% @events.each do |event| %>
-    <%= link_to admin_event_path(event), class: "collection-item" do %>
-      <%= event.title %>
-      <span class="badge"><%= event.host.name %></span>
-    <% end %>
-  <% end %>
+<% if @approved_events.any? %>
+  <ul class="collection with-header events approved">
+    <li class="collection-header"><h5>Approved</h5></li>
+    <%= render partial: "event_collection", object: @approved_events %>
+  </ul>
+<% end %>
 
+<% if @past_events.any? %>
+  <ul class="collection with-header events past">
+    <li class="collection-header"><h5>Previous</h5></li>
+    <%= render partial: "event_collection", object: @past_events %>
+  </ul>
+<% end %>
+
+<ul class="collection">
   <%= link_to "Create new event", new_admin_event_path, class: 'collection-item active' %>
-
 </ul>

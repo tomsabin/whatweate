@@ -1,9 +1,11 @@
 class EventNotifier
-  def initialize(event)
-    @event = event
+  def create_booking_successful(booking)
+    event = booking.event
+    event.fully_booked! if event.bookings.size >= event.seats
   end
 
-  def new_booking
-    @event.fully_booked! if @event.bookings.size >= @event.seats
+  def create_event_successful(event)
+    link = Rails.application.routes.url_helpers.admin_event_url(event, host: Settings.app_host)
+    AdminMessenger.broadcast("New event by #{event.host.name} has been submitted for approval: #{link}")
   end
 end

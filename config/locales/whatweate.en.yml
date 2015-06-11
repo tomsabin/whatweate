@@ -1,6 +1,17 @@
-# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
-
 en:
+  event:
+    booking:
+      success: "Thanks! We've booked you a seat."
+      sold_out: "Sorry, this event has sold out."
+      duplicate: "You are already booked on this event."
+      event_host: "You cannot book yourself on your own event."
+      javascript_disabled: "Please enable JavaScript for our payment system to work."
+  profile:
+    prompt: "Please complete your profile."
+    saved: "Your profile has successfully been saved."
   failure:
-    generic: "Oops, something went wrong"
+    generic: "Oops, something went wrong."
+    not_found: "Looks like we can't find the page you were looking for"
+    internal_error: "Looks like there was a problem"
+    no_events: "There doesn't seem to be any events coming up."
     omniauth_conflict: "Oops, we detected another account with the same %{provider} authentication."

@@ -4,7 +4,7 @@
     <h1>Upcoming events</h1>
 
     <% if @events.blank? %>
-      <p class="error">Oops, something went wrong. Check out our upcoming events at <a href="http://www.meetup.com/Food-Lovers-in-London/">our Meetup page</a>.</p>
+      <p class="error"><%= t("failure.no_events") %></p>
     <% else %>
       <% @events.each do |event| %>
         <article class="event">
@@ -17,8 +17,8 @@
               <span class="price"><%= humanized_money_with_symbol event.price %></span>
             </div>
 
-            <p class="description">
-              <%= event.description %>
+            <p class="markdown description">
+              <%= markdown(event.description).html_safe %>
             </p>
 
             <% if !event.location.empty? %>

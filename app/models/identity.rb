@@ -3,8 +3,16 @@ class Identity < ActiveRecord::Base
   validates :uid, :provider, presence: true
   validates :uid, uniqueness: { scope: :provider }
 
+  def self.facebook?(user)
+    where(user: user, provider: "facebook").exists?
+  end
+
   def self.facebook(user)
     find_by(user: user, provider: "facebook")
+  end
+
+  def self.twitter?(user)
+    where(user: user, provider: "twitter").exists?
   end
 
   def self.twitter(user)

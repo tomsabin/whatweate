@@ -1,12 +1,11 @@
 require "rails_helper"
 
 describe UserNotifier do
-  let(:user) { FactoryGirl.create(:user) }
-  let(:subject) { described_class.new(user) }
+  let(:user) { FactoryGirl.create(:user, :host) }
 
-  describe ".new_host" do
+  describe ".create_host_successful" do
     it "emails the user that they are now a host" do
-      expect { subject.new_host }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      expect { subject.create_host_successful(user.host) }.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
   end
 end

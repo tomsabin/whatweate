@@ -1,33 +1,36 @@
 <div class="wip">
-  <p>Photos</p>
 
-  <%# unless @event.seated?(current_user) %>
+  <% if @already_booked %>
+    <p>You are booked on to this event</p>
+  <% elsif @current_user_is_event_host %>
+    <p>This is your own event</p>
+  <% elsif @event.sold_out? %>
+    <button type="button" class="book-seat" disabled>Book seat</button>
+  <% else %>
     <%= form_tag event_bookings_path(@event) do %>
-      <%= submit_tag 'Book seat' %>
+      <%= submit_tag 'Book seat', id: "no-js-submit", class: "book-seat" %>
+      <% if user_signed_in? %>
+        <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button book-seat"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-label="Book seat"
+          data-email="<%= current_user.email %>"
+          data-image="<%= asset_url("logo-icon-128.jpg") %>"
+          data-name="WhatWeAte"
+          data-description="<%= @event.title %>"
+          data-amount="<%= @event.price_in_pennies %>"
+          data-currency="<%= @event.currency %>">
+        </script>
+        <script>$("#no-js-submit").remove();</script>
+      <% end %>
     <% end %>
-  <%# end %>
+  <% end %>
 
-  <%= humanized_money_with_symbol @event.price %>
+  <%= render partial: "event_content", locals: { event: @event, host: @event_host, user: @event_user } %>
 
-  <hr>
-
-  <p><%= @event.title %></p>
-
-  <p>Hosted by</p>
-
-  <img src="" alt="">
-
-  <p><%= @event.host.name %></p>
-
-  <p><%= @event.location %> | <%= link_to "View on map", "#" %> </p>
-
-  <h1>Details</h1>
-  <div class="markdown description">
-    <%= markdown(@event.description).html_safe %>
-  </div>
-
-  <h1>Menu</h1>
-  <div class="markdown menu">
-    <%= markdown(@event.menu).html_safe %>
+  <div class="guests">
+    <% @guests.each do |guest| %>
+      <%= link_to guest.full_name, member_path(guest) %>
+    <% end %>
   </div>
 </div>

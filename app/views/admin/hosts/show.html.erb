@@ -6,7 +6,7 @@
           <%= @host.name %>
         </span>
         <% if @user.present? %>
-          <p>User: <%= @user.full_name %></p>
+          <p>User: <%= link_to @user.full_name, member_path(@user) %></p>
         <% end %>
       </div>
       <div class="card-action">

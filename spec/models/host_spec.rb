@@ -1,7 +1,8 @@
 require "rails_helper"
 
 describe Host do
-  it { should belong_to(:user) }
+  it { should belong_to(:user).inverse_of(:host) }
+  it { should have_many(:events).dependent(:restrict_with_error) }
 
   describe "validations" do
     it { should validate_presence_of(:name) }

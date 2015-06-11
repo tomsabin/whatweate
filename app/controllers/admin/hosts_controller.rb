@@ -16,7 +16,7 @@ class Admin
 
     def create
       @host = Host.new(host_params)
-      @host.subscribe(UserNotifier.new(@host.user)) if @host.user.present?
+      @host.subscribe(UserNotifier.new) if @host.user.present?
       @users = find_users
       if @host.save
         redirect_to(admin_hosts_url, notice: "Host successfully created")
@@ -27,12 +27,12 @@ class Admin
 
     def edit
       @host = find_host
-      @users = find_users
+      @users = find_users(@host)
     end
 
     def update
       @host = find_host
-      @users = find_users
+      @users = find_users(@host)
       if @host.update(host_params)
         redirect_to(admin_host_url(@host), notice: "Host successfully updated")
       else
@@ -43,8 +43,11 @@ class Admin
     def destroy
       @host = find_host
       if @host.present?
-        @host.destroy
-        redirect_to(admin_hosts_url, notice: "Host successfully deleted")
+        if @host.destroy
+          redirect_to(admin_hosts_url, notice: "Host successfully deleted")
+        else
+          redirect_to(admin_hosts_url, alert: @host.errors.get(:base).first)
+        end
       else
         redirect_to(edit_admin_host_url(@host))
       end
@@ -53,11 +56,13 @@ class Admin
     private
 
     def find_host
-      Host.find(params[:id])
+      Host.friendly.find(params[:id])
     end
 
-    def find_users
-      User.all.decorate
+    def find_users(host = nil)
+      users = User.completed_profile.not_host.decorate
+      users << host.user if host.present? && host.user.present?
+      users
     end
 
     def host_params

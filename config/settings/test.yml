@@ -1,0 +1,4 @@
+app_host: "www.example.com"
+ga_tracking_id: <%= ENV["GA_TRACKING_ID"] %>
+slack:
+  webhook_url: "https://hooks.slack.com/"

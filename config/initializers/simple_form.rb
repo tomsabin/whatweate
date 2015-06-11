@@ -41,7 +41,7 @@ SimpleForm.setup do |config|
     ## Inputs
     b.use :label_input
     b.use :hint,  wrap_with: { tag: :span, class: "hint" }
-    b.optional :error, wrap_with: { tag: :span, class: "error" }
+    b.use :error, wrap_with: { tag: :span, class: "error" }
 
     ## full_messages_for
     # If you want to display the full error message for the attribute, you can
@@ -104,7 +104,7 @@ SimpleForm.setup do |config|
 
   # You can define the default class to be used on forms. Can be overriden
   # with `html: { :class }`. Defaulting to none.
-  config.default_form_class = "row form"
+  config.default_form_class = "form"
 
   # You can define which elements should obtain additional classes
   # config.generate_additional_classes_for = [:wrapper, :label, :input]

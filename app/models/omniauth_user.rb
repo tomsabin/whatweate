@@ -22,7 +22,7 @@ class OmniauthUser
       first_name: auth["info"]["first_name"],
       last_name: auth["info"]["last_name"],
       password: Devise.friendly_token[0, 20],
-      state: "omniauth_complete"
+      state: "completed_omniauth"
     )
     user.save!(validate: false)
     user

@@ -1,5 +1,4 @@
 require "rails_helper"
-include OmniauthHelpers
 
 describe "Admins" do
   let(:admin) { FactoryGirl.create(:admin) }
@@ -21,5 +20,35 @@ describe "Admins" do
     click_button "Sign in"
 
     expect(page).to have_content "Dashboard"
+    within(".nav-wrapper .active", match: :first) { expect(page).to have_content "Events" }
+  end
+
+  scenario "signing out of admin persists user sign in" do
+    sign_in FactoryGirl.create(:user)
+    sign_in admin
+
+    visit user_path
+    expect(page).to have_link "Profile"
+
+    visit admin_root_path
+    expect(page).to have_link "Dashboard"
+
+    click_link "Sign out"
+    expect(page).to have_link "Profile"
+  end
+
+  scenario "signing out of user persists admin sign in" do
+    sign_in FactoryGirl.create(:user)
+    sign_in admin
+
+    visit admin_root_path
+    expect(page).to have_link "Dashboard"
+
+    visit user_path
+    expect(page).to have_link "Profile"
+
+    click_link "Sign out"
+    visit admin_root_path
+    expect(page).to have_link "Dashboard"
   end
 end
