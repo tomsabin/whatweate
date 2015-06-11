@@ -29,21 +29,33 @@ describe "Admin event management" do
     fill_in "event_price", with: "10.00"
     click_button "Preview"
 
-    expect(page).to have_content "Sunday Roast"
-    expect(page).to have_content "Hosted by Joe Bloggs"
-    expect(page).to_not have_link "Joe Bloggs"
-    expect(page).to have_link "View on map"
-    expect(page).to have_content "1st January #{year} 7:00pm"
-    expect(find_link("View on map")[:href]).to eq "http://example.com"
-    expect(page).to have_content "Londo"
-    expect(page).to have_content "£10"
-    within(".description") do
-      expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
+    within(".event-thumbnail") do
+      expect(page).to have_content "Sunday Roast"
+      expect(page).to have_content "1st January #{year} 7:00pm"
+      expect(page).to have_content "£10"
+      expect(page).to have_content "Londo"
+      within(".description") do
+        expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
+      end
     end
-    within(".menu") do
-      expect(page).to have_content "Pumpkin Soup"
-      expect(page).to have_content "Roast Lamb with trimmings"
-      expect(page).to have_content "Tiramisu"
+
+    within(".event-show") do
+      expect(page).to have_content "Sunday Roast"
+      expect(page).to have_content "Hosted by Joe Bloggs"
+      expect(page).to_not have_link "Joe Bloggs"
+      expect(page).to have_link "View on map"
+      expect(page).to have_content "1st January #{year} 7:00pm"
+      expect(find_link("View on map")[:href]).to eq "http://example.com"
+      expect(page).to have_content "Londo"
+      expect(page).to have_content "£10"
+      within(".description") do
+        expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
+      end
+      within(".menu") do
+        expect(page).to have_content "Pumpkin Soup"
+        expect(page).to have_content "Roast Lamb with trimmings"
+        expect(page).to have_content "Tiramisu"
+      end
     end
 
     expect(page).to have_button "Create event"

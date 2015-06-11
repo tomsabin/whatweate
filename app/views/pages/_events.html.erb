@@ -7,7 +7,7 @@
       <p class="error"><%= t("failure.no_events") %></p>
     <% else %>
       <% @events.each do |event| %>
-        <%= render partial: "event_thumbnail", locals: { event: event } %>
+        <%= render partial: "event_thumbnail", locals: { link: event_path(event), event: event } %>
       <% end %>
     <% end %>
   </div>
