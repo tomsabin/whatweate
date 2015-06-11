@@ -31,15 +31,39 @@
                              wrapper_html: { class: "col s12 m6" },
                              label_html: { class: "active" } %>
 
-  <%= f.file_field :primary_photo %>
-  <%= f.hidden_field :primary_photo_cache %>
-
   <div class="col s12">
     <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
   </div>
 
   <%= f.input :description, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea" } %>
   <%= f.input :menu, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea" } %>
+
+  <div class="col s12">
+    <div class="section">
+      <h6 class="grey-text">Primary photo</h6>
+      <%= f.file_field :primary_photo %>
+      <%= f.hidden_field :primary_photo_cache %>
+    </div>
+
+    <img src="<%= @event.primary_photo.url %>" id="photo_preview" alt="Primary event photo" class="responsive-img">
+
+    <script>
+      $("#event_primary_photo").change(function(){
+        var input = this
+
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+
+          reader.onload = function (e) {
+            $("#photo_preview").attr("src", e.target.result);
+          }
+
+          reader.readAsDataURL(input.files[0]);
+        }
+      });
+    </script>
+  </div>
+
 </div>
 
 <script>
