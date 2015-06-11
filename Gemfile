@@ -26,6 +26,7 @@ gem "slack-notifier"
 gem "wisper-activerecord"
 gem "friendly_id"
 gem "stripe"
+gem "date_time_attribute"
 
 group :production do
   gem 'rails_12factor'
