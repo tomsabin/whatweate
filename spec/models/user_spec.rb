@@ -77,6 +77,16 @@ describe User do
         expect(described_class.not_host).to eq [user]
       end
     end
+
+    describe "alphabetical" do
+      let!(:user_a_b) { FactoryGirl.create(:user, first_name: "Albert", last_name: "Bloggs") }
+      let!(:user_a_a) { FactoryGirl.create(:user, first_name: "Albert", last_name: "Albert") }
+      let!(:user_z) { FactoryGirl.create(:user, first_name: "Zack") }
+
+      it "orders by name alphabetically ascending" do
+        expect(described_class.alphabetical).to eq [user_a_a, user_a_b, user_z]
+      end
+    end
   end
 
   describe "states" do
