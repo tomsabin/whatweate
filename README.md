@@ -13,6 +13,10 @@
 - PostgreSQL
 - Start server with `foreman start --port 3000`
 
+## Dependencies
+
+Photo uploading and processing is handled by [CarrierWave](https://github.com/carrierwaveuploader/carrierwave), you'll need to install `imagemagick` for versions (e.g. thumbnail). This should be as easy as `brew install imagemagick`.
+
 ## Staging and Production environments
 
 Hosted on Heroku, [install the CLI](https://toolbelt.heroku.com/). [CircleCI](https://circleci.com/gh/what-we-ate/what-we-ate) automatically deploys `develop` to QA, `master` to Staging on green builds.
