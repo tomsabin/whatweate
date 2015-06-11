@@ -37,6 +37,8 @@ describe "Account management" do
     expect(page).to have_field "user_email", with: "user@example.com"
     expect(page).to have_field "user_first_name", with: "Cookie"
     expect(page).to have_field "user_last_name", with: "Monster"
+    expect(page).to_not have_field "user_password"
+    expect(page).to_not have_field "user_password_confirmation"
     expect(page).to have_content "Please complete your profile"
 
     click_button "Save profile"
@@ -286,6 +288,8 @@ describe "Account management" do
       expect(page).to have_field "user_email", with: "user@example.com"
       expect(page).to have_field "user_first_name", with: "Cookie"
       expect(page).to have_field "user_last_name", with: "Monster"
+      fill_in "user_password", with: "letmein!!"
+      fill_in "user_password_confirmation", with: "letmein!!"
       fill_in "user_first_name", with: "C."
       fill_in "user_date_of_birth", with: "1990-06-18"
       fill_in "user_profession", with: "Cookie monster"
@@ -298,6 +302,20 @@ describe "Account management" do
       expect(page).to have_content "Your profile has successfully been saved"
       expect(page).to have_content "First name: C."
       expect(page).to have_content "Last name: Monster"
+
+      click_link "Sign out"
+      click_link "Sign in"
+      click_link "Facebook"
+
+      expect(page).to have_content "Successfully authenticated from Facebook account"
+
+      click_link "Sign out"
+      click_link "Sign in"
+      fill_in "Email", with: "user@example.com"
+      fill_in "Password", with: "letmein!!"
+      click_button "Sign in"
+
+      expect(page).to have_content "Signed in successfully"
     end
 
     scenario "invalid facebook authentication" do
@@ -320,6 +338,8 @@ describe "Account management" do
 
       expect(page).to have_content "Successfully authenticated from Twitter account"
       expect(page).to have_content "Please complete your profile"
+      fill_in "user_password", with: "letmein!!"
+      fill_in "user_password_confirmation", with: "letmein!!"
       fill_in "user_email", with: "user@example.com"
       fill_in "user_first_name", with: "Cookie"
       fill_in "user_last_name", with: "Monster"
@@ -332,6 +352,20 @@ describe "Account management" do
 
       click_button "Save profile"
       expect(page).to have_content "Your profile has successfully been saved"
+
+      click_link "Sign out"
+      click_link "Sign in"
+      click_link "Facebook"
+
+      expect(page).to have_content "Successfully authenticated from Facebook account"
+
+      click_link "Sign out"
+      click_link "Sign in"
+      fill_in "Email", with: "user@example.com"
+      fill_in "Password", with: "letmein!!"
+      click_button "Sign in"
+
+      expect(page).to have_content "Signed in successfully"
     end
 
     scenario "invalid twitter authentication" do
