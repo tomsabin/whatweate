@@ -21,6 +21,8 @@ class Event < ActiveRecord::Base
 
   friendly_id :title, use: :slugged
 
+  date_time_attribute :date
+
   aasm column: "state", whiny_transitions: false do
     state :pending, initial: true
     state :available
