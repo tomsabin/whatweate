@@ -9,7 +9,7 @@
   <% else %>
     <%= form_tag event_bookings_path(@event) do %>
       <%= submit_tag 'Book seat', id: "no-js-submit", class: "book-seat" %>
-      <% if user_signed_in? %>
+      <% if user_signed_in? && current_user.completed_profile? %>
         <script
           src="https://checkout.stripe.com/checkout.js" class="stripe-button book-seat"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
