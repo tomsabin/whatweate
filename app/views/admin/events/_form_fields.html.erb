@@ -30,6 +30,16 @@
   <%= f.input :location_url, placeholder: "e.g. http://example.com",
                              wrapper_html: { class: "col s12 m6" },
                              label_html: { class: "active" } %>
+
+  <%= f.file_field :primary_photo %>
+  <%= f.hidden_field :primary_photo_cache %>
+
+  <div class="col s12">
+    <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
+  </div>
+
+  <%= f.input :description, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea" } %>
+  <%= f.input :menu, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea" } %>
 </div>
 
 <script>
@@ -39,14 +49,3 @@
     selectYears: 15
   });
 </script>
-
-<div class="row">
-  <div class="col s12">
-    <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
-  </div>
-</div>
-
-<div class="row">
-  <%= f.input :description, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea" } %>
-  <%= f.input :menu, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea" } %>
-</div>
