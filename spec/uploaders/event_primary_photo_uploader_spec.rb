@@ -7,8 +7,18 @@ describe EventPrimaryPhotoUploader do
   let(:event) { FactoryGirl.create(:event) }
   let(:uploader) { described_class.new(event, :primary_photo) }
 
+  context "default images" do
+    it "returns the correct url for the full image" do
+      expect(uploader.url).to eq "/assets/events/primary_default.png"
+    end
+
+    it "returns the correct url for the thumb image" do
+      expect(uploader.thumb.url).to eq "/assets/events/primary_default_thumb.png"
+    end
+  end
+
   context "uploading images" do
-    let(:path_to_image) { Rails.root.join("fixtures", "carrierwave", "event_thumb_default.png") }
+    let(:path_to_image) { Rails.root.join("fixtures", "carrierwave", "image.png") }
 
     before do
       described_class.enable_processing = true
