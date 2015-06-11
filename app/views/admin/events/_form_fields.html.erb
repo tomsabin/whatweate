@@ -27,7 +27,9 @@
                       label_html: { class: "active" } %>
 
   <%= f.input :location, wrapper_html: { class: "col s12 m6" } %>
-  <%= f.input :location_url, wrapper_html: { class: "col s12 m6" }, placeholder: "e.g. http://example.com" %>
+  <%= f.input :location_url, placeholder: "e.g. http://example.com",
+                             wrapper_html: { class: "col s12 m6" },
+                             label_html: { class: "active" } %>
 </div>
 
 <script>

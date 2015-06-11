@@ -9,7 +9,7 @@ describe "Admin event management" do
     visit admin_events_path
   end
 
-  scenario "admin previews and creates, views, previews and edits, and deletes an event" do
+  scenario "admin previews and creates, views, edits, and deletes an event" do
     click_link "Create new event"
     click_button "Create event"
 
