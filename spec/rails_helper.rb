@@ -5,6 +5,7 @@ require "rspec/rails"
 require "shoulda/matchers"
 require "webmock/rspec"
 require "vcr"
+require "carrierwave/test/matchers"
 
 VCR.configure do |config|
   config.cassette_library_dir = "fixtures/vcr_cassettes"
@@ -23,6 +24,7 @@ RSpec.configure do |config|
   config.filter_run_excluding :smoke
 
   config.include Devise::TestHelpers, type: :controller
+  config.include CarrierWave::Test::Matchers, type: :uploader
 
   config.around(:example, :smoke) do |example|
     WebMock.allow_net_connect!
