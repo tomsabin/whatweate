@@ -141,15 +141,8 @@ describe "Admin event management" do
   scenario "orders by the most recently created" do
     2.times do |number|
       click_link "Create new event"
-      select "Joe Bloggs", from: "event_host_id"
-      fill_in "event_date_date", with: "2000-01-01"
-      fill_in "event_date_time", with: "19:00"
+      fill_in_event_form
       fill_in "event_title", with: "Event #{number + 1}"
-      fill_in "event_location", with: "London"
-      fill_in "event_location_url", with: "https://example.com"
-      fill_in "event_description", with: "Description"
-      fill_in "event_menu", with: "Menu"
-      fill_in "event_price", with: "10.00"
       click_button "Create event"
     end
 
@@ -170,9 +163,9 @@ describe "Admin event management" do
     past = FactoryGirl.create(:event, date: 1.day.ago)
 
     visit admin_events_path
-    within('.pending') { expect(page).to have_content pending.title }
-    within('.approved') { expect(page).to have_content approved.title }
-    within('.past') { expect(page).to have_content past.title }
+    within(".pending") { expect(page).to have_content pending.title }
+    within(".approved") { expect(page).to have_content approved.title }
+    within(".past") { expect(page).to have_content past.title }
   end
 
   scenario "admin previews an event with a host that has a user" do
@@ -182,16 +175,9 @@ describe "Admin event management" do
     click_link "Create new event"
     click_button "Create event"
 
+    fill_in_event_form
     select host.name, from: "event_host_id"
-    fill_in "event_date_date", with: "#{year}-01-01"
-    fill_in "event_date_time", with: "19:00"
-    fill_in "event_title", with: "Sunday Roast"
-    fill_in "event_location", with: "London"
-    fill_in "event_location_url", with: "http://example.com"
-    fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
-    fill_in "event_menu", with: "- Pumpkin Soup\n- Roast Lamb with trimmings\n- Tiramisu"
-    fill_in "event_seats", with: "8"
-    fill_in "event_price", with: "10.00"
+
     click_button "Preview"
     expect(page).to have_link "Joeseph Bloggs", href: member_path(user)
   end
@@ -199,17 +185,8 @@ describe "Admin event management" do
   scenario "admin creates an event with a primary photo" do
     click_link "Create new event"
 
-    select "Joe Bloggs", from: "event_host_id"
-    fill_in "event_date_date", with: "#{year}-01-01"
-    fill_in "event_date_time", with: "19:00"
-    fill_in "event_title", with: "Dinner"
-    fill_in "event_location", with: "London"
-    fill_in "event_location_url", with: "http://example.com"
+    fill_in_event_form
     attach_file "event_primary_photo", Rails.root.join("fixtures/carrierwave/image.png")
-    fill_in "event_description", with: "Description"
-    fill_in "event_menu", with: "Menu"
-    fill_in "event_seats", with: "8"
-    fill_in "event_price", with: "10.00"
 
     click_button "Create"
 
@@ -220,5 +197,58 @@ describe "Admin event management" do
     visit "events/dinner"
     expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"
     expect(find("img.primary-photo")["src"]).to have_content "/uploads/event/primary_photo/#{Event.last.id}/image.png"
+  end
+
+  scenario "admin creates an event with additional photos" do
+    click_link "Create new event"
+
+    fill_in_event_form
+    attach_file "event_photos", [Rails.root.join("fixtures/carrierwave/image.png")]
+
+    click_button "Create"
+    expect(page).to have_content "Please review the following errors"
+    within(".event_photos") { expect(page).to_not have_content "must upload a minimum of 2 photos" }
+
+    attach_file "event_photos", [
+      Rails.root.join("fixtures/carrierwave/image.png"),
+      Rails.root.join("fixtures/carrierwave/image.png"),
+      Rails.root.join("fixtures/carrierwave/image.png"),
+      Rails.root.join("fixtures/carrierwave/image.png"),
+      Rails.root.join("fixtures/carrierwave/image.png"),
+      Rails.root.join("fixtures/carrierwave/image.png"),
+      Rails.root.join("fixtures/carrierwave/image.png")
+    ]
+
+    click_button "Create"
+    expect(page).to have_content "Please review the following errors"
+    within(".event_photos") { expect(page).to_not have_content "must upload a maximum of 6 photos" }
+
+    attach_file "event_photos", [Rails.root.join("fixtures/carrierwave/image.png"), Rails.root.join("fixtures/carrierwave/image.png")]
+    click_button "Create"
+
+    visit root_path
+    within(".photos") do
+      expect(find("img.photo-1")["src"]).to have_content "/uploads/event/photos/#{Event.last.id}/image-1.png"
+      expect(find("img.photo-2")["src"]).to have_content "/uploads/event/photos/#{Event.last.id}/image-2.png"
+    end
+
+    visit "events/dinner"
+    within(".photos") do
+      expect(find("img.photo-1")["src"]).to have_content "/uploads/event/photos/#{Event.last.id}/image-1.png"
+      expect(find("img.photo-2")["src"]).to have_content "/uploads/event/photos/#{Event.last.id}/image-2.png"
+    end
+  end
+
+  def fill_in_event_form
+    select "Joe Bloggs", from: "event_host_id"
+    fill_in "event_date_date", with: "#{year}-01-01"
+    fill_in "event_date_time", with: "19:00"
+    fill_in "event_title", with: "Dinner"
+    fill_in "event_location", with: "London"
+    fill_in "event_location_url", with: "http://example.com"
+    fill_in "event_description", with: "Description"
+    fill_in "event_menu", with: "Menu"
+    fill_in "event_seats", with: "8"
+    fill_in "event_price", with: "10.00"
   end
 end
