@@ -6,10 +6,7 @@ describe PhotosUploader, type: :uploader do
 
   before do
     described_class.enable_processing = true
-    event.photos = [
-      File.open(Rails.root.join("fixtures", "carrierwave", "image.png")),
-      File.open(Rails.root.join("fixtures", "carrierwave", "image.png"))
-    ]
+    event.photos = [File.open(path_to_image), File.open(path_to_image)]
     event.save
   end
 
