@@ -211,14 +211,14 @@ describe "Admin event management" do
     fill_in "event_seats", with: "8"
     fill_in "event_price", with: "10.00"
 
-    EventPrimaryPhotoUploader.enable_processing = true
     click_button "Create"
-    EventPrimaryPhotoUploader.enable_processing = false
 
     visit root_path
     expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
+    expect(find("img.primary-photo")["src"]).to have_content "/uploads/event/primary_photo/#{Event.last.id}/thumb_image.png"
 
     visit "events/dinner"
     expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"
+    expect(find("img.primary-photo")["src"]).to have_content "/uploads/event/primary_photo/#{Event.last.id}/image.png"
   end
 end
