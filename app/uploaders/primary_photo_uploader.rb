@@ -1,8 +1,8 @@
-class EventPrimaryPhotoUploader < PhotoUploader
-  process :resize_to_fill => [1024, 678]
+class PrimaryPhotoUploader < PhotoUploader
+  process resize_to_fill: [1024, 678]
 
   version :thumb do
-    process :resize_to_fill => [292, 194]
+    process resize_to_fill: [292, 194]
   end
 
   def default_url

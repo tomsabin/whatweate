@@ -6,7 +6,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{model.id}/#{mounted_as}"
+    "uploads/#{model.class.to_s.underscore.pluralize}/#{model.id}/#{mounted_as}"
   end
 
   def filename

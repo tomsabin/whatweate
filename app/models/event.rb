@@ -21,7 +21,7 @@ class Event < ActiveRecord::Base
 
   friendly_id :title, use: :slugged
 
-  mount_uploader :primary_photo, EventPrimaryPhotoUploader
+  mount_uploader :primary_photo, PrimaryPhotoUploader
 
   date_time_attribute :date
 

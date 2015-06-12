@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe EventPrimaryPhotoUploader, type: :uploader do
+describe PrimaryPhotoUploader, type: :uploader do
   let(:uploader) { described_class.new(klass, :primary_photo) }
 
   context "default images" do
@@ -33,27 +33,27 @@ describe EventPrimaryPhotoUploader, type: :uploader do
       uploader.remove!
     end
 
-    it "stores to the correct location" do
-      expect(uploader.store_dir).to eq "uploads/example_class/1/primary_photo"
-    end
-
-    it "has the correct filename" do
-      expect(uploader.filename).to match /\w{8}(-\w{4}){3}-\w{12}\.png/
-    end
-
     describe "default_url?" do
       it { expect(uploader.default_url?).to eq false }
     end
 
     context "the full version" do
-      it "should scale down a landscape image to be exactly 1024 by 679 pixels" do
+      it "should scale down a landscape image to be exactly 1024 by 678 pixels" do
         expect(uploader).to have_dimensions(1024, 678)
+      end
+
+      it "has the correct url" do
+        expect(uploader.url).to match /uploads\/example_classes\/(\d)+\/primary_photo\/\w{8}(-\w{4}){3}-\w{12}\.png/
       end
     end
 
     context "the thumb version" do
       it "should scale down a landscape image to fit within 292 by 194 pixels" do
         expect(uploader.thumb).to be_no_larger_than(292, 194)
+      end
+
+      it "has the correct url" do
+        expect(uploader.thumb.url).to match /uploads\/example_classes\/(\d)+\/primary_photo\/thumb_\w{8}(-\w{4}){3}-\w{12}\.png/
       end
     end
   end

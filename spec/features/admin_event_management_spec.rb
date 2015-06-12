@@ -192,12 +192,12 @@ describe "Admin event management" do
 
     visit root_path
     expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
-    path = %r(\/uploads\/event\/(\d)+\/primary_photo\/thumb_\w{8}(-\w{4}){3}-\w{12}\.png)
+    path = %r(\/uploads\/events\/(\d)+\/primary_photo\/thumb_\w{8}(-\w{4}){3}-\w{12}\.png)
     expect(find("img.primary-photo")["src"]).to have_content path
 
     visit "events/dinner"
     expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"
-    path = %r(\/uploads\/event\/(\d)+\/primary_photo\/\w{8}(-\w{4}){3}-\w{12}\.png)
+    path = %r(\/uploads\/events\/(\d)+\/primary_photo\/\w{8}(-\w{4}){3}-\w{12}\.png)
     expect(find("img.primary-photo")["src"]).to have_content path
   end
 
