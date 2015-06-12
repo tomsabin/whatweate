@@ -13,10 +13,8 @@
       <%= markdown(event.description).html_safe %>
     </div>
 
-    <% if !event.location.empty? %>
-      <p class="venue">
-        <%= event.location %>
-      </p>
-    <% end %>
+    <p class="venue">
+      <%= event.location %>
+    </p>
   </a>
 </article>

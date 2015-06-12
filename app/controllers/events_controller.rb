@@ -11,6 +11,7 @@ class EventsController < ApplicationController
   end
 
   def new
+    @event_thumbnail = Event.new(thumbnail_params).decorate
     @event = Event.new
   end
 
@@ -34,5 +35,14 @@ class EventsController < ApplicationController
     params.require(:event).
       permit(:date, :title, :location, :location_url, :description, :menu,
              :seats, :price, :primary_photo, :primary_photo_cache, photos: [])
+  end
+
+  def thumbnail_params
+    {
+      title: "Event title",
+      date: 1.month.from_now.change(hour: 19, min: 30),
+      price_in_pennies: 3000,
+      description: "Your description here"
+    }
   end
 end

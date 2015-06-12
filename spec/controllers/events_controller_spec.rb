@@ -173,4 +173,20 @@ describe EventsController do
       end
     end
   end
+
+  describe "#new" do
+    before do
+      sign_in FactoryGirl.create(:user, :host)
+      get :new
+    end
+
+    describe "@event_thumbnail" do
+      it { expect(assigns(:event_thumbnail)).to have_attributes({
+        title: "Event title",
+        date: 1.month.from_now.change(hour: 19, min: 30),
+        price_in_pennies: 3000,
+        description: "Your description here"
+      }) }
+    end
+  end
 end

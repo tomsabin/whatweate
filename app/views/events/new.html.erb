@@ -1,3 +1,7 @@
+<div class="event-thumbnail">
+  <%= render partial: "pages/event_thumbnail", locals: { link: "#", event: @event_thumbnail } %>
+</div>
+
 <%= simple_form_for @event do |f| %>
   <%= f.error_notification %>
 
@@ -30,6 +34,7 @@
 
         reader.onload = function (e) {
           $("#photo_preview").attr("src", e.target.result);
+          $(".event-thumbnail .primary-photo").attr("src", e.target.result);
         }
 
         reader.readAsDataURL(input.files[0]);
