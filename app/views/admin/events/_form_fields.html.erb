@@ -40,8 +40,8 @@
 
   <div class="col s12">
     <div class="section">
-      <h6 class="grey-text">Primary photo</h6>
-      <%= f.file_field :primary_photo %>
+      <h6 class="grey-text">Primary photo (1024 x 678px)</h6>
+      <%= f.file_field :primary_photo, accept: "image/*" %>
       <%= f.hidden_field :primary_photo_cache %>
     </div>
 
