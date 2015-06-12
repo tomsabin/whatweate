@@ -91,6 +91,13 @@
       });
     </script>
   </div>
+
+  <div class="col s12">
+    <p>
+      <%= f.check_box :state, { class: "filled-in", checked: false }, "pending", "available" %>
+      <label for="event_state">Pending event</label>
+    </p>
+  </div>
 </div>
 
 <script>

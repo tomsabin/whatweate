@@ -24,7 +24,7 @@ class Admin
     end
 
     def create
-      @event = Event.new(event_params.merge(state: "available"))
+      @event = Event.new(event_params)
 
       return handle_preview if params[:commit] == "Preview"
 
@@ -93,7 +93,7 @@ class Admin
     def event_params
       params.require(:event).
         permit(:host_id, :date_date, :date_time, :title, :location, :location_url, :description,
-               :menu, :seats, :price, :primary_photo, :primary_photo_cache, photos: [])
+               :state, :menu, :seats, :price, :primary_photo, :primary_photo_cache, photos: [])
     end
   end
 end

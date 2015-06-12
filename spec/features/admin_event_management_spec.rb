@@ -9,7 +9,7 @@ describe "Admin event management" do
     visit admin_events_path
   end
 
-  scenario "admin previews and creates, views, edits, and deletes an event" do
+  scenario "admin creates, views, edits, and deletes an event" do
     click_link "Create new event"
     click_button "Create event"
 
@@ -21,48 +21,13 @@ describe "Admin event management" do
     fill_in "event_date_date", with: "#{year}-01-01"
     fill_in "event_date_time", with: "19:00"
     fill_in "event_title", with: "Sunday Roast"
-    fill_in "event_location", with: "Londo"
+    fill_in "event_location", with: "London"
     fill_in "event_location_url", with: "http://example.com"
     fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
     fill_in "event_menu", with: "- Pumpkin Soup\n- Roast Lamb with trimmings\n- Tiramisu"
     fill_in "event_seats", with: "8"
     fill_in "event_price", with: "10.00"
-    click_button "Preview"
 
-    within(".event-thumbnail") do
-      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
-      expect(page).to have_content "Sunday Roast"
-      expect(page).to have_content "1st January #{year} 7:00pm"
-      expect(page).to have_content "£10"
-      expect(page).to have_content "Londo"
-      within(".description") do
-        expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
-      end
-    end
-
-    within(".event-show") do
-      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
-      expect(page).to have_content "Sunday Roast"
-      expect(page).to have_content "Hosted by Joe Bloggs"
-      expect(page).to_not have_link "Joe Bloggs"
-      expect(page).to have_link "View on map"
-      expect(page).to have_content "1st January #{year} 7:00pm"
-      expect(find_link("View on map")[:href]).to eq "http://example.com"
-      expect(page).to have_content "Londo"
-      expect(page).to have_content "£10"
-      within(".description") do
-        expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
-      end
-      within(".menu") do
-        expect(page).to have_content "Pumpkin Soup"
-        expect(page).to have_content "Roast Lamb with trimmings"
-        expect(page).to have_content "Tiramisu"
-      end
-    end
-
-    expect(page).to have_button "Create event"
-    click_link "Edit"
-    fill_in "event_location", with: "London"
     click_button "Create event"
 
     expect(page).to have_content "Event successfully created"
@@ -136,6 +101,14 @@ describe "Admin event management" do
     visit root_path
 
     expect(page).to_not have_content "Sunday Roast Lamb"
+  end
+
+  scenario "admin creates a pending event" do
+    click_link "Create new event"
+    fill_in_event_form
+    check "Pending event"
+    click_button "Create event"
+    within(".pending") { expect(page).to have_content "Sunday Roast" }
   end
 
   scenario "orders by the most recently created" do
