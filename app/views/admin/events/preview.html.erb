@@ -4,7 +4,7 @@
   </div>
 
   <div class="event-show">
-    <%= render partial: "/events/event_content", locals: { event: @event, host: @event_host, user: @event_user } %>
+    <%= render partial: "/events/event_content", locals: { event: @event, host: @event_host, user: @event_user, guests: [] } %>
   </div>
 
   <%= form_for [:admin, @event] do |f| %>

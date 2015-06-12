@@ -62,8 +62,12 @@
         }
       });
     </script>
-  </div>
 
+    <div class="section">
+      <h6 class="grey-text">Other photos (minimum of 2, maximum of 6)</h6>
+      <%= f.file_field :photos, accept: "image/*", multiple: true %>
+    </div>
+  </div>
 </div>
 
 <script>

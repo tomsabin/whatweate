@@ -33,3 +33,14 @@
 </div>
 
 <p>Photos</p>
+<div class="photos">
+  <% event.photos.each_with_index do |photo, index| %>
+    <img src="<%= photo.url %>" alt="Event photo" class="photo-<%= index + 1 %>">
+  <% end %>
+</div>
+
+<div class="guests">
+  <% guests.each do |guest| %>
+    <%= link_to guest.full_name, member_path(guest) %>
+  <% end %>
+</div>
