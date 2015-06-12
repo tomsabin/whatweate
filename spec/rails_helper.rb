@@ -32,7 +32,7 @@ RSpec.configure do |config|
     WebMock.disable_net_connect!
   end
 
-  config.after(:suite) do
+  config.after(:all) do
     FileUtils.rm_rf(Rails.root.join("tmp", CarrierWave::Uploader::Base.cache_dir))
     FileUtils.rm_rf(Rails.root.join("tmp", CarrierWave::Uploader::Base.store_dir))
   end
