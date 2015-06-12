@@ -43,7 +43,7 @@ describe PrimaryPhotoUploader, type: :uploader do
       end
 
       it "has the correct url" do
-        expect(uploader.url).to match /uploads\/example_classes\/(\d)+\/primary_photo\/\w{8}(-\w{4}){3}-\w{12}\.png/
+        expect(uploader.url).to match /uploads\/example_classes\/(\d)+\/primary_photo\/(\h){32}.png/
       end
     end
 
@@ -53,7 +53,7 @@ describe PrimaryPhotoUploader, type: :uploader do
       end
 
       it "has the correct url" do
-        expect(uploader.thumb.url).to match /uploads\/example_classes\/(\d)+\/primary_photo\/thumb_\w{8}(-\w{4}){3}-\w{12}\.png/
+        expect(uploader.thumb.url).to match /uploads\/example_classes\/(\d)+\/primary_photo\/thumb_(\h){32}.png/
       end
     end
   end

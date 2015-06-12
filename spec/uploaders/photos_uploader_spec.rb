@@ -28,7 +28,7 @@ describe PhotosUploader, type: :uploader do
     end
 
     it "has the correct url" do
-      expect(event.photos.first.url).to match /uploads\/events\/(\d)+\/photos\/\w{8}(-\w{4}){3}-\w{12}\.png/
+      expect(event.photos.first.url).to match /uploads\/events\/(\d)+\/photos\/(\h){32}.png/
     end
   end
 
@@ -38,7 +38,7 @@ describe PhotosUploader, type: :uploader do
     end
 
     it "has the correct url" do
-      expect(event.photos.first.thumb.url).to match /uploads\/events\/(\d)+\/photos\/thumb_\w{8}(-\w{4}){3}-\w{12}\.png/
+      expect(event.photos.first.thumb.url).to match /uploads\/events\/(\d)+\/photos\/thumb_(\h){32}.png/
     end
   end
 end

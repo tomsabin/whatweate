@@ -28,7 +28,7 @@ describe PhotoUploader, type: :uploader do
     end
 
     it "generates a random filename" do
-      expect(uploader.filename).to match /\w{8}(-\w{4}){3}-\w{12}\.png/
+      expect(uploader.filename).to match /(\h){32}.png/
     end
   end
 end
