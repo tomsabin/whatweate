@@ -92,12 +92,14 @@
     </script>
   </div>
 
-  <div class="col s12">
-    <p>
-      <%= f.check_box :state, { class: "filled-in", checked: false }, "pending", "available" %>
-      <label for="event_state">Pending event</label>
-    </p>
-  </div>
+  <% if @event.new_record? %>
+    <div class="col s12">
+      <p>
+        <%= f.check_box :state, { class: "filled-in", checked: false }, "pending", "available" %>
+        <label for="event_state">Pending event</label>
+      </p>
+    </div>
+  <% end %>
 </div>
 
 <script>

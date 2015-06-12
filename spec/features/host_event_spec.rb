@@ -49,7 +49,7 @@ describe "Host event" do
 
     click_link "Sunday Roast"
 
-    within(".event") do
+    within(".event-full") do
       expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
       expect(page).to have_link "Joe Bloggs"
       expect(page).to_not have_button "Book seat"

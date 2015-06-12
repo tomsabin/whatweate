@@ -18,7 +18,8 @@
     <%= f.hidden_field :description %>
     <%= f.hidden_field :menu %>
 
-    <%= f.submit "Create event" %>
-    <%= link_to "Edit", new_admin_event_path %>
+    <%= link_to "Back", admin_event_path(@event) %>
+    <%= link_to "Edit event", edit_admin_event_path(@event) %>
+    <%= link_to "Approve", approve_admin_event_path(@event), method: :patch if @event.pending? %>
   <% end %>
 </div>

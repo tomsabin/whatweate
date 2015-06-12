@@ -34,6 +34,10 @@ describe "Admin event management" do
     expect(page).to have_content "Sunday Roast"
 
     click_link "Sunday Roast"
+
+    expect(page).to have_link "Edit event"
+    expect(page).to_not have_link "Preview"
+
     click_link "Sunday Roast"
 
     expect(page).to have_content "Sunday Roast"
@@ -75,6 +79,7 @@ describe "Admin event management" do
 
     click_link "Edit event"
 
+    expect(page).to_not have_field "Pending event"
     fill_in "event_title", with: ""
     click_button "Save event"
 
@@ -109,6 +114,64 @@ describe "Admin event management" do
     check "Pending event"
     click_button "Create event"
     within(".pending") { expect(page).to have_content "Sunday Roast" }
+  end
+
+  scenario "admin previews a pending event" do
+    click_link "Create new event"
+
+    select "Joe Bloggs", from: "event_host_id"
+    fill_in "event_date_date", with: "#{year}-01-01"
+    fill_in "event_date_time", with: "19:00"
+    fill_in "event_title", with: "Sunday Roast"
+    fill_in "event_location", with: "London"
+    fill_in "event_location_url", with: "http://example.com"
+    fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
+    fill_in "event_menu", with: "- Pumpkin Soup\n- Roast Lamb with trimmings\n- Tiramisu"
+    fill_in "event_seats", with: "8"
+    fill_in "event_price", with: "10.00"
+    attach_file "event_photos", [Rails.root.join("fixtures/carrierwave/image.png"), Rails.root.join("fixtures/carrierwave/image-1.png")]
+    check "Pending event"
+
+    click_button "Create event"
+    click_link "Sunday Roast"
+    click_link "Preview"
+
+    within(".event-thumbnail") do
+      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
+      expect(page).to have_content "Sunday Roast"
+      expect(page).to have_content "1st January #{year} 7:00pm"
+      expect(page).to have_content "£10"
+      expect(page).to have_content "Londo"
+      within(".description") do
+        expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
+      end
+    end
+
+    within(".event-show") do
+      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
+      expect(page).to have_content "Sunday Roast"
+      expect(page).to have_content "Hosted by Joe Bloggs"
+      expect(page).to_not have_link "Joe Bloggs"
+      expect(page).to have_link "View on map"
+      expect(page).to have_content "1st January #{year} 7:00pm"
+      expect(find_link("View on map")[:href]).to eq "http://example.com"
+      expect(page).to have_content "Londo"
+      expect(page).to have_content "£10"
+      within(".description") do
+        expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
+      end
+      within(".menu") do
+        expect(page).to have_content "Pumpkin Soup"
+        expect(page).to have_content "Roast Lamb with trimmings"
+        expect(page).to have_content "Tiramisu"
+      end
+      within(".photos") do
+        path = %r(\/uploads\/events\/(\d)+\/photos\/(\h){32}.png)
+        expect(find("img.photo-1")["src"]).to have_content path
+        expect(find("img.photo-2")["src"]).to have_content path
+        expect(find("img.photo-1")["src"]).to_not eq find("img.photo-2")["src"]
+      end
+    end
   end
 
   scenario "orders by the most recently created" do
@@ -150,8 +213,12 @@ describe "Admin event management" do
 
     fill_in_event_form
     select host.name, from: "event_host_id"
+    check "Pending event"
 
-    click_button "Preview"
+    click_button "Create event"
+    click_link "Sunday Roast"
+    click_link "Preview"
+
     expect(page).to have_link "Joeseph Bloggs", href: member_path(user)
   end
 
@@ -168,7 +235,7 @@ describe "Admin event management" do
     path = %r(\/uploads\/events\/(\d)+\/primary_photo\/thumb_(\h){32}.png)
     expect(find("img.primary-photo")["src"]).to have_content path
 
-    visit "events/dinner"
+    visit "events/sunday-roast"
     expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"
     path = %r(\/uploads\/events\/(\d)+\/primary_photo\/(\h){32}.png)
     expect(find("img.primary-photo")["src"]).to have_content path
@@ -203,7 +270,7 @@ describe "Admin event management" do
     event = Event.last
 
     visit root_path
-    click_link "Dinner"
+    click_link "Sunday Roast"
     within(".photos") do
       path = %r(\/uploads\/events\/(\d)+\/photos\/(\h){32}.png)
       expect(find("img.photo-1")["src"]).to have_content path
@@ -216,7 +283,7 @@ describe "Admin event management" do
     select "Joe Bloggs", from: "event_host_id"
     fill_in "event_date_date", with: "#{year}-01-01"
     fill_in "event_date_time", with: "19:00"
-    fill_in "event_title", with: "Dinner"
+    fill_in "event_title", with: "Sunday Roast"
     fill_in "event_location", with: "London"
     fill_in "event_location_url", with: "http://example.com"
     fill_in "event_description", with: "Description"

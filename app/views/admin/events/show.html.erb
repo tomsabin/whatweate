@@ -35,7 +35,10 @@
       </div>
       <div class="card-action">
         <%= link_to "Edit event", edit_admin_event_path(@event) %>
-        <%= link_to "Approve", approve_admin_event_path(@event), method: :patch if @event.pending? %>
+        <% if @event.pending? %>
+          <%= link_to "Preview", preview_admin_event_path(@event) %>
+          <%= link_to "Approve", approve_admin_event_path(@event), method: :patch  %>
+        <% end %>
       </div>
     </div>
   </div>
