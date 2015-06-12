@@ -35,7 +35,11 @@ describe EventPrimaryPhotoUploader, type: :uploader do
     end
 
     it "stores to the correct location" do
-      expect(uploader.store_dir).to eq "uploads/example_class/primary_photo/1"
+      expect(uploader.store_dir).to eq "uploads/example_class/1/primary_photo"
+    end
+
+    it "has the correct filename" do
+      expect(uploader.filename).to match /\w{8}(-\w{4}){3}-\w{12}\.png/
     end
 
     describe "default_url?" do

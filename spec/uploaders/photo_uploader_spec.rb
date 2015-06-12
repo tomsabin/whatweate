@@ -15,6 +15,11 @@ describe PhotoUploader, type: :uploader do
   end
 
   it "stores to the correct location" do
-    expect(uploader.store_dir).to eq "uploads/example_class/image/1"
+    expect(uploader.store_dir).to eq "uploads/example_class/1/image"
+  end
+
+  it "generates a random filename" do
+    File.open(Rails.root.join("fixtures", "carrierwave", "image.png")) { |f| uploader.store!(f) }
+    expect(uploader.filename).to match /\w{8}(-\w{4}){3}-\w{12}\.png/
   end
 end
