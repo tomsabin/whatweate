@@ -6,6 +6,12 @@ describe EventsController do
   let!(:event) { FactoryGirl.create(:event, host: host) }
 
   describe "#show" do
+    context "event is pending" do
+      let!(:event) { FactoryGirl.create(:event, :pending) }
+
+      it { expect { get :show, id: event.id }.to raise_error ActiveRecord::RecordNotFound }
+    end
+
     context "event host has a user association" do
       let!(:host) { FactoryGirl.create(:host, user: user) }
 
