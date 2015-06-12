@@ -48,7 +48,7 @@
     <img src="<%= @event.primary_photo.url %>" id="photo_preview" alt="Primary event photo" class="responsive-img">
 
     <script>
-      $("#event_primary_photo").change(function(){
+      $("#event_primary_photo").change(function () {
         var input = this
 
         if (input.files && input.files[0]) {
@@ -62,8 +62,35 @@
         }
       });
     </script>
-  </div>
 
+    <div class="section">
+      <h6 class="grey-text">Other photos (minimum of 2, maximum of 6)</h6>
+      <%= f.file_field :photos, accept: "image/*", multiple: true %>
+    </div>
+
+    <div class="event-photos"></div>
+
+    <script>
+      $("#event_photos").change(function () {
+        var input = this;
+        var fileCount = input.files.length;
+        var $container = $(".event-photos");
+        $container.empty();
+
+        if (input.files && fileCount >= 2 && fileCount <= 6) {
+          $.each(input.files, function (index, file) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+              $container.append('<img class="responsive-img" src="' + e.target.result +'">');
+            }
+
+            reader.readAsDataURL(file);
+          });
+        }
+      });
+    </script>
+  </div>
 </div>
 
 <script>

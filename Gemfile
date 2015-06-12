@@ -27,7 +27,7 @@ gem "wisper-activerecord"
 gem "friendly_id"
 gem "stripe"
 gem "date_time_attribute"
-gem "carrierwave"
+gem "carrierwave", github: "carrierwaveuploader/carrierwave", ref: "de2a955"
 gem "mini_magick"
 
 group :production do
