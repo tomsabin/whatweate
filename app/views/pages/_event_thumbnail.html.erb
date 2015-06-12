@@ -1,6 +1,7 @@
 <article class="event wip">
   <a href="<%= link %>" title="<%= event.title %>" data-ga="events">
-    <img src="<%#= event.photo_url %>" alt="<%= event.title %>">
+    <img src="<%= event.primary_photo.thumb.url %>" alt="<%= event.title %>" class="primary-photo">
+
     <h2><%= event.title %></h2>
 
     <div class="details">

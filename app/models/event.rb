@@ -21,6 +21,8 @@ class Event < ActiveRecord::Base
 
   friendly_id :title, use: :slugged
 
+  mount_uploader :primary_photo, EventPrimaryPhotoUploader
+
   date_time_attribute :date
 
   aasm column: "state", whiny_transitions: false do

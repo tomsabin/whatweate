@@ -50,6 +50,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     cliver (0.3.2)
     codeclimate-test-reporter (0.4.7)
       simplecov (>= 0.7.1, < 1.0.0)
@@ -126,6 +131,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.6.1)
+    mini_magick (4.2.7)
     mini_portile (0.6.2)
     minitest (5.7.0)
     monetize (1.1.0)
@@ -321,6 +327,7 @@ PLATFORMS
 DEPENDENCIES
   aasm
   capybara
+  carrierwave
   codeclimate-test-reporter
   database_cleaner
   date_time_attribute
@@ -334,6 +341,7 @@ DEPENDENCIES
   gravatar_image_tag
   jquery-rails
   letter_opener
+  mini_magick
   money-rails
   omniauth
   omniauth-facebook

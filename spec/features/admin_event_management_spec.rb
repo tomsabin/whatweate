@@ -30,6 +30,7 @@ describe "Admin event management" do
     click_button "Preview"
 
     within(".event-thumbnail") do
+      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
       expect(page).to have_content "Sunday Roast"
       expect(page).to have_content "1st January #{year} 7:00pm"
       expect(page).to have_content "£10"
@@ -40,6 +41,7 @@ describe "Admin event management" do
     end
 
     within(".event-show") do
+      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
       expect(page).to have_content "Sunday Roast"
       expect(page).to have_content "Hosted by Joe Bloggs"
       expect(page).to_not have_link "Joe Bloggs"
@@ -66,7 +68,7 @@ describe "Admin event management" do
     expect(page).to have_content "Event successfully created"
     expect(page).to have_content "Sunday Roast"
 
-    visit root_path
+    click_link "Sunday Roast"
     click_link "Sunday Roast"
 
     expect(page).to have_content "Sunday Roast"
@@ -192,5 +194,31 @@ describe "Admin event management" do
     fill_in "event_price", with: "10.00"
     click_button "Preview"
     expect(page).to have_link "Joeseph Bloggs", href: member_path(user)
+  end
+
+  scenario "admin creates an event with a primary photo" do
+    click_link "Create new event"
+
+    select "Joe Bloggs", from: "event_host_id"
+    fill_in "event_date_date", with: "#{year}-01-01"
+    fill_in "event_date_time", with: "19:00"
+    fill_in "event_title", with: "Dinner"
+    fill_in "event_location", with: "London"
+    fill_in "event_location_url", with: "http://example.com"
+    attach_file "event_primary_photo", Rails.root.join("fixtures/carrierwave/image.png")
+    fill_in "event_description", with: "Description"
+    fill_in "event_menu", with: "Menu"
+    fill_in "event_seats", with: "8"
+    fill_in "event_price", with: "10.00"
+
+    click_button "Create"
+
+    visit root_path
+    expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
+    expect(find("img.primary-photo")["src"]).to have_content "/uploads/event/primary_photo/#{Event.last.id}/thumb_image.png"
+
+    visit "events/dinner"
+    expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"
+    expect(find("img.primary-photo")["src"]).to have_content "/uploads/event/primary_photo/#{Event.last.id}/image.png"
   end
 end

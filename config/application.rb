@@ -1,7 +1,7 @@
 require File.expand_path("../boot", __FILE__)
 require "rails/all"
-
 Bundler.require(*Rails.groups)
+require "carrierwave/orm/activerecord"
 
 module WhatWeAte
   class Application < Rails::Application
