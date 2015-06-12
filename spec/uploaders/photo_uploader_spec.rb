@@ -1,5 +1,4 @@
 require "rails_helper"
-class ExampleClass < Struct.new(:id); end
 
 describe PhotoUploader, type: :uploader do
   let(:uploader) { described_class.new(ExampleClass.new(1), :image) }
