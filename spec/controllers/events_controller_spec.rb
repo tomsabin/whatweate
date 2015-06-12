@@ -184,9 +184,27 @@ describe EventsController do
       it { expect(assigns(:event_thumbnail)).to have_attributes({
         title: "Event title",
         date: 1.month.from_now.change(hour: 19, min: 30),
-        price_in_pennies: 3000,
+        price: 30,
         description: "Your description here"
       }) }
+    end
+  end
+
+  describe "#create" do
+    context "invalid record" do
+      before do
+        sign_in FactoryGirl.create(:user, :host)
+        get :create, event: { title: "My event" }
+      end
+
+      describe "@event_thumbnail" do
+        it { expect(assigns(:event_thumbnail)).to have_attributes({
+          title: "My event",
+          date: 1.month.from_now.change(hour: 19, min: 30),
+          price: 30,
+          description: "Your description here"
+        }) }
+      end
     end
   end
 end

@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event_thumbnail = Event.new(thumbnail_params).decorate
+    @event_thumbnail = Event.new(thumbnail_attributes).decorate
     @event = Event.new
   end
 
@@ -21,6 +21,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to(root_url, notice: "Thanks, we will review your listing and your event will be ready soon")
     else
+      @event_thumbnail = Event.new(thumbnail_attributes.merge(@event.attributes.reject{ |_, v| v.blank? })).decorate
       render(:new)
     end
   end
@@ -37,11 +38,11 @@ class EventsController < ApplicationController
              :seats, :price, :primary_photo, :primary_photo_cache, photos: [])
   end
 
-  def thumbnail_params
+  def thumbnail_attributes
     {
       title: "Event title",
       date: 1.month.from_now.change(hour: 19, min: 30),
-      price_in_pennies: 3000,
+      price: 30,
       description: "Your description here"
     }
   end
