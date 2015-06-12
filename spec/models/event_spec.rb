@@ -80,6 +80,22 @@ describe Event do
     end
   end
 
+  describe "#destroy" do
+    it "deletes the primary photo" do
+      event = FactoryGirl.create(:event, :with_primary_photo)
+      expect(Dir.glob(Rails.root.join("tmp", CarrierWave::Uploader::Base.store_dir, "**", "*.png")).size).to eq(2)
+      event.destroy
+      expect(Dir.glob(Rails.root.join("tmp", CarrierWave::Uploader::Base.store_dir, "**", "*.png")).size).to eq(0)
+    end
+
+    it "deletes additional photos" do
+      event = FactoryGirl.create(:event, :with_photos)
+      expect(Dir.glob(Rails.root.join("tmp", CarrierWave::Uploader::Base.store_dir, "**", "*.png")).size).to eq(4)
+      event.destroy
+      expect(Dir.glob(Rails.root.join("tmp", CarrierWave::Uploader::Base.store_dir, "**", "*.png")).size).to eq(0)
+    end
+  end
+
   describe "#booked?" do
     let(:event) { FactoryGirl.create(:event) }
     let(:user) { FactoryGirl.create(:user) }

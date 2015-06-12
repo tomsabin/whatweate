@@ -24,5 +24,16 @@ FactoryGirl.define do
     trait :pending do
       state "pending"
     end
+
+    trait :with_primary_photo do
+      primary_photo { File.open(Rails.root.join("fixtures", "carrierwave", "image.png")) }
+    end
+
+    trait :with_photos do
+      photos do
+        [ File.open(Rails.root.join("fixtures", "carrierwave", "image.png")),
+          File.open(Rails.root.join("fixtures", "carrierwave", "image-1.png")) ]
+      end
+    end
   end
 end
