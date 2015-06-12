@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="col s12">
-      <%= f.button :submit, "Save host" %>
+      <%= f.button :submit, "Save host", data: { disable_with: "Saving" } %>
       <%= link_to "Delete host", admin_host_path(@host),
                                  method: :delete,
                                  class: 'btn deep-orange',
