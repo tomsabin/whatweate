@@ -68,7 +68,7 @@ describe "Admin event management" do
     expect(page).to have_content "Event successfully created"
     expect(page).to have_content "Sunday Roast"
 
-    visit root_path
+    click_link "Sunday Roast"
     click_link "Sunday Roast"
 
     expect(page).to have_content "Sunday Roast"

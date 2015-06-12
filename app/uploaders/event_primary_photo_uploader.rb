@@ -11,6 +11,10 @@ class EventPrimaryPhotoUploader < CarrierWave::Uploader::Base
     ActionController::Base.helpers.asset_path("events/" + ["primary_default", version_name].compact.join('_') + ".png")
   end
 
+  def default_url?
+    default_url == url
+  end
+
   def extension_white_list
     %w(jpg jpeg gif png)
   end

@@ -15,6 +15,10 @@ describe EventPrimaryPhotoUploader do
     it "returns the correct url for the thumb image" do
       expect(uploader.thumb.url).to eq "/assets/events/primary_default_thumb.png"
     end
+
+    describe "default_url?" do
+      it { expect(uploader.default_url?).to eq true }
+    end
   end
 
   context "uploading images" do
@@ -44,6 +48,10 @@ describe EventPrimaryPhotoUploader do
 
     it "should make the image readable only to the owner and not executable" do
       expect(uploader).to have_permissions(0644)
+    end
+
+    describe "default_url?" do
+      it { expect(uploader.default_url?).to eq false }
     end
   end
 
