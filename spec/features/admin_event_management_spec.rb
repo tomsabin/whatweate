@@ -205,25 +205,25 @@ describe "Admin event management" do
     click_link "Create new event"
 
     fill_in_event_form
-    # attach_file "event_photos", [Rails.root.join("fixtures/carrierwave/image.png")]
+    attach_file "event_photos", [Rails.root.join("fixtures/carrierwave/image.png")]
 
-    # click_button "Create"
-    # expect(page).to have_content "Please review the following errors"
-    # within(".event_photos") { expect(page).to_not have_content "must upload a minimum of 2 photos" }
+    click_button "Create"
+    expect(page).to have_content "Please review the following errors"
+    expect(page).to have_content "Photos uploaded must be a minimum of 2"
 
-    # attach_file "event_photos", [
-    #   Rails.root.join("fixtures/carrierwave/image.png"),
-    #   Rails.root.join("fixtures/carrierwave/image.png"),
-    #   Rails.root.join("fixtures/carrierwave/image.png"),
-    #   Rails.root.join("fixtures/carrierwave/image.png"),
-    #   Rails.root.join("fixtures/carrierwave/image.png"),
-    #   Rails.root.join("fixtures/carrierwave/image.png"),
-    #   Rails.root.join("fixtures/carrierwave/image.png")
-    # ]
+    attach_file "event_photos", [
+      Rails.root.join("fixtures/carrierwave/image.png"),
+      Rails.root.join("fixtures/carrierwave/image.png"),
+      Rails.root.join("fixtures/carrierwave/image.png"),
+      Rails.root.join("fixtures/carrierwave/image.png"),
+      Rails.root.join("fixtures/carrierwave/image.png"),
+      Rails.root.join("fixtures/carrierwave/image.png"),
+      Rails.root.join("fixtures/carrierwave/image.png")
+    ]
 
-    # click_button "Create"
-    # expect(page).to have_content "Please review the following errors"
-    # within(".event_photos") { expect(page).to_not have_content "must upload a maximum of 6 photos" }
+    click_button "Create"
+    expect(page).to have_content "Please review the following errors"
+    expect(page).to have_content "Photos uploaded must be a maximum of 6"
 
     attach_file "event_photos", [Rails.root.join("fixtures/carrierwave/image.png"), Rails.root.join("fixtures/carrierwave/image-1.png")]
     click_button "Create"

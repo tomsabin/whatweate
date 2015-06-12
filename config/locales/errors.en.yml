@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    errors:
+      models:
+        event:
+          attributes:
+            photos:
+              too_short:
+                one: "uploaded must be a minimum of 2"
+                other: "uploaded must be a minimum of 2"
+              too_long:
+                one: "uploaded must be a maximum of 6"
+                other: "uploaded must be a maximum of 6"

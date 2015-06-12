@@ -21,6 +21,22 @@ describe Event do
     it { should_not allow_value(0, -1, 0.75, "20").for(:seats) }
     it { should allow_value("https://facebook.com", "https://twitter.com", "http://google.com", "http://www.fb.com").for(:location_url) }
     it { should_not allow_value("www.facebook.com", "facebook.com", "<script>alert('hello')</script>", "ftp://e.com").for(:location_url) }
+    it { should allow_value(nil).for(:photos) }
+
+    describe "photos" do
+      it "minimum of 2" do
+        subject = described_class.new(photos: [StringIO.new])
+        subject.save
+        expect(subject.errors[:photos]).to eq ["uploaded must be a minimum of 2"]
+      end
+
+      it "maximum of 6" do
+        photos = [StringIO.new, StringIO.new, StringIO.new, StringIO.new, StringIO.new, StringIO.new, StringIO.new]
+        subject = described_class.new(photos: photos)
+        subject.save
+        expect(subject.errors[:photos]).to eq ["uploaded must be a maximum of 6"]
+      end
+    end
   end
 
   describe "scopes" do
