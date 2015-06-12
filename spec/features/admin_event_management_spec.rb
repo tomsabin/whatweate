@@ -157,10 +157,16 @@ describe "Admin event management" do
   end
 
   scenario "admin approves a pending event" do
-    FactoryGirl.create(:event, :pending, title: "Event title")
+    event = FactoryGirl.create(:event, :pending, title: "Event title")
     visit admin_events_path
     click_link "Event title"
+    expect(page).to have_link "Approve"
+
+    click_link "Event title"
+    expect(current_path).to eq preview_admin_events_path(event)
+    expect(page).to have_link "Back"
     click_link "Approve"
+
     expect(page).to have_content "Event successfully approved"
   end
 
