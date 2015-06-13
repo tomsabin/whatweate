@@ -73,7 +73,7 @@ describe "Guest event booking" do
       expect(page).to have_content "Please complete your profile."
     end
 
-    scenario "user is prompted to complete their profile before making a booking (with JS)", js: true do
+    scenario "user is prompted to complete their profile before making a booking (with JS)", :js do
       sign_in FactoryGirl.create(:user_without_profile)
       visit root_path
       click_link event.title
@@ -90,7 +90,7 @@ describe "Guest event booking" do
       expect(page).to have_content "You are booked on to this event"
     end
 
-    scenario "user is already signed up to the event prevents duplicate bookings (with JS)", js: true do
+    scenario "user is already signed up to the event prevents duplicate bookings (with JS)", :js do
       Booking.create(event: event, user: user)
 
       sign_in user
@@ -110,7 +110,7 @@ describe "Guest event booking" do
       expect(page).to have_button "Book seat", disabled: true
     end
 
-    scenario "user cannot book onto a sold out event (with JS)", js: true do
+    scenario "user cannot book onto a sold out event (with JS)", :js do
       sign_in
       visit root_path
       click_link event.title

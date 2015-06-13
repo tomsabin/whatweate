@@ -12,7 +12,7 @@ describe "Host event" do
     sign_in FactoryGirl.create(:user, :host, first_name: "Joe", last_name: "Bloggs")
     click_link "Create an event"
     click_button "Submit event"
-    # preview
+
     expect(page).to have_content "Please review the following errors"
     within(".event_title") { expect(page).to have_content "can't be blank" }
 
@@ -20,6 +20,7 @@ describe "Host event" do
     fill_in "event_title", with: "Sunday Roast"
     fill_in "event_location", with: "London"
     fill_in "event_location_url", with: "http://example.com"
+    fill_in "event_short_description", with: "The perfect end to the weekend"
     fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
     fill_in "event_menu", with: "- Pumpkin Soup\n- Roast Lamb with trimmings\n- Tiramisu"
     fill_in "event_seats", with: "8"
@@ -45,6 +46,7 @@ describe "Host event" do
 
     within(".event") do
       expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
+      expect(page).to have_content "The perfect end to the weekend"
     end
 
     click_link "Sunday Roast"
@@ -117,6 +119,7 @@ describe "Host event" do
     fill_in "event_title", with: "Sunday Roast"
     fill_in "event_location", with: "London"
     fill_in "event_location_url", with: "http://example.com"
+    fill_in "event_short_description", with: "The perfect end to the weekend"
     fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
     fill_in "event_menu", with: "- Pumpkin Soup\n- Roast Lamb with trimmings\n- Tiramisu"
     fill_in "event_seats", with: "8"
