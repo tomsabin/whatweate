@@ -11,6 +11,7 @@ describe Event do
     it { should validate_presence_of(:location) }
     it { should validate_presence_of(:location_url) }
     it { should validate_presence_of(:description) }
+    it { should validate_presence_of(:short_description) }
     it { should validate_presence_of(:menu) }
     it { should validate_presence_of(:seats) }
     it { should validate_presence_of(:price_in_pennies) }
@@ -22,6 +23,7 @@ describe Event do
     it { should allow_value("https://facebook.com", "https://twitter.com", "http://google.com", "http://www.fb.com").for(:location_url) }
     it { should_not allow_value("www.facebook.com", "facebook.com", "<script>alert('hello')</script>", "ftp://e.com").for(:location_url) }
     it { should allow_value(nil).for(:photos) }
+    it { should validate_length_of(:short_description).is_at_most(80) }
 
     describe "photos" do
       it "minimum of 2" do
