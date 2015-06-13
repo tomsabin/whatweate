@@ -42,8 +42,9 @@ class EventsController < ApplicationController
     {
       title: "Event title",
       date: 1.month.from_now.change(hour: 19, min: 30),
-      price: 30,
-      description: "Your description here"
+      short_description: "Your description here",
+      location: "London",
+      price: 30
     }
   end
 end

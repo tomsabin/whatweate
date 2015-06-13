@@ -184,8 +184,9 @@ describe EventsController do
       it { expect(assigns(:event_thumbnail)).to have_attributes({
         title: "Event title",
         date: 1.month.from_now.change(hour: 19, min: 30),
-        price: 30,
-        description: "Your description here"
+        short_description: "Your description here",
+        location: "London",
+        price: 30
       }) }
     end
   end
@@ -201,8 +202,9 @@ describe EventsController do
         it { expect(assigns(:event_thumbnail)).to have_attributes({
           title: "My event",
           date: 1.month.from_now.change(hour: 19, min: 30),
-          price: 30,
-          description: "Your description here"
+          short_description: "Your description here",
+          location: "London",
+          price: 30
         }) }
       end
     end
