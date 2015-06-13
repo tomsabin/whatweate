@@ -8,14 +8,14 @@
   <%= f.input :title, wrapper_html: { class: "col s12" } %>
 
   <%= f.input :date_date, as: :string, label: "Date", placeholder: "e.g. 2015-08-28",
-                     wrapper_html: { class: "col s8 m5" },
-                     input_html: { type: "date", class: "datepicker", value: @event.date.try(:strftime, "%F") },
-                     label_html: { class: "active" } %>
+                          wrapper_html: { class: "col s8 m5" },
+                          input_html: { type: "date", class: "datepicker", value: @event.date.try(:strftime, "%F") },
+                          label_html: { class: "active" } %>
 
   <%= f.input :date_time, as: :time, html5: true, label: "Time", placeholder: "e.g. 19:30",
-                     wrapper_html: { class: "col s4 m3" },
-                     input_html: { value: @event.date.try(:strftime, "%R") },
-                     label_html: { class: "active" } %>
+                          wrapper_html: { class: "col s4 m3" },
+                          input_html: { value: @event.date.try(:strftime, "%R") },
+                          label_html: { class: "active" } %>
 
   <%= f.input :price, label: "Price (£)", placeholder: "e.g. 25.00",
                       wrapper_html: { class: "col s6 m2" },
@@ -35,6 +35,8 @@
     <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
   </div>
 
+  <%= f.input :short_description, as: :text, wrapper_html: { class: "col s12" },
+                                  input_html: { class: "materialize-textarea", length: 80 } %>
   <%= f.input :description, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea" } %>
   <%= f.input :menu, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea" } %>
 
