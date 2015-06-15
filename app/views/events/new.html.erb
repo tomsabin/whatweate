@@ -13,8 +13,6 @@
   <%= f.input :location_url %>
   <%= f.input :short_description %>
 
-  <%= javascript_include_tag "moment.js" %>
-
   <script>
     $(".event_title input").focusout(function (e) {
       $(".event-thumbnail h2").text($(this).val());

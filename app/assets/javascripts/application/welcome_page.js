@@ -17,7 +17,7 @@ $(document).ready(function () {
 
   // Section: how it works
   $('label[for="guests"]').addClass('active');
-  $('.toggle').change(function() {
+  $('.toggle').change(function(e) {
     var $labels = $('.how-it-works label');
     $labels.removeClass('active');
     $labels.filter('label[for="'+e.target.id+'"]').addClass('active');
