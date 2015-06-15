@@ -1,12 +1,12 @@
 module("shared", function (module) {
   var navigation = function () {
-    $('a[href^="/#"]').click(function (e) {
+    $('a[href^="/#"]').click(function () {
       $("html, body").animate({
         scrollTop: $('[name="' + $.attr(this, 'href').substr(2) + '"]').offset().top - 90
       }, 500);
       return false;
     });
-  }
+  };
 
   var newsletter = function () {
     $("#newsletter").ajaxChimp({
@@ -16,10 +16,10 @@ module("shared", function (module) {
         $("#response").text(data.msg);
       }
     });
-  }
+  };
 
   module.exports = (function(){
     navigation();
     newsletter();
-  })()
+  })();
 });

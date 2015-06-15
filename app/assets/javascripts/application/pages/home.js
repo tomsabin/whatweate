@@ -6,5 +6,5 @@ module("pages-home", function (module) {
       $labels.removeClass("active");
       $labels.filter('label[for="'+e.target.id+'"]').addClass("active");
     });
-  })()
+  })();
 });
