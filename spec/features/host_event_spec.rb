@@ -144,7 +144,9 @@ describe "Host event" do
     end
   end
 
-  scenario "host previews the primary image before creating the event", :js do
+  xscenario "host previews the primary image before creating the event", :js do
+    # move to more reliable test (isolate JS and test using JS test framework)
+
     sign_in FactoryGirl.create(:user, :host, first_name: "Joe", last_name: "Bloggs")
     click_link "Create an event"
 
