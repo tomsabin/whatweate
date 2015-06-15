@@ -44,7 +44,7 @@ describe "Host event" do
 
     visit root_path
 
-    within(".event") do
+    within(".event-thumbnail") do
       expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
       expect(page).to have_content "The perfect end to the weekend"
     end

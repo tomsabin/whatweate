@@ -1,6 +1,4 @@
-<div class="event-thumbnail">
-  <%= render partial: "pages/event_thumbnail", locals: { link: "#", event: @event_thumbnail } %>
-</div>
+<%= render partial: "pages/event_thumbnail", locals: { link: "#", event: @event_thumbnail } %>
 
 <%= simple_form_for @event do |f| %>
   <%= f.error_notification %>
@@ -39,7 +37,9 @@
 
   <%= f.input :primary_photo, as: :file, label: "Primary photo (1024 x 678px)", input_html: { accept: "image/*" } %>
   <%= f.hidden_field :primary_photo_cache %>
-  <img src="<%= @event.primary_photo.url %>" id="photo_preview" alt="Primary event photo" class="responsive-img">
+
+  <img src="<%= @event.primary_photo.url %>" id="photo_preview" alt="Primary event photo"
+       style="width:1024px;height:678px;object-fit:cover;">
 
   <script>
     $("#event_primary_photo").change(function () {
