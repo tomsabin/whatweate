@@ -79,12 +79,12 @@ describe "Host event" do
     attach_file "event_primary_photo", Rails.root.join("fixtures/carrierwave/image.png")
 
     within(".event-thumbnail") do
-      expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
       expect(page).to have_content "Sunday Roast"
       expect(page).to have_content "£10.50"
       expect(page).to have_content "1st January 2000 7:00pm"
       expect(page).to have_content "The perfect end to the weekend"
       expect(page).to have_content "Old Street, London"
+      expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
     end
   end
 

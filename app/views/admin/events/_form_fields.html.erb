@@ -31,12 +31,12 @@
                              wrapper_html: { class: "col s12 m6" },
                              label_html: { class: "active" } %>
 
+  <%= f.input :short_description, as: :text, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea", length: 80 } %>
+
   <div class="col s12">
     <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
   </div>
 
-  <%= f.input :short_description, as: :text, wrapper_html: { class: "col s12" },
-                                  input_html: { class: "materialize-textarea", length: 80 } %>
   <%= f.input :description, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea" } %>
   <%= f.input :menu, wrapper_html: { class: "col s12" }, input_html: { class: "materialize-textarea" } %>
 

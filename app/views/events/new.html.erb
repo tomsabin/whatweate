@@ -11,14 +11,31 @@
   <%= f.input :seats, input_html: { min: "0", step: "1" } %>
   <%= f.input :location %>
   <%= f.input :location_url %>
-
-  <div class="row">
-    <div class="col s12">
-      <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
-    </div>
-  </div>
-
   <%= f.input :short_description %>
+
+  <%= javascript_include_tag "moment.js" %>
+
+  <script>
+    $(".event_title input").focusout(function (e) {
+      $(".event-thumbnail h2").text($(this).val());
+    })
+    $(".event_date input").focusout(function (e) {
+      var datetime = moment($(this).val()).format("Do MMMM YYYY h:mma")
+      $(".event-thumbnail span.date").text(datetime);
+    })
+    $(".event_price input").focusout(function (e) {
+      $(".event-thumbnail span.price").text("£"+$(this).val());
+    })
+    $(".event_short_description input").focusout(function (e) {
+      $(".event-thumbnail .short-description").text($(this).val());
+    })
+    $(".event_location input").focusout(function (e) {
+      $(".event-thumbnail .venue").text($(this).val());
+    })
+  </script>
+
+  <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
+
   <%= f.input :description %>
   <%= f.input :menu %>
 
