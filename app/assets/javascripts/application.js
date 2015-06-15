@@ -1,6 +1,10 @@
+//= require module
 //= require jquery
 //= require jquery_ujs
-//= require_tree ./jquery_modules
 //= require turbolinks
-//= require ga
-//= require welcome_page
+
+//= require jquery.ajaxchimp
+//= require imagesloaded
+//= require moment
+
+//= require_tree ./application

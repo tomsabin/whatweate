@@ -34,16 +34,17 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).
-      permit(:date, :title, :location, :location_url, :description, :menu,
-             :seats, :price, :primary_photo, :primary_photo_cache, photos: [])
+      permit(:date, :title, :location, :location_url, :short_description, :description,
+             :menu, :seats, :price, :primary_photo, :primary_photo_cache, photos: [])
   end
 
   def thumbnail_attributes
     {
       title: "Event title",
       date: 1.month.from_now.change(hour: 19, min: 30),
-      price: 30,
-      description: "Your description here"
+      short_description: "Your description here",
+      location: "London",
+      price: 30
     }
   end
 end

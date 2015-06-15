@@ -1,6 +1,4 @@
-<div class="event-thumbnail">
-  <%= render partial: "pages/event_thumbnail", locals: { link: "#", event: @event_thumbnail } %>
-</div>
+<%= render partial: "pages/event_thumbnail", locals: { link: "#", event: @event_thumbnail } %>
 
 <%= simple_form_for @event do |f| %>
   <%= f.error_notification %>
@@ -11,30 +9,52 @@
   <%= f.input :seats, input_html: { min: "0", step: "1" } %>
   <%= f.input :location %>
   <%= f.input :location_url %>
+  <%= f.input :short_description %>
 
-  <div class="row">
-    <div class="col s12">
-      <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
-    </div>
-  </div>
+  <script>
+    $(".event_title input").focusout(function (e) {
+      $(".event-thumbnail h2").text($(this).val());
+    })
+    $(".event_date input").focusout(function (e) {
+      var datetime = moment(new Date($(this).val())).format("Do MMMM YYYY h:mma")
+      $(".event-thumbnail span.date").text(datetime);
+    })
+    $(".event_price input").focusout(function (e) {
+      $(".event-thumbnail span.price").text("£"+$(this).val());
+    })
+    $(".event_short_description input").focusout(function (e) {
+      $(".event-thumbnail .short-description").text($(this).val());
+    })
+    $(".event_location input").focusout(function (e) {
+      $(".event-thumbnail .venue").text($(this).val());
+    })
+  </script>
+
+  <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
 
   <%= f.input :description %>
   <%= f.input :menu %>
 
   <%= f.input :primary_photo, as: :file, label: "Primary photo (1024 x 678px)", input_html: { accept: "image/*" } %>
   <%= f.hidden_field :primary_photo_cache %>
-  <img src="<%= @event.primary_photo.url %>" id="photo_preview" alt="Primary event photo" class="responsive-img">
+
+  <img src="<%= @event.primary_photo.url %>" id="photo_preview" alt="Primary event photo"
+       style="width:1024px;height:678px;object-fit:cover;">
 
   <script>
     $("#event_primary_photo").change(function () {
+      var $photo_preview = $("#photo_preview");
+      var $thumb_photo_preview = $(".event-thumbnail .primary-photo")
+      $photo_preview.attr("src", "<%= asset_path('events/primary_default.png') %>");
+      $thumb_photo_preview.attr("src", "<%= asset_path('events/primary_default_thumb.png') %>");
       var input = this
 
       if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-          $("#photo_preview").attr("src", e.target.result);
-          $(".event-thumbnail .primary-photo").attr("src", e.target.result);
+          $photo_preview.attr("src", e.target.result);
+          $thumb_photo_preview.attr("src", e.target.result);
         }
 
         reader.readAsDataURL(input.files[0]);
@@ -57,7 +77,7 @@
           var reader = new FileReader();
 
           reader.onload = function (e) {
-            $container.append('<img class="responsive-img" src="' + e.target.result +'">');
+            $container.append('<img src="' + e.target.result +'">');
           }
 
           reader.readAsDataURL(file);

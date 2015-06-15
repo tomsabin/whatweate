@@ -12,7 +12,7 @@ describe "Host event" do
     sign_in FactoryGirl.create(:user, :host, first_name: "Joe", last_name: "Bloggs")
     click_link "Create an event"
     click_button "Submit event"
-    # preview
+
     expect(page).to have_content "Please review the following errors"
     within(".event_title") { expect(page).to have_content "can't be blank" }
 
@@ -20,6 +20,7 @@ describe "Host event" do
     fill_in "event_title", with: "Sunday Roast"
     fill_in "event_location", with: "London"
     fill_in "event_location_url", with: "http://example.com"
+    fill_in "event_short_description", with: "The perfect end to the weekend"
     fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
     fill_in "event_menu", with: "- Pumpkin Soup\n- Roast Lamb with trimmings\n- Tiramisu"
     fill_in "event_seats", with: "8"
@@ -43,8 +44,9 @@ describe "Host event" do
 
     visit root_path
 
-    within(".event") do
+    within(".event-thumbnail") do
       expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
+      expect(page).to have_content "The perfect end to the weekend"
     end
 
     click_link "Sunday Roast"
@@ -54,6 +56,36 @@ describe "Host event" do
       expect(page).to have_link "Joe Bloggs"
       expect(page).to_not have_button "Book seat"
       expect(page).to have_content "This is your own event"
+    end
+  end
+
+  scenario "host views their thumbnail preview being built up", :js do
+    sign_in FactoryGirl.create(:user, :host, first_name: "Joe", last_name: "Bloggs")
+    click_link "Create an event"
+
+    within(".event-thumbnail") do
+      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
+      expect(page).to have_content "Event title"
+      expect(page).to have_content "£30"
+      expect(page).to have_content "Your description here"
+      expect(page).to have_content "London"
+    end
+
+    fill_in "event_date", with: "01/01/2000 19:00"
+    fill_in "event_title", with: "Sunday Roast"
+    fill_in "event_location", with: "Old Street, London"
+    fill_in "event_short_description", with: "The perfect end to the weekend"
+    fill_in "event_price", with: "10.50"
+    attach_file "event_primary_photo", Rails.root.join("fixtures/carrierwave/image.png")
+
+    within(".event-thumbnail") do
+      expect(page).to have_content "Sunday Roast"
+      expect(page).to have_content "£10.50"
+      expect(page).to have_content "1st January 2000 7:00pm"
+      expect(page).to have_content "The perfect end to the weekend"
+      expect(page).to have_content "Old Street, London"
+      find("img.primary-photo")["src"] # wait for image src to be replaced
+      expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
     end
   end
 
@@ -112,11 +144,39 @@ describe "Host event" do
     end
   end
 
+  xscenario "host previews the primary image before creating the event", :js do
+    # move to more reliable test (isolate JS and test using JS test framework)
+
+    sign_in FactoryGirl.create(:user, :host, first_name: "Joe", last_name: "Bloggs")
+    click_link "Create an event"
+
+    within(".event-thumbnail") do
+      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
+    end
+
+    attach_file "event_primary_photo", Rails.root.join("fixtures/carrierwave/image.png")
+
+    within(".event-thumbnail") do
+      find("img.primary-photo")["src"] # wait for image src to be replaced
+      expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
+    end
+  end
+
+  scenario "host previews the additional images before creating the event", :js do
+    sign_in FactoryGirl.create(:user, :host, first_name: "Joe", last_name: "Bloggs")
+    click_link "Create an event"
+
+    expect(page).to have_css(".event-photos img", count: 0)
+    attach_file "event_photos", [Rails.root.join("fixtures/carrierwave/image.png"), Rails.root.join("fixtures/carrierwave/image-1.png")]
+    expect(page).to have_css(".event-photos img", count: 2)
+  end
+
   def fill_in_event_form
     fill_in "event_date", with: "01/01/#{1.year.from_now.year} 19:00"
     fill_in "event_title", with: "Sunday Roast"
     fill_in "event_location", with: "London"
     fill_in "event_location_url", with: "http://example.com"
+    fill_in "event_short_description", with: "The perfect end to the weekend"
     fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
     fill_in "event_menu", with: "- Pumpkin Soup\n- Roast Lamb with trimmings\n- Tiramisu"
     fill_in "event_seats", with: "8"

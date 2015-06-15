@@ -1,16 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%= render "layouts/head" %>
-  </head>
-  <body class="<%= controller.controller_name %>">
+    <title>WhatWeAte</title>
 
-    <%= render "shared/header" -%>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <!--[if lt IE 9]>
+      <%= javascript_include_tag "html5shiv.min.js" %>
+    <![endif]-->
+    <%= csrf_meta_tags %>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  </head>
+  <body id="<%= page_id %>">
+
+    <header>
+      <div class="container">
+        <%= link_to root_path, alt: "WhatWeAte", title: "WhatWeAte", class: "logo" do %>
+          <%= image_tag "logo-icon.png", class: "logo-icon" %>
+          <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
+        <% end %>
+
+        <nav>
+          <input type="checkbox" id="mobile-nav">
+          <label for="mobile-nav">menu</label>
+          <ul>
+            <%= link_to root_path(anchor: "how_it_works") do %>
+              <li>How it works</li>
+            <% end %>
+
+            <a href="https://whatweate.typeform.com/to/IXZyhO" class="cta typeform-share" data-mode="1" target="_blank" data-ga="conversion">
+              <li>Become a host</li>
+            </a>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
     <main>
-
-      <!--  -->
-
       <div class="wip">
         <% if user_signed_in? %>
           <%= link_to("Sign out", destroy_user_session_path, :method => :delete) %>
@@ -27,12 +55,49 @@
         <p class="alert"><%= alert %></p>
       </div>
 
-      <!--  -->
-
       <%= yield -%>
     </main>
 
-    <%= render "shared/footer" -%>
+    <footer class="footer">
+      <div class="container">
+        <ul class="social">
+          <a href="https://www.facebook.com/whatweate.co" class="facebook" data-ga="social">
+            Facebook
+          </a>
+          <a href="https://twitter.com/WhatWeAteCo" class="twitter" data-ga="social">
+            Twitter
+          </a>
+          <a href="http://instagram.com/whatweate.co" class="instagram" data-ga="social">
+            Instagram
+          </a>
+          <a href="mailto:hello@whatweate.co" class="email" data-ga="social">
+            Email
+          </a>
+        </ul>
 
+        <ul class="links">
+          <li><%= link_to 'How it works', root_path(anchor: 'how_it_works') %></li>
+          <li><a href="https://whatweate.typeform.com/to/IXZyhO" class="cta typeform-share" data-mode="1" target="_blank">Become a host</a></li>
+        </ul>
+
+        <div class="legal wip">
+          <ul>
+            <%= link_to root_path do %>
+              <li>Terms of use</li>
+            <% end %>
+
+            <%= link_to root_path do %>
+              <li>Privacy policy</li>
+            <% end %>
+          </ul>
+
+          <p>Copyright &copy; 2014-2015 WhatWeAte Ltd</p>
+        </div>
+      </div>
+    </footer>
+
+    <%= javascript_require "typeform" %>
+    <%= javascript_require "google_analytics" %>
+    <%= javascript_require "shared" %>
   </body>
 </html>

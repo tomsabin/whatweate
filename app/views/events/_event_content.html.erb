@@ -1,46 +1,48 @@
-<img src="<%= event.primary_photo.url %>" alt="<%= event.title %>" class="primary-photo">
+<div class="event-show">
+  <img src="<%= event.primary_photo.url %>" alt="<%= event.title %>" class="primary-photo">
 
-<%= humanized_money_with_symbol event.price %>
+  <%= humanized_money_with_symbol event.price %>
 
-<hr>
+  <hr>
 
-<p><%= event.title %></p>
+  <p><%= event.title %></p>
 
-<p><%= event.formatted_date %></p>
+  <p><%= event.formatted_date %></p>
 
-<p>Hosted by</p>
+  <p>Hosted by</p>
 
-<img src="" alt="">
+  <img src="" alt="">
 
-<p>
-  <% if user.present? %>
-    <%= link_to host.name, member_path(user) %>
-  <% else %>
-    <%= host.name %>
-  <% end %>
-</p>
+  <p>
+    <% if user.present? %>
+      <%= link_to host.name, member_path(user) %>
+    <% else %>
+      <%= host.name %>
+    <% end %>
+  </p>
 
-<p><%= event.location %> | <%= link_to "View on map", event.location_url %> </p>
+  <p><%= event.location %> | <%= link_to "View on map", event.location_url %> </p>
 
-<h1>Details</h1>
-<div class="markdown description">
-  <%= markdown(event.description).html_safe %>
-</div>
+  <h1>Details</h1>
+  <div class="markdown description">
+    <%= markdown(event.description).html_safe %>
+  </div>
 
-<h1>Menu</h1>
-<div class="markdown menu">
-  <%= markdown(event.menu).html_safe %>
-</div>
+  <h1>Menu</h1>
+  <div class="markdown menu">
+    <%= markdown(event.menu).html_safe %>
+  </div>
 
-<p>Photos</p>
-<div class="photos">
-  <% event.photos.each_with_index do |photo, index| %>
-    <img src="<%= photo.url %>" alt="Event photo" class="photo-<%= index + 1 %>">
-  <% end %>
-</div>
+  <p>Photos</p>
+  <div class="photos">
+    <% event.photos.each_with_index do |photo, index| %>
+      <img src="<%= photo.url %>" alt="Event photo" class="photo-<%= index + 1 %>">
+    <% end %>
+  </div>
 
-<div class="guests">
-  <% guests.each do |guest| %>
-    <%= link_to guest.full_name, member_path(guest) %>
-  <% end %>
+  <div class="guests">
+    <% guests.each do |guest| %>
+      <%= link_to guest.full_name, member_path(guest) %>
+    <% end %>
+  </div>
 </div>

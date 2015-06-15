@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150612091852) do
+ActiveRecord::Schema.define(version: 20150613072212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20150612091852) do
     t.string   "location"
     t.text     "description"
     t.text     "menu"
-    t.integer  "seats",            default: 8
+    t.integer  "seats",             default: 8
     t.integer  "price_in_pennies"
     t.string   "currency"
     t.datetime "created_at"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20150612091852) do
     t.string   "slug"
     t.string   "primary_photo"
     t.json     "photos"
+    t.string   "short_description"
   end
 
   add_index "events", ["host_id"], name: "index_events_on_host_id", using: :btree

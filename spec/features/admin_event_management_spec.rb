@@ -23,6 +23,7 @@ describe "Admin event management" do
     fill_in "event_title", with: "Sunday Roast"
     fill_in "event_location", with: "London"
     fill_in "event_location_url", with: "http://example.com"
+    fill_in "event_short_description", with: "The perfect end to the weekend"
     fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
     fill_in "event_menu", with: "- Pumpkin Soup\n- Roast Lamb with trimmings\n- Tiramisu"
     fill_in "event_seats", with: "8"
@@ -37,6 +38,10 @@ describe "Admin event management" do
 
     expect(page).to have_link "Edit event"
     expect(page).to_not have_link "Preview"
+
+    visit root_path
+
+    expect(page).to have_content "The perfect end to the weekend"
 
     click_link "Sunday Roast"
 
@@ -119,16 +124,7 @@ describe "Admin event management" do
   scenario "admin previews a pending event" do
     click_link "Create new event"
 
-    select "Joe Bloggs", from: "event_host_id"
-    fill_in "event_date_date", with: "#{year}-01-01"
-    fill_in "event_date_time", with: "19:00"
-    fill_in "event_title", with: "Sunday Roast"
-    fill_in "event_location", with: "London"
-    fill_in "event_location_url", with: "http://example.com"
-    fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
-    fill_in "event_menu", with: "- Pumpkin Soup\n- Roast Lamb with trimmings\n- Tiramisu"
-    fill_in "event_seats", with: "8"
-    fill_in "event_price", with: "10.00"
+    fill_in_event_form
     attach_file "event_photos", [Rails.root.join("fixtures/carrierwave/image.png"), Rails.root.join("fixtures/carrierwave/image-1.png")]
     check "Pending event"
 
@@ -142,8 +138,8 @@ describe "Admin event management" do
       expect(page).to have_content "1st January #{year} 7:00pm"
       expect(page).to have_content "£10"
       expect(page).to have_content "Londo"
-      within(".description") do
-        expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
+      within(".short-description") do
+        expect(page).to have_content "The perfect end to the weekend"
       end
     end
 
@@ -286,8 +282,9 @@ describe "Admin event management" do
     fill_in "event_title", with: "Sunday Roast"
     fill_in "event_location", with: "London"
     fill_in "event_location_url", with: "http://example.com"
-    fill_in "event_description", with: "Description"
-    fill_in "event_menu", with: "Menu"
+    fill_in "event_short_description", with: "The perfect end to the weekend"
+    fill_in "event_description", with: "A *heart warming* Sunday Roast cooked behind decades of experience for the perfect meal"
+    fill_in "event_menu", with: "- Pumpkin Soup\n- Roast Lamb with trimmings\n- Tiramisu"
     fill_in "event_seats", with: "8"
     fill_in "event_price", with: "10.00"
   end

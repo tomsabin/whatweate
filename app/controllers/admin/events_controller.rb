@@ -79,8 +79,8 @@ class Admin
 
     def event_params
       params.require(:event).
-        permit(:host_id, :date_date, :date_time, :title, :location, :location_url, :description,
-               :state, :menu, :seats, :price, :primary_photo, :primary_photo_cache, photos: [])
+        permit(:state, :host_id, :date_date, :date_time, :title, :location, :location_url, :short_description,
+               :description, :menu, :seats, :price, :primary_photo, :primary_photo_cache, photos: [])
     end
   end
 end

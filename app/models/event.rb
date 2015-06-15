@@ -11,6 +11,7 @@ class Event < ActiveRecord::Base
   validates :seats, numericality: { only_integer: true, greater_than: 0 }
   validates :location_url, url: true
   validates :photos, length: { minimum: 2, maximum: 6, allow_blank: true }
+  validates :short_description, length: { maximum: 80 }, presence: true
 
   monetize :price_in_pennies, as: "price", with_model_currency: :currency
 
