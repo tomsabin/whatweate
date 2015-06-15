@@ -1,7 +1,9 @@
-//= require jquery
-//= require jquery_ujs
-//= require turbolinks
 //= require module
-//= require materialize
+//= require jquery
+//= require jquery.turbolinks
+//= require jquery_ujs
 
+//= require materialize
 //= require_tree ./admin
+
+//= require turbolinks

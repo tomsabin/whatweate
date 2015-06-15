@@ -29,6 +29,7 @@ gem "stripe"
 gem "date_time_attribute"
 gem "carrierwave", github: "carrierwaveuploader/carrierwave", ref: "de2a955"
 gem "mini_magick"
+gem "jquery-turbolinks"
 
 group :production do
   gem 'rails_12factor'
