@@ -84,6 +84,7 @@ describe "Host event" do
       expect(page).to have_content "1st January 2000 7:00pm"
       expect(page).to have_content "The perfect end to the weekend"
       expect(page).to have_content "Old Street, London"
+      find("img.primary-photo")["src"] # wait for image src to be replaced
       expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
     end
   end
@@ -141,6 +142,31 @@ describe "Host event" do
       expect(find("img.photo-2")["src"]).to have_content path
       expect(find("img.photo-1")["src"]).to_not eq find("img.photo-2")["src"]
     end
+  end
+
+  scenario "host previews the primary image before creating the event", :js do
+    sign_in FactoryGirl.create(:user, :host, first_name: "Joe", last_name: "Bloggs")
+    click_link "Create an event"
+
+    within(".event-thumbnail") do
+      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
+    end
+
+    attach_file "event_primary_photo", Rails.root.join("fixtures/carrierwave/image.png")
+
+    within(".event-thumbnail") do
+      find("img.primary-photo")["src"] # wait for image src to be replaced
+      expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
+    end
+  end
+
+  scenario "host previews the additional images before creating the event", :js do
+    sign_in FactoryGirl.create(:user, :host, first_name: "Joe", last_name: "Bloggs")
+    click_link "Create an event"
+
+    expect(page).to have_css(".event-photos img", count: 0)
+    attach_file "event_photos", [Rails.root.join("fixtures/carrierwave/image.png"), Rails.root.join("fixtures/carrierwave/image-1.png")]
+    expect(page).to have_css(".event-photos img", count: 2)
   end
 
   def fill_in_event_form

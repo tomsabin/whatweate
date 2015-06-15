@@ -45,14 +45,18 @@
 
   <script>
     $("#event_primary_photo").change(function () {
+      var $photo_preview = $("#photo_preview");
+      var $thumb_photo_preview = $(".event-thumbnail .primary-photo")
+      $photo_preview.attr("src", "<%= asset_path('events/primary_default.png') %>");
+      $thumb_photo_preview.attr("src", "<%= asset_path('events/primary_default_thumb.png') %>");
       var input = this
 
       if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-          $("#photo_preview").attr("src", e.target.result);
-          $(".event-thumbnail .primary-photo").attr("src", e.target.result);
+          $photo_preview.attr("src", e.target.result);
+          $thumb_photo_preview.attr("src", e.target.result);
         }
 
         reader.readAsDataURL(input.files[0]);
@@ -75,7 +79,7 @@
           var reader = new FileReader();
 
           reader.onload = function (e) {
-            $container.append('<img class="responsive-img" src="' + e.target.result +'">');
+            $container.append('<img src="' + e.target.result +'">');
           }
 
           reader.readAsDataURL(file);
