@@ -16,7 +16,7 @@
       $(".event-thumbnail h2").text($(this).val());
     })
     $(".event_date input").focusout(function (e) {
-      var datetime = moment($(this).val()).format("Do MMMM YYYY h:mma")
+      var datetime = moment(new Date($(this).val())).format("Do MMMM YYYY h:mma")
       $(".event-thumbnail span.date").text(datetime);
     })
     $(".event_price input").focusout(function (e) {
