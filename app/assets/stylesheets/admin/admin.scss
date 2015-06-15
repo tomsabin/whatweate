@@ -1,3 +1,11 @@
+@import "../shared/color";
+@import "../shared/utilities";
+@import "../shared/markdown";
+
+.card .divider {
+  background-color: rgba(160, 160, 160, 0.2);
+}
+
 .form {
   .event_short_description textarea {
     height: 3rem;
