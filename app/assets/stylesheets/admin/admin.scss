@@ -18,4 +18,9 @@
   .event_menu textarea {
     height: 20rem;
   }
+
+  .event-primary-photo {
+    width: 1024px;
+    object-fit: cover;
+  }
 }
