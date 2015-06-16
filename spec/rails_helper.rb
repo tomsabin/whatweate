@@ -15,8 +15,6 @@ end
 
 ActiveRecord::Migration.maintain_test_schema!
 
-Delayed::Worker.delay_jobs = false
-
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = false
