@@ -61,6 +61,8 @@ describe User do
       it { should validate_presence_of(:favorite_cuisine) }
       it { should_not validate_presence_of(:greeting) }
     end
+
+    it { should validate_uniqueness_of(:slug) }
   end
 
   describe "scopes" do

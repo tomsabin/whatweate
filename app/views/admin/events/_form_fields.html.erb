@@ -1,9 +1,12 @@
 <%= render partial: "admin/shared/form_errors", locals: { object: @event } %>
 
 <div class="row">
+  <% host_column_size = @event.new_record? ? "s12" : "s12 m6" %>
   <%= f.input :host_id, collection: @hosts, label_method: :name, required: true,
-                        wrapper_html: { class: "col s12" },
+                        wrapper_html: { class: "col #{host_column_size}" },
                         label_html: { class: "active" } %>
+
+  <%= f.input :slug, wrapper_html: { class: "col s12 m6" }, label: "URL" if @event.persisted? %>
 
   <%= f.input :title, wrapper_html: { class: "col s12" } %>
 
@@ -79,5 +82,4 @@
   });
 </script>
 
-<%= javascript_require "primary_photo" %>
-<%= javascript_require "photos" %>
+<%= javascript_require "primary_photo", "photos", "event_price_field" %>
