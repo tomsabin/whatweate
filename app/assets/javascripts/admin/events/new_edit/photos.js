@@ -11,7 +11,9 @@ module("photos", function (module) {
           var reader = new FileReader();
 
           reader.onload = function (e) {
-            $container.append('<img class="responsive-img" src="' + e.target.result +'">');
+            var src = e.target.result;
+            var id = "photo-" + (index + 1);
+            $container.append('<img src="' + src +'" alt="Event photo" class="responsive-img" id="' + id + '">');
           }
 
           reader.readAsDataURL(file);

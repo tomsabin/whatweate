@@ -271,9 +271,9 @@ describe "Admin event management" do
     click_link "Edit event"
     within(".event-photos") do
       path = %r(\/uploads\/events\/(\d)+\/photos\/(\h){32}.png)
-      expect(find("img.photo-1")["src"]).to have_content path
-      expect(find("img.photo-2")["src"]).to have_content path
-      expect(find("img.photo-1")["src"]).to_not eq find("img.photo-2")["src"]
+      expect(find("img#photo-1")["src"]).to have_content path
+      expect(find("img#photo-2")["src"]).to have_content path
+      expect(find("img#photo-1")["src"]).to_not eq find("img#photo-2")["src"]
     end
 
     visit root_path
