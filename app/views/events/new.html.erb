@@ -28,6 +28,4 @@
   <%= f.button :submit, "Submit event", data: { disable_with: "Submitting" } %>
 <% end %>
 
-<%= javascript_require "thumbnail" %>
-<%= javascript_require "primary_photo" %>
-<%= javascript_require "photos" %>
+<%= javascript_require "thumbnail", "primary_photo", "photos", "event_price_field" %>

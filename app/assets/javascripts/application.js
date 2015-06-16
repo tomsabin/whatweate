@@ -5,6 +5,7 @@
 
 //= require jquery.ajaxchimp
 //= require moment
+//= require_tree ./shared
 //= require_tree ./application
 
 //= require turbolinks

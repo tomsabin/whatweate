@@ -4,6 +4,7 @@
 //= require jquery_ujs
 
 //= require materialize
+//= require_tree ./shared
 //= require_tree ./admin
 
 //= require turbolinks
