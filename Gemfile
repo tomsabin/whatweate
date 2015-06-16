@@ -30,6 +30,7 @@ gem "carrierwave", github: "carrierwaveuploader/carrierwave", ref: "de2a955"
 gem "mini_magick"
 gem "jquery-turbolinks"
 gem "newrelic_rpm"
+gem "sidekiq"
 
 group :production do
   gem 'rails_12factor'
