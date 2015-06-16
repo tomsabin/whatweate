@@ -22,6 +22,12 @@
 
         <div class="divider"></div>
 
+        <div class="section short-description">
+          <%= @event.short_description %>
+        </div>
+
+        <div class="divider"></div>
+
         <div class="section markdown description">
           <%= markdown(@event.description).html_safe %>
         </div>
