@@ -13,7 +13,7 @@ module("photos", function (module) {
           reader.onload = function (e) {
             var src = e.target.result;
             var id = "photo-" + (index + 1);
-            $container.append('<img src="' + src +'" alt="Event photo" class="responsive-img" id="' + id + '">');
+            $container.append('<img src="' + src +'" alt="Event photo" class="responsive-img event-photo" id="' + id + '">');
           }
 
           reader.readAsDataURL(file);

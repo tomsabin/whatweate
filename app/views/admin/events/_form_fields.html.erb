@@ -56,7 +56,7 @@
 
     <div class="event-photos">
       <% @event.photos.each_with_index do |photo, index| %>
-        <img src="<%= photo.url %>" alt="Event photo" class="responsive-img" id="photo-<%= index + 1 %>">
+        <img src="<%= photo.url %>" alt="Event photo" class="responsive-img event-photo" id="photo-<%= index + 1 %>">
       <% end %>
     </div>
   </div>
