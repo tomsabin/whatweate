@@ -15,7 +15,8 @@
 
 ## Dependencies
 
-Photo uploading and processing is handled by [CarrierWave](https://github.com/carrierwaveuploader/carrierwave), you'll need to install `imagemagick` for versions (e.g. thumbnail). This should be as easy as `brew install imagemagick`.
+- [Redis](http://redis.io/) for [Sidekiq](sidekiq.org)
+- Photo uploading and processing is handled by [CarrierWave](https://github.com/carrierwaveuploader/carrierwave), you'll need to install `imagemagick` for versions (e.g. thumbnail). This should be as easy as `brew install imagemagick`.
 
 ## Staging and Production environments
 

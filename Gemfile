@@ -20,7 +20,6 @@ gem "money-rails"
 gem "redcarpet"
 gem "aasm"
 gem "wisper"
-gem "delayed_job_active_record"
 gem "validate_url"
 gem "slack-notifier"
 gem "wisper-activerecord"
@@ -31,6 +30,7 @@ gem "carrierwave", github: "carrierwaveuploader/carrierwave", ref: "de2a955"
 gem "mini_magick"
 gem "jquery-turbolinks"
 gem "newrelic_rpm"
+gem "sidekiq"
 
 group :production do
   gem 'rails_12factor'

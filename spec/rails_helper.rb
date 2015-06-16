@@ -6,6 +6,7 @@ require "shoulda/matchers"
 require "webmock/rspec"
 require "vcr"
 require "carrierwave/test/matchers"
+require "sidekiq/testing"
 
 VCR.configure do |config|
   config.cassette_library_dir = "fixtures/vcr_cassettes"
@@ -13,9 +14,9 @@ VCR.configure do |config|
   config.ignore_localhost = true
 end
 
-ActiveRecord::Migration.maintain_test_schema!
+Sidekiq::Testing.inline!
 
-Delayed::Worker.delay_jobs = false
+ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
