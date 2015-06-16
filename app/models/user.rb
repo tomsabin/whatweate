@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   end
 
   scope :not_host, -> { where.not(id: Host.where.not(user_id: nil).select(:user_id).uniq ) }
+  scope :alphabetical, -> { order(first_name: :asc, last_name: :asc) }
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 

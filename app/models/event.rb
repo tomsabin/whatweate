@@ -10,6 +10,8 @@ class Event < ActiveRecord::Base
   validates :price, numericality: { greater_than: 0 }
   validates :seats, numericality: { only_integer: true, greater_than: 0 }
   validates :location_url, url: true
+  validates :photos, length: { minimum: 2, maximum: 6, allow_blank: true }
+  validates :short_description, length: { maximum: 80 }, presence: true
 
   monetize :price_in_pennies, as: "price", with_model_currency: :currency
 
@@ -20,6 +22,9 @@ class Event < ActiveRecord::Base
   scope :booked_for, -> (user) { includes(:bookings).where("bookings.user_id = ?", user).references(:bookings) }
 
   friendly_id :title, use: :slugged
+
+  mount_uploader :primary_photo, PrimaryPhotoUploader
+  mount_uploaders :photos, PhotosUploader
 
   date_time_attribute :date
 

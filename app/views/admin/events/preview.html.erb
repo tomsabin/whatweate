@@ -1,5 +1,6 @@
 <div class="wip">
-  <%= render partial: "/events/event_content", locals: { event: @event, host: @event_host, user: @event_user } %>
+  <%= render partial: "/pages/event_thumbnail", locals: { link: "#", event: @event } %>
+  <%= render partial: "/events/event_content", locals: { event: @event, host: @event_host, user: @event_user, guests: [] } %>
 
   <%= form_for [:admin, @event] do |f| %>
     <%= f.hidden_field :host_id %>
@@ -12,7 +13,8 @@
     <%= f.hidden_field :description %>
     <%= f.hidden_field :menu %>
 
-    <%= f.submit "Create event" %>
-    <%= link_to "Edit", new_admin_event_path %>
+    <%= link_to "Back", admin_event_path(@event) %>
+    <%= link_to "Edit event", edit_admin_event_path(@event) %>
+    <%= link_to "Approve", approve_admin_event_path(@event), method: :patch if @event.pending? %>
   <% end %>
 </div>

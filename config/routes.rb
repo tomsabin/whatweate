@@ -21,11 +21,8 @@ Rails.application.routes.draw do
     get "dashboard", to: "pages#dashboard"
 
     resources :events do
-      collection do
-        get "preview"
-      end
-
       member do
+        get "preview"
         patch "approve"
       end
     end

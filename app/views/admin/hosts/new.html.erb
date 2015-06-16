@@ -3,13 +3,9 @@
 
   <div class="row">
     <div class="col s12">
-      <%= f.button :submit, "Create host" %>
+      <%= f.button :submit, "Create host", data: { disable_with: "Creating" } %>
     </div>
   </div>
 <% end %>
 
-<script>
-  $(document).ready(function() {
-    $("select#host_user_id").material_select();
-  });
-</script>
+<script>$("select#host_user_id").material_select();</script>

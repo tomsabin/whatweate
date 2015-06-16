@@ -6,6 +6,12 @@ describe EventsController do
   let!(:event) { FactoryGirl.create(:event, host: host) }
 
   describe "#show" do
+    context "event is pending" do
+      let!(:event) { FactoryGirl.create(:event, :pending) }
+
+      it { expect { get :show, id: event.id }.to raise_error ActiveRecord::RecordNotFound }
+    end
+
     context "event host has a user association" do
       let!(:host) { FactoryGirl.create(:host, user: user) }
 
@@ -164,6 +170,42 @@ describe EventsController do
 
       describe "@current_user_is_event_host" do
         it { expect(assigns(:current_user_is_event_host)).to eq true }
+      end
+    end
+  end
+
+  describe "#new" do
+    before do
+      sign_in FactoryGirl.create(:user, :host)
+      get :new
+    end
+
+    describe "@event_thumbnail" do
+      it { expect(assigns(:event_thumbnail)).to have_attributes({
+        title: "Event title",
+        date: 1.month.from_now.change(hour: 19, min: 30),
+        short_description: "Your description here",
+        location: "London",
+        price: 30
+      }) }
+    end
+  end
+
+  describe "#create" do
+    context "invalid record" do
+      before do
+        sign_in FactoryGirl.create(:user, :host)
+        get :create, event: { title: "My event" }
+      end
+
+      describe "@event_thumbnail" do
+        it { expect(assigns(:event_thumbnail)).to have_attributes({
+          title: "My event",
+          date: 1.month.from_now.change(hour: 19, min: 30),
+          short_description: "Your description here",
+          location: "London",
+          price: 30
+        }) }
       end
     end
   end

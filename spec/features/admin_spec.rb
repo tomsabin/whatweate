@@ -21,6 +21,9 @@ describe "Admins" do
 
     expect(page).to have_content "Dashboard"
     within(".nav-wrapper .active", match: :first) { expect(page).to have_content "Events" }
+
+    click_link "Home", match: :first
+    expect(current_path).to eq root_path
   end
 
   scenario "signing out of admin persists user sign in" do

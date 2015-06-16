@@ -1,0 +1,27 @@
+@import "../shared/color";
+@import "../shared/utilities";
+@import "../shared/markdown";
+
+.card .divider {
+  background-color: rgba(160, 160, 160, 0.2);
+}
+
+.form {
+  .event_short_description textarea {
+    height: 3rem;
+  }
+
+  .event_description textarea {
+    height: 6rem;
+  }
+
+  .event_menu textarea {
+    height: 20rem;
+  }
+}
+
+.event-photo,
+.event-primary-photo {
+  object-fit: cover;
+  width: 1024px;
+}

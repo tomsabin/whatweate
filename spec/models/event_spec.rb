@@ -11,6 +11,7 @@ describe Event do
     it { should validate_presence_of(:location) }
     it { should validate_presence_of(:location_url) }
     it { should validate_presence_of(:description) }
+    it { should validate_presence_of(:short_description) }
     it { should validate_presence_of(:menu) }
     it { should validate_presence_of(:seats) }
     it { should validate_presence_of(:price_in_pennies) }
@@ -21,6 +22,23 @@ describe Event do
     it { should_not allow_value(0, -1, 0.75, "20").for(:seats) }
     it { should allow_value("https://facebook.com", "https://twitter.com", "http://google.com", "http://www.fb.com").for(:location_url) }
     it { should_not allow_value("www.facebook.com", "facebook.com", "<script>alert('hello')</script>", "ftp://e.com").for(:location_url) }
+    it { should allow_value(nil).for(:photos) }
+    it { should validate_length_of(:short_description).is_at_most(80) }
+
+    describe "photos" do
+      it "minimum of 2" do
+        subject = described_class.new(photos: [StringIO.new])
+        subject.save
+        expect(subject.errors[:photos]).to eq ["uploaded must be a minimum of 2"]
+      end
+
+      it "maximum of 6" do
+        photos = [StringIO.new, StringIO.new, StringIO.new, StringIO.new, StringIO.new, StringIO.new, StringIO.new]
+        subject = described_class.new(photos: photos)
+        subject.save
+        expect(subject.errors[:photos]).to eq ["uploaded must be a maximum of 6"]
+      end
+    end
   end
 
   describe "scopes" do
@@ -61,6 +79,22 @@ describe Event do
       it "returns past events" do
         expect(described_class.past).to eq [yesterday]
       end
+    end
+  end
+
+  describe "#destroy" do
+    it "deletes the primary photo" do
+      event = FactoryGirl.create(:event, :with_primary_photo)
+      expect(Dir.glob(Rails.root.join("tmp", CarrierWave::Uploader::Base.store_dir, "**", "*.png")).size).to eq(2)
+      event.destroy
+      expect(Dir.glob(Rails.root.join("tmp", CarrierWave::Uploader::Base.store_dir, "**", "*.png")).size).to eq(0)
+    end
+
+    it "deletes additional photos" do
+      event = FactoryGirl.create(:event, :with_photos)
+      expect(Dir.glob(Rails.root.join("tmp", CarrierWave::Uploader::Base.store_dir, "**", "*.png")).size).to eq(4)
+      event.destroy
+      expect(Dir.glob(Rails.root.join("tmp", CarrierWave::Uploader::Base.store_dir, "**", "*.png")).size).to eq(0)
     end
   end
 

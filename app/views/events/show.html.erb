@@ -1,4 +1,4 @@
-<div class="wip">
+<div class="event-full wip">
 
   <% if @already_booked %>
     <p>You are booked on to this event</p>
@@ -9,7 +9,7 @@
   <% else %>
     <%= form_tag event_bookings_path(@event) do %>
       <%= submit_tag 'Book seat', id: "no-js-submit", class: "book-seat" %>
-      <% if user_signed_in? %>
+      <% if user_signed_in? && current_user.completed_profile? %>
         <script
           src="https://checkout.stripe.com/checkout.js" class="stripe-button book-seat"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
@@ -26,11 +26,5 @@
     <% end %>
   <% end %>
 
-  <%= render partial: "event_content", locals: { event: @event, host: @event_host, user: @event_user } %>
-
-  <div class="guests">
-    <% @guests.each do |guest| %>
-      <%= link_to guest.full_name, member_path(guest) %>
-    <% end %>
-  </div>
+  <%= render partial: "event_content", locals: { event: @event, host: @event_host, user: @event_user, guests: @guests } %>
 </div>

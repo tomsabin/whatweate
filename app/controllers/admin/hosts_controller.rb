@@ -60,8 +60,8 @@ class Admin
     end
 
     def find_users(host = nil)
-      users = User.completed_profile.not_host.decorate
-      users << host.user if host.present? && host.user.present?
+      users = User.completed_profile.not_host.alphabetical.decorate
+      users.unshift(host.user) if host.present? && host.user.present?
       users
     end
 

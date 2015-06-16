@@ -15,6 +15,5 @@ test:
 
 production: &production
   <<: *default
-  database: <%= ENV["WHATWEATE_DATABASE_NAME"] %>
-  username: <%= ENV["WHATWEATE_DATABASE_USERNAME"] %>
-  password: <%= ENV["WHATWEATE_DATABASE_PASSWORD"] %>
+  url:  <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 5 %>
