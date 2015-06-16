@@ -61,7 +61,7 @@ describe "Host event" do
     end
   end
 
-  scenario "host views their thumbnail preview being built up", :js do
+  scenario "host views their thumbnail preview (text) being built up", :js do
     sign_in FactoryGirl.create(:user, :host, first_name: "Joe", last_name: "Bloggs")
     click_link "Create an event"
 
@@ -78,7 +78,6 @@ describe "Host event" do
     fill_in "event_location", with: "Old Street, London"
     fill_in "event_short_description", with: "The perfect end to the weekend"
     fill_in "event_price", with: "10.50"
-    attach_file "event_primary_photo", Rails.root.join("fixtures/carrierwave/image.png")
 
     within(".event-thumbnail") do
       expect(page).to have_content "Sunday Roast"
@@ -86,6 +85,20 @@ describe "Host event" do
       expect(page).to have_content "1st January 2000 7:00pm"
       expect(page).to have_content "The perfect end to the weekend"
       expect(page).to have_content "Old Street, London"
+    end
+  end
+
+  xscenario "host views their thumbnail preview (image) being built up", :js do
+    sign_in FactoryGirl.create(:user, :host, first_name: "Joe", last_name: "Bloggs")
+    click_link "Create an event"
+
+    within(".event-thumbnail") do
+      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
+    end
+
+    attach_file "event_primary_photo", Rails.root.join("fixtures/carrierwave/image.png")
+
+    within(".event-thumbnail") do
       find("img.primary-photo")["src"] # wait for image src to be replaced
       expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
     end
