@@ -54,6 +54,8 @@ describe "Host event" do
     within(".event-full") do
       expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
       expect(page).to have_link "Joe Bloggs"
+      expect(page).to have_link "View on map", href: "http://example.com"
+      expect(page.find_link("View on map")["target"]).to have_content "_blank"
       expect(page).to_not have_button "Book seat"
       expect(page).to have_content "This is your own event"
     end
