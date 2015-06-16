@@ -54,7 +54,11 @@
       <%= f.file_field :photos, accept: "image/*", multiple: true %>
     </div>
 
-    <div class="event-photos"></div>
+    <div class="event-photos">
+      <% @event.photos.each_with_index do |photo, index| %>
+        <img src="<%= photo.url %>" alt="Event photo" class="photo-<%= index + 1 %>">
+      <% end %>
+    </div>
   </div>
 
   <% if @event.new_record? %>

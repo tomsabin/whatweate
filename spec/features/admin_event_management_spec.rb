@@ -225,16 +225,19 @@ describe "Admin event management" do
     attach_file "event_primary_photo", Rails.root.join("fixtures/carrierwave/image.png")
 
     click_button "Create"
+    click_link "Sunday Roast"
+
+    click_link "Edit event"
+    expect(find("img.event-primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"
+    expect(find("img.event-primary-photo")["src"]).to have_content %r(\/uploads\/events\/(\d)+\/primary_photo\/(\h){32}.png)
 
     visit root_path
     expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
-    path = %r(\/uploads\/events\/(\d)+\/primary_photo\/thumb_(\h){32}.png)
-    expect(find("img.primary-photo")["src"]).to have_content path
+    expect(find("img.primary-photo")["src"]).to have_content %r(\/uploads\/events\/(\d)+\/primary_photo\/thumb_(\h){32}.png)
 
     visit "events/sunday-roast"
     expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"
-    path = %r(\/uploads\/events\/(\d)+\/primary_photo\/(\h){32}.png)
-    expect(find("img.primary-photo")["src"]).to have_content path
+    expect(find("img.primary-photo")["src"]).to have_content %r(\/uploads\/events\/(\d)+\/primary_photo\/(\h){32}.png)
   end
 
   scenario "admin creates an event with additional photos" do
@@ -263,7 +266,15 @@ describe "Admin event management" do
 
     attach_file "event_photos", [Rails.root.join("fixtures/carrierwave/image.png"), Rails.root.join("fixtures/carrierwave/image-1.png")]
     click_button "Create"
-    event = Event.last
+    click_link "Sunday Roast"
+
+    click_link "Edit event"
+    within(".event-photos") do
+      path = %r(\/uploads\/events\/(\d)+\/photos\/(\h){32}.png)
+      expect(find("img.photo-1")["src"]).to have_content path
+      expect(find("img.photo-2")["src"]).to have_content path
+      expect(find("img.photo-1")["src"]).to_not eq find("img.photo-2")["src"]
+    end
 
     visit root_path
     click_link "Sunday Roast"
