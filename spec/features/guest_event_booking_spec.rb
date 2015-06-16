@@ -11,7 +11,7 @@ describe "Guest event booking" do
       visit root_path
       click_link event.title
 
-      stripe_script = find(:xpath, ".//main//script[@src='https://checkout.stripe.com/checkout.js']", visible: false)
+      stripe_script = find(:xpath, ".//script[@src='https://checkout.stripe.com/checkout.js']", visible: false)
       expect(stripe_script["data-label"]).to eq "Book seat"
       expect(stripe_script["data-email"]).to eq "user@example.com"
       expect(stripe_script["data-name"]).to eq "WhatWeAte"

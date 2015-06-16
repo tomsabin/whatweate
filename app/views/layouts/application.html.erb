@@ -1,20 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>WhatWeAte</title>
-
-    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <!--[if lt IE 9]>
-      <%= javascript_include_tag "html5shiv.min.js" %>
-    <![endif]-->
-    <%= csrf_meta_tags %>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-  </head>
+  <%= render partial: "layouts/head", locals: { layout: "application", title: "WhatWeAte" } %>
   <body id="<%= page_id %>">
-
     <header>
       <div class="container">
         <%= link_to root_path, alt: "WhatWeAte", title: "WhatWeAte", class: "logo" do %>
@@ -38,25 +25,23 @@
       </div>
     </header>
 
-    <main>
-      <div class="wip">
-        <% if user_signed_in? %>
-          <%= link_to("Sign out", destroy_user_session_path, method: :delete) %>
-          <%= link_to("Profile", user_path) %>
-          <%= link_to("Create an event", new_event_path) if current_user.host.present? %>
-        <% else %>
-          <%= link_to("Sign in", new_user_session_path)  %>
-          <%= link_to("Sign up", new_registration_path(:user)) %>
-        <% end %>
-      </div>
+    <div class="wip">
+      <% if user_signed_in? %>
+        <%= link_to("Sign out", destroy_user_session_path, method: :delete) %>
+        <%= link_to("Profile", user_path) %>
+        <%= link_to("Create an event", new_event_path) if current_user.host.present? %>
+      <% else %>
+        <%= link_to("Sign in", new_user_session_path)  %>
+        <%= link_to("Sign up", new_registration_path(:user)) %>
+      <% end %>
+    </div>
 
-      <div class="flash-messages">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      </div>
+    <div class="flash-messages">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
 
-      <%= yield -%>
-    </main>
+    <%= yield %>
 
     <footer class="footer">
       <div class="container">
