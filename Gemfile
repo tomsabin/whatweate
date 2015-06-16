@@ -30,6 +30,7 @@ gem "date_time_attribute"
 gem "carrierwave", github: "carrierwaveuploader/carrierwave", ref: "de2a955"
 gem "mini_magick"
 gem "jquery-turbolinks"
+gem "newrelic_rpm"
 
 group :production do
   gem 'rails_12factor'
