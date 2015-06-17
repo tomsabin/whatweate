@@ -1,0 +1,28 @@
+#pages-style-guide {
+  .pattern-header {
+    margin: 2em 0;
+    font-family: "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+    font-size: 70%;
+    font-weight: normal;
+    padding: 1em 0;
+    border-bottom: 1px solid gray;
+  }
+
+  .pattern-body {
+    overflow: auto;
+  }
+
+  .atoms-colors li {
+    border: 1px solid #dddddd;
+    padding: 0.3em;
+    margin: 0 0.2em 0.2em 0;
+    float: left;
+  }
+
+  .color-swatch {
+    display: block;
+    height: 4em;
+    width: 4em;
+    margin-bottom: 0.2em;
+  }
+}

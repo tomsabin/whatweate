@@ -48,6 +48,7 @@ end
 group :development do
   gem "spring"
   gem "rubocop"
+  gem "guard-livereload", require: false
 end
 
 group :test do
