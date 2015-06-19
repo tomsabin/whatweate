@@ -1,0 +1,45 @@
+.event-thumbnail {
+  background-color: $pale-gray-color;
+  vertical-align: top;
+  text-align: left;
+  position: relative;
+  display: inline-block;
+  width: 292px;
+
+  &:hover {
+    background-color: $light-gray-color;
+  }
+
+  a {
+    text-decoration: none;
+    color: $black-color;
+  }
+
+  img {
+    height: 194px;
+    object-fit: cover;
+    width: 292px;
+  }
+
+  h4 {
+    padding-bottom: 4px;
+  }
+
+  p {
+    padding-top: 4px;
+  }
+
+  .content {
+    padding: 7px 14px 14px;
+  }
+
+  .venue {
+    font-style: italic;
+  }
+
+  .price {
+    left: 0;
+    position: absolute;
+    top: 120px;
+  }
+}
