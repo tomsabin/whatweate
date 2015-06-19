@@ -1,0 +1,19 @@
+ul, dl {
+  @extend p;
+}
+
+ul li, ol li {
+  margin-left: 15px;
+}
+
+ul li {
+  list-style: disc;
+}
+
+ol li {
+  list-style: decimal;
+}
+
+dl dt {
+  font-weight: 600;
+}
