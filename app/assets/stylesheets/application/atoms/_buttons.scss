@@ -1,19 +1,22 @@
-.btn {
+%btn-style {
   @extend %secondary-font;
-
   background-color: $primary-color;
   border: 0;
   box-sizing: border-box;
   color: $white-color;
-  cursor: pointer;
   display: inline-block;
   font-size: .9em;
   line-height: 1em;
   padding: 8px;
   text-align: center;
   text-decoration: none;
-  user-select: none;
   word-spacing: 1px;
+}
+
+.btn {
+  @extend %btn-style;
+  cursor: pointer;
+  user-select: none;
 
   &:focus {
     outline: 2px solid $primary-color;
