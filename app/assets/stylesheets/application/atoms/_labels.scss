@@ -1,7 +1,11 @@
+%label-style {
+  padding: 14px 18px;
+}
+
 .label {
   @extend %secondary-font;
+  @extend %label-style;
   background-color: $primary-color;
   color: $white-color;
   display: inline-block;
-  padding: 14px 18px;
 }
