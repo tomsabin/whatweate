@@ -1,3 +1,7 @@
+label.btn {
+  user-select: none;
+}
+
 .btn {
   @extend %secondary-font;
 
