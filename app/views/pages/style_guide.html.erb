@@ -96,5 +96,24 @@
       </div>
     </div>
   </div>
+
+  <div class="atoms-time">
+    <div class="pattern-header">
+      Time
+    </div>
+    <div class="pattern-body">
+      <p><%= time_tag Date.yesterday, "Yesterday" %></p>
+      <p><%= time_tag Time.current, "Right now" %></p>
+    </div>
+  </div>
+
+  <div class="atoms-hr">
+    <div class="pattern-header">
+      HR
+    </div>
+    <div class="pattern-body">
+      <hr>
+    </div>
+  </div>
   </body>
 </html>
