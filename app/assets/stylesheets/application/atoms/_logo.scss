@@ -1,4 +1,7 @@
+%logo,
 .logo {
+  text-decoration: none;
+
   img {
     padding: 18px 0;
     vertical-align: middle;
@@ -15,6 +18,8 @@
 }
 
 .logo-tablet {
+  @extend %logo;
+
   .logo-icon {
     height: 40px;
   }

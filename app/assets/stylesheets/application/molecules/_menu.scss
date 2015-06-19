@@ -27,8 +27,7 @@
   }
 
   li {
-    list-style: none;
-    margin-left: 0;
+    @extend %li-no-style;
 
     a {
       text-align: left;
@@ -45,5 +44,12 @@
     ~ ul {
       display: block;
     }
+  }
+}
+
+.menu-tablet {
+  li {
+    @extend %li-no-style;
+    display: inline-block;
   }
 }

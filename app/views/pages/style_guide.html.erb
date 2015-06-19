@@ -176,7 +176,7 @@
 
   <div class="atoms-logo">
     <div class="pattern-header">
-      Logo
+      Logo (mobile)
     </div>
     <div class="pattern-body">
       <div>
@@ -185,9 +185,16 @@
           <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
         <% end %>
       </div>
+    </div>
+  </div>
 
+  <div class="atoms-logo">
+    <div class="pattern-header">
+      Logo (tablet)
+    </div>
+    <div class="pattern-body">
       <div>
-        <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo logo-tablet" do %>
+        <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo-tablet" do %>
           <%= image_tag "logo-icon.png", class: "logo-icon" %>
           <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
         <% end %>
@@ -525,7 +532,7 @@
 
   <div class="molecules-menu">
     <div class="pattern-header">
-      Menu (interactive)
+      Menu (mobile, interactive)
     </div>
     <div class="pattern-body">
       <div class="menu">
@@ -534,8 +541,24 @@
         <ul>
           <li><a class="btn" href="#"><span>Item one</span></a></li>
           <li><a class="btn" href="#"><span>Item two</span></a></li>
-          <li><a class="btn" href="#"><span>Item three</span></a></li>
+          <li><a class="btn-alt" href="#"><span>Item three</span></a></li>
         </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="molecules-menu">
+    <div class="pattern-header">
+      Menu (tablet)
+    </div>
+    <div class="pattern-body">
+      <div class="menu-tablet">
+        <ul>
+          <li><a class="btn" href="#"><span>Item one</span></a></li>
+          <li><a class="btn" href="#"><span>Item two</span></a></li>
+          <li><a class="btn-alt" href="#"><span>Item three</span></a></li>
+        </ul>
+      </div>
       </div>
     </div>
   </div>
@@ -949,6 +972,142 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="organisms-header">
+    <div class="pattern-header">
+      Header (mobile)
+    </div>
+    <div class="pattern-body">
+      <div class="header">
+        <div class="left">
+          <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo" do %>
+            <%= image_tag "logo-icon.png", class: "logo-icon" %>
+            <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
+          <% end %>
+        </div>
+
+        <div class="right menu">
+          <input type="checkbox" id="mobile-header-menu">
+          <label  class="btn" for="mobile-header-menu">Menu</label>
+          <ul>
+            <li><a class="btn" href="#"><span>Item one</span></a></li>
+            <li><a class="btn" href="#"><span>Item two</span></a></li>
+            <li><a class="btn-alt" href="#"><span>Item three</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="organisms-header">
+    <div class="pattern-header">
+      Header (tablet)
+    </div>
+    <div class="pattern-body">
+      <div class="header">
+        <div class="left">
+          <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo-tablet" do %>
+            <%= image_tag "logo-icon.png", class: "logo-icon" %>
+            <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
+          <% end %>
+        </div>
+
+        <div class="right menu-tablet">
+          <ul>
+            <li><a class="btn" href="#"><span>Item one</span></a></li>
+            <li><a class="btn" href="#"><span>Item two</span></a></li>
+            <li><a class="btn-alt" href="#"><span>Item three</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="organisms-footer">
+    <div class="pattern-header">
+      Footer (mobile)
+    </div>
+    <div class="pattern-body">
+      <div class="footer">
+        <ul class="social">
+          <a href="https://www.facebook.com/whatweate.co" class="facebook">
+            Facebook
+          </a>
+          <a href="https://twitter.com/WhatWeAteCo" class="twitter">
+            Twitter
+          </a>
+          <a href="http://instagram.com/whatweate.co" class="instagram">
+            Instagram
+          </a>
+          <a href="mailto:hello@whatweate.co" class="email">
+            Email
+          </a>
+        </ul>
+
+        <ul class="links">
+          <li><%= link_to 'How it works', root_path(anchor: 'how_it_works') %></li>
+          <li><a href="https://whatweate.typeform.com/to/IXZyhO" class="cta typeform-share" data-mode="1" target="_blank">Become a host</a></li>
+        </ul>
+
+        <div class="legal">
+          <ul>
+            <%= link_to root_path do %>
+              <li>Terms of use</li>
+            <% end %>
+
+            <%= link_to root_path do %>
+              <li>Privacy policy</li>
+            <% end %>
+          </ul>
+
+          <p>Copyright &copy; 2014-2015 WhatWeAte Ltd</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="organisms-footer">
+    <div class="pattern-header">
+      Footer (tablet)
+    </div>
+    <div class="pattern-body">
+      <div class="footer-tablet">
+        <ul class="social">
+          <a href="https://www.facebook.com/whatweate.co" class="facebook">
+            Facebook
+          </a>
+          <a href="https://twitter.com/WhatWeAteCo" class="twitter">
+            Twitter
+          </a>
+          <a href="http://instagram.com/whatweate.co" class="instagram">
+            Instagram
+          </a>
+          <a href="mailto:hello@whatweate.co" class="email">
+            Email
+          </a>
+        </ul>
+
+        <ul class="links">
+          <li><%= link_to 'How it works', root_path(anchor: 'how_it_works') %></li>
+          <li><a href="https://whatweate.typeform.com/to/IXZyhO" class="cta typeform-share" data-mode="1" target="_blank">Become a host</a></li>
+        </ul>
+
+        <div class="legal">
+          <ul>
+            <%= link_to root_path do %>
+              <li>Terms of use</li>
+            <% end %>
+
+            <%= link_to root_path do %>
+              <li>Privacy policy</li>
+            <% end %>
+          </ul>
+
+          <p>Copyright &copy; 2014-2015 WhatWeAte Ltd</p>
         </div>
       </div>
     </div>
