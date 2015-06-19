@@ -13,6 +13,7 @@
   word-spacing: 1px;
 }
 
+%btn,
 .btn {
   @extend %btn-style;
   cursor: pointer;

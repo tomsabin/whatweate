@@ -1,4 +1,7 @@
-body { font-size: 14px; }
+body {
+  font-size: 14px;
+  line-height: 1.4em;
+}
 
 @import "../shared/*";
 @import "atoms/*";

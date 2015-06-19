@@ -1,0 +1,53 @@
+%newsletter,
+.newsletter {
+  display: block;
+  width: 280px;
+
+  input {
+    text-align: center;
+  }
+
+  .name {
+    display: inline-block;
+    width: 50%;
+  }
+
+  .first-name {
+    border-right: none;
+  }
+
+  .name,
+  .email {
+    margin-bottom: 4px;
+  }
+}
+
+.newsletter-tablet {
+  @extend %newsletter;
+
+  width: 532px;
+
+  input {
+    display: inline-block;
+  }
+
+  .name,
+  .email {
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .name {
+    width: 128px;
+  }
+
+  .email {
+    border-right: none;
+    border-left: none;
+    width: 196px;
+  }
+
+  input[type="submit"] {
+    width: 80px;
+  }
+}

@@ -1,3 +1,4 @@
+%proposition,
 .proposition {
   background-color: $primary-color;
   background: image-url("proposition.jpg");
@@ -37,10 +38,18 @@
   }
 }
 
-.proposition-tablet .container {
-  width: 460px;
+.proposition-tablet {
+  @extend %proposition;
+
+  .container {
+    width: 460px;
+  }
 }
 
-.proposition-desktop .container {
-  width: 768px;
+.proposition-desktop {
+  @extend %proposition;
+
+  .container {
+    width: 768px;
+  }
 }
