@@ -1,0 +1,62 @@
+a {
+  color: $primary-color;
+
+  &:hover {
+    color: $black-color;
+  }
+
+  &:visited, .visited {
+    color: $primary-darken-color;
+  }
+}
+
+strong, b {
+  font-weight: 600;
+}
+
+em, i, var, cite, dfn {
+  font-style: italic;
+}
+
+u {
+  text-decoration: underline;
+}
+
+sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+small {
+  font-size: smaller;
+}
+
+abbr {
+  border-bottom: 1px dotted gray;
+  cursor: help;
+}
+
+tt, code, kbd, samp {
+  font-family: monospace;
+}
+
+q {
+  quotes: initial;
+}
+
+q::before {
+  content: open-quote;
+}
+
+q::after {
+  content: close-quote;
+}
+
+mark {
+  background-color: lighten($primary-color, 30%);
+}
