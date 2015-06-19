@@ -1,0 +1,28 @@
+.item {
+  .content {
+    display: table;
+    padding: 7px 28px;
+    height: 100px;
+  }
+
+  .text-container,
+  .image-container {
+    vertical-align: middle;
+    display: table-cell;
+  }
+
+  .image-container {
+    text-align: center;
+    height: 84px;
+    width: 84px;
+    img { height: 64px }
+  }
+
+  .text-container {
+    padding-left: 28px;
+  }
+
+  h6 {
+    padding-bottom: 8px;
+  }
+}

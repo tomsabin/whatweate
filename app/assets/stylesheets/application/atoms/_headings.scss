@@ -5,7 +5,8 @@
 %h5,
 %h6 {
   @extend %secondary-font;
-  line-height: 1em;
+  line-height: 1.1em;
+  word-spacing: .2em;
 }
 
 %h1 { font-size: 3.1em; }
