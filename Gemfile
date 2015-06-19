@@ -31,6 +31,7 @@ gem "mini_magick"
 gem "jquery-turbolinks"
 gem "newrelic_rpm"
 gem "sidekiq"
+gem "autoprefixer-rails"
 
 group :production do
   gem 'rails_12factor'
@@ -47,8 +48,9 @@ end
 
 group :development do
   gem "spring"
-  gem "rubocop"
+  gem "rubocop", require: false
   gem "guard-livereload", require: false
+  gem "scss_lint", require: false
 end
 
 group :test do

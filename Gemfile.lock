@@ -53,6 +53,9 @@ GEM
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
+    autoprefixer-rails (5.2.0.1)
+      execjs
+      json
     bcrypt (3.1.10)
     builder (3.2.2)
     capybara (2.4.4)
@@ -308,6 +311,9 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
+    scss_lint (0.39.0)
+      rainbow (~> 2.0)
+      sass (~> 3.4.1)
     shellany (0.0.1)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
@@ -379,6 +385,7 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  autoprefixer-rails
   capybara
   carrierwave!
   codeclimate-test-reporter
@@ -413,6 +420,7 @@ DEPENDENCIES
   rspec-rails (~> 3.0)
   rubocop
   sass-rails
+  scss_lint
   shoulda-matchers
   sidekiq
   simple_form
