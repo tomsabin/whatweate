@@ -1,40 +1,43 @@
 .social {
   .email {
-    background-image: image-url('icons/mail-w.png');
+    background-image: image-url("icons/mail-w.png");
+
     &:hover {
-      background-image: image-url('icons/mail-h.png');
+      background-image: image-url("icons/mail-h.png");
     }
   }
 
   .facebook {
-    background-image: image-url('icons/facebook-w.png');
+    background-image: image-url("icons/facebook-w.png");
+
     &:hover {
-      background-image: image-url('icons/facebook-h.png');
+      background-image: image-url("icons/facebook-h.png");
     }
   }
 
   .twitter {
-    background-image: image-url('icons/twitter-w.png');
+    background-image: image-url("icons/twitter-w.png");
+
     &:hover {
-      background-image: image-url('icons/twitter-h.png');
+      background-image: image-url("icons/twitter-h.png");
     }
   }
 
   .instagram {
-    background-image: image-url('icons/instagram-w.png');
+    background-image: image-url("icons/instagram-w.png");
+
     &:hover {
-      background-image: image-url('icons/instagram-h.png');
+      background-image: image-url("icons/instagram-h.png");
     }
   }
 
   a {
-    background-repeat: no-repeat;
     background-position: center;
-    -moz-background-size: 100%;
+    background-repeat: no-repeat;
     background-size: 100%;
-    text-indent: -9999px;
     display: inline-block;
     height: 32px;
+    text-indent: -9999px;
     width: 32px;
   }
 }

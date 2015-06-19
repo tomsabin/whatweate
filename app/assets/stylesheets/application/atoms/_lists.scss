@@ -1,8 +1,10 @@
-ul, dl {
-  @extend p;
+ul,
+dl {
+  @extend %p;
 }
 
-ul li, ol li {
+ul li,
+ol li {
   margin-left: 15px;
 }
 

@@ -5,16 +5,22 @@ a {
     color: $black-color;
   }
 
-  &:visited, .visited {
+  .visited,
+  &:visited {
     color: $primary-darken-color;
   }
 }
 
-strong, b {
+b,
+strong {
   font-weight: 600;
 }
 
-em, i, var, cite, dfn {
+i,
+em,
+var,
+dfn,
+cite {
   font-style: italic;
 }
 
@@ -23,13 +29,13 @@ u {
 }
 
 sup {
-  vertical-align: super;
   font-size: smaller;
+  vertical-align: super;
 }
 
 sub {
-  vertical-align: sub;
   font-size: smaller;
+  vertical-align: sub;
 }
 
 small {
@@ -37,11 +43,14 @@ small {
 }
 
 abbr {
-  border-bottom: 1px dotted gray;
+  border-bottom: 1px dotted $gray-color;
   cursor: help;
 }
 
-tt, code, kbd, samp {
+tt,
+kbd,
+code,
+samp {
   font-family: monospace;
 }
 
