@@ -1,0 +1,25 @@
+.logo {
+  img {
+    vertical-align: middle;
+    padding: 18px 0;
+  }
+
+  .logo-icon {
+    height: 36px;
+  }
+
+  .logo-text {
+    margin-left: 10px;
+    height: 24px;
+  }
+}
+
+.logo-tablet {
+  .logo-icon {
+    height: 40px;
+  }
+
+  .logo-text {
+    height: 30px;
+  }
+}

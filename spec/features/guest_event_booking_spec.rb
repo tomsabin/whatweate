@@ -14,6 +14,7 @@ describe "Guest event booking" do
       stripe_script = find(:xpath, ".//script[@src='https://checkout.stripe.com/checkout.js']", visible: false)
       expect(stripe_script["data-label"]).to eq "Book seat"
       expect(stripe_script["data-email"]).to eq "user@example.com"
+      expect(stripe_script["data-image"]).to include "assets/icons/logo-icon-128.jpg"
       expect(stripe_script["data-name"]).to eq "WhatWeAte"
       expect(stripe_script["data-description"]).to eq "Event title"
       expect(stripe_script["data-amount"]).to eq "2500"

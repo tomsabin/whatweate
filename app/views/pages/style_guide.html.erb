@@ -173,5 +173,98 @@
       </dl>
     </div>
   </div>
+
+  <div class="atoms-logo">
+    <div class="pattern-header">
+      Logo
+    </div>
+    <div class="pattern-body">
+      <div>
+        <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo" do %>
+          <%= image_tag "logo-icon.png", class: "logo-icon" %>
+          <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
+        <% end %>
+      </div>
+
+      <div>
+        <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo logo-tablet" do %>
+          <%= image_tag "logo-icon.png", class: "logo-icon" %>
+          <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="atoms-photos">
+    <div class="pattern-header">
+      Proposition image (2000x1000px)
+    </div>
+    <div class="pattern-body">
+      <%= image_tag "dining-out.jpg" %>
+    </div>
+  </div>
+
+  <div class="atoms-photos">
+    <div class="pattern-header">
+      Event placeholder image (600x397px)
+    </div>
+    <div class="pattern-body">
+      <%= image_tag "events/primary_default.png" %>
+    </div>
+  </div>
+
+  <div class="atoms-photos">
+    <div class="pattern-header">
+      Event placeholder thumbnail image (292x193px)
+    </div>
+    <div class="pattern-body">
+      <%= image_tag "events/primary_default_thumb.png" %>
+    </div>
+  </div>
+
+  <div class="atoms-photos">
+    <div class="pattern-header">
+      Member avatar
+    </div>
+    <div class="pattern-body">
+      <%= gravatar_image_tag "" %>
+    </div>
+  </div>
+
+  <div class="atoms-icons">
+    <div class="pattern-header">
+      Icons
+    </div>
+    <div class="pattern-body">
+      <%= image_tag "icons/browse.png", alt: "Find an event" %>
+      <%= image_tag "icons/join.png", alt: "Join a table" %>
+      <%= image_tag "icons/talk.png", alt: "Make new friends" %>
+      <%= image_tag "icons/submit.png", alt: "Introduce yourself" %>
+      <%= image_tag "icons/create.png", alt: "Let the cooking begin" %>
+      <%= image_tag "icons/paid.png", alt: "Get paid!" %>
+    </div>
+  </div>
+
+  <div class="atoms-icons">
+    <div class="pattern-header">
+      Social links
+    </div>
+    <div class="pattern-body">
+      <ul class="social">
+        <a href="https://www.facebook.com/whatweate.co" class="facebook">
+          Facebook
+        </a>
+        <a href="https://twitter.com/WhatWeAteCo" class="twitter">
+          Twitter
+        </a>
+        <a href="http://instagram.com/whatweate.co" class="instagram">
+          Instagram
+        </a>
+        <a href="mailto:hello@whatweate.co" class="email">
+          Email
+        </a>
+      </ul>
+    </div>
+  </div>
   </body>
 </html>

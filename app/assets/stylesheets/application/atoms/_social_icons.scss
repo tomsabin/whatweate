@@ -1,0 +1,40 @@
+.social {
+  .email {
+    background-image: image-url('icons/mail-w.png');
+    &:hover {
+      background-image: image-url('icons/mail-h.png');
+    }
+  }
+
+  .facebook {
+    background-image: image-url('icons/facebook-w.png');
+    &:hover {
+      background-image: image-url('icons/facebook-h.png');
+    }
+  }
+
+  .twitter {
+    background-image: image-url('icons/twitter-w.png');
+    &:hover {
+      background-image: image-url('icons/twitter-h.png');
+    }
+  }
+
+  .instagram {
+    background-image: image-url('icons/instagram-w.png');
+    &:hover {
+      background-image: image-url('icons/instagram-h.png');
+    }
+  }
+
+  a {
+    background-repeat: no-repeat;
+    background-position: center;
+    -moz-background-size: 100%;
+    background-size: 100%;
+    text-indent: -9999px;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+  }
+}
