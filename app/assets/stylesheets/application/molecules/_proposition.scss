@@ -1,8 +1,8 @@
 %proposition,
 .proposition {
-  background-color: $primary-color;
   background: image-url("proposition.jpg");
   background: image-url("proposition.jpg") no-repeat top right 30%;
+  background-color: $primary-color;
   background-size: cover;
 
   .container {
@@ -20,13 +20,13 @@
   }
 
   h1 {
-    text-shadow: 0 0 50px black;
+    text-shadow: 0 0 50px $black-color;
   }
 
   h2 {
     padding-bottom: 44px;
     padding-top: 28px;
-    text-shadow: 0 0 40px black;
+    text-shadow: 0 0 40px $black-color;
   }
 
   a {

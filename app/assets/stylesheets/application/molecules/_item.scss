@@ -1,21 +1,24 @@
 .item {
   .content {
     display: table;
-    padding: 7px 28px;
     height: 100px;
+    padding: 7px 28px;
   }
 
   .text-container,
   .image-container {
-    vertical-align: middle;
     display: table-cell;
+    vertical-align: middle;
   }
 
   .image-container {
-    text-align: center;
     height: 84px;
+    text-align: center;
     width: 84px;
-    img { height: 64px }
+
+    img {
+      height: 64px;
+    }
   }
 
   .text-container {

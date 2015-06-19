@@ -4,9 +4,9 @@
   width: 320px;
 
   .label-container {
-    text-align: center;
-    position: relative;
     overflow: visible;
+    position: relative;
+    text-align: center;
     z-index: 3;
   }
 
@@ -23,13 +23,13 @@
   }
 
   .content-container {
-    position: relative;
     height: 380px;
+    position: relative;
   }
 
   .toggle {
-    position: absolute;
     left: -9999px;
+    position: absolute;
   }
 
   .toggle:not(:checked) + .togglable-content {
@@ -41,14 +41,13 @@
   }
 
   .togglable-content {
+    background: linear-gradient($pale-gray-color, $white-color, $pale-gray-color);
     background-color: $pale-gray-color;
-    background: linear-gradient($pale-gray-color, white, $pale-gray-color);
-
+    bottom: 0;
+    left: 0;
     padding-top: 20px;
     position: absolute;
-    bottom: 0;
     right: 0;
-    left: 0;
     top: 0;
   }
 }
@@ -69,11 +68,11 @@
 
   .togglable-content {
     background: $pale-gray-color;
-    position: relative;
-    margin: 0 7px;
     float: left;
-    width: 350px;
+    margin: 0 7px;
+    position: relative;
     top: 0;
+    width: 350px;
   }
 
   .content-1 {
