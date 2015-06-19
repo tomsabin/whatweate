@@ -1,9 +1,7 @@
-%btn-style {
+%base-btn-style {
   @extend %secondary-font;
-  background-color: $primary-color;
   border: 0;
   box-sizing: border-box;
-  color: $white-color;
   display: inline-block;
   font-size: .9em;
   line-height: 1em;
@@ -11,6 +9,12 @@
   text-align: center;
   text-decoration: none;
   word-spacing: 1px;
+}
+
+%btn-style {
+  @extend %base-btn-style;
+  background-color: $primary-color;
+  color: $white-color;
 }
 
 %btn,
@@ -28,7 +32,30 @@
   }
 }
 
-.btn-heading {
+%btn-alt,
+.btn-alt {
+  @extend %base-btn-style;
+  background-color: $pale-gray-color;
+  color: $black-color;
+
+  &:hover {
+    background-color: $primary-color;
+    color: $white-color;
+  }
+}
+
+%btn-header,
+.btn-header {
+  @extend %btn-alt;
+  @extend %h5;
+  cursor: pointer;
+}
+
+%btn-header-active,
+.btn-header-active {
+  @extend %btn-style;
+  @extend %h5;
+
   position: relative;
 
   &:after {
@@ -42,9 +69,5 @@
     left: calc(50% - 11px);
     position: absolute;
     width: 0;
-  }
-
-  &:hover:after {
-    border-color: $primary-darken-color transparent transparent;
   }
 }

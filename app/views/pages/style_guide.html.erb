@@ -441,10 +441,18 @@
       Buttons
     </div>
     <div class="pattern-body">
-      <input type="submit" value="Submit" class="btn">
-      <a href="#" class="btn">Link</a>
-      <button class="btn">Button</button>
-      <label class="btn btn-heading">Button heading</label>
+      <div>
+        <a href="#" class="btn-alt">Link</a>
+      </div>
+      <div>
+        <input type="submit" value="Submit" class="btn">
+        <a href="#" class="btn">Link</a>
+        <button class="btn">Button</button>
+      </div>
+      <div>
+        <label class="btn-header">Button heading</label>
+        <label class="btn-header-active">Active button heading</label>
+      </div>
     </div>
   </div>
 
@@ -761,6 +769,188 @@
 
         <input type="submit" value="Submit event" data-disable-with="Submitting" class="btn">
       </form>
+    </div>
+  </div>
+
+  <div class="organisms-item-list">
+    <div class="pattern-header">
+      Item list (mobile)
+    </div>
+    <div class="pattern-body">
+      <p class="note">Requires JavaScript to flip active class on click.</p>
+
+      <div class="item-list">
+        <div class="label-container">
+          <label class="btn-header content-1 active" for="content-1-mobile">Optio</label>
+          <label class="btn-header content-2" for="content-2-mobile">Non soluta</label>
+        </div>
+
+        <div class="content-container">
+          <input type="radio" name="toggle-content-mobile" id="content-1-mobile" class="toggle" checked>
+          <div class="togglable-content">
+            <div class="item">
+              <div class="content">
+                <div class="image-container">
+                  <%= image_tag "icons/browse.png" %>
+                </div>
+                <div class="text-container">
+                  <h6>Lorem ipsum dolor.</h6>
+                  <p>Culpa nihil fugiat nisi</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="content">
+                <div class="image-container">
+                  <%= image_tag "icons/join.png" %>
+                </div>
+                <div class="text-container">
+                  <h6>Ipsam accusamus.</h6>
+                  <p>Illo quia voluptatibus autem odio amet debitis</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="content">
+                <div class="image-container">
+                  <%= image_tag "icons/talk.png" %>
+                </div>
+                <div class="text-container">
+                  <h6>Cupiditate alias </h6>
+                  <p>Exercitationem eos, officiis maiores numquam qui cum,</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <input type="radio" name="toggle-content-mobile" id="content-2-mobile" class="toggle">
+          <div class="togglable-content">
+            <div class="item">
+              <div class="content">
+                <div class="image-container">
+                  <%= image_tag "icons/submit.png" %>
+                </div>
+                <div class="text-container">
+                  <h6>Velit perferendis</h6>
+                  <p>Ipsum minus, deserunt architecto labore.</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="content">
+                <div class="image-container">
+                  <%= image_tag "icons/create.png" %>
+                </div>
+                <div class="text-container">
+                  <h6>Quam reprehenderit</h6>
+                  <p>Eius tempora odio at ipsum quo</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="content">
+                <div class="image-container">
+                  <%= image_tag "icons/paid.png" %>
+                </div>
+                <div class="text-container">
+                  <h6>Maiores numqua!</h6>
+                  <p>Cupiditate deleniti officia doloribus</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="organisms-item-list">
+    <div class="pattern-header">
+      Item list (desktop)
+    </div>
+    <div class="pattern-body">
+      <div class="item-list-desktop">
+        <div class="label-container">
+          <label class="btn-header-active content-1" for="content-1-desktop">Optio</label>
+          <label class="btn-header-active content-2" for="content-2-desktop">Non soluta</label>
+        </div>
+
+        <div class="content-container">
+          <input type="radio" name="toggle-content-desktop" id="content-1-desktop" class="toggle" checked>
+          <div class="togglable-content">
+            <div class="item">
+              <div class="content">
+                <div class="image-container">
+                  <%= image_tag "icons/browse.png" %>
+                </div>
+                <div class="text-container">
+                  <h6>Lorem ipsum dolor.</h6>
+                  <p>Culpa nihil fugiat nisi</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="content">
+                <div class="image-container">
+                  <%= image_tag "icons/join.png" %>
+                </div>
+                <div class="text-container">
+                  <h6>Ipsam accusamus.</h6>
+                  <p>Illo quia voluptatibus autem odio amet debitis</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="content">
+                <div class="image-container">
+                  <%= image_tag "icons/talk.png" %>
+                </div>
+                <div class="text-container">
+                  <h6>Cupiditate alias </h6>
+                  <p>Exercitationem eos, officiis maiores numquam qui cum,</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <input type="radio" name="toggle-content-desktop" id="content-2-desktop" class="toggle">
+          <div class="togglable-content">
+            <div class="item">
+              <div class="content">
+                <div class="image-container">
+                  <%= image_tag "icons/submit.png" %>
+                </div>
+                <div class="text-container">
+                  <h6>Velit perferendis</h6>
+                  <p>Ipsum minus, deserunt architecto labore.</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="content">
+                <div class="image-container">
+                  <%= image_tag "icons/create.png" %>
+                </div>
+                <div class="text-container">
+                  <h6>Quam reprehenderit</h6>
+                  <p>Eius tempora odio at ipsum quo</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="content">
+                <div class="image-container">
+                  <%= image_tag "icons/paid.png" %>
+                </div>
+                <div class="text-container">
+                  <h6>Maiores numqua!</h6>
+                  <p>Cupiditate deleniti officia doloribus</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   </body>

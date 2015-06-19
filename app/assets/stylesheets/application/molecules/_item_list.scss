@@ -1,0 +1,86 @@
+%item-list,
+.item-list {
+  background-color: $pale-gray-color;
+  width: 320px;
+
+  .label-container {
+    text-align: center;
+    position: relative;
+    overflow: visible;
+    z-index: 3;
+  }
+
+  label {
+    width: 120px;
+  }
+
+  .content-1 {
+    margin-right: 14px;
+  }
+
+  .active {
+    @extend %btn-header-active;
+  }
+
+  .content-container {
+    position: relative;
+    height: 380px;
+  }
+
+  .toggle {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .toggle:not(:checked) + .togglable-content {
+    z-index: 1;
+  }
+
+  .toggle:checked + .togglable-content {
+    z-index: 2;
+  }
+
+  .togglable-content {
+    background-color: $pale-gray-color;
+    background: linear-gradient($pale-gray-color, white, $pale-gray-color);
+
+    padding-top: 20px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+  }
+}
+
+.item-list-desktop {
+  @extend %item-list;
+  width: auto;
+
+  .toggle:checked + .togglable-content,
+  .toggle:not(:checked) + .togglable-content {
+    z-index: 1;
+  }
+
+  .content-container {
+    margin: 0 auto;
+    width: 728px;
+  }
+
+  .togglable-content {
+    background: $pale-gray-color;
+    position: relative;
+    margin: 0 7px;
+    float: left;
+    width: 350px;
+    top: 0;
+  }
+
+  .content-1 {
+    margin-right: 240px;
+  }
+
+  label {
+    cursor: default;
+  }
+}
