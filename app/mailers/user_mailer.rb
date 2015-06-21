@@ -1,4 +1,6 @@
 class UserMailer < ApplicationMailer
+  default template_path: "users/mailer"
+
   def new_host(user)
     mail(to: user.email, subject: "New host")
   end

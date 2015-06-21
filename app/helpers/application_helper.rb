@@ -1,6 +1,6 @@
 module ApplicationHelper
   def page_id
-    "#{controller.controller_name}-#{controller.action_name}"
+    "#{controller.controller_name}-#{controller.action_name}".dasherize
   end
 
   def markdown(content)

@@ -1,0 +1,30 @@
+%logo,
+.logo {
+  text-decoration: none;
+
+  img {
+    padding: 18px 0;
+    vertical-align: middle;
+  }
+
+  .logo-icon {
+    height: 36px;
+  }
+
+  .logo-text {
+    height: 24px;
+    margin-left: 10px;
+  }
+}
+
+.logo-tablet {
+  @extend %logo;
+
+  .logo-icon {
+    height: 40px;
+  }
+
+  .logo-text {
+    height: 30px;
+  }
+}

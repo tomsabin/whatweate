@@ -1,0 +1,53 @@
+%proposition,
+.proposition {
+  background: image-url("proposition.jpg");
+  background: image-url("proposition.jpg") no-repeat top right 30%;
+  background-color: $primary-color;
+  background-size: cover;
+
+  .container {
+    display: table;
+    height: 470px;
+    margin: 0 auto;
+    width: 320px;
+  }
+
+  .content {
+    color: $white-color;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  h1 {
+    text-shadow: 0 0 50px $black-color;
+  }
+
+  h2 {
+    padding-bottom: 44px;
+    padding-top: 28px;
+    text-shadow: 0 0 40px $black-color;
+  }
+
+  a {
+    @extend %h4;
+    @extend %label-style;
+    word-spacing: 1px;
+  }
+}
+
+.proposition-tablet {
+  @extend %proposition;
+
+  .container {
+    width: 460px;
+  }
+}
+
+.proposition-desktop {
+  @extend %proposition;
+
+  .container {
+    width: 768px;
+  }
+}

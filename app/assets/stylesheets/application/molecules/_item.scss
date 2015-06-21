@@ -1,0 +1,35 @@
+.item {
+  .content {
+    display: table;
+    height: 100px;
+    padding: 7px 28px;
+  }
+
+  .text-container,
+  .image-container {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .image-container {
+    height: 84px;
+    text-align: center;
+    width: 84px;
+
+    img {
+      height: 64px;
+    }
+  }
+
+  .text-container {
+    padding-left: 28px;
+  }
+
+  h6 {
+    padding-bottom: 8px;
+  }
+
+  p {
+    line-height: 1.1em;
+  }
+}

@@ -17,8 +17,8 @@ class Event < ActiveRecord::Base
 
   scope :most_recent, -> { order(created_at: :desc) }
   scope :approved, -> { where.not(state: :pending) }
-  scope :upcoming, -> { where("DATE >= ?", Date.today) }
-  scope :past, -> { where("DATE < ?", Date.today) }
+  scope :upcoming, -> { where("DATE >= ?", DateTime.current.beginning_of_day) }
+  scope :past, -> { where("DATE < ?", DateTime.current.beginning_of_day) }
   scope :booked_for, -> (user) { includes(:bookings).where("bookings.user_id = ?", user).references(:bookings) }
 
   friendly_id :title, use: :slugged

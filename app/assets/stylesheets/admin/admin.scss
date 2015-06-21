@@ -1,9 +1,13 @@
-@import "../shared/color";
+@import "../shared/colors";
 @import "../shared/utilities";
 @import "../shared/markdown";
 
+.primary-background-color {
+  background-color: $primary-color;
+}
+
 .card .divider {
-  background-color: rgba(160, 160, 160, 0.2);
+  background-color: rgba(160, 160, 160, .2);
 }
 
 .form {

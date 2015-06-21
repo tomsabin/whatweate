@@ -1,5 +1,4 @@
 <div class="event-full wip">
-
   <% if @already_booked %>
     <p>You are booked on to this event</p>
   <% elsif @current_user_is_event_host %>
@@ -15,7 +14,7 @@
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-label="Book seat"
           data-email="<%= current_user.email %>"
-          data-image="<%= asset_url("logo-icon-128.jpg") %>"
+          data-image="<%= asset_url("icons/logo-icon-128.jpg") %>"
           data-name="WhatWeAte"
           data-description="<%= @event.title %>"
           data-amount="<%= @event.price_in_pennies %>"

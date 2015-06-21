@@ -1,0 +1,55 @@
+.menu {
+  position: relative;
+
+  input {
+    left: -9999px;
+    position: absolute;
+  }
+
+  ul {
+    display: none;
+    left: 0;
+    position: absolute;
+    top: calc(100% + 12px);
+
+    &:before {
+      border-color: transparent transparent $primary-color;
+      border-style: solid;
+      border-width: 0 12px 10px 10px;
+      content: "";
+      display: block;
+      height: 0;
+      left: calc(50% - 10px);
+      position: absolute;
+      top: -10px;
+      width: 0;
+    }
+  }
+
+  li {
+    @extend %li-no-style;
+
+    a {
+      text-align: left;
+      width: 100%;
+    }
+  }
+
+  input:checked {
+    + label {
+      background-color: $primary-darken-color;
+      color: $white-color;
+    }
+
+    ~ ul {
+      display: block;
+    }
+  }
+}
+
+.menu-tablet {
+  li {
+    @extend %li-no-style;
+    display: inline-block;
+  }
+}
