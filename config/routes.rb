@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   end
 
   get "style_guide", to: "pages#style_guide"
+  get "grid_layout", to: "pages#grid_layout"
   root "pages#home"
 
   match "/404", to: "errors#not_found", via: :all

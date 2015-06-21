@@ -4,6 +4,7 @@
 //= require jquery_ujs
 
 //= require jquery.ajaxchimp
+//= require respond
 //= require moment
 //= require_tree ./shared
 //= require_tree ./application

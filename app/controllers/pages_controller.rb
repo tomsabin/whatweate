@@ -6,4 +6,8 @@ class PagesController < ApplicationController
   def style_guide
     render layout: false
   end
+
+  def grid_layout
+    render layout: false
+  end
 end
