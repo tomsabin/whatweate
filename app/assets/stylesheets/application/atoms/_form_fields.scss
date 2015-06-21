@@ -25,6 +25,10 @@
       outline: 2px solid $primary-color;
     }
   }
+
+  textarea {
+    vertical-align: top;
+  }
 }
 
 .submit,
@@ -37,6 +41,9 @@ input[type="submit"] {
   }
 }
 
-.field-with-errors input {
-  border: 1px solid $primary-color;
+.field-with-errors {
+  &input,
+  &textarea {
+    border: 1px solid $primary-color;
+  }
 }
