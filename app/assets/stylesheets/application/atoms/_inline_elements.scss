@@ -19,9 +19,12 @@ strong {
 i,
 em,
 var,
-dfn,
-cite {
+dfn {
   font-style: italic;
+}
+
+cite:before {
+  content: "—";
 }
 
 u {
