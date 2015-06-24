@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%= render partial: "layouts/head", locals: { layout: "application", title: "WhatWeAte Style Guide" } %>
+  <body id="<%= page_id %>">
+    <%= render partial: "style_guide/navigation" %>
+
+    <a id="atoms" class="anchor-link"></a>
+
+    <div class="atoms-colors">
+      <div class="pattern-header">
+        Colors
+      </div>
+      <div class="pattern-body">
+        <%= color_palette(%w(dc7a31 ba6220 000000 777470 927e6f ece9e7 f7f6f5 ffffff)) %>
+      </div>
+    </div>
+
+    <div class="atoms-fonts">
+      <div class="pattern-header">
+        Fonts
+      </div>
+      <div class="pattern-body">
+        <p class="brand-font">Brand font: "Pacifico", "Helvetica", sans-serif;</p>
+        <p class="primary-font">Primary font: "Carrois Gothic", "Helvetica", sans-serif;</p>
+        <p class="secondary-font">Secondary font: "Bebas", "Helvetica", sans-serif;</p>
+      </div>
+    </div>
+
+    <div class="atoms-headings">
+      <div class="pattern-header">
+        Headings
+      </div>
+      <div class="pattern-body">
+        <h1>Heading Level 1</h1>
+        <h2>Heading Level 2</h2>
+        <h3>Heading Level 3</h3>
+        <h4>Heading Level 4</h4>
+        <h5>Heading Level 5</h5>
+        <h6>Heading Level 6</h6>
+      </div>
+    </div>
+
+    <div class="atoms-paragraph">
+      <div class="pattern-header">
+        Paragraph
+      </div>
+      <div class="pattern-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt voluptas placeat repellendus nostrum similique, reiciendis dolorum ipsa repudiandae minus explicabo voluptatem voluptatum deleniti laudantium pariatur aliquid. Libero eveniet iusto, placeat dicta iste asperiores quam veritatis ab officia, voluptatibus distinctio, eaque.</p>
+      </div>
+    </div>
+
+    <div class="atoms-inline-elements">
+      <div class="pattern-header">
+        Inline elements
+      </div>
+      <div class="pattern-body">
+        <div class="text">
+          <p><a class="link" href="#<%= SecureRandom.hex %>">This is a text link</a></p>
+
+          <p><a class="link visited" href="#">This is a visited text link</a></p>
+
+          <p><strong>Strong is used to indicate strong importance</strong></p>
+
+          <p><em>This text has added emphasis</em></p>
+
+          <p>The <b>b element</b> is stylistically different text from normal text, without any special importance</p>
+
+          <p>The <i>i element</i> is text that is set off from the normal text</p>
+
+          <p>The <u>u element</u> is text with an unarticulated, though explicitly rendered, non-textual annotation</p>
+
+          <p><del>This text is deleted</del> and <ins>This text is inserted</ins></p>
+
+          <p><s>This text has a strikethrough</s></p>
+
+          <p>Superscript<sup>®</sup></p>
+
+          <p>Subscript for things like H<sub>2</sub>O</p>
+
+          <p><small>This small text is small for for fine print, etc.</small></p>
+
+          <p>Abbreviation: <abbr title="HyperText Markup Language">HTML</abbr></p>
+
+          <p>Keybord input: <kbd>Cmd</kbd></p>
+
+          <p><q cite="https://developer.mozilla.org/en-US/docs/HTML/Element/q">This text is a short inline quotation</q></p>
+
+          <p><cite>This is a citation</cite>
+
+          </p><p>The <dfn>dfn element</dfn> indicates a definition.</p>
+
+          <p>The <mark>mark element</mark> indicates a highlight</p>
+
+          <p><code>This is what inline code looks like.</code></p>
+
+          <p><samp>This is sample output from a computer program</samp></p>
+
+          <p>The <var>variarble element</var>, such as <var>x</var> = <var>y</var></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="atoms-time">
+      <div class="pattern-header">
+        Time
+      </div>
+      <div class="pattern-body">
+        <p><%= time_tag Date.yesterday, "Yesterday" %></p>
+        <p><%= time_tag Time.current, "Right now" %></p>
+      </div>
+    </div>
+
+    <div class="atoms-hr">
+      <div class="pattern-header">
+        HR
+      </div>
+      <div class="pattern-body">
+        <hr>
+      </div>
+    </div>
+
+    <div class="atoms-unordered-list">
+      <div class="pattern-header">
+        Unordered list
+      </div>
+      <div class="pattern-body">
+        <ul>
+          <li>This is a list item in an unordered list</li>
+          <li>An unordered list is a list in which the sequence of items is not important. Sometimes, an unordered list is a bulleted list. And this is a long list item in an unordered list that can wrap onto a new line. </li>
+          <li>
+            Lists can be nested inside of each other
+            <ul>
+              <li>This is a nested list item</li>
+              <li>This is another nested list item in an unordered list</li>
+            </ul>
+          </li>
+          <li>This is the last list item</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="atoms-ordered-list">
+      <div class="pattern-header">
+        Ordered list
+      </div>
+      <div class="pattern-body">
+        <ol>
+          <li>This is a list item in an ordered list</li>
+          <li>An ordered list is a list in which the sequence of items is important. An ordered list does not necessarily contain sequence characters.</li>
+          <li>
+            Lists can be nested inside of each other
+            <ol>
+              <li>This is a nested list item</li>
+              <li>This is another nested list item in an ordered list</li>
+            </ol>
+          </li>
+          <li>This is the last list item</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="atoms-definition">
+      <div class="pattern-header">
+        Definition
+      </div>
+      <div class="pattern-body">
+        <dl>
+          <dt>Definition List</dt>
+          <dd>A number of connected items or names written or printed consecutively, typically one below the other.</dd>
+          <dt>This is a term.</dt>
+          <dd>This is the definition of that term, which both live in a <code>dl</code>.</dd>
+          <dt>Here is another term.</dt>
+          <dd>And it gets a definition too, which is this line.</dd>
+          <dt>Here is term that shares a definition with the term below.</dt>
+          <dd>And it gets a definition too, which is this line.</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="atoms-logo">
+      <div class="pattern-header">
+        Logo (mobile)
+      </div>
+      <div class="pattern-body">
+        <div>
+          <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo" do %>
+            <%= image_tag "logo-icon.png", class: "logo-icon" %>
+            <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="atoms-logo">
+      <div class="pattern-header">
+        Logo (tablet)
+      </div>
+      <div class="pattern-body">
+        <div>
+          <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo-tablet" do %>
+            <%= image_tag "logo-icon.png", class: "logo-icon" %>
+            <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="atoms-photos">
+      <div class="pattern-header">
+        Proposition image (2000x1000px)
+      </div>
+      <div class="pattern-body">
+        <%= image_tag "proposition.jpg" %>
+      </div>
+    </div>
+
+    <div class="atoms-photos">
+      <div class="pattern-header">
+        Event placeholder image (600x397px)
+      </div>
+      <div class="pattern-body">
+        <%= image_tag "events/primary_default.png" %>
+      </div>
+    </div>
+
+    <div class="atoms-photos">
+      <div class="pattern-header">
+        Event placeholder thumbnail image (292x193px)
+      </div>
+      <div class="pattern-body">
+        <%= image_tag "events/primary_default_thumb.png" %>
+      </div>
+    </div>
+
+    <div class="atoms-photos">
+      <div class="pattern-header">
+        Member avatar
+      </div>
+      <div class="pattern-body">
+        <%= gravatar_image_tag "", class: "memeber-avatar" %>
+      </div>
+    </div>
+
+    <div class="atoms-icons">
+      <div class="pattern-header">
+        Icons
+      </div>
+      <div class="pattern-body">
+        <%= image_tag "icons/browse.png", alt: "Find an event" %>
+        <%= image_tag "icons/join.png", alt: "Join a table" %>
+        <%= image_tag "icons/talk.png", alt: "Make new friends" %>
+        <%= image_tag "icons/submit.png", alt: "Introduce yourself" %>
+        <%= image_tag "icons/create.png", alt: "Let the cooking begin" %>
+        <%= image_tag "icons/paid.png", alt: "Get paid!" %>
+        <%= image_tag "icons/heart.png", alt: "Heart" %>
+      </div>
+    </div>
+
+    <div class="atoms-icons">
+      <div class="pattern-header">
+        Social links
+      </div>
+      <div class="pattern-body">
+        <ul class="social">
+          <a href="https://www.facebook.com/whatweate.co" class="facebook">
+            Facebook
+          </a>
+          <a href="https://twitter.com/WhatWeAteCo" class="twitter">
+            Twitter
+          </a>
+          <a href="http://instagram.com/whatweate.co" class="instagram">
+            Instagram
+          </a>
+          <a href="mailto:hello@whatweate.co" class="email">
+            Email
+          </a>
+        </ul>
+      </div>
+    </div>
+
+    <div class="atoms-favicon">
+      <div class="pattern-header">
+        Favicon
+      </div>
+      <div class="pattern-body">
+        <img src="/favicon-16.ico" alt="" width="16px" height="16px">
+        <img src="/favicon-32.ico" alt="" width="32px" height="32px">
+      </div>
+    </div>
+
+    <div class="atoms-text-fields">
+      <div class="pattern-header">
+        Text fields
+      </div>
+      <div class="pattern-body">
+        <div class="input-field required">
+          <label class="required">Text Input <abbr title="Required">*</abbr></label>
+          <input class="string required" type="text" placeholder="Text Input">
+        </div>
+
+        <div class="input-field optional">
+          <label class="password optional">Password</label>
+          <input class="password optional" type="password" placeholder="Type your password">
+        </div>
+
+        <div class="input-field optional">
+          <label class="url optional">Web Address</label>
+          <input class="url optional" type="url" placeholder="http://example.com">
+        </div>
+
+        <div class="input-field optional">
+          <label class="email optional">Email Address</label>
+          <input class="email optional" type="email" placeholder="user@example.com">
+        </div>
+
+        <div class="input-field optional">
+          <label class="search optional">Search</label>
+          <input class="search optional" type="search" placeholder="Enter Search Term">
+        </div>
+
+        <div class="input-field required">
+          <label class="required">Number Input <abbr title="Required">*</abbr></label>
+          <input class="number required" type="number" placeholder="Enter a Number" pattern="[0-9]*">
+        </div>
+
+        <div class="input-field optional">
+          <label class="text optional">Textarea</label>
+          <textarea class="text optional" rows="8" cols="48" placeholder="Enter your message here"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="atoms-html5-input">
+      <div class="pattern-header">
+        HTML5 input
+      </div>
+      <div class="pattern-body">
+        <div class="input-field required">
+          <label class="required">Number input <abbr title="Required">*</abbr></label>
+          <input class="number required" type="number" min="0" max="5" value="3">
+        </div>
+
+        <div class="input-field datetime required event_date">
+          <label class="datetime required">
+          <abbr title="required">*</abbr> Datetime</label>
+          <input type="datetime-local" class="datetime required" placeholder="YYYY-MM-DD HH:MM">
+        </div>
+
+        <div class="input-field date optional event_title">
+          <label class="date optional">Date</label>
+          <input class="date optional" type="date">
+        </div>
+
+        <div class="input-field time optional event_title">
+          <label class="time optional">Time</label>
+          <input class="time optional" type="time">
+        </div>
+      </div>
+    </div>
+
+    <div class="atoms-input-error">
+      <div class="pattern-header">
+        Input field (error state)
+      </div>
+      <div class="pattern-body">
+        <div class="error-notification">Please review the following errors</div>
+
+        <div class="input-field optional field-with-errors">
+          <label class="error optional">Error Input</label>
+          <input class="text optional" type="text" placeholder="Text Input">
+          <span class="error">can't be blank</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="atoms-file-input">
+      <div class="pattern-header">
+        File input
+      </div>
+      <div class="pattern-body">
+        <div class="input-field file optional ">
+          <label class="file optional">File input</label>
+          <input accept="image/*" class="file optional" type="file">
+        </div>
+      </div>
+    </div>
+
+    <div class="atoms-select-menu">
+      <div class="pattern-header">
+        Select menu
+      </div>
+      <div class="pattern-body">
+        <div class="input-field select optional">
+          <label class="select optional">Select</label>
+          <select class="select optional">
+            <option></option>
+            <option>Option one</option>
+            <option>Option two</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="atoms-checkbox">
+      <div class="pattern-header">
+        Checkbox
+      </div>
+      <div class="pattern-body">
+        <div class="input-field check_boxes optional">
+          <label class="check_boxes optional">Checkbox</label>
+          <span class="checkbox">
+            <label for="checkbox-a">
+            <input class="check_boxes optional" type="checkbox" id="checkbox-a">Choice A</label>
+          </span>
+          <span class="checkbox">
+            <label for="checkbox-b">
+            <input class="check_boxes optional" readonly="readonly" type="checkbox" id="checkbox-b">Choice B</label>
+          </span>
+          <span class="checkbox">
+            <label for="checkbox-c">
+            <input class="check_boxes optional" readonly="readonly" type="checkbox" id="checkbox-c">Choice C</label>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="atoms-radio-buttons">
+      <div class="pattern-header">
+        Radio buttons
+      </div>
+      <div class="pattern-body">
+        <div class="input-field radio_buttons optional ">
+          <label class="radio_buttons optional">Radio buttons</label>
+          <span class="radio">
+            <label for="radio-a">
+            <input class="radio_buttons optional" type="radio" id="radio-a">Choice A</label>
+          </span>
+          <span class="radio">
+            <label for="radio-b">
+            <input class="radio_buttons optional" readonly="readonly" type="radio" id="radio-b">Choice B</label>
+          </span>
+          <span class="radio">
+            <label for="radio-c">
+            <input class="radio_buttons optional" readonly="readonly" type="radio" id="radio-c">Choice C</label>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="atoms-buttons">
+      <div class="pattern-header">
+        Buttons
+      </div>
+      <div class="pattern-body">
+        <div>
+          <a href="#" class="btn-alt">Link</a>
+        </div>
+        <div>
+          <input type="submit" value="Submit" class="btn">
+          <a href="#" class="btn">Link</a>
+          <button class="btn">Button</button>
+        </div>
+        <div>
+          <label class="btn-header">Button heading</label>
+          <label class="btn-header-active">Active button heading</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="atoms-label">
+      <div class="pattern-header">
+        Label
+      </div>
+      <div class="pattern-body">
+        <div class="label">£35.00</div>
+      </div>
+    </div>
+
+    <div class="atoms-table">
+      <div class="pattern-header">
+        Table
+      </div>
+      <div class="pattern-body">
+        <table>
+          <thead>
+            <tr>
+              <th>Table Heading 1</th>
+              <th>Table Heading 2</th>
+              <th>Table Heading 3</th>
+              <th>Table Heading 4</th>
+              <th>Table Heading 5</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Table Footer 1</th>
+              <th>Table Footer 2</th>
+              <th>Table Footer 3</th>
+              <th>Table Footer 4</th>
+              <th>Table Footer 5</th>
+            </tr>
+          </tfoot>
+          <tbody>
+          <tr>
+            <td>Table Cell 1</td>
+            <td>Table Cell 2</td>
+            <td>Table Cell 3</td>
+            <td>Table Cell 4</td>
+            <td>Table Cell 5</td>
+          </tr>
+          <tr>
+            <td>Table Cell 1</td>
+            <td>Table Cell 2</td>
+            <td>Table Cell 3</td>
+            <td>Table Cell 4</td>
+            <td>Table Cell 5</td>
+          </tr>
+          <tr>
+            <td>Table Cell 1</td>
+            <td>Table Cell 2</td>
+            <td>Table Cell 3</td>
+            <td>Table Cell 4</td>
+            <td>Table Cell 5</td>
+          </tr>
+          <tr>
+            <td>Table Cell 1</td>
+            <td>Table Cell 2</td>
+            <td>Table Cell 3</td>
+            <td>Table Cell 4</td>
+            <td>Table Cell 5</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <a id="molecules" class="anchor-link"></a>
+
+    <div class="molecules-menu">
+      <div class="pattern-header">
+        Menu (mobile, interactive)
+      </div>
+      <div class="pattern-body">
+        <div class="menu">
+          <input type="checkbox" id="molecules-menu">
+          <label  class="btn" for="molecules-menu">Menu</label>
+          <ul>
+            <li><a class="btn" href="#"><span>Item one</span></a></li>
+            <li><a class="btn" href="#"><span>Item two</span></a></li>
+            <li><a class="btn-alt" href="#"><span>Item three</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="molecules-menu">
+      <div class="pattern-header">
+        Menu (tablet)
+      </div>
+      <div class="pattern-body">
+        <div class="menu-tablet">
+          <ul>
+            <li><a class="btn" href="#"><span>Item one</span></a></li>
+            <li><a class="btn" href="#"><span>Item two</span></a></li>
+            <li><a class="btn-alt" href="#"><span>Item three</span></a></li>
+          </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="molecules-proposition">
+      <div class="pattern-header">
+        Proposition (mobile)
+      </div>
+      <div class="pattern-body">
+        <div class="proposition">
+          <div class="container">
+            <div class="content">
+              <h1>Lorem ipsum dolor sit amet.</h1>
+              <h2>Consequatur voluptates tenetur sapiente praesentium reiciendis.</h2>
+              <a href="#" class="btn">Ab ipsam maxime</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="molecules-proposition">
+      <div class="pattern-header">
+        Proposition (tablet)
+      </div>
+      <div class="pattern-body">
+        <div class="proposition-tablet">
+          <div class="container">
+            <div class="content">
+              <h1>Lorem ipsum dolor sit amet.</h1>
+              <h2>Consequatur voluptates tenetur sapiente praesentium reiciendis.</h2>
+              <a href="#" class="btn">Ab ipsam maxime</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="molecules-proposition">
+      <div class="pattern-header">
+        Proposition (desktop)
+      </div>
+      <div class="pattern-body">
+        <div class="proposition-desktop">
+          <div class="container">
+            <div class="content">
+              <h1>Lorem ipsum dolor sit amet.</h1>
+              <h2>Consequatur voluptates tenetur sapiente praesentium reiciendis.</h2>
+              <a href="#" class="btn">Ab ipsam maxime</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="molecules-newsletter">
+      <div class="pattern-header">
+        Newsletter (mobile)
+      </div>
+      <div class="pattern-body">
+        <div class="newsletter input-field">
+          <input type="text" class="name first-name" placeholder="First Name" required><!--
+          --><input type="text" class="name last-name" placeholder="Last Name" required><!--
+          --><input type="email" class="email" placeholder="Email address" required><!--
+          --><input type="submit" value="Submit">
+        </div>
+      </div>
+    </div>
+
+    <div class="molecules-newsletter">
+      <div class="pattern-header">
+        Newsletter (tablet)
+      </div>
+      <div class="pattern-body">
+        <div class="newsletter-tablet input-field">
+          <input type="text" class="name first-name" placeholder="First Name" required><!--
+          --><input type="text" class="name last-name" placeholder="Last Name" required><!--
+          --><input type="email" class="email" placeholder="Email address" required><!--
+          --><input type="submit" value="Submit">
+        </div>
+      </div>
+    </div>
+
+    <div class="molecules-item">
+      <div class="pattern-header">
+        Item
+      </div>
+      <div class="pattern-body">
+        <div class="item">
+          <div class="content">
+            <div class="image-container">
+              <%= image_tag "icons/browse.png", alt: "Find an event" %>
+            </div>
+            <div class="text-container">
+              <h6>Lorem ipsum dolor.</h6>
+              <p>Amet consectetur adipisicing elit. Minus.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="molecules-blockquote">
+      <div class="pattern-header">
+        Blockquote
+      </div>
+      <div class="pattern-body">
+        <blockquote>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci enim non facilis, alias, amet nostrum nemo maxime culpa hic dicta tempora, maiores similique tenetur quia odit laudantium facere mollitia iusto!</p>
+          <footer>
+            <p><cite>Joe Bloggs</cite></p>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="molecules-event-thumbnail">
+      <div class="pattern-header">
+        Event thumbnail
+      </div>
+      <div class="pattern-body">
+        <div class="event-thumbnail">
+          <a href="#" title="Title">
+            <%= image_tag "events/primary_default_thumb.png", class: "primary-photo" %>
+            <div class="content">
+              <h4>Consectetur adipisicing elit. Dolore, eius.</h4>
+              <p class="date">6:00PM, 27th Jun 2015</p>
+              <span class="label price">£46.00</span>
+              <p class="short-description">Perferendis aliquam sint veritatis. Minima modi, harum numquam soluta assumenda.</p>
+              <p class="venue">Shoreditch, London</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="molecules-form">
+      <div class="pattern-header">
+        Horizontal form
+      </div>
+      <div class="pattern-body">
+        <form class="form horizontal-form">
+            <div class="input-field email optional user_email">
+              <label class="email optional" for="user_email">Email</label>
+              <input class="string email optional" type="email" value="" id="user_email">
+            </div>
+            <div class="input-field password optional user_password">
+              <label class="password optional" for="user_password">Password</label>
+              <input class="password optional" type="password" id="user_password">
+            </div>
+            <div class="input-field boolean optional user_remember_me">
+              <input value="0" type="hidden" >
+              <label class="boolean optional checkbox" for="user_remember_me">
+              <input class="boolean optional" type="checkbox" value="1"  id="user_remember_me">Remember me</label>
+            </div>
+            <input type="submit" value="Sign in" class="btn">
+        </form>
+      </div>
+    </div>
+
+    <div class="molecules-form">
+      <div class="pattern-header">
+        Default form
+      </div>
+      <div class="pattern-body">
+        <form class="form">
+          <div class="error-notification">Please review the following errors</div>
+
+          <div class="input-field string required event_title field-with-errors">
+            <label class="string required" for="event_title">
+            <abbr title="required">*</abbr> Title</label>
+            <input class="string required" type="text" value="" id="event_title">
+            <span class="error">can't be blank</span>
+          </div>
+
+          <div class="input-field datetime required event_date field-with-errors">
+            <label class="datetime required" for="event_date_1i">
+            <abbr title="required">*</abbr> Date</label>
+            <input type="datetime-local" class="datetime required" placeholder="YYYY-MM-DD HH:MM" id="event_date">
+            <span class="error">can't be blank</span>
+          </div>
+
+          <div class="input-field string optional event_price field-with-errors">
+            <label class="string optional" for="event_price">Price (£)</label>
+            <input type="number" min="0" step="any" class="string optional" value="0.00" id="event_price">
+            <span class="error">must be greater than 0</span>
+          </div>
+
+          <div class="input-field integer required event_seats">
+            <label class="integer required" for="event_seats">
+            <abbr title="required">*</abbr> Seats</label>
+            <input min="0" step="1" class="numeric integer required" type="number" value="8" id="event_seats">
+          </div>
+
+          <div class="input-field string required event_location field-with-errors">
+            <label class="string required" for="event_location">
+            <abbr title="required">*</abbr> Location</label>
+            <input class="string required" type="text" value="" id="event_location">
+            <span class="error">can't be blank</span>
+          </div>
+
+          <div class="input-field url required event_location_url field-with-errors">
+            <label class="url required" for="event_location_url">
+            <abbr title="required">*</abbr> Location url</label>
+            <input class="string url required" type="url" value="" id="event_location_url">
+            <span class="error">can't be blank</span>
+          </div>
+
+          <div class="input-field string required event_short_description field-with-errors">
+            <label class="string required" for="event_short_description">
+            <abbr title="required">*</abbr> Short description</label>
+            <input class="string required" type="text" value="" id="event_short_description">
+            <span class="error">can't be blank</span>
+          </div>
+
+          <p>
+            <a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields
+          </p>
+
+          <div class="input-field text required event_description field-with-errors">
+            <label class="text required" for="event_description">
+            <abbr title="required">*</abbr> Description</label>
+            <textarea class="text required" id="event_description">
+            </textarea>
+            <span class="error">can't be blank</span>
+          </div>
+
+          <div class="input-field text required event_menu field-with-errors">
+            <label class="text required" for="event_menu">
+            <abbr title="required">*</abbr> Menu</label>
+            <textarea class="text required" id="event_menu">
+            </textarea>
+            <span class="error">can't be blank</span>
+          </div>
+
+          <div class="input-field file optional event_primary_photo">
+            <label class="file optional" for="event_primary_photo">Primary photo (1024 x 678px)</label>
+            <input accept="image/*" class="file optional" type="file" id="event_primary_photo">
+          </div>
+
+          <div class="input-field file optional event_photos">
+            <label class="file optional" for="event_photos">Other photos (minimum of 2, maximum of 6)</label>
+            <input multiple="multiple" accept="image/*" class="file optional" type="file" id="event_photos">
+          </div>
+
+          <input type="submit" value="Submit event" data-disable-with="Submitting" class="btn">
+        </form>
+      </div>
+    </div>
+
+    <a id="organisms" class="anchor-link"></a>
+
+    <div class="organisms-item-list">
+      <div class="pattern-header">
+        Item list (mobile)
+      </div>
+      <div class="pattern-body">
+        <p class="note">Requires JavaScript to flip active class on click.</p>
+
+        <div class="item-list">
+          <div class="label-container">
+            <label class="btn-header content-1 active" for="content-1-mobile">Optio</label>
+            <label class="btn-header content-2" for="content-2-mobile">Non soluta</label>
+          </div>
+
+          <div class="content-container">
+            <input type="radio" name="toggle-content-mobile" id="content-1-mobile" class="toggle" checked>
+            <div class="togglable-content">
+              <div class="item">
+                <div class="content">
+                  <div class="image-container">
+                    <%= image_tag "icons/browse.png" %>
+                  </div>
+                  <div class="text-container">
+                    <h6>Lorem ipsum dolor.</h6>
+                    <p>Culpa nihil fugiat nisi</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="content">
+                  <div class="image-container">
+                    <%= image_tag "icons/join.png" %>
+                  </div>
+                  <div class="text-container">
+                    <h6>Ipsam accusamus.</h6>
+                    <p>Illo quia voluptatibus autem odio amet debitis</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="content">
+                  <div class="image-container">
+                    <%= image_tag "icons/talk.png" %>
+                  </div>
+                  <div class="text-container">
+                    <h6>Cupiditate alias </h6>
+                    <p>Exercitationem eos, officiis maiores numquam qui cum,</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <input type="radio" name="toggle-content-mobile" id="content-2-mobile" class="toggle">
+            <div class="togglable-content">
+              <div class="item">
+                <div class="content">
+                  <div class="image-container">
+                    <%= image_tag "icons/submit.png" %>
+                  </div>
+                  <div class="text-container">
+                    <h6>Velit perferendis</h6>
+                    <p>Ipsum minus, deserunt architecto labore.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="content">
+                  <div class="image-container">
+                    <%= image_tag "icons/create.png" %>
+                  </div>
+                  <div class="text-container">
+                    <h6>Quam reprehenderit</h6>
+                    <p>Eius tempora odio at ipsum quo</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="content">
+                  <div class="image-container">
+                    <%= image_tag "icons/paid.png" %>
+                  </div>
+                  <div class="text-container">
+                    <h6>Maiores numqua!</h6>
+                    <p>Cupiditate deleniti officia doloribus</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="organisms-item-list">
+      <div class="pattern-header">
+        Item list (desktop)
+      </div>
+      <div class="pattern-body">
+        <div class="item-list-desktop">
+          <div class="label-container">
+            <label class="btn-header-active content-1" for="content-1-desktop">Optio</label>
+            <label class="btn-header-active content-2" for="content-2-desktop">Non soluta</label>
+          </div>
+
+          <div class="content-container">
+            <input type="radio" name="toggle-content-desktop" id="content-1-desktop" class="toggle" checked>
+            <div class="togglable-content">
+              <div class="item">
+                <div class="content">
+                  <div class="image-container">
+                    <%= image_tag "icons/browse.png" %>
+                  </div>
+                  <div class="text-container">
+                    <h6>Lorem ipsum dolor.</h6>
+                    <p>Culpa nihil fugiat nisi</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="content">
+                  <div class="image-container">
+                    <%= image_tag "icons/join.png" %>
+                  </div>
+                  <div class="text-container">
+                    <h6>Ipsam accusamus.</h6>
+                    <p>Illo quia voluptatibus autem odio amet debitis</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="content">
+                  <div class="image-container">
+                    <%= image_tag "icons/talk.png" %>
+                  </div>
+                  <div class="text-container">
+                    <h6>Cupiditate alias </h6>
+                    <p>Exercitationem eos, officiis maiores numquam qui cum,</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <input type="radio" name="toggle-content-desktop" id="content-2-desktop" class="toggle">
+            <div class="togglable-content">
+              <div class="item">
+                <div class="content">
+                  <div class="image-container">
+                    <%= image_tag "icons/submit.png" %>
+                  </div>
+                  <div class="text-container">
+                    <h6>Velit perferendis</h6>
+                    <p>Ipsum minus, deserunt architecto labore.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="content">
+                  <div class="image-container">
+                    <%= image_tag "icons/create.png" %>
+                  </div>
+                  <div class="text-container">
+                    <h6>Quam reprehenderit</h6>
+                    <p>Eius tempora odio at ipsum quo</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="content">
+                  <div class="image-container">
+                    <%= image_tag "icons/paid.png" %>
+                  </div>
+                  <div class="text-container">
+                    <h6>Maiores numqua!</h6>
+                    <p>Cupiditate deleniti officia doloribus</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="organisms-header">
+      <div class="pattern-header">
+        Header (mobile)
+      </div>
+      <div class="pattern-body">
+        <div class="header">
+          <div class="left">
+            <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo" do %>
+              <%= image_tag "logo-icon.png", class: "logo-icon" %>
+              <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
+            <% end %>
+          </div>
+
+          <div class="right menu">
+            <input type="checkbox" id="mobile-header-menu">
+            <label  class="btn" for="mobile-header-menu">Menu</label>
+            <ul>
+              <li><a class="btn" href="#"><span>Item one</span></a></li>
+              <li><a class="btn" href="#"><span>Item two</span></a></li>
+              <li><a class="btn-alt" href="#"><span>Item three</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="organisms-header">
+      <div class="pattern-header">
+        Header (tablet)
+      </div>
+      <div class="pattern-body">
+        <div class="header">
+          <div class="left">
+            <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo-tablet" do %>
+              <%= image_tag "logo-icon.png", class: "logo-icon" %>
+              <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
+            <% end %>
+          </div>
+
+          <div class="right menu-tablet">
+            <ul>
+              <li><a class="btn" href="#"><span>Item one</span></a></li>
+              <li><a class="btn" href="#"><span>Item two</span></a></li>
+              <li><a class="btn-alt" href="#"><span>Item three</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="organisms-footer">
+      <div class="pattern-header">
+        Footer (mobile)
+      </div>
+      <div class="pattern-body">
+        <div class="footer">
+          <ul class="social">
+            <a href="https://www.facebook.com/whatweate.co" class="facebook">
+              Facebook
+            </a>
+            <a href="https://twitter.com/WhatWeAteCo" class="twitter">
+              Twitter
+            </a>
+            <a href="http://instagram.com/whatweate.co" class="instagram">
+              Instagram
+            </a>
+            <a href="mailto:hello@whatweate.co" class="email">
+              Email
+            </a>
+          </ul>
+
+          <ul class="links">
+            <li><%= link_to 'How it works', root_path(anchor: 'how_it_works') %></li>
+            <li><a href="https://whatweate.typeform.com/to/IXZyhO" class="cta typeform-share" data-mode="1" target="_blank">Become a host</a></li>
+          </ul>
+
+          <div class="legal">
+            <ul>
+              <%= link_to root_path do %>
+                <li>Terms of use</li>
+              <% end %>
+
+              <%= link_to root_path do %>
+                <li>Privacy policy</li>
+              <% end %>
+            </ul>
+
+            <p>Copyright &copy; 2014-2015 WhatWeAte Ltd</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="organisms-footer">
+      <div class="pattern-header">
+        Footer (tablet)
+      </div>
+      <div class="pattern-body">
+        <div class="footer-tablet">
+          <ul class="social">
+            <a href="https://www.facebook.com/whatweate.co" class="facebook">
+              Facebook
+            </a>
+            <a href="https://twitter.com/WhatWeAteCo" class="twitter">
+              Twitter
+            </a>
+            <a href="http://instagram.com/whatweate.co" class="instagram">
+              Instagram
+            </a>
+            <a href="mailto:hello@whatweate.co" class="email">
+              Email
+            </a>
+          </ul>
+
+          <ul class="links">
+            <li><%= link_to 'How it works', root_path(anchor: 'how_it_works') %></li>
+            <li><a href="https://whatweate.typeform.com/to/IXZyhO" class="cta typeform-share" data-mode="1" target="_blank">Become a host</a></li>
+          </ul>
+
+          <div class="legal">
+            <ul>
+              <%= link_to root_path do %>
+                <li>Terms of use</li>
+              <% end %>
+
+              <%= link_to root_path do %>
+                <li>Privacy policy</li>
+              <% end %>
+            </ul>
+
+            <p>Copyright &copy; 2014-2015 WhatWeAte Ltd</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- TEMPLATES -->
+
+  </body>
+</html>

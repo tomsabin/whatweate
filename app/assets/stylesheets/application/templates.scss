@@ -1,27 +1,3 @@
-#pages-grid-layout {
-  [class^=outer-container-]:nth-of-type(even) {
-    background-color: lighten(rgba(255, 0, 0, .75), 45%);
-  }
-
-  [class^=outer-container-]:nth-of-type(odd) {
-    background-color: lighten(rgba(255, 0, 0, .75), 40%);
-  }
-
-  [class^=row-]:nth-of-type(even) {
-    background-color: lighten(rgba(0, 0, 255, .75), 45%);
-  }
-
-  [class^=row-]:nth-of-type(odd) {
-    background-color: lighten(rgba(0, 0, 255, .75), 40%);
-  }
-}
-
-.layout-header {
-  @extend %pattern-header;
-  margin: 0 auto;
-  text-align: center;
-}
-
 @import "susy/susy";
 @import "breakpoint/breakpoint";
 
@@ -97,13 +73,13 @@ $desktop: 737px;
   }
 }
 
-.generic-layout {
+.template-generic {
   .row {
     @include span(12 of 12);
   }
 }
 
-.home-page-layout {
+.home-template-page {
   .row-proposition {
     @include span(12 of 12);
   }
@@ -125,7 +101,7 @@ $desktop: 737px;
   }
 }
 
-.event-layout {
+.template-event {
   .row-photos {
     @include span(12 of 12);
   }
@@ -151,7 +127,7 @@ $desktop: 737px;
   }
 }
 
-.member-layout {
+.template-member {
   .row-snapshot {
     @include span(12 of 12);
   }
@@ -161,7 +137,7 @@ $desktop: 737px;
   }
 }
 
-.dashboard-layout {
+.template-dashboard {
   .row-member {
     @include span(12 of 12);
 
