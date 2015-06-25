@@ -14,12 +14,8 @@
     width: 120px;
   }
 
-  .content-1 {
+  .label-content-1 {
     margin-right: 14px;
-  }
-
-  .active {
-    @extend %btn-header-active;
   }
 
   .content-container {
@@ -32,12 +28,28 @@
     position: absolute;
   }
 
-  .toggle:not(:checked) + .togglable-content {
+  .toggle-content-1:not(:checked) ~ .content-container > .togglable-content-1 {
     z-index: 1;
   }
 
-  .toggle:checked + .togglable-content {
+  .toggle-content-1:checked ~ .content-container > .togglable-content-1 {
     z-index: 2;
+  }
+
+  .toggle-content-1:checked ~ .label-container > .label-content-1 {
+    @extend %btn-header-active;
+  }
+
+  .toggle-content-2:not(:checked) ~ .content-container > .togglable-content-2 {
+    z-index: 1;
+  }
+
+  .toggle-content-2:checked ~ .content-container > .togglable-content-2 {
+    z-index: 2;
+  }
+
+  .toggle-content-2:checked ~ .label-container > .label-content-2 {
+    @extend %btn-header-active;
   }
 
   .togglable-content {
@@ -50,36 +62,51 @@
     right: 0;
     top: 0;
   }
-}
 
-.item-list-desktop {
-  @extend %item-list;
-  width: auto;
+  @include breakpoint($desktop) {
+    width: auto;
 
-  .toggle:checked + .togglable-content,
-  .toggle:not(:checked) + .togglable-content {
-    z-index: 1;
-  }
+    .toggle:checked + .togglable-content,
+    .toggle:not(:checked) + .togglable-content {
+      z-index: 1;
+    }
 
-  .content-container {
-    margin: 0 auto;
-    width: 728px;
-  }
+    .content-container {
+      margin: 0 auto;
+      width: 728px;
+    }
 
-  .togglable-content {
-    background: $pale-gray-color;
-    float: left;
-    margin: 0 7px;
-    position: relative;
-    top: 0;
-    width: 350px;
-  }
+    .togglable-content {
+      background: $pale-gray-color;
+      float: left;
+      margin: 0 7px;
+      position: relative;
+      top: 0;
+      width: 350px;
+    }
 
-  .content-1 {
-    margin-right: 240px;
-  }
+    .label-content-1 {
+      margin-right: 240px;
+    }
 
-  label {
-    cursor: default;
+    label {
+      background-color: $primary-color;
+      color: $white-color;
+      cursor: default;
+      position: relative;
+
+      &:after {
+        border-color: $primary-color transparent transparent;
+        border-style: solid;
+        border-width: 12px 10px 0;
+        bottom: -11px;
+        content: "";
+        display: block;
+        height: 0;
+        left: calc(50% - 11px);
+        position: absolute;
+        width: 0;
+      }
+    }
   }
 }
