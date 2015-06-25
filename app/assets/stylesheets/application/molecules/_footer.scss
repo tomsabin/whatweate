@@ -41,21 +41,19 @@
       color: lighten($gray-color, 30%);
     }
   }
-}
 
-.footer-tablet {
-  @extend %footer;
+  @include breakpoint($tablet) {
+    .legal {
+      padding-top: 14px;
 
-  .legal {
-    padding-top: 14px;
+      ul {
+        float: right;
+      }
 
-    ul {
-      float: right;
-    }
-
-    li {
-      display: inline-block;
-      margin-left: 16px;
+      li {
+        display: inline-block;
+        margin-left: 16px;
+      }
     }
   }
 }

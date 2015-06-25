@@ -34,20 +34,16 @@
     @extend %label-style;
     word-spacing: 1px;
   }
-}
 
-.proposition-tablet {
-  @extend %proposition;
-
-  .container {
-    width: 460px;
+  @include breakpoint($tablet) {
+    .container {
+      width: 460px;
+    }
   }
-}
 
-.proposition-desktop {
-  @extend %proposition;
-
-  .container {
-    width: 768px;
+  @include breakpoint($desktop) {
+    .container {
+      width: 768px;
+    }
   }
 }

@@ -45,11 +45,23 @@
       display: block;
     }
   }
-}
 
-.menu-tablet {
-  li {
-    @extend %li-no-style;
-    display: inline-block;
+  @include breakpoint($tablet) {
+    label {
+      display: none;
+    }
+
+    ul {
+      display: block;
+      position: relative;
+
+      &:before {
+        display: none;
+      }
+    }
+
+    li {
+      display: inline-block;
+    }
   }
 }

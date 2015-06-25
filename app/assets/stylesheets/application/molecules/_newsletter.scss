@@ -20,34 +20,32 @@
   .email {
     margin-bottom: 4px;
   }
-}
 
-.newsletter-tablet {
-  @extend %newsletter;
+  @include breakpoint($tablet) {
+    width: 532px;
 
-  width: 532px;
+    input {
+      display: inline-block;
+    }
 
-  input {
-    display: inline-block;
-  }
+    .name,
+    .email {
+      margin-bottom: 0;
+      text-align: left;
+    }
 
-  .name,
-  .email {
-    margin-bottom: 0;
-    text-align: left;
-  }
+    .name {
+      width: 128px;
+    }
 
-  .name {
-    width: 128px;
-  }
+    .email {
+      border-left: 0;
+      border-right: 0;
+      width: 196px;
+    }
 
-  .email {
-    border-left: 0;
-    border-right: 0;
-    width: 196px;
-  }
-
-  input[type="submit"] {
-    width: 80px;
+    input[type="submit"] {
+      width: 80px;
+    }
   }
 }

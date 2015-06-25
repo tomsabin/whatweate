@@ -179,25 +179,11 @@
 
     <div class="atoms-logo">
       <div class="pattern-header">
-        Logo (mobile)
+        Logo
       </div>
       <div class="pattern-body">
         <div>
           <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo" do %>
-            <%= image_tag "logo-icon.png", class: "logo-icon" %>
-            <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
-    <div class="atoms-logo">
-      <div class="pattern-header">
-        Logo (tablet)
-      </div>
-      <div class="pattern-body">
-        <div>
-          <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo-tablet" do %>
             <%= image_tag "logo-icon.png", class: "logo-icon" %>
             <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
           <% end %>
@@ -253,6 +239,11 @@
         <%= image_tag "icons/create.png", alt: "Let the cooking begin" %>
         <%= image_tag "icons/paid.png", alt: "Get paid!" %>
         <%= image_tag "icons/heart.png", alt: "Heart" %>
+        <%= image_tag "icons/quotes-opening.png", alt: "Opening quotes" %>
+        <%= image_tag "icons/quotes-closing.png", alt: "Closing quotes" %>
+        <%= image_tag "icons/chevron-left.png", alt: "<" %>
+        <%= image_tag "icons/chevron-right.png", alt: ">" %>
+        <%= image_tag "icons/map-pin.png", alt: "Map pin" %>
       </div>
     </div>
 
@@ -538,7 +529,7 @@
 
     <div class="molecules-menu">
       <div class="pattern-header">
-        Menu (mobile, interactive)
+        Menu (mobile: interactive, tablet: static)
       </div>
       <div class="pattern-body">
         <div class="menu">
@@ -553,25 +544,9 @@
       </div>
     </div>
 
-    <div class="molecules-menu">
-      <div class="pattern-header">
-        Menu (tablet)
-      </div>
-      <div class="pattern-body">
-        <div class="menu-tablet">
-          <ul>
-            <li><a class="btn" href="#"><span>Item one</span></a></li>
-            <li><a class="btn" href="#"><span>Item two</span></a></li>
-            <li><a class="btn-alt" href="#"><span>Item three</span></a></li>
-          </ul>
-        </div>
-        </div>
-      </div>
-    </div>
-
     <div class="molecules-proposition">
       <div class="pattern-header">
-        Proposition (mobile)
+        Proposition
       </div>
       <div class="pattern-body">
         <div class="proposition">
@@ -586,60 +561,12 @@
       </div>
     </div>
 
-    <div class="molecules-proposition">
-      <div class="pattern-header">
-        Proposition (tablet)
-      </div>
-      <div class="pattern-body">
-        <div class="proposition-tablet">
-          <div class="container">
-            <div class="content">
-              <h1>Lorem ipsum dolor sit amet.</h1>
-              <h2>Consequatur voluptates tenetur sapiente praesentium reiciendis.</h2>
-              <a href="#" class="btn">Ab ipsam maxime</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="molecules-proposition">
-      <div class="pattern-header">
-        Proposition (desktop)
-      </div>
-      <div class="pattern-body">
-        <div class="proposition-desktop">
-          <div class="container">
-            <div class="content">
-              <h1>Lorem ipsum dolor sit amet.</h1>
-              <h2>Consequatur voluptates tenetur sapiente praesentium reiciendis.</h2>
-              <a href="#" class="btn">Ab ipsam maxime</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="molecules-newsletter">
       <div class="pattern-header">
-        Newsletter (mobile)
+        Newsletter
       </div>
       <div class="pattern-body">
         <div class="newsletter input-field">
-          <input type="text" class="name first-name" placeholder="First Name" required><!--
-          --><input type="text" class="name last-name" placeholder="Last Name" required><!--
-          --><input type="email" class="email" placeholder="Email address" required><!--
-          --><input type="submit" value="Submit">
-        </div>
-      </div>
-    </div>
-
-    <div class="molecules-newsletter">
-      <div class="pattern-header">
-        Newsletter (tablet)
-      </div>
-      <div class="pattern-body">
-        <div class="newsletter-tablet input-field">
           <input type="text" class="name first-name" placeholder="First Name" required><!--
           --><input type="text" class="name last-name" placeholder="Last Name" required><!--
           --><input type="email" class="email" placeholder="Email address" required><!--
@@ -910,7 +837,7 @@
 
     <div class="organisms-header">
       <div class="pattern-header">
-        Header (mobile)
+        Header
       </div>
       <div class="pattern-body">
         <div class="header">
@@ -934,33 +861,9 @@
       </div>
     </div>
 
-    <div class="organisms-header">
-      <div class="pattern-header">
-        Header (tablet)
-      </div>
-      <div class="pattern-body">
-        <div class="header">
-          <div class="left">
-            <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo-tablet" do %>
-              <%= image_tag "logo-icon.png", class: "logo-icon" %>
-              <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
-            <% end %>
-          </div>
-
-          <div class="right menu-tablet">
-            <ul>
-              <li><a class="btn" href="#"><span>Item one</span></a></li>
-              <li><a class="btn" href="#"><span>Item two</span></a></li>
-              <li><a class="btn-alt" href="#"><span>Item three</span></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="organisms-footer">
       <div class="pattern-header">
-        Footer (mobile)
+        Footer
       </div>
       <div class="pattern-body">
         <div class="footer">
@@ -1000,51 +903,5 @@
         </div>
       </div>
     </div>
-
-    <div class="organisms-footer">
-      <div class="pattern-header">
-        Footer (tablet)
-      </div>
-      <div class="pattern-body">
-        <div class="footer-tablet">
-          <ul class="social">
-            <a href="https://www.facebook.com/whatweate.co" class="facebook">
-              Facebook
-            </a>
-            <a href="https://twitter.com/WhatWeAteCo" class="twitter">
-              Twitter
-            </a>
-            <a href="http://instagram.com/whatweate.co" class="instagram">
-              Instagram
-            </a>
-            <a href="mailto:hello@whatweate.co" class="email">
-              Email
-            </a>
-          </ul>
-
-          <ul class="links">
-            <li><%= link_to 'How it works', root_path(anchor: 'how_it_works') %></li>
-            <li><a href="https://whatweate.typeform.com/to/IXZyhO" class="cta typeform-share" data-mode="1" target="_blank">Become a host</a></li>
-          </ul>
-
-          <div class="legal">
-            <ul>
-              <%= link_to root_path do %>
-                <li>Terms of use</li>
-              <% end %>
-
-              <%= link_to root_path do %>
-                <li>Privacy policy</li>
-              <% end %>
-            </ul>
-
-            <p>Copyright &copy; 2014-2015 WhatWeAte Ltd</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  <!-- TEMPLATES -->
-
   </body>
 </html>
