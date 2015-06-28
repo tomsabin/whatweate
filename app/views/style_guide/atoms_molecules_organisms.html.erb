@@ -529,12 +529,29 @@
 
     <div class="molecules-menu">
       <div class="pattern-header">
-        Menu (mobile: interactive, tablet: static)
+        Menu (mobile: interactive, tablet: static) - left
       </div>
       <div class="pattern-body">
-        <div class="menu">
-          <input type="checkbox" id="molecules-menu">
-          <label  class="btn" for="molecules-menu">Menu</label>
+        <div class="menu menu-left">
+          <input type="checkbox" id="molecules-menu-left">
+          <label class="btn" for="molecules-menu-left">Menu</label>
+          <ul>
+            <li><a class="btn" href="#"><span>Item one</span></a></li>
+            <li><a class="btn" href="#"><span>Item two</span></a></li>
+            <li><a class="btn-alt" href="#"><span>Item three</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="molecules-menu">
+      <div class="pattern-header">
+        Menu (mobile: interactive, tablet: static) - right
+      </div>
+      <div class="pattern-body">
+        <div class="menu menu-right">
+          <input type="checkbox" id="molecules-menu-right">
+          <label class="btn" for="molecules-menu-right">Menu</label>
           <ul>
             <li><a class="btn" href="#"><span>Item one</span></a></li>
             <li><a class="btn" href="#"><span>Item two</span></a></li>
@@ -841,21 +858,23 @@
       </div>
       <div class="pattern-body">
         <div class="header">
-          <div class="left">
+          <div class="content">
             <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo" do %>
               <%= image_tag "logo-icon.png", class: "logo-icon" %>
               <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
             <% end %>
           </div>
 
-          <div class="right menu">
-            <input type="checkbox" id="mobile-header-menu">
-            <label  class="btn" for="mobile-header-menu">Menu</label>
-            <ul>
-              <li><a class="btn" href="#"><span>Item one</span></a></li>
-              <li><a class="btn" href="#"><span>Item two</span></a></li>
-              <li><a class="btn-alt" href="#"><span>Item three</span></a></li>
-            </ul>
+          <div class="content">
+            <div class="menu menu-right">
+              <input type="checkbox" id="mobile-header-menu">
+              <label  class="btn" for="mobile-header-menu">Menu</label>
+              <ul>
+                <li><a class="btn" href="#"><span>Item one</span></a></li>
+                <li><a class="btn" href="#"><span>Item two</span></a></li>
+                <li><a class="btn-alt" href="#"><span>Item three</span></a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

@@ -1,11 +1,9 @@
 .header {
-  overflow: hidden;
+  display: table;
+  width: 100%;
 
-  .left {
-    float: left;
-  }
-
-  .right {
-    float: right;
+  .content {
+    display: table-cell;
+    vertical-align: middle;
   }
 }
