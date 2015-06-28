@@ -1,23 +1,31 @@
-%proposition,
 .proposition {
   background: image-url("proposition.jpg");
-  background: image-url("proposition.jpg") no-repeat top right 30%;
+  background: image-url("proposition.jpg") no-repeat bottom 40% center;
   background-color: $primary-color;
   background-size: cover;
+  position: relative;
+}
 
-  .container {
-    display: table;
-    height: 470px;
-    margin: 0 auto;
-    width: 320px;
+.proposition-container {
+  display: table;
+  height: 520px;
+  margin: 0 auto;
+  width: 320px;
+
+  @include breakpoint($tablet) {
+    width: 460px;
   }
 
-  .content {
-    color: $white-color;
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
+  @include breakpoint($desktop) {
+    width: 768px;
   }
+}
+
+.proposition-content {
+  color: $white-color;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
 
   h1 {
     text-shadow: 0 0 50px $black-color;
@@ -30,24 +38,8 @@
   }
 
   a {
-    @extend %h4;
+    @extend h4;
     @extend %label-style;
     word-spacing: 1px;
-  }
-}
-
-.proposition-tablet {
-  @extend %proposition;
-
-  .container {
-    width: 460px;
-  }
-}
-
-.proposition-desktop {
-  @extend %proposition;
-
-  .container {
-    width: 768px;
   }
 }

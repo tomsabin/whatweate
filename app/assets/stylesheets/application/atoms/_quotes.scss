@@ -1,0 +1,25 @@
+blockquote {
+  padding: 0 50px;
+  position: relative;
+
+  &:after,
+  &:before {
+    background-size: contain;
+    content: "";
+    height: 40px;
+    position: absolute;
+    width: 40px;
+  }
+
+  &:after {
+    background-image: image-url("icons/quotes-closing.png");
+    bottom: 0;
+    right: 0;
+  }
+
+  &:before {
+    background-image: image-url("icons/quotes-opening.png");
+    left: 0;
+    top: 0;
+  }
+}

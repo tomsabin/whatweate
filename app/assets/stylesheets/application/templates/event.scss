@@ -1,0 +1,25 @@
+.template-event {
+  .row-photos {
+    @include span(12 of 12);
+  }
+
+  .row-title {
+    @include span(12 of 12);
+  }
+
+  .row-host {
+    @include span(12 of 12);
+
+    @include breakpoint($tablet) {
+      @include span(4 of 12);
+    }
+  }
+
+  .row-details {
+    @include span(12 of 12);
+
+    @include breakpoint($tablet) {
+      @include span(last 8 of 12);
+    }
+  }
+}

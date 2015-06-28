@@ -1,0 +1,89 @@
+<div class="molecules-form">
+  <div class="pattern-header">
+    Default form
+  </div>
+  <div class="pattern-body">
+    <form class="form">
+      <div class="error-notification">Please review the following errors</div>
+
+      <div class="input-field string required event_title field-with-errors">
+        <label class="string required" for="event_title">
+        <abbr title="required">*</abbr> Title</label>
+        <input class="string required" type="text" value="" id="event_title">
+        <span class="error">can't be blank</span>
+      </div>
+
+      <div class="input-field datetime required event_date field-with-errors">
+        <label class="datetime required" for="event_date_1i">
+        <abbr title="required">*</abbr> Date</label>
+        <input type="datetime-local" class="datetime required" placeholder="YYYY-MM-DD HH:MM" id="event_date">
+        <span class="error">can't be blank</span>
+      </div>
+
+      <div class="input-field string optional event_price field-with-errors">
+        <label class="string optional" for="event_price">Price (£)</label>
+        <input type="number" min="0" step="any" class="string optional" value="0.00" id="event_price">
+        <span class="error">must be greater than 0</span>
+      </div>
+
+      <div class="input-field integer required event_seats">
+        <label class="integer required" for="event_seats">
+        <abbr title="required">*</abbr> Seats</label>
+        <input min="0" step="1" class="numeric integer required" type="number" value="8" id="event_seats">
+      </div>
+
+      <div class="input-field string required event_location field-with-errors">
+        <label class="string required" for="event_location">
+        <abbr title="required">*</abbr> Location</label>
+        <input class="string required" type="text" value="" id="event_location">
+        <span class="error">can't be blank</span>
+      </div>
+
+      <div class="input-field url required event_location_url field-with-errors">
+        <label class="url required" for="event_location_url">
+        <abbr title="required">*</abbr> Location url</label>
+        <input class="string url required" type="url" value="" id="event_location_url">
+        <span class="error">can't be blank</span>
+      </div>
+
+      <div class="input-field string required event_short_description field-with-errors">
+        <label class="string required" for="event_short_description">
+        <abbr title="required">*</abbr> Short description</label>
+        <input class="string required" type="text" value="" id="event_short_description">
+        <span class="error">can't be blank</span>
+      </div>
+
+      <p>
+        <a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields
+      </p>
+
+      <div class="input-field text required event_description field-with-errors">
+        <label class="text required" for="event_description">
+        <abbr title="required">*</abbr> Description</label>
+        <textarea class="text required" id="event_description">
+        </textarea>
+        <span class="error">can't be blank</span>
+      </div>
+
+      <div class="input-field text required event_menu field-with-errors">
+        <label class="text required" for="event_menu">
+        <abbr title="required">*</abbr> Menu</label>
+        <textarea class="text required" id="event_menu">
+        </textarea>
+        <span class="error">can't be blank</span>
+      </div>
+
+      <div class="input-field file optional event_primary_photo">
+        <label class="file optional" for="event_primary_photo">Primary photo (1024 x 678px)</label>
+        <input accept="image/*" class="file optional" type="file" id="event_primary_photo">
+      </div>
+
+      <div class="input-field file optional event_photos">
+        <label class="file optional" for="event_photos">Other photos (minimum of 2, maximum of 6)</label>
+        <input multiple="multiple" accept="image/*" class="file optional" type="file" id="event_photos">
+      </div>
+
+      <input type="submit" value="Submit event" data-disable-with="Submitting" class="btn">
+    </form>
+  </div>
+</div>

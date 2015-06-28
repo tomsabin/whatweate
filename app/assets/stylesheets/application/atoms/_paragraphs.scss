@@ -1,5 +1,4 @@
-p,
-%p {
-  @extend %primary-font;
+p {
+  @extend .primary-font;
   color: $black-color;
 }

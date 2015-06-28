@@ -1,0 +1,5 @@
+.template-generic {
+  .row {
+    @include span(12 of 12);
+  }
+}

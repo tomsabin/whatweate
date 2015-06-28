@@ -3,8 +3,20 @@ body {
   line-height: 1.4em;
 }
 
-@import "layout";
+@import "susy/susy";
+@import "breakpoint/breakpoint";
+
+$susy: (
+  container: 960px,
+  columns: 12
+);
+
+$tablet: 569px;
+$desktop: 737px;
+
 @import "../shared/*";
 @import "atoms/*";
 @import "molecules/*";
+@import "organisms/*";
+@import "templates/*";
 @import "style_guide";

@@ -32,8 +32,8 @@ Rails.application.routes.draw do
     root "events#index"
   end
 
-  get "style_guide", to: "pages#style_guide"
-  get "grid_layout", to: "pages#grid_layout"
+  get "style_guide", to: "style_guide#style_guide"
+
   root "pages#home"
 
   match "/404", to: "errors#not_found", via: :all

@@ -1,0 +1,16 @@
+.horizontal-form {
+  input,
+  label {
+    display: inline-block;
+  }
+
+  input {
+    width: auto;
+  }
+
+  label {
+    &:not(.boolean):after {
+      content: ":";
+    }
+  }
+}

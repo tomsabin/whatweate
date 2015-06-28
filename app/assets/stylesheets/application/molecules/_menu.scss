@@ -8,7 +8,6 @@
 
   ul {
     display: none;
-    left: 0;
     position: absolute;
     top: calc(100% + 12px);
 
@@ -19,7 +18,6 @@
       content: "";
       display: block;
       height: 0;
-      left: calc(50% - 10px);
       position: absolute;
       top: -10px;
       width: 0;
@@ -45,11 +43,49 @@
       display: block;
     }
   }
+
+  @include breakpoint($tablet) {
+    li a {
+      width: auto;
+    }
+
+    label {
+      display: none;
+    }
+
+    ul {
+      display: block;
+      position: relative;
+
+      &:before {
+        display: none;
+      }
+    }
+
+    li {
+      display: inline-block;
+    }
+  }
 }
 
-.menu-tablet {
-  li {
-    @extend %li-no-style;
-    display: inline-block;
+.menu-left {
+  ul {
+    left: 0;
+
+    &:before {
+      left: 14px;
+    }
+  }
+}
+
+.menu-right {
+  text-align: right;
+
+  ul {
+    right: 0;
+
+    &:before {
+      right: 10px;
+    }
   }
 }

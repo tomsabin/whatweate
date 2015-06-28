@@ -1,5 +1,5 @@
 %base-btn-style {
-  @extend %secondary-font;
+  @extend .secondary-font;
   border: 0;
   box-sizing: border-box;
   display: inline-block;
@@ -11,15 +11,14 @@
   word-spacing: 1px;
 }
 
-%btn-style {
+%brand-btn-style {
   @extend %base-btn-style;
   background-color: $primary-color;
   color: $white-color;
 }
 
-%btn,
 .btn {
-  @extend %btn-style;
+  @extend %brand-btn-style;
   cursor: pointer;
   user-select: none;
 
@@ -32,7 +31,6 @@
   }
 }
 
-%btn-alt,
 .btn-alt {
   @extend %base-btn-style;
   background-color: $pale-gray-color;
@@ -44,17 +42,15 @@
   }
 }
 
-%btn-header,
 .btn-header {
-  @extend %btn-alt;
-  @extend %h5;
+  @extend .btn-alt;
+  @extend h5;
   cursor: pointer;
 }
 
-%btn-header-active,
 .btn-header-active {
-  @extend %btn-style;
-  @extend %h5;
+  @extend %brand-btn-style;
+  @extend h5;
 
   position: relative;
 

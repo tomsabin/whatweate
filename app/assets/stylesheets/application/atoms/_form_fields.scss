@@ -5,13 +5,13 @@
   }
 
   label {
-    @extend %primary-font;
+    @extend .primary-font;
     margin: 1em 0 .5em;
   }
 
   input,
   textarea {
-    @extend %secondary-font;
+    @extend .secondary-font;
     background-color: $light-gray-color;
     border: 1px solid $brown-color;
     box-sizing: border-box;
@@ -25,11 +25,15 @@
       outline: 2px solid $primary-color;
     }
   }
+
+  textarea {
+    vertical-align: top;
+  }
 }
 
 .submit,
 input[type="submit"] {
-  @extend %btn;
+  @extend .btn;
   background-color: $primary-color;
 
   &:hover {
@@ -37,6 +41,9 @@ input[type="submit"] {
   }
 }
 
-.field-with-errors input {
-  border: 1px solid $primary-color;
+.field-with-errors {
+  &input,
+  &textarea {
+    border: 1px solid $primary-color;
+  }
 }

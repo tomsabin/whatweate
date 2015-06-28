@@ -1,9 +1,8 @@
-%logo,
 .logo {
+  display: inline-block;
   text-decoration: none;
 
   img {
-    padding: 18px 0;
     vertical-align: middle;
   }
 
@@ -15,16 +14,14 @@
     height: 24px;
     margin-left: 10px;
   }
-}
 
-.logo-tablet {
-  @extend %logo;
+  @include breakpoint($tablet) {
+    .logo-icon {
+      height: 40px;
+    }
 
-  .logo-icon {
-    height: 40px;
-  }
-
-  .logo-text {
-    height: 30px;
+    .logo-text {
+      height: 30px;
+    }
   }
 }
