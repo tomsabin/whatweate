@@ -1,9 +1,28 @@
 .header {
+  @include container;
+  box-sizing: border-box;
   display: table;
+  padding: 8px;
   width: 100%;
 }
 
-.header-content {
+#pages-home .header {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .3), rgba(0, 0, 0, .0));
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+.logo-container,
+.navigation-container {
   display: table-cell;
   vertical-align: middle;
+}
+
+.navigation-container {
+  width: 100px;
+
+  @include breakpoint($tablet) {
+    width: auto;
+  }
 }

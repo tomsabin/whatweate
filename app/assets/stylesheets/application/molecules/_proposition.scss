@@ -1,15 +1,24 @@
 .proposition {
   background: image-url("proposition.jpg");
-  background: image-url("proposition.jpg") no-repeat top right 30%;
+  background: image-url("proposition.jpg") no-repeat bottom 40% center;
   background-color: $primary-color;
   background-size: cover;
+  position: relative;
 }
 
 .proposition-container {
   display: table;
-  height: 470px;
+  height: 520px;
   margin: 0 auto;
   width: 320px;
+
+  @include breakpoint($tablet) {
+    width: 460px;
+  }
+
+  @include breakpoint($desktop) {
+    width: 768px;
+  }
 }
 
 .proposition-content {
@@ -32,17 +41,5 @@
     @extend h4;
     @extend %label-style;
     word-spacing: 1px;
-  }
-}
-
-@include breakpoint($tablet) {
-  .proposition-content {
-    width: 460px;
-  }
-}
-
-@include breakpoint($desktop) {
-  .proposition-content {
-    width: 768px;
   }
 }
