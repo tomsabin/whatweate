@@ -1,9 +1,7 @@
-#style-guide-atoms-molecules-organisms {
+#style-guide-style-guide {
   margin: 0 auto;
   max-width: 960px;
-}
 
-#style-guide-templates {
   [class^=outer-container-]:nth-of-type(even) {
     background-color: lighten(rgba(255, 0, 0, .75), 45%);
   }
@@ -42,12 +40,6 @@
   font-weight: normal;
   margin: 2em 0;
   padding: 1em 0;
-}
-
-#style-guide-templates {
-  .pattern-header {
-    text-align: center;
-  }
 }
 
 .atoms-colors {

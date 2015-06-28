@@ -1,4 +1,3 @@
-%item-list,
 .item-list {
   background-color: $pale-gray-color;
   width: 320px;
@@ -37,7 +36,7 @@
   }
 
   .toggle-content-1:checked ~ .label-container > .label-content-1 {
-    @extend %btn-header-active;
+    @extend .btn-header-active;
   }
 
   .toggle-content-2:not(:checked) ~ .content-container > .togglable-content-2 {
@@ -49,7 +48,7 @@
   }
 
   .toggle-content-2:checked ~ .label-container > .label-content-2 {
-    @extend %btn-header-active;
+    @extend .btn-header-active;
   }
 
   .togglable-content {

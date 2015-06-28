@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%= render partial: "layouts/head", locals: { layout: "application", title: "WhatWeAte Style Guide" } %>
+  <body id="<%= page_id %>">
+    <%= render "style_guide/navigation" %>
+    <a id="atoms" class="anchor-link"></a>
+    <%= render "style_guide/atoms/colors" %>
+    <%= render "style_guide/atoms/fonts" %>
+    <%= render "style_guide/atoms/headings" %>
+    <%= render "style_guide/atoms/paragraph" %>
+    <%= render "style_guide/atoms/inline_elements" %>
+    <%= render "style_guide/atoms/time" %>
+    <%= render "style_guide/atoms/hr" %>
+    <%= render "style_guide/atoms/unordered_list" %>
+    <%= render "style_guide/atoms/ordered_list" %>
+    <%= render "style_guide/atoms/definition" %>
+    <%= render "style_guide/atoms/logo" %>
+    <%= render "style_guide/atoms/proposition" %>
+    <%= render "style_guide/atoms/placeholder_image" %>
+    <%= render "style_guide/atoms/placeholder_thumbnail_image" %>
+    <%= render "style_guide/atoms/member_avatar" %>
+    <%= render "style_guide/atoms/icons" %>
+    <%= render "style_guide/atoms/social_icons" %>
+    <%= render "style_guide/atoms/favicon" %>
+    <%= render "style_guide/atoms/text_fields" %>
+    <%= render "style_guide/atoms/html5_input" %>
+    <%= render "style_guide/atoms/input_error" %>
+    <%= render "style_guide/atoms/file_input" %>
+    <%= render "style_guide/atoms/select_menu" %>
+    <%= render "style_guide/atoms/checkbox" %>
+    <%= render "style_guide/atoms/radio_buttons" %>
+    <%= render "style_guide/atoms/buttons" %>
+    <%= render "style_guide/atoms/label" %>
+    <%= render "style_guide/atoms/table" %>
+    <a id="molecules" class="anchor-link"></a>
+    <%= render "style_guide/molecules/left_menu" %>
+    <%= render "style_guide/molecules/right_menu" %>
+    <%= render "style_guide/molecules/proposition" %>
+    <%= render "style_guide/molecules/newsletter" %>
+    <%= render "style_guide/molecules/item" %>
+    <%= render "style_guide/molecules/blockquote" %>
+    <%= render "style_guide/molecules/event_thumbnail" %>
+    <%= render "style_guide/molecules/horizontal_form" %>
+    <%= render "style_guide/molecules/form" %>
+    <a id="organisms" class="anchor-link"></a>
+    <%= render "style_guide/organisms/item_list" %>
+    <%= render "style_guide/organisms/header" %>
+    <%= render "style_guide/organisms/footer" %>
+    <a id="templates" class="anchor-link"></a>
+    <%= render "style_guide/templates/generic" %>
+    <%= render "style_guide/templates/home_page" %>
+    <%= render "style_guide/templates/events" %>
+    <%= render "style_guide/templates/member" %>
+    <%= render "style_guide/templates/dashboard" %>
+  </body>
+</html>

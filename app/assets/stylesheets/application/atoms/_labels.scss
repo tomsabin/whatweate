@@ -3,7 +3,7 @@
 }
 
 .label {
-  @extend %secondary-font;
+  @extend .secondary-font;
   @extend %label-style;
   background-color: $primary-color;
   color: $white-color;

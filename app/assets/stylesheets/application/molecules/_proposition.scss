@@ -1,23 +1,22 @@
-%proposition,
 .proposition {
   background: image-url("proposition.jpg");
   background: image-url("proposition.jpg") no-repeat top right 30%;
   background-color: $primary-color;
   background-size: cover;
+}
 
-  .container {
-    display: table;
-    height: 470px;
-    margin: 0 auto;
-    width: 320px;
-  }
+.proposition-container {
+  display: table;
+  height: 470px;
+  margin: 0 auto;
+  width: 320px;
+}
 
-  .content {
-    color: $white-color;
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-  }
+.proposition-content {
+  color: $white-color;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
 
   h1 {
     text-shadow: 0 0 50px $black-color;
@@ -30,20 +29,20 @@
   }
 
   a {
-    @extend %h4;
+    @extend h4;
     @extend %label-style;
     word-spacing: 1px;
   }
+}
 
-  @include breakpoint($tablet) {
-    .container {
-      width: 460px;
-    }
+@include breakpoint($tablet) {
+  .proposition-content {
+    width: 460px;
   }
+}
 
-  @include breakpoint($desktop) {
-    .container {
-      width: 768px;
-    }
+@include breakpoint($desktop) {
+  .proposition-content {
+    width: 768px;
   }
 }

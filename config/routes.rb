@@ -32,8 +32,7 @@ Rails.application.routes.draw do
     root "events#index"
   end
 
-  get "style_guide", to: "style_guide#atoms_molecules_organisms"
-  get "style_guide/templates", to: "style_guide#templates"
+  get "style_guide", to: "style_guide#style_guide"
 
   root "pages#home"
 

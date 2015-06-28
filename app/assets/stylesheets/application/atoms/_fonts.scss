@@ -20,17 +20,14 @@ $brand-font: "Pacifico", "Helvetica", sans-serif;
 $primary-font: "Carrois Gothic", "Helvetica", sans-serif;
 $secondary-font: "Bebas", "Helvetica", sans-serif;
 
-%brand-font,
 .brand-font {
   font-family: $brand-font;
 }
 
-%primary-font,
 .primary-font {
   font-family: $primary-font;
 }
 
-%secondary-font,
 .secondary-font {
   font-family: $secondary-font;
 }

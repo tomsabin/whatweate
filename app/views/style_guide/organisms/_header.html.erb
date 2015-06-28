@@ -1,0 +1,27 @@
+<div class="organisms-header">
+  <div class="pattern-header">
+    Header
+  </div>
+  <div class="pattern-body">
+    <div class="header">
+      <div class="header-content">
+        <%= link_to "#", alt: "WhatWeAte", title: "WhatWeAte", class: "logo" do %>
+          <%= image_tag "logo-icon.png", class: "logo-icon" %>
+          <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
+        <% end %>
+      </div>
+
+      <div class="header-content">
+        <div class="menu menu-right">
+          <input type="checkbox" id="mobile-header-menu">
+          <label  class="btn" for="mobile-header-menu">Menu</label>
+          <ul>
+            <li><a class="btn" href="#"><span>Item one</span></a></li>
+            <li><a class="btn" href="#"><span>Item two</span></a></li>
+            <li><a class="btn-alt" href="#"><span>Item three</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
