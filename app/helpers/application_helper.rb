@@ -11,8 +11,4 @@ module ApplicationHelper
   def active_controller?(controller)
     "active" if params[:controller] == "admin/#{controller}"
   end
-
-  def javascript_require(*modules)
-    javascript_tag modules.map { |m| "require('#{m}');" }.join("\n")
-  end
 end

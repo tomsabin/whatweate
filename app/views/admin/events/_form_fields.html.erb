@@ -82,4 +82,16 @@
   });
 </script>
 
-<%= javascript_require "primary_photo", "photos", "event_price_field" %>
+<%#= javascript_require "primary_photo", "photos", "event_price_field" %>
+
+<script>
+  eventPriceField.onChange("#event_price");
+  eventPrimaryPhotoPreview.init({
+    input: "#event_primary_photo",
+    fullPreview: "#photo_preview"
+  });
+  eventPhotosPreview.init({
+    input: "#event_photos",
+    container: ".event-photos",
+  }, true);
+</script>
