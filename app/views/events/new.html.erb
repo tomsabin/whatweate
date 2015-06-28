@@ -28,4 +28,16 @@
   <%= f.button :submit, "Submit event", data: { disable_with: "Submitting" } %>
 <% end %>
 
-<%= javascript_require "thumbnail", "primary_photo", "photos", "event_price_field" %>
+<script>
+  eventPriceField.onChange("#event_price");
+  thumbnailLiveUpdate.init();
+  eventPrimaryPhotoPreview.init({
+    input: "#event_primary_photo",
+    fullPreview: "#photo_preview",
+    thumbPreview: ".event-thumbnail .primary-photo"
+  });
+  eventPhotosPreview.init({
+    input: "#event_photos",
+    container: ".event-photos"
+  });
+</script>
