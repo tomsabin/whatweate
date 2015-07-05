@@ -8,7 +8,7 @@
   </div>
 </section>
 
-<section class="newsletter">
+<section class="newsletter" name="newsletter">
   <p class="newsletter__title">
     Join our tribe of social food lovers
   </p>
@@ -129,6 +129,46 @@
   <% end %>
 </section>
 
+<section class="site-quotes" name="quotes">
+  <div class="site-quotes__container">
+    <h3 class="site-quotes__title">What people are saying</h3>
+
+    <div class="site-quotes__quotes" id="siteQuotes">
+      <div>
+        <blockquote class="site-quotes__quote">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci enim non facilis, alias, amet nostrum nemo maxime culpa hic dicta tempora, maiores similique tenetur quia odit laudantium facere mollitia iusto!</p>
+          <footer>
+            <p><cite>Joe Bloggs</cite></p>
+          </footer>
+        </blockquote>
+      </div>
+      <div>
+        <blockquote class="site-quotes__quote">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci enim non facilis, alias, amet nostrum nemo maxime culpa hic dicta tempora, maiores similique tenetur quia odit laudantium facere mollitia iusto!</p>
+          <footer>
+            <p><cite>Joe Bloggs</cite></p>
+          </footer>
+        </blockquote>
+      </div>
+      <div>
+        <blockquote class="site-quotes__quote">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci enim non facilis, alias, amet nostrum nemo maxime culpa hic dicta tempora, maiores similique tenetur quia odit laudantium facere mollitia iusto!</p>
+          <footer>
+            <p><cite>Joe Bloggs</cite></p>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
 <script>
   mailChimpNewsletter.init("#newsletterForm", "#newsletterResponse p");
+  $(document).ready(function() {
+    $("#siteQuotes").slick({
+      centerMode: true,
+      centerPadding: "32px",
+      arrows: false
+    });
+  });
 </script>

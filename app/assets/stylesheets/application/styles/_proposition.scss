@@ -31,6 +31,7 @@
 .proposition__title {
   @extend %heading-1;
   text-shadow: 0 0 50px $black-color;
+  margin-top: 60px;
 }
 
 .proposition__subtitle {
@@ -41,8 +42,8 @@
 }
 
 .proposition__cta {
-  @extend %button;
+  @extend %primary-button;
   @extend %heading-4;
-  @extend %label-style;
+  padding: 14px 18px;
   word-spacing: 1px;
 }
