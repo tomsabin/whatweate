@@ -10,7 +10,7 @@ describe "Member public profile" do
     fill_in "Password", with: "letmein!!"
     fill_in "Password confirmation", with: "letmein!!"
     click_button "Sign up"
-    click_link "Sign out"
+    click_link "Log out"
 
     visit member_path(User.last)
     expect(page).to have_content "Looks like we can't find the page you were looking for"

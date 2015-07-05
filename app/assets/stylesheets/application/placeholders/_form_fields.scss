@@ -1,0 +1,40 @@
+%input-label {
+  @extend %primary-font;
+  display: block;
+  margin: 1em 0 .5em;
+}
+
+%form-input,
+%form-textarea {
+  @extend %secondary-font;
+  background-color: $light-gray-color;
+  border: 1px solid $brown-color;
+  box-sizing: border-box;
+  display: block;
+  font-size: .9em;
+  line-height: 1.4em;
+  padding: 8px;
+  width: 100%;
+  word-spacing: 1px;
+
+  &:focus {
+    outline: 2px solid $primary-color;
+  }
+}
+
+%form-textarea {
+  vertical-align: top;
+}
+
+%form-submit {
+  @extend %button;
+  background-color: $primary-color;
+  color: $white-color;
+  cursor: pointer;
+  font-size: .9em;
+  line-height: 1.4em;
+
+  &:hover {
+    background-color: $primary-darken-color;
+  }
+}

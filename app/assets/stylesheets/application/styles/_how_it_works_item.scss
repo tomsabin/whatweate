@@ -1,0 +1,37 @@
+.how-it-works-item__container {
+  display: table;
+  height: 100px;
+  padding: 7px 28px;
+}
+
+.how-it-works-item__text-content,
+.how-it-works-item__icon-content {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.how-it-works-item__icon-container {
+  height: 84px;
+  text-align: center;
+  width: 84px;
+
+}
+
+.how-it-works-item__icon {
+  height: 64px;
+}
+
+.how-it-works-item__text-content {
+  padding-left: 28px;
+}
+
+.how-it-works-item__heading {
+  @extend %heading-6;
+  padding-bottom: 8px;
+}
+
+.how-it-works-item__text {
+  @extend %primary-font;
+  color: $black-color;
+  line-height: 1.1em;
+}

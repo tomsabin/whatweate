@@ -1,130 +1,176 @@
 <section class="proposition">
-  <div class="container">
-    <div class="content">
-      <h1>Bringing People Together Over Food.</h1>
-      <h2>Find delicious intimate dining experiences near you.</h2>
-      <%= link_to "Join a table", root_path(anchor: "events"), data: { ga: "conversion" } %>
+  <div class="proposition__container">
+    <div class="proposition__content">
+      <h1 class="proposition__title">Bringing People Together Over Food.</h1>
+      <h2 class="proposition__subtitle">Find delicious intimate dining experiences near you.</h2>
+      <%= link_to "Join a table", root_path(anchor: "events"), data: { ga: "conversion" }, class: "proposition__cta" %>
     </div>
   </div>
 </section>
 
-<section class="newsletter">
-  <p>
+<section class="newsletter" name="newsletter">
+  <p class="newsletter__title">
     Join our tribe of social food lovers
   </p>
-  <div class="input-container">
-    <form id="newsletter" action="//whatweate.us9.list-manage.com/subscribe?u=3ae9a01a53d464033afcc3009&amp;id=eb7d06a555" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-      <input type="text" name="b_3ae9a01a53d464033afcc3009_eb7d06a555" tabindex="-1" value="" style="position:absolute;left:-999px;">
+  <form class="newsletter__form" id="newsletterForm" action="//whatweate.us9.list-manage.com/subscribe?u=3ae9a01a53d464033afcc3009&amp;id=eb7d06a555" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+    <input class="newsletter__hidden-input" type="text" name="b_3ae9a01a53d464033afcc3009_eb7d06a555" tabindex="-1" value="">
 
-      <input type="text" value="" name="FNAME" class="input name first-name" id="mce-FNAME" placeholder="First Name" required><!--
-      --><input type="text" value="" name="LNAME" class="input name last-name" id="mce-LNAME" placeholder="Last Name" required><!--
-      --><input type="email" value="" name="EMAIL" class="input email" id="mce-EMAIL" placeholder="Email address" required><!--
-      --><input type="submit" class="submit" value="Let Me In!" name="subscribe" id="mc-embedded-subscribe">
-    </form>
-  </div>
-  <div id="response" class="response"></div>
-</section>
+    <input class="newsletter__first-name-input" type="text" value="" name="FNAME" id="mce-FNAME" placeholder="First Name" required><!--
+    --><input class="newsletter__last-name-input" type="text" value="" name="LNAME" id="mce-LNAME" placeholder="Last Name" required><!--
+    --><input class="newsletter__email-input" type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="Email address" required><!--
+    --><input class="newsletter__form-submit" type="submit" value="Let Me In!" name="subscribe" id="mc-embedded-subscribe">
+  </form>
 
-<section class="how-it-works">
-  <a name="how_it_works"></a>
-
-  <div class="label-container">
-    <label class="guests" for="guests">Guests</label>
-    <label class="hosts" for="hosts">Hosts</label>
-  </div>
-
-  <div class="content-container">
-    <input type="radio" id="guests" name="how-it-works" class="toggle" checked>
-    <div class="togglable-content">
-      <article class="step">
-        <div class="content">
-          <div class="image-container">
-            <%= image_tag "icons/browse.png", alt: "Find an event" %>
-          </div>
-          <div class="text-container">
-            <h2>Find an event</h2>
-            <p>Discover delicious meals by hosts who love cooking</p>
-          </div>
-        </div>
-      </article>
-      <article class="step">
-        <div class="content">
-          <div class="image-container">
-            <%= image_tag "icons/join.png", alt: "Join a table" %>
-          </div>
-          <div class="text-container">
-            <h2>Join a table</h2>
-            <p>Book your seat and wait for the location to be revealed</p>
-          </div>
-        </div>
-      </article>
-      <article class="step">
-        <div class="content">
-          <div class="image-container">
-            <%= image_tag "icons/talk.png", alt: "Make new friends" %>
-          </div>
-          <div class="text-container">
-            <h2>Make new friends</h2>
-            <p>Show up for a fun and memorable evening!</p>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <input type="radio" id="hosts" name="how-it-works" class="toggle">
-    <div class="togglable-content">
-      <article class="step">
-        <div class="content">
-          <div class="image-container">
-            <%= image_tag "icons/submit.png", alt: "Introduce yourself" %>
-          </div>
-          <div class="text-container">
-            <h2>Introduce yourself</h2>
-            <p>Submit your application and begin listing events for free</p>
-          </div>
-        </div>
-      </article>
-      <article class="step">
-        <div class="content">
-          <div class="image-container">
-            <%= image_tag "icons/create.png", alt: "Let the cooking begin" %>
-          </div>
-          <div class="text-container">
-            <h2>Let the cooking begin</h2>
-            <p>Design your menus and prepare to host</p>
-          </div>
-        </div>
-      </article>
-      <article class="step">
-        <div class="content">
-          <div class="image-container">
-            <%= image_tag "icons/paid.png", alt: "Get paid!" %>
-          </div>
-          <div class="text-container">
-            <h2>Get paid!</h2>
-            <p>Money in your account within 24hrs after your events</p>
-          </div>
-        </div>
-      </article>
-    </div>
+  <div class="newsletter__response" id="newsletterResponse">
+    <p></p>
   </div>
 </section>
 
-<section class="events">
-  <div class="container">
-    <a name="events"></a>
-    <h1>Upcoming events</h1>
+<section class="item-list" name="how_it_works">
+  <div class="item-list__container">
+    <input class="item-list__hidden-toggle item-list__toggle-content-1" type="radio" name="toggle-content" id="content-1" checked>
+    <input class="item-list__hidden-toggle item-list__toggle-content-2" type="radio" name="toggle-content" id="content-2">
 
-    <% if @events.blank? %>
-      <p class="error"><%= t("failure.no_events") %></p>
-    <% else %>
+    <div class="item-list__labels">
+      <label class="item-list__label item-list__label-content-1" for="content-1">Guests</label>
+      <label class="item-list__label item-list__label-content-2" for="content-2">Hosts</label>
+    </div>
+
+    <div class="item-list__content-container">
+      <div class="item-list__togglable-content item-list__togglable-content-1">
+        <article class="how-it-works-item">
+          <div class="how-it-works-item__container">
+            <div class="how-it-works-item__icon-content">
+              <%= image_tag "icons/browse.png", alt: "Find an event", class: "how-it-works-item__icon" %>
+            </div>
+            <div class="how-it-works-item__text-content">
+              <h6 class="how-it-works-item__heading">Find an event</h6>
+              <p class="how-it-works-item__text">Discover delicious meals by hosts who love cooking</p>
+            </div>
+          </div>
+        </article>
+        <article class="how-it-works-item">
+          <div class="how-it-works-item__container">
+            <div class="how-it-works-item__icon-content">
+              <%= image_tag "icons/join.png", alt: "Join a table", class: "how-it-works-item__icon" %>
+            </div>
+            <div class="how-it-works-item__text-content">
+              <h6 class="how-it-works-item__heading">Join a table</h6>
+              <p class="how-it-works-item__text">Book your seat and wait for the location to be revealed</p>
+            </div>
+          </div>
+        </article>
+        <article class="how-it-works-item">
+          <div class="how-it-works-item__container">
+            <div class="how-it-works-item__icon-content">
+              <%= image_tag "icons/talk.png", alt: "Make new friends", class: "how-it-works-item__icon" %>
+            </div>
+            <div class="how-it-works-item__text-content">
+              <h6 class="how-it-works-item__heading">Make new friends</h6>
+              <p class="how-it-works-item__text">Show up for a fun and memorable evening!</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="item-list__togglable-content item-list__togglable-content-2">
+        <article class="how-it-works-item">
+          <div class="how-it-works-item__container">
+            <div class="how-it-works-item__icon-content">
+              <%= image_tag "icons/submit.png", alt: "Introduce yourself", class: "how-it-works-item__icon" %>
+            </div>
+            <div class="how-it-works-item__text-content">
+              <h6 class="how-it-works-item__heading">Introduce yourself</h6>
+              <p class="how-it-works-item__text">Submit your application and begin listing events for free</p>
+            </div>
+          </div>
+        </article>
+        <article class="how-it-works-item">
+          <div class="how-it-works-item__container">
+            <div class="how-it-works-item__icon-content">
+              <%= image_tag "icons/create.png", alt: "Let the cooking begin", class: "how-it-works-item__icon" %>
+            </div>
+            <div class="how-it-works-item__text-content">
+              <h6 class="how-it-works-item__heading">Let the cooking begin</h6>
+              <p class="how-it-works-item__text">Design your menus and prepare to host</p>
+            </div>
+          </div>
+        </article>
+        <article class="how-it-works-item">
+          <div class="how-it-works-item__container">
+            <div class="how-it-works-item__icon-content">
+              <%= image_tag "icons/paid.png", alt: "Get paid!", class: "how-it-works-item__icon" %>
+            </div>
+            <div class="how-it-works-item__text-content">
+              <h6 class="how-it-works-item__heading">Get paid!</h6>
+              <p class="how-it-works-item__text">Money in your account within 24hrs after your events</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="event-listings" name="events">
+  <h3 class="event-listings__title">Upcoming events</h3>
+  <% if @events.blank? %>
+    <p class="event-listings__no-listings-text">
+      <%= t("failure.no_events") %>
+    </p>
+  <% else %>
+    <div class="event-listing__events">
       <% @events.each do |event| %>
-        <%= render partial: "event_thumbnail", locals: { link: event_path(event), event: event } %>
+        <div class="event-listing__event-thumbnail">
+          <%= render partial: "event_thumbnail", locals: { link: event_path(event), event: event } %>
+        </div>
       <% end %>
-    <% end %>
+    </div>
+  <% end %>
+</section>
+
+<section class="site-quotes" name="quotes">
+  <div class="site-quotes__container">
+    <h3 class="site-quotes__title">What people are saying</h3>
+
+    <div class="site-quotes__quotes" id="siteQuotes">
+      <div>
+        <blockquote class="site-quotes__quote">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci enim non facilis, alias, amet nostrum nemo maxime culpa hic dicta tempora, maiores similique tenetur quia odit laudantium facere mollitia iusto!</p>
+          <footer>
+            <p><cite>Joe Bloggs</cite></p>
+          </footer>
+        </blockquote>
+      </div>
+      <div>
+        <blockquote class="site-quotes__quote">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci enim non facilis, alias, amet nostrum nemo maxime culpa hic dicta tempora, maiores similique tenetur quia odit laudantium facere mollitia iusto!</p>
+          <footer>
+            <p><cite>Joe Bloggs</cite></p>
+          </footer>
+        </blockquote>
+      </div>
+      <div>
+        <blockquote class="site-quotes__quote">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci enim non facilis, alias, amet nostrum nemo maxime culpa hic dicta tempora, maiores similique tenetur quia odit laudantium facere mollitia iusto!</p>
+          <footer>
+            <p><cite>Joe Bloggs</cite></p>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
   </div>
 </section>
 
 <script>
-  mailChimpNewsletter.init("#newsletter", "#response");
+  mailChimpNewsletter.init("#newsletterForm", "#newsletterResponse p");
+  <% unless Rails.env.test? %>
+    $(document).ready(function() {
+      $("#siteQuotes").slick({
+        centerMode: true,
+        centerPadding: "32px",
+        arrows: false
+      });
+    });
+  <% end %>
 </script>

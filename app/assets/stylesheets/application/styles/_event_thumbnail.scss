@@ -1,0 +1,49 @@
+.event-thumbnail {
+  background-color: $pale-gray-color;
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  vertical-align: top;
+  width: 292px;
+
+  &:hover {
+    background-color: $light-gray-color;
+  }
+}
+
+.event-thumbnail__link {
+  color: $black-color;
+  text-decoration: none;
+}
+
+.event-thumbnail__primary-photo {
+  height: 194px;
+  object-fit: cover;
+  width: 292px;
+}
+
+.event-thumbnail__content-container {
+  padding: 7px 14px 14px;
+}
+
+.event-thumbnail__title {
+  @extend %heading-4;
+  padding-bottom: 4px;
+}
+
+.event-thumbnail__date,
+.event-thumbnail__short-description,
+.event-thumbnail__location {
+  padding-top: 4px;
+}
+
+.event-thumbnail__location {
+  font-style: italic;
+}
+
+.event-thumbnail__price-label {
+  @extend %label-style;
+  left: 0;
+  position: absolute;
+  top: 120px;
+}

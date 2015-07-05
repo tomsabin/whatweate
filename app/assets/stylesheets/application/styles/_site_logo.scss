@@ -1,0 +1,22 @@
+.site-logo {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.site-logo__icon {
+  height: 36px;
+  vertical-align: bottom;
+
+  @include breakpoint($tablet) {
+    height: 40px;
+  }
+}
+
+.site-logo__text {
+  height: 24px;
+  margin-left: 10px;
+
+  @include breakpoint($tablet) {
+    height: 30px;
+  }
+}

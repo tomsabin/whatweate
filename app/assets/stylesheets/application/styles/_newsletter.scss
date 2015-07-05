@@ -1,0 +1,85 @@
+.newsletter {
+  @include container;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  text-align: center;
+
+  @include breakpoint($desktop) {
+    margin-bottom: 16px;
+    margin-top: 16px;
+  }
+}
+
+.newsletter__title {
+  @extend %heading-5;
+  display: inline-block;
+  margin-bottom: 8px;
+
+  @include breakpoint($tablet) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+.newsletter__form {
+  display: block;
+  margin: 0 auto;
+  width: 288px;
+
+  @include breakpoint($tablet) {
+    display: inline-block;
+    padding-right: 16px;
+    width: 532px;
+  }
+}
+
+.newsletter__hidden-input {
+  left: -9999px;
+  position: absolute;
+}
+
+.newsletter__first-name-input,
+.newsletter__last-name-input,
+.newsletter__email-input {
+  @extend %form-input;
+  margin-bottom: 4px;
+  text-align: center;
+
+  @include breakpoint($tablet) {
+    display: inline-block;
+    margin-bottom: 0;
+    text-align: left;
+  }
+}
+
+.newsletter__first-name-input,
+.newsletter__last-name-input {
+  display: inline-block;
+  width: 50%;
+
+  @include breakpoint($tablet) {
+    width: 128px;
+  }
+}
+
+.newsletter__first-name-input {
+  border-right: 0;
+}
+
+.newsletter__email-input {
+  @include breakpoint($tablet) {
+    border-left: 0;
+    border-right: 0;
+    width: 196px;
+  }
+}
+
+.newsletter__form-submit {
+  @extend %form-submit;
+  border: 1px solid $brown-color;
+  width: 100%;
+
+  @include breakpoint($tablet) {
+    width: 80px;
+  }
+}

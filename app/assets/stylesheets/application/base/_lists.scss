@@ -1,0 +1,28 @@
+ul,
+ol,
+dl {
+  @extend %primary-font;
+  color: $black-color;
+}
+
+ul li,
+ol li {
+  margin-left: 15px;
+}
+
+ul li {
+  list-style: disc;
+}
+
+ol li {
+  list-style: decimal;
+}
+
+dl dt {
+  font-weight: 600;
+}
+
+%list-item-no-style {
+  list-style: none;
+  margin-left: 0;
+}

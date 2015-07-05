@@ -7,6 +7,10 @@ require "webmock/rspec"
 require "vcr"
 require "carrierwave/test/matchers"
 require "sidekiq/testing"
+require "capybara/rspec"
+require "capybara/poltergeist"
+
+Capybara.javascript_driver = :poltergeist
 
 VCR.configure do |config|
   config.cassette_library_dir = "fixtures/vcr_cassettes"

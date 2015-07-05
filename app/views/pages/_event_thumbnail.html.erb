@@ -1,20 +1,12 @@
-<article class="event-thumbnail wip">
-  <a href="<%= link %>" title="<%= event.title %>" data-ga="events">
-    <img src="<%= event.primary_photo.thumb.url %>" alt="<%= event.title %>" class="primary-photo">
-
-    <h2><%= event.title %></h2>
-
-    <div class="details">
-      <span class="date"><%= event.formatted_date %></span>
-      <span class="price"><%= humanized_money_with_symbol event.price %></span>
+<article class="event-thumbnail">
+  <a class="event-thumbnail__link" href="<%= link %>" title="<%= event.title %>" data-ga="events"">
+    <img class="event-thumbnail__primary-photo" src="<%= event.primary_photo.thumb.url %>" alt="<%= event.title %>">
+    <div class="event-thumbnail__content-container">
+      <h1 class="event-thumbnail__title"><%= event.title %></h1>
+      <p class="event-thumbnail__date"><%= event.formatted_date %></p>
+      <span class="event-thumbnail__price-label"><%= humanized_money_with_symbol event.price %></span>
+      <p class="event-thumbnail__short-description"><%= event.short_description %></p>
+      <p class="event-thumbnail__location"><%= event.location %></p>
     </div>
-
-    <div class="short-description">
-      <%= event.short_description %>
-    </div>
-
-    <p class="venue">
-      <%= event.location %>
-    </p>
   </a>
 </article>

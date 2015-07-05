@@ -127,12 +127,12 @@ describe "Admin event management" do
     click_link "Preview"
 
     within(".event-thumbnail") do
-      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
+      expect(find("img.event-thumbnail__primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
       expect(page).to have_content "Sunday Roast"
       expect(page).to have_content "1st January #{year} 7:00pm"
       expect(page).to have_content "£10"
       expect(page).to have_content "Londo"
-      within(".short-description") do
+      within(".event-thumbnail__short-description") do
         expect(page).to have_content "The perfect end to the weekend"
       end
     end
@@ -203,8 +203,8 @@ describe "Admin event management" do
     expect(find("img.event-primary-photo")["src"]).to have_content %r(\/uploads\/events\/(\d)+\/primary_photo\/(\h){32}.png)
 
     visit root_path
-    expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
-    expect(find("img.primary-photo")["src"]).to have_content %r(\/uploads\/events\/(\d)+\/primary_photo\/thumb_(\h){32}.png)
+    expect(find("img.event-thumbnail__primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
+    expect(find("img.event-thumbnail__primary-photo")["src"]).to have_content %r(\/uploads\/events\/(\d)+\/primary_photo\/thumb_(\h){32}.png)
 
     visit "events/sunday-roast"
     expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"
