@@ -14,6 +14,10 @@
   margin-bottom: 16px;
 }
 
+.user-sign-up__errors {
+  text-align: center;
+}
+
 .user-sign-up__input {
   @extend %form-input;
   display: block;
@@ -25,6 +29,10 @@
   display: block;
   margin-bottom: 2px;
   margin-top: 8px;
+}
+
+.field-with-errors .user-sign-up__hint {
+  display: none;
 }
 
 .user-sign-up__hint {

@@ -38,6 +38,10 @@
   font-size: .9em;
   line-height: 1.4em;
 
+  &:focus {
+    outline: 2px solid $primary-color;
+  }
+
   &:hover {
     background-color: $primary-darken-color;
   }

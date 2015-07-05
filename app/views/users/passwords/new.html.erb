@@ -4,7 +4,6 @@
   </h2>
 
   <%= simple_form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, defaults: { error: true } do |f| %>
-    <%= f.error_notification %>
     <%= f.input :email, autofocus: true, label: false, placeholder: "Please enter your email address",
           input_html: { class: "forgot-password__email-input" } %>
     <%= f.button :submit, "Send me password reset instructions", class: "forgot-password__submit" %>
