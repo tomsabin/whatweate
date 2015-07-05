@@ -10,14 +10,14 @@
   display: table;
   height: 520px;
   margin: 0 auto;
-  width: 320px;
+  max-width: 320px;
 
   @include breakpoint($tablet) {
-    width: 460px;
+    max-width: 460px;
   }
 
   @include breakpoint($desktop) {
-    width: 768px;
+    max-width: 768px;
   }
 }
 

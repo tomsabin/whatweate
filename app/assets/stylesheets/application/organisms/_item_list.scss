@@ -6,7 +6,7 @@
 
 .item-list {
   margin: 0 auto;
-  width: 320px;
+  max-width: 320px;
 
   .label-container {
     overflow: visible;
@@ -70,6 +70,7 @@
 
   @include breakpoint($desktop) {
     width: auto;
+    max-width: 100%;
 
     .toggle:checked + .togglable-content,
     .toggle:not(:checked) + .togglable-content {

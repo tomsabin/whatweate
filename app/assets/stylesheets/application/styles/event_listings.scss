@@ -1,0 +1,30 @@
+.event-listings {
+  text-align: center;
+  margin: 12px 0;
+}
+
+.event-listings__title {
+  @extend h3;
+  margin-bottom: 12px;
+}
+
+.event-listing__no-listings-text {
+  margin-top: 6px;
+}
+
+.event-listing__events {
+  @include breakpoint($tablet) {
+    margin: 0 9px;
+  }
+}
+
+.event-listing__event-thumbnail {
+  display: inline-block;
+  padding-bottom: 6px;
+  padding-top: 6px;
+
+  @include breakpoint($tablet) {
+    padding-right: 3px;
+    padding-left: 3px;
+  }
+}

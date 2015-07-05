@@ -110,20 +110,24 @@
   </div>
 </section>
 
-<section class="events">
-  <div class="container">
-    <a name="events"></a>
-    <h3>Upcoming events</h3>
-
+<div class="container">
+  <section class="event-listings" name="events">
+    <h3 class="event-listings__title">Upcoming events</h3>
     <% if @events.blank? %>
-      <p class="error"><%= t("failure.no_events") %></p>
+      <p class="event-listings__no-listings-text">
+        <%= t("failure.no_events") %>
+      </p>
     <% else %>
-      <% @events.each do |event| %>
-        <%= render partial: "event_thumbnail", locals: { link: event_path(event), event: event } %>
-      <% end %>
+      <div class="event-listing__events">
+        <% @events.each do |event| %>
+          <div class="event-listing__event-thumbnail">
+            <%= render partial: "event_thumbnail", locals: { link: event_path(event), event: event } %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
-  </div>
-</section>
+  </section>
+</div>
 
 <script>
   mailChimpNewsletter.init("#newsletter", "#response");
