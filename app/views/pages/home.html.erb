@@ -23,87 +23,89 @@
   <div id="response" class="response"></div>
 </section>
 
-<section class="how-it-works">
+<section class="item-list-container">
   <a name="how_it_works"></a>
+  <div class="item-list">
+    <input type="radio" name="toggle-content-mobile" id="content-1-mobile" class="toggle toggle-content-1" checked>
+    <input type="radio" name="toggle-content-mobile" id="content-2-mobile" class="toggle toggle-content-2">
 
-  <div class="label-container">
-    <label class="guests" for="guests">Guests</label>
-    <label class="hosts" for="hosts">Hosts</label>
-  </div>
-
-  <div class="content-container">
-    <input type="radio" id="guests" name="how-it-works" class="toggle" checked>
-    <div class="togglable-content">
-      <article class="step">
-        <div class="content">
-          <div class="image-container">
-            <%= image_tag "icons/browse.png", alt: "Find an event" %>
-          </div>
-          <div class="text-container">
-            <h2>Find an event</h2>
-            <p>Discover delicious meals by hosts who love cooking</p>
-          </div>
-        </div>
-      </article>
-      <article class="step">
-        <div class="content">
-          <div class="image-container">
-            <%= image_tag "icons/join.png", alt: "Join a table" %>
-          </div>
-          <div class="text-container">
-            <h2>Join a table</h2>
-            <p>Book your seat and wait for the location to be revealed</p>
-          </div>
-        </div>
-      </article>
-      <article class="step">
-        <div class="content">
-          <div class="image-container">
-            <%= image_tag "icons/talk.png", alt: "Make new friends" %>
-          </div>
-          <div class="text-container">
-            <h2>Make new friends</h2>
-            <p>Show up for a fun and memorable evening!</p>
-          </div>
-        </div>
-      </article>
+    <div class="label-container">
+      <label class="btn-header label-content-1" for="content-1-mobile">Guests</label>
+      <label class="btn-header label-content-2" for="content-2-mobile">Hosts</label>
     </div>
 
-    <input type="radio" id="hosts" name="how-it-works" class="toggle">
-    <div class="togglable-content">
-      <article class="step">
-        <div class="content">
-          <div class="image-container">
-            <%= image_tag "icons/submit.png", alt: "Introduce yourself" %>
+    <div class="content-container">
+      <div class="togglable-content togglable-content-1">
+        <article class="item">
+          <div class="content">
+            <div class="image-container">
+              <%= image_tag "icons/browse.png", alt: "Find an event" %>
+            </div>
+            <div class="text-container">
+              <h6>Find an event</h6>
+              <p>Discover delicious meals by hosts who love cooking</p>
+            </div>
           </div>
-          <div class="text-container">
-            <h2>Introduce yourself</h2>
-            <p>Submit your application and begin listing events for free</p>
+        </article>
+        <article class="item">
+          <div class="content">
+            <div class="image-container">
+              <%= image_tag "icons/join.png", alt: "Join a table" %>
+            </div>
+            <div class="text-container">
+              <h6>Join a table</h6>
+              <p>Book your seat and wait for the location to be revealed</p>
+            </div>
           </div>
-        </div>
-      </article>
-      <article class="step">
-        <div class="content">
-          <div class="image-container">
-            <%= image_tag "icons/create.png", alt: "Let the cooking begin" %>
+        </article>
+        <article class="item">
+          <div class="content">
+            <div class="image-container">
+              <%= image_tag "icons/talk.png", alt: "Make new friends" %>
+            </div>
+            <div class="text-container">
+              <h6>Make new friends</h6>
+              <p>Show up for a fun and memorable evening!</p>
+            </div>
           </div>
-          <div class="text-container">
-            <h2>Let the cooking begin</h2>
-            <p>Design your menus and prepare to host</p>
+        </article>
+      </div>
+
+      <div class="togglable-content togglable-content-2">
+        <article class="item">
+          <div class="content">
+            <div class="image-container">
+              <%= image_tag "icons/submit.png", alt: "Introduce yourself" %>
+            </div>
+            <div class="text-container">
+              <h6>Introduce yourself</h6>
+              <p>Submit your application and begin listing events for free</p>
+            </div>
           </div>
-        </div>
-      </article>
-      <article class="step">
-        <div class="content">
-          <div class="image-container">
-            <%= image_tag "icons/paid.png", alt: "Get paid!" %>
+        </article>
+        <article class="item">
+          <div class="content">
+            <div class="image-container">
+              <%= image_tag "icons/create.png", alt: "Let the cooking begin" %>
+            </div>
+            <div class="text-container">
+              <h6>Let the cooking begin</h6>
+              <p>Design your menus and prepare to host</p>
+            </div>
           </div>
-          <div class="text-container">
-            <h2>Get paid!</h2>
-            <p>Money in your account within 24hrs after your events</p>
+        </article>
+        <article class="item">
+          <div class="content">
+            <div class="image-container">
+              <%= image_tag "icons/paid.png", alt: "Get paid!" %>
+            </div>
+            <div class="text-container">
+              <h6>Get paid!</h6>
+              <p>Money in your account within 24hrs after your events</p>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
     </div>
   </div>
 </section>

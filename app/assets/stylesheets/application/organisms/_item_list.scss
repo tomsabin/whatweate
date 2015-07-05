@@ -1,5 +1,11 @@
-.item-list {
+.item-list-container {
+  background: linear-gradient($pale-gray-color, $white-color, $pale-gray-color);
   background-color: $pale-gray-color;
+  padding-top: 12px;
+}
+
+.item-list {
+  margin: 0 auto;
   width: 320px;
 
   .label-container {
@@ -76,7 +82,7 @@
     }
 
     .togglable-content {
-      background: $pale-gray-color;
+      background: none;
       float: left;
       margin: 0 7px;
       position: relative;
