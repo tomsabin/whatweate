@@ -1,14 +1,14 @@
 .horizontal-form {
-  input,
-  label {
+  .input,
+  .label {
     display: inline-block;
   }
 
-  input {
+  .input {
     width: auto;
   }
 
-  label {
+  .label {
     &:not(.boolean):after {
       content: ":";
     }

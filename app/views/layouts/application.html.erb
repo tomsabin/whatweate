@@ -2,60 +2,62 @@
 <html lang="en">
   <%= render partial: "layouts/head", locals: { layout: "application", title: "WhatWeAte" } %>
   <body id="<%= page_id %>">
-    <header class="header">
-      <div class="logo-container">
-        <%= link_to root_path, alt: "WhatWeAte", title: "WhatWeAte", class: "logo" do %>
-          <%= image_tag "logo-icon.png", class: "logo-icon" %>
-          <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
-        <% end %>
-      </div>
+    <div class="header-container">
+      <header class="header">
+        <div class="logo-container">
+          <%= link_to root_path, alt: "WhatWeAte", title: "WhatWeAte", class: "logo" do %>
+            <%= image_tag "logo-icon.png", class: "logo-icon" %>
+            <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
+          <% end %>
+        </div>
 
-      <div class="navigation-container">
-        <div class="menu menu-right">
-          <input type="checkbox" id="mobile-header-menu">
-          <label  class="btn" for="mobile-header-menu">Menu</label>
-          <ul>
-            <% if user_signed_in? %>
-              <li>
-                <%= link_to user_path, class: "btn-alt" do %>
-                  <span>Profile</span>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to destroy_user_session_path, method: :delete, class: "btn-alt" do %>
-                  <span>Log out</span>
-                <% end %>
-              </li>
-              <% if current_user.host %>
+        <div class="navigation-container">
+          <div class="menu menu-right">
+            <input type="checkbox" id="mobile-header-menu">
+            <label  class="btn" for="mobile-header-menu">Menu</label>
+            <ul>
+              <% if user_signed_in? %>
                 <li>
-                  <%= link_to new_event_path, class: "btn" do %>
-                    <span>Create an event</span>
+                  <%= link_to user_path, class: "btn-alt" do %>
+                    <span>Profile</span>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete, class: "btn-alt" do %>
+                    <span>Log out</span>
+                  <% end %>
+                </li>
+                <% if current_user.host %>
+                  <li>
+                    <%= link_to new_event_path, class: "btn" do %>
+                      <span>Create an event</span>
+                    <% end %>
+                  </li>
+                <% end %>
+              <% else %>
+                <li>
+                  <%= link_to new_registration_path(:user), class: "btn-alt" do %>
+                    <span>Sign up</span>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to new_user_session_path, class: "btn-alt" do %>
+                    <span>Log in</span>
                   <% end %>
                 </li>
               <% end %>
-            <% else %>
-              <li>
-                <%= link_to new_registration_path(:user), class: "btn-alt" do %>
-                  <span>Sign up</span>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to new_user_session_path, class: "btn-alt" do %>
-                  <span>Log in</span>
-                <% end %>
-              </li>
-            <% end %>
-            <% unless current_user && current_user.host %>
-              <li>
-                <a href="https://whatweate.typeform.com/to/IXZyhO" class="btn typeform-share" data-mode="1" target="_blank" data-ga="conversion">
-                  <span>Become a host</span>
-                </a>
-              </li>
-            <% end %>
-          </ul>
+              <% unless current_user && current_user.host %>
+                <li>
+                  <a href="https://whatweate.typeform.com/to/IXZyhO" class="btn typeform-share" data-mode="1" target="_blank" data-ga="conversion">
+                    <span>Become a host</span>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </div>
 
     <% if flash.any? %>
       <div class="flash-messages wip">

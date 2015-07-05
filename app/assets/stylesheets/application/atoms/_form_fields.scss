@@ -1,16 +1,16 @@
 .input-field {
-  label,
-  input {
+  .input-label,
+  .input {
     display: block;
   }
 
-  label {
+  .input-label {
     @extend .primary-font;
     margin: 1em 0 .5em;
   }
 
-  input,
-  textarea {
+  .input,
+  .textarea {
     @extend .secondary-font;
     background-color: $light-gray-color;
     border: 1px solid $brown-color;
@@ -26,7 +26,7 @@
     }
   }
 
-  textarea {
+  .textarea {
     vertical-align: top;
   }
 }
@@ -35,6 +35,8 @@
 input[type="submit"] {
   @extend .btn;
   background-color: $primary-color;
+  font-size: .9em;
+  line-height: 1.4em;
 
   &:hover {
     background-color: $primary-darken-color;
@@ -42,8 +44,8 @@ input[type="submit"] {
 }
 
 .field-with-errors {
-  &input,
-  &textarea {
+  &.input,
+  &.textarea {
     border: 1px solid $primary-color;
   }
 }
