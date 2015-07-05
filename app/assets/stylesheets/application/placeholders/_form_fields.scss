@@ -6,9 +6,11 @@
 
 %form-input,
 %form-textarea {
-  @extend %secondary-font;
+  @extend %primary-font;
+  appearance: none;
   background-color: $light-gray-color;
   border: 1px solid $brown-color;
+  border-radius: 0;
   box-sizing: border-box;
   display: block;
   font-size: .9em;
@@ -28,7 +30,9 @@
 
 %form-submit {
   @extend %button;
+  appearance: none;
   background-color: $primary-color;
+  border-radius: 0;
   color: $white-color;
   cursor: pointer;
   font-size: .9em;
