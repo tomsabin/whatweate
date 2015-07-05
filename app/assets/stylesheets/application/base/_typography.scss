@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "Pacifico";
+  src: font-url("pacifico.ttf") format("truetype");
+  // http://www.fontsquirrel.com/fonts/pacifico
+}
+
+@font-face {
+  font-family: "Bebas";
+  src: font-url("bebas.ttf") format("truetype");
+  // http://www.dafont.com/bebas.font
+}
+
+@font-face {
+  font-family: "Carrois Gothic";
+  src: font-url("carrois-gothic.ttf") format("truetype");
+  // http://www.fontsquirrel.com/fonts/carrois-gothic
+}
+
+$brand-font: "Pacifico", "Helvetica", sans-serif;
+$primary-font: "Carrois Gothic", "Helvetica", sans-serif;
+$secondary-font: "Bebas", "Helvetica", sans-serif;
+
+%brand-font {
+  font-family: $brand-font;
+}
+
+%primary-font {
+  font-family: $primary-font;
+}
+
+%secondary-font {
+  font-family: $secondary-font;
+}
+
+%heading-1,
+%heading-2,
+%heading-3,
+%heading-4,
+%heading-5,
+%heading-6 {
+  @extend %secondary-font;
+  line-height: 1.1em;
+  word-spacing: .2em;
+}
+
+%heading-1 { font-size: 3.1em; }
+%heading-2 { font-size: 1.8em; }
+%heading-3 { font-size: 1.6em; }
+%heading-4 { font-size: 1.3em; }
+%heading-5 { font-size: 1.2em; }
+%heading-6 { font-size: 1em;   }

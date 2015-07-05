@@ -2,53 +2,53 @@
 <html lang="en">
   <%= render partial: "layouts/head", locals: { layout: "application", title: "WhatWeAte" } %>
   <body id="<%= page_id %>">
-    <div class="header-container">
-      <header class="header">
-        <div class="logo-container">
-          <%= link_to root_path, alt: "WhatWeAte", title: "WhatWeAte", class: "logo" do %>
-            <%= image_tag "logo-icon.png", class: "logo-icon" %>
-            <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
+    <div class="site-header__container">
+      <header class="site-header">
+        <div class="site-header__logo">
+          <%= link_to root_path, alt: "WhatWeAte", title: "WhatWeAte", class: "site-logo" do %>
+            <%= image_tag "logo-icon.png", class: "site-logo__icon" %>
+            <%= image_tag "logo-text.png", class: "site-logo__text", alt: "WhatWeAte" %>
           <% end %>
         </div>
 
-        <div class="navigation-container">
-          <div class="menu menu-right">
-            <input type="checkbox" id="mobile-header-menu">
-            <label  class="btn" for="mobile-header-menu">Menu</label>
-            <ul>
+        <div class="site-header__navigation">
+          <div class="menu menu--right">
+            <input class="menu__hidden-input" type="checkbox" id="mobile-header-menu">
+            <label class="menu__mobile-toggle" for="mobile-header-menu">Menu</label>
+            <ul class="menu__links">
               <% if user_signed_in? %>
                 <li>
-                  <%= link_to user_path, class: "btn-alt" do %>
+                  <%= link_to user_path, class: "menu__link-alt" do %>
                     <span>Profile</span>
                   <% end %>
                 </li>
                 <li>
-                  <%= link_to destroy_user_session_path, method: :delete, class: "btn-alt" do %>
+                  <%= link_to destroy_user_session_path, method: :delete, class: "menu__link-alt" do %>
                     <span>Log out</span>
                   <% end %>
                 </li>
                 <% if current_user.host %>
                   <li>
-                    <%= link_to new_event_path, class: "btn" do %>
+                    <%= link_to new_event_path, class: "menu__link" do %>
                       <span>Create an event</span>
                     <% end %>
                   </li>
                 <% end %>
               <% else %>
                 <li>
-                  <%= link_to new_registration_path(:user), class: "btn-alt" do %>
+                  <%= link_to new_registration_path(:user), class: "menu__link-alt" do %>
                     <span>Sign up</span>
                   <% end %>
                 </li>
                 <li>
-                  <%= link_to new_user_session_path, class: "btn-alt" do %>
+                  <%= link_to new_user_session_path, class: "menu__link-alt" do %>
                     <span>Log in</span>
                   <% end %>
                 </li>
               <% end %>
               <% unless current_user && current_user.host %>
                 <li>
-                  <a href="https://whatweate.typeform.com/to/IXZyhO" class="btn typeform-share" data-mode="1" target="_blank" data-ga="conversion">
+                  <a href="https://whatweate.typeform.com/to/IXZyhO" class="menu__link" data-mode="1" target="_blank" data-ga="conversion">
                     <span>Become a host</span>
                   </a>
                 </li>
@@ -68,43 +68,86 @@
 
     <%= yield %>
 
-    <footer class="footer">
-      <div class="container">
-        <ul class="social">
-          <a href="https://www.facebook.com/whatweate.co" class="facebook" data-ga="social">
-            Facebook
-          </a>
-          <a href="https://twitter.com/WhatWeAteCo" class="twitter" data-ga="social">
-            Twitter
-          </a>
-          <a href="http://instagram.com/whatweate.co" class="instagram" data-ga="social">
-            Instagram
-          </a>
-          <a href="mailto:hello@whatweate.co" class="email" data-ga="social">
-            Email
-          </a>
-        </ul>
-
-        <ul class="links">
-          <li><%= link_to 'How it works', root_path(anchor: 'how_it_works') %></li>
-          <li><a href="https://whatweate.typeform.com/to/IXZyhO" class="cta typeform-share" data-mode="1" target="_blank">Become a host</a></li>
-        </ul>
-
-        <div class="legal wip">
+    <footer class="site-footer">
+      <div class="site-footer__container">
+        <div class="site-footer__navigation">
           <ul>
-            <%= link_to root_path do %>
-              <li>Terms of use</li>
-            <% end %>
-
-            <%= link_to root_path do %>
-              <li>Privacy policy</li>
-            <% end %>
+            <li>
+              <a class="site-footer__navigation-link" href="#">
+                Company
+              </a>
+            </li>
+            <li>
+              <a class="site-footer__navigation-link" href="#">
+                About us
+              </a>
+            </li>
+            <li>
+              <a class="site-footer__navigation-link" href="#">
+                How it works
+              </a>
+            </li>
+            <li>
+              <a class="site-footer__navigation-link" href="#">
+                FAQs
+              </a>
+            </li>
+            <li>
+              <a class="site-footer__navigation-link" href="#">
+                Contact us
+              </a>
+            </li>
           </ul>
+        </div>
 
-          <p>Copyright &copy; 2014-2015 WhatWeAte Ltd</p>
+        <div class="site-footer__legal">
+          <ul>
+            <li>
+              <a class="site-footer__legal-link" href="">
+                Terms of use
+              </a>
+            </li>
+            <li>
+              <a class="site-footer__legal-link" href="">
+                Privacy policy
+              </a>
+            </li>
+            <li>
+              <a class="site-footer__legal-link" href="">
+                Cookie policy
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="site-footer__social">
+          <p class="site-footer__social-title">
+            Follow us
+          </p>
+
+          <ul>
+            <a class="site-footer__social-link" href="https://www.facebook.com/whatweate.co">
+              <i class="fa fa-facebook-square"></i>
+            </a>
+            <a class="site-footer__social-link" href="https://twitter.com/WhatWeAteCo">
+              <i class="fa fa-twitter-square"></i>
+            </a>
+            <a class="site-footer__social-link" href="http://instagram.com/whatweate.co">
+              <i class="fa fa-instagram"></i>
+            </a>
+            <a class="site-footer__social-link" href="mailto:hello@whatweate.co">
+              <i class="fa fa-envelope-square"></i>
+            </a>
+          </ul>
         </div>
       </div>
     </footer>
+
+    <div class="made-with-love">
+      <p class="made-with-love__text">
+        Made with <i class="fa fa-heart"></i> in London. &copy; WhatWeAte 2015
+      </p>
+    </div>
 
     <script>
       var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id="typef_orm",b="https://s3-eu-west-1.amazonaws.com/share.typeform.com/";if(!gi.call(d,id)){js=ce.call(d,"script");js.id=id;js.src=b+"share.js";q=gt.call(d,"script")[0];q.parentNode.insertBefore(js,q)}id=id+"_";if(!gi.call(d,id)){qs=ce.call(d,"link");qs.rel="stylesheet";qs.id=id;qs.href=b+"share-button.css";s=gt.call(d,"head")[0];s.appendChild(qs,s)}

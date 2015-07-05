@@ -1,0 +1,48 @@
+.proposition {
+  background: image-url("proposition.jpg");
+  background: image-url("proposition.jpg") no-repeat bottom 40% center;
+  background-color: $primary-color;
+  background-size: cover;
+  position: relative;
+}
+
+.proposition__container {
+  display: table;
+  height: 520px;
+  margin: 0 auto;
+  max-width: 320px;
+
+  @include breakpoint($tablet) {
+    max-width: 460px;
+  }
+
+  @include breakpoint($desktop) {
+    max-width: 768px;
+  }
+}
+
+.proposition__content {
+  color: $white-color;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.proposition__title {
+  @extend %heading-1;
+  text-shadow: 0 0 50px $black-color;
+}
+
+.proposition__subtitle {
+  @extend %heading-2;
+  padding-bottom: 44px;
+  padding-top: 28px;
+  text-shadow: 0 0 40px $black-color;
+}
+
+.proposition__cta {
+  @extend %button;
+  @extend %heading-4;
+  @extend %label-style;
+  word-spacing: 1px;
+}

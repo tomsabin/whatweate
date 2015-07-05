@@ -1,0 +1,16 @@
+.field-with-errors.input,
+.field-with-errors.textarea {
+  border: 1px solid $primary-color;
+}
+
+.field-with-errors span.error {
+  @extend %base-button-style;
+  background-color: $primary-color;
+  color: $white-color;
+  text-align: left;
+  width: 100%;
+}
+
+.error-notification {
+  @extend %primary-font;
+}

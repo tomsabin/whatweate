@@ -1,0 +1,11 @@
+.made-with-love {
+  background-color: $pale-gray-color;
+  text-align: center;
+  padding: 7px 0;
+  width: 100%;
+}
+
+.made-with-love__text {
+  color: lighten($black-color, 35%);
+  font-size: .85em;
+}

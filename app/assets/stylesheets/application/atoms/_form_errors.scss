@@ -1,9 +1,0 @@
-.error-notification {
-  @extend p;
-}
-
-.field-with-errors span.error {
-  @extend %brand-btn-style;
-  text-align: left;
-  width: 100%;
-}

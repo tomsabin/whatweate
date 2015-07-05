@@ -1,0 +1,125 @@
+.item-list {
+  background: linear-gradient($pale-gray-color, $white-color, $pale-gray-color);
+  background-color: $pale-gray-color;
+  padding-top: 12px;
+}
+
+.item-list__hidden-toggle {
+  left: -9999px;
+  position: absolute;
+}
+
+.item-list__container {
+  margin: 0 auto;
+  max-width: 320px;
+
+  @include breakpoint($desktop) {
+    width: auto;
+    max-width: 100%;
+  }
+}
+
+.item-list__labels {
+  overflow: visible;
+  position: relative;
+  text-align: center;
+  z-index: 3;
+}
+
+.item-list__label {
+  @extend %button-header;
+  @extend %heading-5;
+  width: 120px;
+
+  @include breakpoint($desktop) {
+    background-color: $primary-color;
+    color: $white-color;
+    cursor: default;
+    position: relative;
+
+    &:after {
+      border-color: $primary-color transparent transparent;
+      border-style: solid;
+      border-width: 12px 10px 0;
+      bottom: -11px;
+      content: "";
+      display: block;
+      height: 0;
+      left: calc(50% - 11px);
+      position: absolute;
+      width: 0;
+    }
+  }
+}
+
+.item-list__content-container {
+  height: 380px;
+  position: relative;
+
+  @include breakpoint($desktop) {
+    margin: 0 auto;
+    width: 728px;
+  }
+}
+
+.label-content-1 {
+  margin-right: 14px;
+}
+
+.item-list__togglable-content {
+  background: linear-gradient($pale-gray-color, $white-color, $pale-gray-color);
+  background-color: $pale-gray-color;
+  bottom: 0;
+  left: 0;
+  padding-top: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  @include breakpoint($desktop) {
+    background: none;
+    float: left;
+    margin: 0 7px;
+    position: relative;
+    top: 0;
+    width: 350px;
+  }
+}
+
+.item-list__toggle-content-1:not(:checked) ~ .item-list__content-container > .item-list__togglable-content-1 {
+  z-index: 1;
+}
+
+.item-list__toggle-content-1:checked ~ .item-list__content-container > .item-list__togglable-content-1 {
+  z-index: 2;
+}
+
+.item-list__toggle-content-1:checked ~ .item-list__labels > .item-list__label-content-1 {
+  @extend %active-button-header;
+}
+
+.item-list__toggle-content-2:not(:checked) ~ .item-list__content-container > .item-list__togglable-content-2 {
+  z-index: 1;
+}
+
+.item-list__toggle-content-2:checked ~ .item-list__content-container > .item-list__togglable-content-2 {
+  z-index: 2;
+}
+
+.item-list__toggle-content-2:checked ~ .item-list__labels > .item-list__label-content-2 {
+  @extend %active-button-header;
+}
+
+.item-list__hidden-toggle:checked + .item-list__togglable-content,
+.item-list__hidden-toggle:not(:checked) + .item-list__togglable-content {
+  @include breakpoint($desktop) {
+    z-index: 1;
+  }
+}
+
+.item-list__label-content-1 {
+  @include breakpoint($desktop) {
+    margin-right: 240px;
+  }
+}
+
