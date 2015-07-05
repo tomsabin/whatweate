@@ -1,13 +1,13 @@
-.menu {
+.navigation-menu {
   position: relative;
 }
 
-.menu__hidden-input {
+.navigation-menu__hidden-input {
   left: -9999px;
   position: absolute;
 }
 
-.menu__mobile-toggle {
+.navigation-menu__mobile-toggle {
   @extend %primary-button;
   font-size: .9em;
   line-height: 1em;
@@ -17,16 +17,16 @@
   }
 }
 
-.menu__hidden-input:checked + .menu__mobile-toggle {
+.navigation-menu__hidden-input:checked + .navigation-menu__mobile-toggle {
   background-color: $primary-darken-color;
   color: $white-color;
 }
 
-.menu__hidden-input:checked ~ .menu__links {
+.navigation-menu__hidden-input:checked ~ .navigation-menu__links {
   display: block;
 }
 
-.menu__links {
+.navigation-menu__links {
   display: none;
   position: absolute;
   top: calc(100% + 12px);
@@ -61,7 +61,7 @@
   }
 }
 
-.menu__link {
+.navigation-menu__link {
   @extend %primary-button;
   font-size: .9em;
   line-height: 1em;
@@ -73,7 +73,7 @@
   }
 }
 
-.menu__link-alt {
+.navigation-menu__link-alt {
   @extend %button;
   font-size: .9em;
   line-height: 1em;
@@ -85,7 +85,7 @@
   }
 }
 
-.menu--left .menu__links {
+.navigation-menu--left .navigation-menu__links {
   left: 0;
 
   &:before {
@@ -93,11 +93,11 @@
   }
 }
 
-.menu--right {
+.navigation-menu--right {
   text-align: right;
 }
 
-.menu--right .menu__links {
+.navigation-menu--right .navigation-menu__links {
   right: 0;
 
   &:before {

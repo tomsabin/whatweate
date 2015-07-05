@@ -11,13 +11,13 @@ describe "Admins" do
 
     fill_in "Email", with: "user@example.com"
     fill_in "Password", with: "letmein!!"
-    click_button "Sign in"
+    click_button "Log in"
 
     expect(page).to have_content "Your email/password combination was incorrect."
 
     fill_in "Email", with: admin.email
     fill_in "Password", with: admin.password
-    click_button "Sign in"
+    click_button "Log in"
 
     expect(page).to have_content "Dashboard"
     within(".nav-wrapper .active", match: :first) { expect(page).to have_content "Events" }
@@ -50,7 +50,7 @@ describe "Admins" do
     visit user_path
     expect(page).to have_link "Profile"
 
-    click_link "Sign out"
+    click_link "Log out"
     visit admin_root_path
     expect(page).to have_link "Dashboard"
   end

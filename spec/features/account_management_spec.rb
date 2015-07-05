@@ -19,11 +19,11 @@ describe "Account management" do
 
     expect(page).to have_content "Please complete your profile"
 
-    click_link "Sign out"
+    click_link "Log out"
 
     visit root_path
-    click_link "Sign in"
-    click_button "Sign in"
+    click_link "Log in"
+    click_button "Log in"
 
     within(".user_email") { expect(page).to_not have_content "can't be blank" }
     expect(page).to_not have_content "Please review the following errors"
@@ -31,7 +31,7 @@ describe "Account management" do
 
     fill_in "Email", with: "user@example.com"
     fill_in "Password", with: "letmein!!"
-    click_button "Sign in"
+    click_button "Log in"
 
     expect(page).to_not have_content "Signed in successfully"
     expect(page).to have_field "user_email", with: "user@example.com"
@@ -73,8 +73,8 @@ describe "Account management" do
 
     scenario "forgets their password" do
       visit root_path
-      click_link "Sign in"
-      click_button "Sign in"
+      click_link "Log in"
+      click_button "Log in"
 
       expect(page).to have_content "Your email/password combination was incorrect"
 
@@ -99,12 +99,12 @@ describe "Account management" do
 
       expect(page).to have_content "Your password has been changed successfully. You are now signed in."
 
-      click_link "Sign out"
-      click_link "Sign in"
+      click_link "Log out"
+      click_link "Log in"
 
       fill_in "user_email", with: "user@example.com"
       fill_in "user_password", with: "newpassword"
-      click_button "Sign in"
+      click_button "Log in"
 
       expect(page).to have_content "Signed in successfully"
       expect(page).to_not have_content "Please complete your profile"
@@ -117,10 +117,10 @@ describe "Account management" do
     context "having successfully signed in" do
       before(:each) do
         visit root_path
-        click_link "Sign in"
+        click_link "Log in"
         fill_in "Email", with: "user@example.com"
         fill_in "Password", with: "letmein!!"
-        click_button "Sign in"
+        click_button "Log in"
       end
 
       scenario "updates their profile" do
@@ -183,17 +183,17 @@ describe "Account management" do
 
         expect(page).to have_content "Your password has been changed successfully"
 
-        click_link "Sign out"
-        click_link "Sign in"
+        click_link "Log out"
+        click_link "Log in"
 
         fill_in "Email", with: "user@example.com"
         fill_in "Password", with: "letmein!!"
-        click_button "Sign in"
+        click_button "Log in"
 
         expect(page).to have_content "Your email/password combination was incorrect"
 
         fill_in "Password", with: "newpassword"
-        click_button "Sign in"
+        click_button "Log in"
 
         expect(page).to have_content "Signed in successfully"
       end
@@ -211,16 +211,16 @@ describe "Account management" do
 
         expect(page).to have_content "Your account has been successfully been deleted. We hope to see you again soon"
 
-        click_link "Sign in"
+        click_link "Log in"
 
         fill_in "Email", with: "user@example.com"
         fill_in "Password", with: "letmein!!"
-        click_button "Sign in"
+        click_button "Log in"
 
         expect(page).to have_content "Your email/password combination was incorrect"
       end
 
-      scenario "adds social networks to verify account, uses them to sign in and unlinks them from the account" do
+      scenario "adds social networks to verify account, uses them to log in and unlinks them from the account" do
         setup_omniauth
         setup_valid_facebook_callback
         setup_valid_twitter_callback
@@ -237,8 +237,8 @@ describe "Account management" do
         expect(page).to have_content "Verified with Facebook"
         expect(page).to have_content "Verified with Twitter"
 
-        click_link "Sign out"
-        click_link "Sign in"
+        click_link "Log out"
+        click_link "Log in"
         within(".social-networks") { click_link "Facebook" }
 
         expect(page).to have_content "Successfully authenticated from Facebook account"
@@ -246,8 +246,8 @@ describe "Account management" do
         expect(page).to have_content "Verified with Facebook"
         expect(page).to have_content "Verified with Twitter"
 
-        click_link "Sign out"
-        click_link "Sign in"
+        click_link "Log out"
+        click_link "Log in"
         within(".social-networks") { click_link "Twitter" }
 
         expect(page).to have_content "Successfully authenticated from Twitter account"
@@ -261,7 +261,7 @@ describe "Account management" do
         click_link "Disconnect Twitter from your account"
         expect(page).to have_content "Successfully disconnected Twitter from your account"
 
-        click_link "Sign out"
+        click_link "Log out"
         click_link "Sign up"
 
         within(".social-networks") { click_link "Facebook" }
@@ -362,7 +362,7 @@ describe "Account management" do
 
       click_button "Save profile"
 
-      click_link "Sign out"
+      click_link "Log out"
 
       setup_valid_twitter_callback
 

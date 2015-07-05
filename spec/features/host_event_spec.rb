@@ -45,7 +45,7 @@ describe "Host event" do
     visit root_path
 
     within(".event-thumbnail") do
-      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
+      expect(find("img.event-thumbnail__primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
       expect(page).to have_content "The perfect end to the weekend"
     end
 
@@ -66,7 +66,7 @@ describe "Host event" do
     click_link "Create an event"
 
     within(".event-thumbnail") do
-      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
+      expect(find("img.event-thumbnail__primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
       expect(page).to have_content "Event title"
       expect(page).to have_content "£30"
       expect(page).to have_content "Your description here"
@@ -119,9 +119,9 @@ describe "Host event" do
     approve_last_event!
 
     visit root_path
-    expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
+    expect(find("img.event-thumbnail__primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
     path = %r(\/uploads\/events\/(\d)+\/primary_photo\/thumb_(\h){32}.png)
-    expect(find("img.primary-photo")["src"]).to have_content path
+    expect(find("img.event-thumbnail__primary-photo")["src"]).to have_content path
 
     click_link "Sunday Roast"
     expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"

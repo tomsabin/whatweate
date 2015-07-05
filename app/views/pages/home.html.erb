@@ -164,11 +164,13 @@
 
 <script>
   mailChimpNewsletter.init("#newsletterForm", "#newsletterResponse p");
-  $(document).ready(function() {
-    $("#siteQuotes").slick({
-      centerMode: true,
-      centerPadding: "32px",
-      arrows: false
+  <% unless Rails.env.test? %>
+    $(document).ready(function() {
+      $("#siteQuotes").slick({
+        centerMode: true,
+        centerPadding: "32px",
+        arrows: false
+      });
     });
-  });
+  <% end %>
 </script>

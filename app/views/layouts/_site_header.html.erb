@@ -7,43 +7,43 @@
   </div>
 
   <div class="site-header__navigation">
-    <div class="menu menu--right">
-      <input class="menu__hidden-input" type="checkbox" id="mobile-header-menu">
-      <label class="menu__mobile-toggle" for="mobile-header-menu">Menu</label>
-      <ul class="menu__links">
+    <div class="navigation-menu navigation-menu--right">
+      <input class="navigation-menu__hidden-input" type="checkbox" id="mobile-header-menu">
+      <label class="navigation-menu__mobile-toggle" for="mobile-header-menu">Menu</label>
+      <ul class="navigation-menu__links">
         <% if user_signed_in? %>
           <li>
-            <%= link_to user_path, class: "menu__link-alt" do %>
+            <%= link_to user_path, class: "navigation-menu__link-alt" do %>
               <span>Profile</span>
             <% end %>
           </li>
           <li>
-            <%= link_to destroy_user_session_path, method: :delete, class: "menu__link-alt" do %>
+            <%= link_to destroy_user_session_path, method: :delete, class: "navigation-menu__link-alt" do %>
               <span>Log out</span>
             <% end %>
           </li>
           <% if current_user.host %>
             <li>
-              <%= link_to new_event_path, class: "menu__link" do %>
+              <%= link_to new_event_path, class: "navigation-menu__link" do %>
                 <span>Create an event</span>
               <% end %>
             </li>
           <% end %>
         <% else %>
           <li>
-            <%= link_to new_registration_path(:user), class: "menu__link-alt" do %>
+            <%= link_to new_registration_path(:user), class: "navigation-menu__link-alt" do %>
               <span>Sign up</span>
             <% end %>
           </li>
           <li>
-            <%= link_to new_user_session_path, class: "menu__link-alt" do %>
+            <%= link_to new_user_session_path, class: "navigation-menu__link-alt" do %>
               <span>Log in</span>
             <% end %>
           </li>
         <% end %>
         <% unless current_user && current_user.host %>
           <li>
-            <a href="https://whatweate.typeform.com/to/IXZyhO" class="menu__link typeform-share" data-mode="1" target="_blank" data-ga="conversion">
+            <a href="https://whatweate.typeform.com/to/IXZyhO" class="navigation-menu__link typeform-share" data-mode="1" target="_blank" data-ga="conversion">
               <span>Become a host</span>
             </a>
           </li>
