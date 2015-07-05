@@ -19,12 +19,14 @@
 
     <%= yield %>
 
-    <%= render "layouts/site_footer" %>
+    <div class="sticky-footer">
+      <%= render "layouts/site_footer" %>
 
-    <div class="made-with-love">
-      <p class="made-with-love__text">
-        Made with <i class="fa fa-heart"></i> in London. &copy; WhatWeAte 2015
-      </p>
+      <div class="made-with-love">
+        <p class="made-with-love__text">
+          Made with <i class="fa fa-heart"></i> in London. &copy; WhatWeAte 2015
+        </p>
+      </div>
     </div>
 
     <script>

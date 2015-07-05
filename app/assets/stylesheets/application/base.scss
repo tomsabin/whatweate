@@ -9,6 +9,8 @@ $susy: (
 
 $tablet: 569px;
 $desktop: 737px;
+$site-footer-height: 256px;
+$site-footer-tablet-height: 160px;
 
 @import "../shared/*";
 @import "base/*";

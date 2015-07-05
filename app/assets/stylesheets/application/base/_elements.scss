@@ -69,3 +69,8 @@ hr {
   border: 0;
   border-bottom: 1px solid $light-gray-color;
 }
+
+input, textarea {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
