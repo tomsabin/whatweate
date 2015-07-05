@@ -1,0 +1,25 @@
+<% if flash.any? %>
+  <div class="flash-messages">
+    <% flash.each_with_index do |(type, message), index| %>
+      <div class="flash-messages__message-container" data-flash-index="<%= index %>">
+        <p class="flash-messages__message flash-messages__message--#{type}">
+          <%= message %>
+          <i class="flash-messages__close fa fa-times"></i>
+        </p>
+        <br />
+        <script>
+          $("[data-flash-index='<%= index %>']")
+            .delay(parseInt(<%= 4000 + (500 * index) %>))
+            .fadeOut(400, function() { $(this).remove(); });
+        </script>
+      </div>
+    <% end %>
+  </div>
+
+  <script>
+    $(".flash-messages__close").click(function(e) {
+      $(this).parentsUntil(".flash-messages__message-container")
+        .fadeOut(400, function() { $(this).parent().remove(); });
+    });
+  </script>
+<% end %>

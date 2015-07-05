@@ -1,7 +1,7 @@
 .user-sign-up {
+  margin: 48px auto 0;
   max-width: 280px;
   padding-bottom: 48px;
-  margin: 48px auto 0;
 
   @include breakpoint($tablet) {
     padding-bottom: 64px;
@@ -10,8 +10,8 @@
 
 .user-sign-up__title {
   @extend %heading-5;
-  text-align: center;
   margin-bottom: 16px;
+  text-align: center;
 }
 
 .user-sign-up__errors {
@@ -60,10 +60,10 @@
 
 .user-sign-up__divider {
   border-bottom: 1px solid lighten($gray-color, 35%);
-  text-align: center;
-  width: 100%;
   line-height: .1em;
   margin: 24px 0;
+  text-align: center;
+  width: 100%;
 }
 
 .user-sign-up__divider-text {

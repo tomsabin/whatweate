@@ -10,12 +10,7 @@
       <%= render "layouts/site_header" %>
     <% end %>
 
-    <% if flash.any? %>
-      <div class="flash-messages wip">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      </div>
-    <% end %>
+    <%= render "layouts/flash_messages" %>
 
     <%= yield %>
 
