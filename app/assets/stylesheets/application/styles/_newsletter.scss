@@ -1,8 +1,8 @@
 .newsletter {
   @include container;
-  text-align: center;
   margin-bottom: 12px;
   margin-top: 12px;
+  text-align: center;
 
   @include breakpoint($desktop) {
     margin-bottom: 16px;
@@ -12,8 +12,8 @@
 
 .newsletter__title {
   @extend %heading-5;
-  margin-bottom: 8px;
   display: inline-block;
+  margin-bottom: 8px;
 
   @include breakpoint($tablet) {
     padding-left: 16px;
@@ -34,16 +34,16 @@
 }
 
 .newsletter__hidden-input {
-  position: absolute;
   left: -9999px;
+  position: absolute;
 }
 
 .newsletter__first-name-input,
 .newsletter__last-name-input,
 .newsletter__email-input {
   @extend %form-input;
-  text-align: center;
   margin-bottom: 4px;
+  text-align: center;
 
   @include breakpoint($tablet) {
     display: inline-block;
@@ -76,7 +76,7 @@
 
 .newsletter__form-submit {
   @extend %form-submit;
-  border: 1px solid #927e6f;
+  border: 1px solid $brown-color;
   width: 100%;
 
   @include breakpoint($tablet) {

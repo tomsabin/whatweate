@@ -4,8 +4,8 @@
 }
 
 .site-logo__icon {
-  vertical-align: bottom;
   height: 36px;
+  vertical-align: bottom;
 
   @include breakpoint($tablet) {
     height: 40px;

@@ -1,7 +1,7 @@
 .proposition {
   background: image-url("proposition.jpg");
   background: image-url("proposition.jpg") no-repeat bottom 40% center;
-  background-color: $primary-color;
+  background-color: $pale-gray-color;
   background-size: cover;
   position: relative;
 }
@@ -30,8 +30,8 @@
 
 .proposition__title {
   @extend %heading-1;
-  text-shadow: 0 0 50px $black-color;
   margin-top: 60px;
+  text-shadow: 0 0 50px $black-color;
 }
 
 .proposition__subtitle {

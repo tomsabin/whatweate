@@ -6,3 +6,5 @@ linters:
     style: double_quotes
   PlaceholderInExtend:
     enabled: false
+  SelectorFormat:
+    convention: hyphenated_BEM

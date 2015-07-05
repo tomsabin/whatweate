@@ -42,16 +42,16 @@
   @include breakpoint($tablet) {
     @include span(last 6 of 12);
     @include gutters(0 before);
-    text-align: center;
     border-top: 0;
     margin-top: 0;
     padding-top: 0;
+    text-align: center;
   }
 }
 
 .site-footer__navigation-link {
-  margin-bottom: 3px;
   color: $white-color;
+  margin-bottom: 3px;
   text-decoration: none;
 
   &:hover {
@@ -65,11 +65,9 @@
 }
 
 .site-footer__social-link {
-  $icon-color: $white-color;
-
+  color: $white-color;
   display: inline-block;
   margin-right: 4px;
-  color: $icon-color;
   text-decoration: none;
 
   &:hover {
@@ -87,8 +85,8 @@
 }
 
 .site-footer__legal-link {
-  margin-bottom: 3px;
   color: darken($white-color, 20%);
+  margin-bottom: 3px;
   text-decoration: none;
 
   &:hover {

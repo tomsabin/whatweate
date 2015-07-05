@@ -16,12 +16,11 @@
 }
 
 .site-quotes__quotes {
-  cursor: -webkit-grab;
-  cursor: -moz-grab;
+  cursor: grab;
+  margin: 0 auto;
+  max-width: 600px;
   padding: 16px;
   position: relative;
-  max-width: 600px;
-  margin: 0 auto;
 
   &:after,
   &:before {
