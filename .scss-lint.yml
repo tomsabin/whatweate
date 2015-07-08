@@ -8,3 +8,5 @@ linters:
     enabled: false
   SelectorFormat:
     convention: hyphenated_BEM
+  LeadingZero:
+    style: exclude_zero
