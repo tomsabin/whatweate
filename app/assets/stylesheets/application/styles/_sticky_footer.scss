@@ -1,0 +1,11 @@
+.sticky-footer {
+  bottom: 0;
+  height: $site-footer-height;
+  left: 0;
+  position: absolute;
+  right: 0;
+
+  @include breakpoint($tablet) {
+    height: $site-footer-tablet-height;
+  }
+}

@@ -80,7 +80,6 @@ describe "Account management" do
 
       click_link "Forgot your password?"
       click_button "Send me password reset instructions"
-      expect(page).to have_content "Please review the following errors"
       within(".user_email") { expect(page).to have_content "can't be blank" }
 
       fill_in "user_email", with: "user@example.com"
@@ -239,7 +238,7 @@ describe "Account management" do
 
         click_link "Log out"
         click_link "Log in"
-        within(".social-networks") { click_link "Facebook" }
+        within(".user-sign-in") { click_link "Facebook" }
 
         expect(page).to have_content "Successfully authenticated from Facebook account"
         click_link "Profile"
@@ -248,7 +247,7 @@ describe "Account management" do
 
         click_link "Log out"
         click_link "Log in"
-        within(".social-networks") { click_link "Twitter" }
+        within(".user-sign-in") { click_link "Twitter" }
 
         expect(page).to have_content "Successfully authenticated from Twitter account"
         click_link "Profile"
@@ -264,7 +263,7 @@ describe "Account management" do
         click_link "Log out"
         click_link "Sign up"
 
-        within(".social-networks") { click_link "Facebook" }
+        within(".user-sign-up") { click_link "Facebook" }
         expect(page).to have_content "Please complete your profile"
         expect(page).to_not have_field "user_email", with: "user@example.com"
       end
@@ -279,7 +278,7 @@ describe "Account management" do
 
       visit root_path
       click_link "Sign up"
-      within(".social-networks") { click_link "Facebook" }
+      within(".user-sign-up") { click_link "Facebook" }
 
       expect(page).to have_content "Successfully authenticated from Facebook account"
       expect(page).to have_content "Please complete your profile"
@@ -305,7 +304,7 @@ describe "Account management" do
 
       visit root_path
       click_link "Sign up"
-      within(".social-networks") { click_link "Facebook" }
+      within(".user-sign-up") { click_link "Facebook" }
 
       expect(page).to have_content 'Could not authenticate you from Facebook because "Invalid credentials"'
       expect(current_path).to eq new_user_registration_path
@@ -316,7 +315,7 @@ describe "Account management" do
 
       visit root_path
       click_link "Sign up"
-      within(".social-networks") { click_link "Twitter" }
+      within(".user-sign-up") { click_link "Twitter" }
 
       expect(page).to have_content "Successfully authenticated from Twitter account"
       expect(page).to have_content "Please complete your profile"
@@ -339,7 +338,7 @@ describe "Account management" do
 
       visit root_path
       click_link "Sign up"
-      within(".social-networks") { click_link "Twitter" }
+      within(".user-sign-up") { click_link "Twitter" }
 
       expect(page).to have_content 'Could not authenticate you from Twitter because "Invalid credentials"'
       expect(current_path).to eq new_user_registration_path
@@ -350,7 +349,7 @@ describe "Account management" do
 
       visit root_path
       click_link "Sign up"
-      within(".social-networks") { click_link "Facebook" }
+      within(".user-sign-up") { click_link "Facebook" }
 
       fill_in "user_first_name", with: "C."
       fill_in "user_date_of_birth", with: "1990-06-18"
@@ -368,7 +367,7 @@ describe "Account management" do
 
       visit root_path
       click_link "Sign up"
-      within(".social-networks") { click_link "Twitter" }
+      within(".user-sign-up") { click_link "Twitter" }
 
       expect(page).to have_content "Successfully authenticated from Twitter account"
       expect(page).to have_content "Please complete your profile"

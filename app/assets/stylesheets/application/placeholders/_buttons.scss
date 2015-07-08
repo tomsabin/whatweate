@@ -30,6 +30,10 @@
   background-color: $pale-gray-color;
   color: $black-color;
 
+  &:focus {
+    outline: 2px solid $primary-color;
+  }
+
   &:hover {
     background-color: $primary-color;
     color: $white-color;

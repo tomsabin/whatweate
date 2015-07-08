@@ -32,7 +32,7 @@ en:
       already_signed_out: "Signed out successfully."
   errors:
     messages:
-      not_found: "not found"
+      not_found: "Email not found"
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
         other: "%{count} errors prohibited this %{resource} from being saved:"

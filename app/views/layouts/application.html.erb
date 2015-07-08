@@ -10,21 +10,18 @@
       <%= render "layouts/site_header" %>
     <% end %>
 
-    <% if flash.any? %>
-      <div class="flash-messages wip">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      </div>
-    <% end %>
+    <%= render "layouts/flash_messages" %>
 
     <%= yield %>
 
-    <%= render "layouts/site_footer" %>
+    <div class="sticky-footer">
+      <%= render "layouts/site_footer" %>
 
-    <div class="made-with-love">
-      <p class="made-with-love__text">
-        Made with <i class="fa fa-heart"></i> in London. &copy; WhatWeAte 2015
-      </p>
+      <div class="made-with-love">
+        <p class="made-with-love__text">
+          Made with <i class="fa fa-heart"></i> in London. &copy; WhatWeAte 2015
+        </p>
+      </div>
     </div>
 
     <script>
