@@ -1,0 +1,22 @@
+.user-delete-account {
+  text-align: center;
+  margin: 48px auto 0;
+  max-width: 304px;
+  padding-bottom: 48px;
+
+  @include breakpoint($tablet) {
+    padding-bottom: 64px;
+  }
+}
+
+.user-delete-account__warning {
+  margin-bottom: 8px;
+}
+
+.user-delete-account__link {
+  @extend %button;
+
+  &:first-of-type {
+    margin-right: 8px;
+  }
+}
