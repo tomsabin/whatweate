@@ -1,0 +1,12 @@
+.error-page {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.error-page__title {
+  @extend %heading-3;
+}
+
+.error-page__error {
+  margin-top: 24px;
+}
