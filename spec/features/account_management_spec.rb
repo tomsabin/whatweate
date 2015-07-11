@@ -54,10 +54,9 @@ describe "Account management" do
 
     click_button "Save profile"
     expect(page).to have_content "Your profile has successfully been saved"
+    expect(page).to have_content "Cookie Monster"
 
     expect(page).to have_content "Email: user@example.com"
-    expect(page).to have_content "First name: Cookie"
-    expect(page).to have_content "Last name: Monster"
     expect(page).to have_content "Date of birth: 18th June 1990"
     expect(page).to have_content "Date of birth is hidden on public view"
     expect(page).to have_content "Profession: Cookie monster"
@@ -149,9 +148,9 @@ describe "Account management" do
 
         click_button "Save profile"
         expect(page).to have_content "Your profile has successfully been saved"
+        expect(page).to have_content "Cookie Monster"
+
         expect(page).to have_content "Email: me@cookie.com"
-        expect(page).to have_content "First name: Cookie"
-        expect(page).to have_content "Last name: Monster"
         expect(page).to have_content "Date of birth: 18th June 1990"
         expect(page).to have_content "Profession: Cookie monster"
         expect(page).to have_content "Bio: I like cookies"
@@ -166,7 +165,7 @@ describe "Account management" do
       scenario "user updates their password" do
         click_link "Profile"
         click_link "Edit profile"
-        click_link "Change your password"
+        click_link "Change your password", match: :first
 
         fill_in "user_current_password", with: "this-is-not-my-password"
         fill_in "user_password", with: "newpassword"
@@ -200,7 +199,7 @@ describe "Account management" do
       scenario "deletes their account" do
         click_link "Profile"
         click_link "Edit profile"
-        click_link "Delete your account"
+        click_link "Delete your account", match: :first
 
         expect(page).to have_content "Are you sure you want to delete your account?"
         expect(page).to have_link "No, cancel"
@@ -225,14 +224,21 @@ describe "Account management" do
         setup_valid_twitter_callback
 
         click_link "Profile"
-        click_link "Verify your account with Facebook"
+        click_link "Edit profile"
+        click_link "Connect with Facebook", match: :first
 
         expect(page).to have_content "Successfully verified your account with Facebook"
+
+        click_link "View profile"
         expect(page).to have_content "Verified with Facebook"
 
-        click_link "Verify your account with Twitter"
+        click_link "Profile"
+        click_link "Edit profile"
+        click_link "Connect with Twitter", match: :first
 
         expect(page).to have_content "Successfully verified your account with Twitter"
+
+        click_link "View profile"
         expect(page).to have_content "Verified with Facebook"
         expect(page).to have_content "Verified with Twitter"
 
@@ -242,6 +248,7 @@ describe "Account management" do
 
         expect(page).to have_content "Successfully authenticated from Facebook account"
         click_link "Profile"
+        click_link "View profile"
         expect(page).to have_content "Verified with Facebook"
         expect(page).to have_content "Verified with Twitter"
 
@@ -251,13 +258,15 @@ describe "Account management" do
 
         expect(page).to have_content "Successfully authenticated from Twitter account"
         click_link "Profile"
+        click_link "View profile"
         expect(page).to have_content "Verified with Facebook"
         expect(page).to have_content "Verified with Twitter"
 
+        click_link "Profile"
         click_link "Edit profile"
-        click_link "Disconnect from Facebook"
+        click_link "Disconnect from Facebook", match: :first
         expect(page).to have_content "Successfully disconnected Facebook from your account"
-        click_link "Disconnect from Twitter"
+        click_link "Disconnect from Twitter", match: :first
         expect(page).to have_content "Successfully disconnected Twitter from your account"
 
         click_link "Log out"
@@ -295,8 +304,7 @@ describe "Account management" do
 
       click_button "Save profile"
       expect(page).to have_content "Your profile has successfully been saved"
-      expect(page).to have_content "First name: C."
-      expect(page).to have_content "Last name: Monster"
+      expect(page).to have_content "C. Monster"
     end
 
     scenario "invalid facebook authentication" do
@@ -381,10 +389,11 @@ describe "Account management" do
       fill_in "user_favorite_cuisine", with: "Food"
 
       click_button "Save profile"
+      click_link "Edit profile"
 
       setup_valid_facebook_callback
 
-      click_link "Verify your account with Facebook"
+      click_link "Connect with Facebook", match: :first
       expect(page).to have_content "Oops, we detected another account with the same Facebook authentication"
     end
   end
