@@ -1,6 +1,6 @@
-<div class="wip">
-  <p>Are you sure you want to delete your account?</p>
+<div class="user-delete-account">
+  <p class="user-delete-account__warning">Are you sure you want to delete your account?</p>
 
-  <%= link_to "Yes, delete my account", user_registration_path, method: :delete %>
-  <%= link_to "No, cancel", user_path %>
+  <%= link_to "Yes, delete my account", user_registration_path, method: :delete, class: "user-delete-account__link" %>
+  <%= link_to "No, cancel", user_path, class: "user-delete-account__link" %>
 </div>

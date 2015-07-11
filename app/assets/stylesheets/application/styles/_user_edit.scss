@@ -1,0 +1,103 @@
+.user-edit {
+  margin: 48px auto 0;
+  // max-width: ;
+  padding: 0 16px 48px;
+
+  @include breakpoint($tablet) {
+    @include container;
+    max-width: $tablet - 32px;
+    padding-bottom: 64px;
+  }
+}
+
+.user-edit__form {
+  @include breakpoint($tablet) {
+    @include span(6 of 12);
+  }
+}
+
+.user-edit__errors {
+  text-align: center;
+}
+
+.user-edit__text-input {
+  @extend %form-input;
+  display: block;
+}
+
+.user-edit__text-label {
+  @extend %primary-font;
+  box-sizing: border-box;
+  display: block;
+  margin-bottom: 2px;
+  margin-top: 8px;
+}
+
+.user-edit__visibility-checkbox {
+  @extend %primary-font;
+  background-color: $pale-gray-color;
+  box-sizing: border-box;
+  color: lighten($black-color, 15%);
+  display: block;
+  font-size: .8em;
+  padding: 4px;
+  text-align: left;
+  width: 100%;
+}
+
+.user-edit__visibility-checkbox-input,
+.user-edit__visibility-checkbox-label {
+  display: inline-block;
+}
+
+.user-edit__visibility-checkbox-input {
+  margin-right: 6px;
+}
+
+.user-edit__visibility-checkbox-label {
+  @extend %primary-font;
+}
+
+.user-edit__submit {
+  @extend %form-submit;
+  margin-top: 8px;
+  width: 100px;
+}
+
+.user-edit__actions {
+  @include breakpoint($tablet) {
+    @include span(last 6 of 12);
+    box-sizing: border-box;
+    margin-top: 28px;
+    padding-left: gutter(16px);
+  }
+}
+
+.user-edit__action-group {
+  border-top: 1px solid lighten($gray-color, 35%);
+  margin-top: 24px;
+  padding-top: 24px;
+  width: 100%;
+
+  @include breakpoint($tablet) {
+    &:first-of-type {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
+}
+
+.user-edit__action li {
+  @extend %list-item-no-style;
+}
+
+.user-edit__link {
+  @extend %primary-font;
+  color: $primary-color;
+  display: block;
+
+  &:hover {
+    color: $primary-darken-color;
+  }
+}

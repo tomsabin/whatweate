@@ -90,7 +90,7 @@ describe "Account management" do
 
       click_button "Change my password"
       expect(page).to have_content "Please review the following errors"
-      within(".user_password") { expect(page).to have_content "can't be blank" }
+      expect(page).to have_content "Password can't be blank"
 
       fill_in "user_password", with: "newpassword"
       fill_in "user_password_confirmation", with: "newpassword"
@@ -255,9 +255,9 @@ describe "Account management" do
         expect(page).to have_content "Verified with Twitter"
 
         click_link "Edit profile"
-        click_link "Disconnect Facebook from your account"
+        click_link "Disconnect from Facebook"
         expect(page).to have_content "Successfully disconnected Facebook from your account"
-        click_link "Disconnect Twitter from your account"
+        click_link "Disconnect from Twitter"
         expect(page).to have_content "Successfully disconnected Twitter from your account"
 
         click_link "Log out"

@@ -42,6 +42,7 @@
 .newsletter__last-name-input,
 .newsletter__email-input {
   @extend %form-input;
+  @extend %secondary-font;
   margin-bottom: 4px;
   text-align: center;
 

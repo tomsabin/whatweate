@@ -1,34 +1,87 @@
-<div class="wip">
-  <%= profile_prompt %>
+<div class="user-edit">
+  <div class="<%= 'user-edit__form' if current_user.completed_profile? %>">
+    <%= simple_form_for current_user, url: { action: "update" }, defaults: { error: true } do |f| %>
+      <div class="user-edit__errors">
+        <%= f.error_notification %>
+      </div>
 
-  <%= simple_form_for current_user, url: { action: "update" }, defaults: { error: true } do |f| %>
-    <%= f.error_notification %>
-
-    <%= f.input :email %>
-    <%= f.input :first_name %>
-    <%= f.input :last_name %>
-    <%= f.input :date_of_birth, html5: true, placeholder: "YYYY-MM-DD" %>
-    <%= f.input :date_of_birth_visible %>
-    <%= f.input :profession %>
-    <%= f.input :greeting %>
-    <%= f.input :bio, as: :string %>
-    <%= f.input :mobile_number, as: :tel, html5: true %>
-    <%= f.input :mobile_number_visible %>
-    <%= f.input :favorite_cuisine %>
-    <%= f.input :slug if current_user.completed_profile? %>
-    <%= f.button :submit, "Save profile", data: { disable_with: "Saving" } %>
-  <% end %>
+      <%= f.input :email,
+            input_html: { class: "user-edit__text-input" },
+            label_html: { class: "user-edit__text-label" } %>
+      <%= f.input :first_name,
+            input_html: { class: "user-edit__text-input" },
+            label_html: { class: "user-edit__text-label" } %>
+      <%= f.input :last_name,
+            input_html: { class: "user-edit__text-input" },
+            label_html: { class: "user-edit__text-label" } %>
+      <%= f.input :date_of_birth, html5: true, placeholder: "YYYY-MM-DD",
+            input_html: { class: "user-edit__text-input" },
+            label_html: { class: "user-edit__text-label" } %>
+      <%= f.input :date_of_birth_visible, label: "Show on my profile",
+            input_html: { class: "user-edit__visibility-checkbox-input" },
+            label_html: { class: "user-edit__visibility-checkbox-label" },
+            wrapper_html: { class: "user-edit__visibility-checkbox" } %>
+      <%= f.input :profession,
+            input_html: { class: "user-edit__text-input" },
+            label_html: { class: "user-edit__text-label" } %>
+      <%= f.input :greeting,
+            input_html: { class: "user-edit__text-input" },
+            label_html: { class: "user-edit__text-label" } %>
+      <%= f.input :bio, as: :string,
+            input_html: { class: "user-edit__text-input" },
+            label_html: { class: "user-edit__text-label" } %>
+      <%= f.input :mobile_number, as: :tel, html5: true,
+            input_html: { class: "user-edit__text-input" },
+            label_html: { class: "user-edit__text-label" } %>
+      <%= f.input :mobile_number_visible, label: "Show on my profile",
+            input_html: { class: "user-edit__visibility-checkbox-input" },
+            label_html: { class: "user-edit__visibility-checkbox-label" },
+            wrapper_html: { class: "user-edit__visibility-checkbox" } %>
+      <%= f.input :favorite_cuisine,
+            input_html: { class: "user-edit__text-input" },
+            label_html: { class: "user-edit__text-label" } %>
+      <% if current_user.completed_profile? %>
+        <%= f.input :slug,
+              input_html: { class: "user-edit__text-input" },
+              label_html: { class: "user-edit__text-label" } %>
+      <% end %>
+      <%= f.button :submit, "Save profile", data: { disable_with: "Saving" }, class: "user-edit__submit" %>
+    <% end %>
+  </div>
 
   <% if current_user.completed_profile? %>
-    <%= link_to "Delete your account", delete_user_path %>
-    <%= link_to "Change your password", edit_password_user_path %>
+    <div class="user-edit__actions">
+      <div class="user-edit__action-group">
+        <ul class="user-edit__action">
+          <li>
+            <%= link_to "Change your password", edit_password_user_path, class: "user-edit__link" %>
+          </li>
+        </ul>
+      </div>
 
-    <% if @verified_with_facebook %>
-      <%= link_to "Disconnect Facebook from your account", disconnect_user_path(provider: :facebook), method: :delete %>
-    <% end %>
+      <div class="user-edit__action-group">
+        <ul class="user-edit__action">
+          <li>
+            <% if @verified_with_facebook %>
+              <%= link_to "Disconnect from Facebook", disconnect_user_path(provider: :facebook), method: :delete, class: "user-edit__link" %>
+            <% else %>
+              <%= link_to "Connect with Facebook", user_omniauth_authorize_path(:facebook), class: "user-edit__link" %>
+            <% end %>
+          </li>
 
-    <% if @verified_with_twitter %>
-      <%= link_to "Disconnect Twitter from your account", disconnect_user_path(provider: :twitter), method: :delete %>
-    <% end %>
+          <li>
+            <% if @verified_with_twitter %>
+              <%= link_to "Disconnect from Twitter", disconnect_user_path(provider: :twitter), method: :delete, class: "user-edit__link" %>
+            <% else %>
+              <%= link_to "Connect with Twitter", user_omniauth_authorize_path(:twitter), class: "user-edit__link" %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+      <div class="user-edit__action-group">
+        <%= link_to "Delete your account", delete_user_path, class: "user-edit__link" %>
+      </div>
+    </div>
   <% end %>
 </div>

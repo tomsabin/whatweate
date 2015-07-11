@@ -1,43 +1,45 @@
 <%= render partial: "pages/event_thumbnail", locals: { link: "#", event: @event_thumbnail } %>
 
-<%= simple_form_for @event do |f| %>
-  <%= f.error_notification %>
+<div class="wip">
+  <%= simple_form_for @event do |f| %>
+    <%= f.error_notification %>
 
-  <%= f.input :title %>
-  <%= f.input :date, html5: true, placeholder: "YYYY-MM-DD HH:MM", input_html: { type: 'datetime-local' } %>
-  <%= f.input :price, label: "Price (£)", input_html: { type: "number", min: "0", step: "any" } %>
-  <%= f.input :seats, input_html: { min: "0", step: "1" } %>
-  <%= f.input :location %>
-  <%= f.input :location_url %>
-  <%= f.input :short_description %>
+    <%= f.input :title %>
+    <%= f.input :date, html5: true, placeholder: "YYYY-MM-DD HH:MM", input_html: { type: 'datetime-local' } %>
+    <%= f.input :price, label: "Price (£)", input_html: { type: "number", min: "0", step: "any" } %>
+    <%= f.input :seats, input_html: { min: "0", step: "1" } %>
+    <%= f.input :location %>
+    <%= f.input :location_url %>
+    <%= f.input :short_description %>
 
-  <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
+    <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
 
-  <%= f.input :description %>
-  <%= f.input :menu %>
+    <%= f.input :description %>
+    <%= f.input :menu %>
 
-  <%= f.input :primary_photo, as: :file, label: "Primary photo (1024 x 678px)", input_html: { accept: "image/*" } %>
-  <%= f.hidden_field :primary_photo_cache %>
+    <%= f.input :primary_photo, as: :file, label: "Primary photo (1024 x 678px)", input_html: { accept: "image/*" } %>
+    <%= f.hidden_field :primary_photo_cache %>
 
-  <img src="<%= @event.primary_photo.url %>" id="photo_preview" alt="Primary event photo"
-       style="width:1024px;height:678px;object-fit:cover;">
+    <img src="<%= @event.primary_photo.url %>" id="photo_preview" alt="Primary event photo"
+         style="width:1024px;height:678px;object-fit:cover;">
 
-  <%= f.input :photos, as: :file, label: "Other photos (minimum of 2, maximum of 6)", input_html: { multiple: true, accept: "image/*" } %>
-  <div class="event-photos"></div>
+    <%= f.input :photos, as: :file, label: "Other photos (minimum of 2, maximum of 6)", input_html: { multiple: true, accept: "image/*" } %>
+    <div class="event-photos"></div>
 
-  <%= f.button :submit, "Submit event", data: { disable_with: "Submitting" } %>
-<% end %>
+    <%= f.button :submit, "Submit event", data: { disable_with: "Submitting" } %>
+  <% end %>
 
-<script>
-  eventPriceField.onChange("#event_price");
-  thumbnailLiveUpdate.init();
-  eventPrimaryPhotoPreview.init({
-    input: "#event_primary_photo",
-    fullPreview: "#photo_preview",
-    thumbPreview: ".event-thumbnail__primary-photo"
-  });
-  eventPhotosPreview.init({
-    input: "#event_photos",
-    container: ".event-photos"
-  });
-</script>
+  <script>
+    eventPriceField.onChange("#event_price");
+    thumbnailLiveUpdate.init();
+    eventPrimaryPhotoPreview.init({
+      input: "#event_primary_photo",
+      fullPreview: "#photo_preview",
+      thumbPreview: ".event-thumbnail__primary-photo"
+    });
+    eventPhotosPreview.init({
+      input: "#event_photos",
+      container: ".event-photos"
+    });
+  </script>
+</div>
