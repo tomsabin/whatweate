@@ -90,7 +90,7 @@ describe "Account management" do
 
       click_button "Change my password"
       expect(page).to have_content "Please review the following errors"
-      within(".user_password") { expect(page).to have_content "can't be blank" }
+      expect(page).to have_content "Password can't be blank"
 
       fill_in "user_password", with: "newpassword"
       fill_in "user_password_confirmation", with: "newpassword"
