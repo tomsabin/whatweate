@@ -12,6 +12,11 @@ class UsersController < ApplicationController
     @user = current_user.decorate
     @verified_with_facebook = Identity.facebook(current_user)
     @verified_with_twitter = Identity.twitter(current_user)
+    if current_user.completed_profile?
+      render :edit
+    else
+      render :complete_profile
+    end
   end
 
   def update
@@ -19,8 +24,10 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       @user.complete_profile! if @user.completed_devise? || @user.completed_omniauth?
       redirect_to(user_url, notice: t("profile.saved"))
+    elsif current_user.completed_profile?
+      render :edit
     else
-      render(:edit)
+      render :complete_profile
     end
   end
 

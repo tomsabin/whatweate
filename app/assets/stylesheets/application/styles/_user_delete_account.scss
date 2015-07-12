@@ -1,10 +1,11 @@
 .user-delete-account {
-  margin: 48px auto 0;
+  margin: 24px auto 0;
   max-width: 304px;
   padding-bottom: 48px;
   text-align: center;
 
   @include breakpoint($tablet) {
+    margin-top: 48px;
     padding-bottom: 64px;
   }
 }

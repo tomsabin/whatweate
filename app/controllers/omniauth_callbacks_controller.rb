@@ -42,6 +42,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def callback_originated_from_user?
-    env["omniauth.origin"] == user_url
+    env["omniauth.origin"] == edit_user_url
   end
 end

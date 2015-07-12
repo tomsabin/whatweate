@@ -1,5 +1,57 @@
+<% content_for :user_edit_actions do %>
+  <div class="user-edit__action-group">
+    <ul class="user-edit__action">
+      <li>
+        <%= link_to "Change your password", edit_password_user_path, class: "user-edit__link" %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="user-edit__action-group">
+    <ul class="user-edit__action">
+      <li>
+        <% if @verified_with_facebook %>
+          <%= link_to "Disconnect from Facebook", disconnect_user_path(provider: :facebook), method: :delete, class: "user-edit__link" %>
+        <% else %>
+          <%= link_to "Connect with Facebook", user_omniauth_authorize_path(:facebook), class: "user-edit__link" %>
+        <% end %>
+      </li>
+
+      <li>
+        <% if @verified_with_twitter %>
+          <%= link_to "Disconnect from Twitter", disconnect_user_path(provider: :twitter), method: :delete, class: "user-edit__link" %>
+        <% else %>
+          <%= link_to "Connect with Twitter", user_omniauth_authorize_path(:twitter), class: "user-edit__link" %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="user-edit__action-group">
+    <%= link_to "Delete your account", delete_user_path, class: "user-edit__link" %>
+  </div>
+<% end %>
+
 <div class="user-edit">
-  <div class="<%= 'user-edit__form' if current_user.completed_profile? %>">
+  <div class="user-edit__actions">
+    <div class="user-edit__profile">
+      <%= gravatar_image_tag @user.email, class: "user-edit__avatar" %>
+      <h2 class="user-edit__user-name">
+        <%= @user.full_name %>
+      </h2>
+
+      <div class="user-edit__user-actions">
+        <%= link_to "View profile", member_path(@user), class: "user-edit__view-profile-action" %>
+        <%= link_to "Edit profile", edit_user_path, class: "user-edit__edit-profile-action" %>
+      </div>
+
+      <div class="user-edit__additional-actions-tablet">
+        <%= content_for :user_edit_actions %>
+      </div>
+    </div>
+  </div>
+
+  <div class="user-edit__form">
     <%= simple_form_for current_user, url: { action: "update" }, defaults: { error: true } do |f| %>
       <div class="user-edit__errors">
         <%= f.error_notification %>
@@ -27,8 +79,8 @@
       <%= f.input :greeting,
             input_html: { class: "user-edit__text-input" },
             label_html: { class: "user-edit__text-label" } %>
-      <%= f.input :bio, as: :string,
-            input_html: { class: "user-edit__text-input" },
+      <%= f.input :bio,
+            input_html: { class: "user-edit__textarea-input" },
             label_html: { class: "user-edit__text-label" } %>
       <%= f.input :mobile_number, as: :tel, html5: true,
             input_html: { class: "user-edit__text-input" },
@@ -40,48 +92,15 @@
       <%= f.input :favorite_cuisine,
             input_html: { class: "user-edit__text-input" },
             label_html: { class: "user-edit__text-label" } %>
-      <% if current_user.completed_profile? %>
-        <%= f.input :slug,
-              input_html: { class: "user-edit__text-input" },
-              label_html: { class: "user-edit__text-label" } %>
-      <% end %>
+      <%= f.input :slug,
+            input_html: { class: "user-edit__text-input" },
+            label_html: { class: "user-edit__text-label" } %>
       <%= f.button :submit, "Save profile", data: { disable_with: "Saving" }, class: "user-edit__submit" %>
+      <%= link_to "Cancel", user_path, class: "user-edit__cancel"%>
     <% end %>
   </div>
 
-  <% if current_user.completed_profile? %>
-    <div class="user-edit__actions">
-      <div class="user-edit__action-group">
-        <ul class="user-edit__action">
-          <li>
-            <%= link_to "Change your password", edit_password_user_path, class: "user-edit__link" %>
-          </li>
-        </ul>
-      </div>
-
-      <div class="user-edit__action-group">
-        <ul class="user-edit__action">
-          <li>
-            <% if @verified_with_facebook %>
-              <%= link_to "Disconnect from Facebook", disconnect_user_path(provider: :facebook), method: :delete, class: "user-edit__link" %>
-            <% else %>
-              <%= link_to "Connect with Facebook", user_omniauth_authorize_path(:facebook), class: "user-edit__link" %>
-            <% end %>
-          </li>
-
-          <li>
-            <% if @verified_with_twitter %>
-              <%= link_to "Disconnect from Twitter", disconnect_user_path(provider: :twitter), method: :delete, class: "user-edit__link" %>
-            <% else %>
-              <%= link_to "Connect with Twitter", user_omniauth_authorize_path(:twitter), class: "user-edit__link" %>
-            <% end %>
-          </li>
-        </ul>
-      </div>
-
-      <div class="user-edit__action-group">
-        <%= link_to "Delete your account", delete_user_path, class: "user-edit__link" %>
-      </div>
-    </div>
-  <% end %>
+  <div class="user-edit__additional-actions-mobile">
+    <%= content_for :user_edit_actions %>
+  </div>
 </div>

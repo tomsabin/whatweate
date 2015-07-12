@@ -1,52 +1,58 @@
-<div class="wip">
-  <%= gravatar_image_tag @user.email %>
+<div class="dashboard">
+  <div class="dashboard__profile">
+    <%= gravatar_image_tag @user.email, class: "dashboard__avatar" %>
+    <h2 class="dashboard__user-name">
+      <%= @user.full_name %>
+    </h2>
 
-  <%= link_to("Edit profile", edit_user_path) %>
-  <%= link_to "View public profile", member_path(@user) %>
+    <div class="dashboard__user-actions">
+      <%= link_to "View profile", member_path(@user), class: "dashboard__user-action" %>
+      <%= link_to "Edit profile", edit_user_path, class: "dashboard__user-action" %>
+    </div>
+  </div>
+  <div class="dashboard__other wip">
+    Email:
+    <%= @user.email %>
 
-  Email:
-  <%= @user.email %>
+    <br/>
 
-  First name:
-  <%= @user.first_name %>
+    Last name:
+    <%= @user.last_name %>
 
-  Last name:
-  <%= @user.last_name %>
+    <br/>
 
-  Date of birth:
-  <%= @user.date_of_birth %>
-  <% if !@user.date_of_birth_visible? %>
-    Date of birth is hidden on public view
-  <% end %>
+    Date of birth:
+    <%= @user.date_of_birth %>
+    <% if !@user.date_of_birth_visible? %>
+      Date of birth is hidden on public view
+    <% end %>
 
-  Profession:
-  <%= @user.profession %>
+    <br/>
 
-  Greeting:
-  <%= @user.greeting %>
+    Profession:
+    <%= @user.profession %>
 
-  Bio:
-  <%= @user.bio %>
+    <br/>
 
-  Mobile number:
-  <%= @user.mobile_number %>
-  <% if !@user.mobile_number_visible? %>
-    Mobile number is hidden on public view
-  <% end %>
+    Greeting:
+    <%= @user.greeting %>
 
-  Favourite cuisine:
-  <%= @user.favorite_cuisine %>
+    <br/>
 
-  <% if @verified_with_facebook %>
-    Verified with Facebook
-  <% end %>
+    Bio:
+    <%= @user.bio %>
 
-  <% if @verified_with_twitter %>
-    Verified with Twitter
-  <% end %>
+    <br/>
 
-  <div class="social-networks">
-    <%= link_to "Verify your account with Facebook", user_omniauth_authorize_path(:facebook) unless @verified_with_facebook %>
-    <%= link_to "Verify your account with Twitter", user_omniauth_authorize_path(:twitter) unless @verified_with_twitter%>
+    Mobile number:
+    <%= @user.mobile_number %>
+    <% if !@user.mobile_number_visible? %>
+      Mobile number is hidden on public view
+    <% end %>
+
+    <br/>
+
+    Favourite cuisine:
+    <%= @user.favorite_cuisine %>
   </div>
 </div>

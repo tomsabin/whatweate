@@ -72,7 +72,7 @@ describe "Member public profile" do
     click_link "Edit profile"
     fill_in "user_slug", with: "bloggs-joe"
     click_button "Save profile"
-    click_link "View public profile"
+    click_link "View profile"
     expect(current_path).to eq "/member/bloggs-joe"
     expect(page).to have_content "Joe Bloggs"
   end
