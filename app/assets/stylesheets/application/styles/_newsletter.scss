@@ -24,12 +24,11 @@
 .newsletter__form {
   display: block;
   margin: 0 auto;
-  width: 288px;
+  max-width: 288px;
 
   @include breakpoint($tablet) {
     display: inline-block;
-    padding-right: 16px;
-    width: 532px;
+    max-width: 532px;
   }
 }
 
