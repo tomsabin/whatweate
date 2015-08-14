@@ -1,0 +1,28 @@
+Hi <%= @user_full_name %>,
+
+You are booked in to attend <%= @event.title %> at <%= @event.formatted_date %>.
+
+-------------
+Event details
+-------------
+
+<%= @event.title %>
+<%= @event.location %> (<%= @event.location_url %>)
+<%= @event.formatted_date %>
+
+-------------
+Order details
+-------------
+
+1 x seat (<%= @booking_total_payment %>)
+
+TOTAL
+<%= @booking_total_payment %>
+
+-------------
+
+Please contact us at hello@whatweate.co for any queries about your booking.
+
+Kind regards,
+WhatWeAte
+http://whatweate.co
