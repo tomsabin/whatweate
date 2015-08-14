@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%= render "layouts/head", layout: "application", title: "WhatWeAte" %>
+  <%= render "layouts/head", layout: "application", title: content_for?(:title) ? yield(:title) : "WhatWeAte" %>
   <body id="<%= page_id %>">
     <% if page_id == "pages-home" %>
       <div class="site-header__container">

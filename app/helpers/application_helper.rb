@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def title(page_title)
+    content_for :title, page_title.to_s
+  end
+
   def page_id
     "#{controller.controller_name}-#{controller.action_name}".dasherize
   end
