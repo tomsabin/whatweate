@@ -3,6 +3,7 @@ class CreateBooking
     def perform(event, user, payment_token = nil)
       booking = Booking.new(event: event, user: user)
       booking.subscribe(EventNotifier.new)
+      booking.subscribe(UserNotifier.new)
 
       user_response(user) || event_response(event, user) || payment_response(booking, payment_token) || failure_response
     end

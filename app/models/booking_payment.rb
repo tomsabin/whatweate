@@ -3,10 +3,10 @@ class BookingPayment
   attr_reader :booking
 
   def initialize(booking, token)
-    @booking  = booking
-    @token    = token
-    @event    = booking.event
-    @user     = booking.user
+    @booking = booking
+    @token   = token
+    @event   = booking.event
+    @user    = booking.user
   end
 
   def save
