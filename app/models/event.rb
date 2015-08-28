@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
   has_many :bookings, dependent: :destroy
   has_many :guests, through: :bookings, source: :user
 
-  validates :host_id, :date, :title, :location, :location_url, :description, :menu, :seats, :price_in_pennies, :currency, presence: true
+  validates :host_id, :date, :date_date, :date_time, :title, :location, :location_url, :description, :menu, :seats, :price_in_pennies, :currency, presence: true
   validates :price, numericality: { greater_than: 0 }
   validates :seats, numericality: { only_integer: true, greater_than: 0 }
   validates :location_url, url: true

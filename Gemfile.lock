@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/carrierwaveuploader/carrierwave.git
-  revision: de2a9550dadf5d71563e933d583ba8c3ad6bb101
-  ref: de2a955
+  revision: c60ee75291de332fa341308d837f4cb0c15d44ca
+  ref: c60ee75291de332fa341308d837f4cb0c15d44ca
   specs:
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -169,7 +169,7 @@ GEM
     mime-types (2.6.1)
     mini_magick (4.2.7)
     mini_portile (0.6.2)
-    minitest (5.7.0)
+    minitest (5.8.0)
     monetize (1.1.0)
       money (~> 6.5.0)
     money (6.5.1)
@@ -436,3 +436,6 @@ DEPENDENCIES
   wisper
   wisper-activerecord
   wisper-rspec
+
+BUNDLED WITH
+   1.10.5

@@ -46,15 +46,16 @@
   <div class="col s12">
     <div class="section">
       <h6 class="grey-text">Primary photo (1024 x 678px)</h6>
-      <%= f.file_field :primary_photo, accept: "image/*" %>
+      <%= f.file_field :primary_photo, accept: "image/*", id: "eventPrimaryPhoto" %>
       <%= f.hidden_field :primary_photo_cache %>
     </div>
 
-    <img src="<%= @event.primary_photo.url %>" id="photo_preview" alt="Primary event photo" class="responsive-img event-primary-photo">
+    <img src="<%= @event.primary_photo.url %>" id="photoPreview" alt="Primary event photo" class="responsive-img event-primary-photo">
 
     <div class="section">
       <h6 class="grey-text">Other photos (minimum of 2, maximum of 6)</h6>
       <%= f.file_field :photos, accept: "image/*", multiple: true %>
+      <%= f.hidden_field :photos_cache %>
     </div>
 
     <div class="event-photos">
@@ -87,8 +88,8 @@
 <script>
   eventPriceField.onChange("#event_price");
   eventPrimaryPhotoPreview.init({
-    input: "#event_primary_photo",
-    fullPreview: "#photo_preview"
+    input: "#eventPrimaryPhoto",
+    fullPreview: "#photoPreview"
   });
   eventPhotosPreview.init({
     input: "#event_photos",
