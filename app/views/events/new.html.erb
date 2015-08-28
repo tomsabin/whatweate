@@ -52,7 +52,12 @@
     <%= f.input :photos, as: :file, label: "Other photos (minimum of 2, maximum of 6, each 1024 x 678px)",
         input_html: {  class: "event-new__photo-input", multiple: true, accept: "image/*", id: "eventPhotos" },
         label_html: { class: "event-new__text-label" } %>
-    <div class="event-new__photos" id="eventPhotoContainer"></div>
+    <%= f.hidden_field :photos_cache %>
+    <div class="event-new__photos" id="eventPhotoContainer">
+      <% @event.photos.each do |photo| %>
+        <img src="<%= photo.url %>" alt="Event photo">
+      <% end %>
+    </div>
 
     <%= f.button :submit, "Submit event", data: { disable_with: "Submitting" }, class: "event-new__submit" %>
   <% end %>

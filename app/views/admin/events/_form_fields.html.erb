@@ -55,6 +55,7 @@
     <div class="section">
       <h6 class="grey-text">Other photos (minimum of 2, maximum of 6)</h6>
       <%= f.file_field :photos, accept: "image/*", multiple: true %>
+      <%= f.hidden_field :photos_cache %>
     </div>
 
     <div class="event-photos">

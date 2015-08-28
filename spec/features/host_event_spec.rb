@@ -111,7 +111,11 @@ describe "Host event" do
     click_link "Create an event"
 
     fill_in_event_form
+    fill_in "event_title", with: ""
     attach_file "eventPrimaryPhoto", Rails.root.join("fixtures/carrierwave/image.png")
+
+    click_button "Submit event"
+    fill_in "event_title", with: "Sunday Roast"
 
     VCR.use_cassette("slack/host_event_submitted", match_requests_on: [:method, :host]) do
       click_button "Submit event"
@@ -143,6 +147,12 @@ describe "Host event" do
     within(".event_photos") { expect(page).to have_content "uploaded must be a minimum of 2" }
 
     attach_file "eventPhotos", [Rails.root.join("fixtures/carrierwave/image.png"), Rails.root.join("fixtures/carrierwave/image-1.png")]
+    fill_in "event_title", with: ""
+
+    click_button "Submit event"
+    expect(page).to have_css("#eventPhotoContainer img", count: 2)
+
+    fill_in "event_title", with: "Sunday Roast"
 
     VCR.use_cassette("slack/host_event_submitted", match_requests_on: [:method, :host]) do
       click_button "Submit event"
