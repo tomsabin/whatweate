@@ -13,7 +13,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         begin
           @user = User.find_for_oauth!(env["omniauth.auth"], current_user)
         rescue OmniauthConflict
-          return redirect_to(user_url, notice: t("failure.omniauth_conflict", provider: "#{provider}".capitalize))
+          return redirect_to(dashboard_url, notice: t("failure.omniauth_conflict", provider: "#{provider}".capitalize))
         end
 
         if @user.persisted?
@@ -36,7 +36,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def after_sign_in_path_for(resource)
-    callback_originated_from_user? ? user_url : super
+    callback_originated_from_user? ? dashboard_url : super
   end
 
   private

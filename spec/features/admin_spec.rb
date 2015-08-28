@@ -30,14 +30,14 @@ describe "Admins" do
     sign_in FactoryGirl.create(:user)
     sign_in admin
 
-    visit user_path
-    expect(page).to have_link "Profile"
+    visit dashboard_path
+    expect(page).to have_link "Dashboard"
 
     visit admin_root_path
     expect(page).to have_link "Dashboard"
 
     click_link "Sign out"
-    expect(page).to have_link "Profile"
+    expect(page).to have_link "Dashboard"
   end
 
   scenario "signing out of user persists admin sign in" do
@@ -47,8 +47,8 @@ describe "Admins" do
     visit admin_root_path
     expect(page).to have_link "Dashboard"
 
-    visit user_path
-    expect(page).to have_link "Profile"
+    visit dashboard_path
+    expect(page).to have_link "Dashboard"
 
     click_link "Log out"
     visit admin_root_path

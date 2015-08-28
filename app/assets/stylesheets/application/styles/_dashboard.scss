@@ -59,8 +59,10 @@
 .dashboard__user-action {
   @extend %button;
   display: inline-block;
+}
 
-  &:first-of-type {
-    margin-right: 8px;
-  }
+.dashboard__active-user-action {
+  @extend %primary-button;
+  display: inline-block;
+  margin-right: 8px;
 }

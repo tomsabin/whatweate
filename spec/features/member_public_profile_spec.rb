@@ -68,11 +68,12 @@ describe "Member public profile" do
     expect(page).to have_content "Joe Bloggs"
 
     sign_in user
-    click_link "Profile"
+    click_link "Dashboard"
     click_link "Edit profile"
     fill_in "user_slug", with: "bloggs-joe"
     click_button "Save profile"
-    click_link "View profile"
+    click_link "Edit profile"
+    click_link "View public profile", match: :first
     expect(current_path).to eq "/member/bloggs-joe"
     expect(page).to have_content "Joe Bloggs"
   end

@@ -2,6 +2,9 @@
   <div class="user-edit__action-group">
     <ul class="user-edit__action">
       <li>
+        <%= link_to "View public profile", member_path(@user), class: "user-edit__link" %>
+      </li>
+      <li>
         <%= link_to "Change your password", edit_password_user_path, class: "user-edit__link" %>
       </li>
     </ul>
@@ -35,14 +38,16 @@
 <div class="user-edit">
   <div class="user-edit__actions">
     <div class="user-edit__profile">
-      <%= gravatar_image_tag @user.email, class: "user-edit__avatar" %>
-      <h2 class="user-edit__user-name">
-        <%= @user.full_name %>
-      </h2>
+      <%= link_to member_path(@user) do %>
+        <%= gravatar_image_tag @user.email, class: "user-edit__avatar" %>
+        <h2 class="user-edit__user-name">
+          <%= @user.full_name %>
+        </h2>
+      <% end %>
 
       <div class="user-edit__user-actions">
-        <%= link_to "View profile", member_path(@user), class: "user-edit__view-profile-action" %>
-        <%= link_to "Edit profile", edit_user_path, class: "user-edit__edit-profile-action" %>
+        <%= link_to "Dashboard", dashboard_path, class: "user-edit__profile-action" %>
+        <%= link_to "Edit profile", edit_user_path, class: "user-edit__active-profile-action" %>
       </div>
 
       <div class="user-edit__additional-actions-tablet">
@@ -96,7 +101,7 @@
             input_html: { class: "user-edit__text-input" },
             label_html: { class: "user-edit__text-label" } %>
       <%= f.button :submit, "Save profile", data: { disable_with: "Saving" }, class: "user-edit__submit" %>
-      <%= link_to "Cancel", user_path, class: "user-edit__cancel"%>
+      <%= link_to "Cancel", dashboard_path, class: "user-edit__cancel"%>
     <% end %>
   </div>
 

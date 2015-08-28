@@ -1,3 +1,8 @@
+a {
+  color: $black-color;
+  text-decoration: none;
+}
+
 p {
   @extend %primary-font;
   color: $black-color;
