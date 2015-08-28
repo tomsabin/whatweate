@@ -72,6 +72,7 @@
   width: 100%;
 
   @include breakpoint($tablet) {
+    line-height: 1em;
     width: auto;
   }
 }
@@ -79,11 +80,12 @@
 .navigation-menu__link-alt {
   @extend %button;
   font-size: .9em;
-  line-height: 1em;
+  line-height: 1.3em;
   text-align: left;
   width: 100%;
 
   @include breakpoint($tablet) {
+    line-height: 1em;
     width: auto;
   }
 }
