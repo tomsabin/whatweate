@@ -2,6 +2,9 @@
   <div class="user-edit__action-group">
     <ul class="user-edit__action">
       <li>
+        <%= link_to "View public profile", member_path(@user), class: "user-edit__link" %>
+      </li>
+      <li>
         <%= link_to "Change your password", edit_password_user_path, class: "user-edit__link" %>
       </li>
     </ul>
@@ -35,10 +38,12 @@
 <div class="user-edit">
   <div class="user-edit__actions">
     <div class="user-edit__profile">
-      <%= gravatar_image_tag @user.email, class: "user-edit__avatar" %>
-      <h2 class="user-edit__user-name">
-        <%= @user.full_name %>
-      </h2>
+      <%= link_to member_path(@user) do %>
+        <%= gravatar_image_tag @user.email, class: "user-edit__avatar" %>
+        <h2 class="user-edit__user-name">
+          <%= @user.full_name %>
+        </h2>
+      <% end %>
 
       <div class="user-edit__user-actions">
         <%= link_to "View profile", member_path(@user), class: "user-edit__view-profile-action" %>
