@@ -9,77 +9,47 @@
     <%= @user.bio %>
   </p>
 
-  <% if @verified_with_facebook %>
-    <p>
-      Verified with Facebook
-    </p>
-  <% end %>
-
-  <% if @verified_with_twitter %>
-    <p>
-      Verified with Twitter
-    </p>
-  <% end %>
-
-  <div class="member-profile__section">
-    Greeting:
-    <%= @user.greeting %>
-    <br />
-
-    Profession:
-    <%= @user.profession %>
-    <br />
-
-    Favourite cuisine:
-    <%= @user.favorite_cuisine %>
-    <br />
-
-    <% if @user.date_of_birth_visible? %>
-      Date of birth:
-      <%= @user.date_of_birth %>
-      <br />
+  <div class="member-profile__social-verifications">
+    <% if @verified_with_facebook %>
+      <img class="member-profile__social-verification" src="" alt="Verified with Facebook">
+    <% else %>
+      <img class="member-profile__social-verification" src="" alt="Not verified with Facebook">
     <% end %>
 
-    <% if @user.mobile_number_visible? %>
-      Mobile number:
-      <%= @user.mobile_number %>
-      <br />
+    <% if @verified_with_twitter %>
+      <img class="member-profile__social-verification" src="" alt="Verified with Twitter">
+    <% else %>
+      <img class="member-profile__social-verification" src="" alt="Not verified with Twitter">
     <% end %>
   </div>
 
-  <div class="member-profile__section">
-    <div class="guest">
-      <div class="booked-events">
-        <h1>My booked events</h1>
-        <% @upcoming_booked_events.each do |event| %>
-          <%= link_to event.title, event_path(event) %>
-        <% end %>
-      </div>
-
-      <div class="past-events">
-        <h1>My past events</h1>
-        <% @past_booked_events.each do |event| %>
-          <%= link_to event.title, event_path(event) %>
-        <% end %>
-      </div>
+  <% if @upcoming_booked_events.present? && @past_booked_events.present? %>
+    <div class="member-profile__guest-events">
+      <% if @upcoming_booked_events.present? %>
+        <div class="member-profile__event-group upcoming-events">
+          <%= render partial: "events", locals: { title: "Events I'm going to", events: @upcoming_booked_events } %>
+        </div>
+      <% end %>
+      <% if @past_booked_events.present? %>
+        <div class="member-profile__event-group past-events">
+          <%= render partial: "events", locals: { title: "Events I've been to", events: @past_booked_events } %>
+        </div>
+      <% end %>
     </div>
+  <% end %>
 
-    <% if @user_is_host %>
-      <div class="host">
-        <div class="upcoming-events">
-          <h1>My upcoming events</h1>
-          <% @upcoming_hosted_events.each do |event| %>
-            <%= link_to event.title, event_path(event) %>
-          <% end %>
+  <% if @user_is_host && @upcoming_hosted_events.present? && @past_hosted_events.present? %>
+    <div class="member-profile__host-events">
+      <% if @upcoming_hosted_events.present? %>
+        <div class="member-profile__event-group upcoming-events">
+          <%= render partial: "events", locals: { title: "My upcoming events", events: @upcoming_hosted_events } %>
         </div>
-
-        <div class="past-events">
-          <h1>my past events</h1>
-          <% @past_hosted_events.each do |event| %>
-            <%= link_to event.title, event_path(event) %>
-          <% end %>
+      <% end %>
+      <% if @past_hosted_events.present? %>
+        <div class="member-profile__event-group past-events">
+          <%= render partial: "events", locals: { title: "My past events", events: @past_hosted_events } %>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>

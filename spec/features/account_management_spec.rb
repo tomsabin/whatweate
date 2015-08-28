@@ -230,7 +230,7 @@ describe "Account management" do
         expect(page).to have_content "Successfully verified your account with Facebook"
 
         click_link "View profile"
-        expect(page).to have_content "Verified with Facebook"
+        expect(page).to have_css "img[alt='Verified with Facebook']"
 
         click_link "Profile"
         click_link "Edit profile"
@@ -239,8 +239,8 @@ describe "Account management" do
         expect(page).to have_content "Successfully verified your account with Twitter"
 
         click_link "View profile"
-        expect(page).to have_content "Verified with Facebook"
-        expect(page).to have_content "Verified with Twitter"
+        expect(page).to have_css "img[alt='Verified with Facebook']"
+        expect(page).to have_css "img[alt='Verified with Twitter']"
 
         click_link "Log out"
         click_link "Log in"
@@ -249,8 +249,8 @@ describe "Account management" do
         expect(page).to have_content "Successfully authenticated from Facebook account"
         click_link "Profile"
         click_link "View profile"
-        expect(page).to have_content "Verified with Facebook"
-        expect(page).to have_content "Verified with Twitter"
+        expect(page).to have_css "img[alt='Verified with Facebook']"
+        expect(page).to have_css "img[alt='Verified with Twitter']"
 
         click_link "Log out"
         click_link "Log in"
@@ -259,8 +259,8 @@ describe "Account management" do
         expect(page).to have_content "Successfully authenticated from Twitter account"
         click_link "Profile"
         click_link "View profile"
-        expect(page).to have_content "Verified with Facebook"
-        expect(page).to have_content "Verified with Twitter"
+        expect(page).to have_css "img[alt='Verified with Facebook']"
+        expect(page).to have_css "img[alt='Verified with Twitter']"
 
         click_link "Profile"
         click_link "Edit profile"
