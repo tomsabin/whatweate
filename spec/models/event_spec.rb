@@ -61,7 +61,7 @@ describe Event do
       end
     end
 
-    describe "current" do
+    describe "upcoming" do
       let!(:tomorrow) { FactoryGirl.create(:event, date: Date.tomorrow) }
       let!(:today) { FactoryGirl.create(:event, date: Date.today) }
       let!(:yesterday) { FactoryGirl.create(:event, date: Date.yesterday) }

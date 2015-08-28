@@ -122,7 +122,7 @@
     <div class="event-listing__events">
       <% @events.each do |event| %>
         <div class="event-listing__event-thumbnail">
-          <%= render partial: "event_thumbnail", locals: { link: event_path(event), event: event } %>
+          <%= render partial: "partials/event_thumbnail", locals: { link: event_path(event), event: event } %>
         </div>
       <% end %>
     </div>
