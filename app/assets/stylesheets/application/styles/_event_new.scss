@@ -10,8 +10,8 @@
 }
 
 .event-new__date {
-  display: inline-block;
   box-sizing: border-box;
+  display: inline-block;
   padding-right: 8px;
   width: 50%;
 
@@ -21,8 +21,8 @@
 }
 
 .event-new__time {
-  display: inline-block;
   box-sizing: border-box;
+  display: inline-block;
   padding-left: 8px;
   width: 50%;
 
@@ -32,15 +32,15 @@
 }
 
 .event-new__price {
-  display: inline-block;
   box-sizing: border-box;
+  display: inline-block;
   padding-right: 8px;
   width: 50%;
 }
 
 .event-new__seats {
-  display: inline-block;
   box-sizing: border-box;
+  display: inline-block;
   padding-left: 8px;
   width: 50%;
 }
@@ -60,9 +60,9 @@
 
 .event-new__form-divider {
   border-top: 1px solid $light-gray-color;
-  padding-top: 16px;
   margin-bottom: 8px;
   margin-top: 16px;
+  padding-top: 16px;
 }
 
 .event-new__description-input {
@@ -87,24 +87,24 @@
 .event-new__primary-photo {
   display: block;
   height: 100%;
-  object-fit: cover;
   margin-top: 8px;
   max-width: 1024px;
   max-height: 678px;
+  object-fit: cover;
   width: 100%;
 }
 
 .event-new__photos {
   margin-top: 8px;
-}
 
-.event-new__photos img {
-  height: 100%;
-  object-fit: cover;
-  margin-top: 4px;
-  max-width: 1024px;
-  max-height: 678px;
-  width: 100%;
+  img {
+    height: 100%;
+    margin-top: 4px;
+    max-width: 1024px;
+    max-height: 678px;
+    object-fit: cover;
+    width: 100%;
+  }
 }
 
 .event-new__submit {
