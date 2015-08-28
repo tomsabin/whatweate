@@ -13,8 +13,8 @@
       <ul class="navigation-menu__links">
         <% if user_signed_in? %>
           <li>
-            <%= link_to user_path, class: "navigation-menu__link-alt" do %>
-              <span>Profile</span>
+            <%= link_to dashboard_path, class: "navigation-menu__link-alt" do %>
+              <span>Dashboard</span>
             <% end %>
           </li>
           <li>

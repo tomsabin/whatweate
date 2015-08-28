@@ -44,13 +44,13 @@
   text-align: center;
 }
 
-.user-edit__view-profile-action {
+.user-edit__profile-action {
   @extend %button;
   display: inline-block;
   margin-right: 8px;
 }
 
-.user-edit__edit-profile-action {
+.user-edit__active-profile-action {
   @extend %primary-button;
   display: inline-block;
 }

@@ -122,7 +122,7 @@ describe "Account management" do
       end
 
       scenario "updates their profile" do
-        click_link "Profile"
+        click_link "Dashboard"
         click_link "Edit profile"
 
         fill_in "user_email", with: "invalid"
@@ -163,7 +163,7 @@ describe "Account management" do
       end
 
       scenario "user updates their password" do
-        click_link "Profile"
+        click_link "Dashboard"
         click_link "Edit profile"
         click_link "Change your password", match: :first
 
@@ -197,7 +197,7 @@ describe "Account management" do
       end
 
       scenario "deletes their account" do
-        click_link "Profile"
+        click_link "Dashboard"
         click_link "Edit profile"
         click_link "Delete your account", match: :first
 
@@ -223,22 +223,24 @@ describe "Account management" do
         setup_valid_facebook_callback
         setup_valid_twitter_callback
 
-        click_link "Profile"
+        click_link "Dashboard"
         click_link "Edit profile"
         click_link "Connect with Facebook", match: :first
 
         expect(page).to have_content "Successfully verified your account with Facebook"
 
-        click_link "View profile"
+        click_link "Edit profile"
+        click_link "View public profile", match: :first
         expect(page).to have_css "img[alt='Verified with Facebook']"
 
-        click_link "Profile"
+        click_link "Dashboard"
         click_link "Edit profile"
         click_link "Connect with Twitter", match: :first
 
         expect(page).to have_content "Successfully verified your account with Twitter"
 
-        click_link "View profile"
+        click_link "Edit profile"
+        click_link "View public profile", match: :first
         expect(page).to have_css "img[alt='Verified with Facebook']"
         expect(page).to have_css "img[alt='Verified with Twitter']"
 
@@ -247,8 +249,9 @@ describe "Account management" do
         within(".user-sign-in") { click_link "Facebook" }
 
         expect(page).to have_content "Successfully authenticated from Facebook account"
-        click_link "Profile"
-        click_link "View profile"
+        click_link "Dashboard"
+        click_link "Edit profile"
+        click_link "View public profile", match: :first
         expect(page).to have_css "img[alt='Verified with Facebook']"
         expect(page).to have_css "img[alt='Verified with Twitter']"
 
@@ -257,12 +260,13 @@ describe "Account management" do
         within(".user-sign-in") { click_link "Twitter" }
 
         expect(page).to have_content "Successfully authenticated from Twitter account"
-        click_link "Profile"
-        click_link "View profile"
+        click_link "Dashboard"
+        click_link "Edit profile"
+        click_link "View public profile", match: :first
         expect(page).to have_css "img[alt='Verified with Facebook']"
         expect(page).to have_css "img[alt='Verified with Twitter']"
 
-        click_link "Profile"
+        click_link "Dashboard"
         click_link "Edit profile"
         click_link "Disconnect from Facebook", match: :first
         expect(page).to have_content "Successfully disconnected Facebook from your account"

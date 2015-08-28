@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks", registrations: "registrations" }
 
-  resource :user, except: [:new, :create, :destroy] do
+  get "dashboard", to: "users#show"
+
+  resource :user, except: [:show, :new, :create, :destroy] do
     collection do
       get "delete"
       get "edit_password"
