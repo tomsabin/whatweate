@@ -193,7 +193,7 @@ describe "Admin event management" do
     click_link "Create new event"
 
     fill_in_event_form
-    attach_file "event_primary_photo", Rails.root.join("fixtures/carrierwave/image.png")
+    attach_file "eventPrimaryPhoto", Rails.root.join("fixtures/carrierwave/image.png")
 
     click_button "Create"
     click_link "Sunday Roast"

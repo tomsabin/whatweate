@@ -1,45 +1,72 @@
-<%= render partial: "pages/event_thumbnail", locals: { link: "#", event: @event_thumbnail } %>
-
-<div class="wip">
-  <%= simple_form_for @event do |f| %>
+<div class="event-new">
+  <%= simple_form_for @event, class: "test" do |f| %>
     <%= f.error_notification %>
 
-    <%= f.input :title %>
-    <%= f.input :date, html5: true, placeholder: "YYYY-MM-DD HH:MM", input_html: { type: 'datetime-local' } %>
-    <%= f.input :price, label: "Price (£)", input_html: { type: "number", min: "0", step: "any" } %>
-    <%= f.input :seats, input_html: { min: "0", step: "1" } %>
-    <%= f.input :location %>
-    <%= f.input :location_url %>
-    <%= f.input :short_description %>
+    <%= f.input :title, input_html: { class: "event-new__text-input" },
+          label_html: { class: "event-new__text-label" },
+          wrapper_html: { class: "event-new__title" } %>
+    <%= f.input :date_date, html5: true, placeholder: "YYYY-MM-DD", label: "Date",
+          input_html: { class: "event-new__text-input" , type: "date" },
+          label_html: { class: "event-new__text-label" },
+          wrapper_html: { class: "event-new__date" } %><!--
+    --><%= f.input :date_time, html5: true, placeholder: "HH:MM (24 hour)", label: "Time",
+          input_html: { class: "event-new__text-input", type: "time" },
+          label_html: { class: "event-new__text-label" },
+          wrapper_html: { class: "event-new__time" } %>
+    <%= f.input :price, label: "Price (£)",
+          input_html: { class: "event-new__text-input", type: "number", min: "0", step: "any" },
+          label_html: { class: "event-new__text-label" },
+          wrapper_html: { class: "event-new__price" } %><!--
+    --><%= f.input :seats, input_html: { class: "event-new__text-input", min: "0", step: "1" },
+          label_html: { class: "event-new__text-label" },
+          wrapper_html: { class: "event-new__seats" } %>
+    <%= f.input :location, input_html: { class: "event-new__text-input" },
+          label_html: { class: "event-new__text-label" },
+          wrapper_html: { class: "event-new__location" } %>
+    <%= f.input :location_url, label: "Location URL",
+          input_html: { class: "event-new__text-input" },
+          label_html: { class: "event-new__text-label" },
+          wrapper_html: { class: "event-new__location-url" } %>
+    <%= f.input :short_description, input_html: { class: "event-new__text-input" },
+          label_html: { class: "event-new__text-label" },
+          wrapper_html: { class: "event-new__short-description" } %>
 
-    <p><a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for description and menu fields</p>
+    <p class="event-new__form-divider">
+      <a href="https://gist.github.com/tomsabin/6e258c8247083015baf5" target="_blank">Markdown</a> can be used for styling description and menu fields; adding lists, emphasis, etc
+    </p>
 
-    <%= f.input :description %>
-    <%= f.input :menu %>
+    <%= f.input :description,
+          input_html: { class: "event-new__description-input" },
+          label_html: { class: "event-new__text-label" } %>
+    <%= f.input :menu,
+          input_html: { class: "event-new__menu-input" },
+          label_html: { class: "event-new__text-label" } %>
 
-    <%= f.input :primary_photo, as: :file, label: "Primary photo (1024 x 678px)", input_html: { accept: "image/*" } %>
+    <%= f.input :primary_photo, as: :file, label: "Primary photo (1024 x 678px)",
+        input_html: { class: "event-new__photo-input", accept: "image/*", id: "eventPrimaryPhoto" },
+        label_html: { class: "event-new__text-label" } %>
     <%= f.hidden_field :primary_photo_cache %>
 
-    <img src="<%= @event.primary_photo.url %>" id="photo_preview" alt="Primary event photo"
-         style="width:1024px;height:678px;object-fit:cover;">
+    <img class="event-new__primary-photo" src="<%= @event.primary_photo.url %>" id="photoPreview" alt="Primary event photo">
 
-    <%= f.input :photos, as: :file, label: "Other photos (minimum of 2, maximum of 6)", input_html: { multiple: true, accept: "image/*" } %>
-    <div class="event-photos"></div>
+    <%= f.input :photos, as: :file, label: "Other photos (minimum of 2, maximum of 6, each 1024 x 678px)",
+        input_html: {  class: "event-new__photo-input", multiple: true, accept: "image/*", id: "eventPhotos" },
+        label_html: { class: "event-new__text-label" } %>
+    <div class="event-new__photos" id="eventPhotoContainer"></div>
 
-    <%= f.button :submit, "Submit event", data: { disable_with: "Submitting" } %>
+    <%= f.button :submit, "Submit event", data: { disable_with: "Submitting" }, class: "event-new__submit" %>
   <% end %>
-
-  <script>
-    eventPriceField.onChange("#event_price");
-    thumbnailLiveUpdate.init();
-    eventPrimaryPhotoPreview.init({
-      input: "#event_primary_photo",
-      fullPreview: "#photo_preview",
-      thumbPreview: ".event-thumbnail__primary-photo"
-    });
-    eventPhotosPreview.init({
-      input: "#event_photos",
-      container: ".event-photos"
-    });
-  </script>
 </div>
+
+<script>
+  eventPriceField.onChange("#event_price");
+  thumbnailLiveUpdate.init();
+  eventPrimaryPhotoPreview.init({
+    input: "#eventPrimaryPhoto",
+    fullPreview: "#photoPreview"
+  });
+  eventPhotosPreview.init({
+    input: "#eventPhotos",
+    container: "#eventPhotoContainer"
+  });
+</script>

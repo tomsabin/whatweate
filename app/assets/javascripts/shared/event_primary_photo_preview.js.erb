@@ -1,24 +1,16 @@
 var eventPrimaryPhotoPreview = function(){
   var init = function(selectors){
     $(selectors.input).change(function () {
-      var $photo_preview = $(selectors.fullPreview);
-      $photo_preview.attr("src", "<%= asset_path('events/primary_default.png') %>");
+      var $photoPreview = $(selectors.fullPreview);
+      $photoPreview.attr("src", "<%= asset_path('events/primary_default.png') %>");
 
-      var withThumb = typeof selectors.thumbPreview !== 'undefined'
-      if (withThumb) {
-        var $thumb_photo_preview = $(selectors.thumbPreview)
-        $thumb_photo_preview.attr("src", "<%= asset_path('events/primary_default_thumb.png') %>");
-      }
-      var input = this
+      var input = this;
 
       if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-          $photo_preview.attr("src", e.target.result);
-          if (withThumb) {
-            $thumb_photo_preview.attr("src", e.target.result);
-          }
+          $photoPreview.attr("src", e.target.result);
         }
 
         reader.readAsDataURL(input.files[0]);
