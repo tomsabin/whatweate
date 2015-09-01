@@ -23,7 +23,7 @@
   }
 }
 
-.dashboard__other {
+.dashboard__panel {
   @include span(12 of 12);
 
   @include breakpoint($tablet) {
@@ -65,4 +65,17 @@
   @extend %primary-button;
   display: inline-block;
   margin-right: 8px;
+}
+
+.dashboard__user-field-heading {
+  @extend %heading-6;
+  margin-bottom: 4px;
+}
+
+.dashboard__user-field {
+  margin-bottom: 12px;
+}
+
+.dashboard__hidden-user-field {
+  color: $gray-color;
 }

@@ -12,49 +12,74 @@
       <%= link_to "Edit profile", edit_user_path, class: "dashboard__user-action" %>
     </div>
   </div>
-  <div class="dashboard__other wip">
-    Email:
-    <%= @user.email %>
 
-    <br/>
+  <div class="dashboard__panel">
+    <h4 class="dashboard__user-field-heading">
+      Email
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.email %>
+    </p>
 
-    Last name:
-    <%= @user.last_name %>
+    <h4 class="dashboard__user-field-heading">
+      Last name
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.last_name %>
+    </p>
 
-    <br/>
+    <h4 class="dashboard__user-field-heading">
+      Date of birth
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.date_of_birth %>
 
-    Date of birth:
-    <%= @user.date_of_birth %>
-    <% if !@user.date_of_birth_visible? %>
-      Date of birth is hidden on public view
-    <% end %>
+      <% if !@user.date_of_birth_visible? %>
+        <span class="dashboard__hidden-user-field">
+          (not publicly visible)
+        </span>
+      <% end %>
+    </p>
 
-    <br/>
+    <h4 class="dashboard__user-field-heading">
+      Profession
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.profession %>
+    </p>
 
-    Profession:
-    <%= @user.profession %>
+    <h4 class="dashboard__user-field-heading">
+      Greeting
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.greeting %>
+    </p>
 
-    <br/>
+    <h4 class="dashboard__user-field-heading">
+      Bio
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.bio %>
+    </p>
 
-    Greeting:
-    <%= @user.greeting %>
+    <h4 class="dashboard__user-field-heading">
+      Mobile number
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.mobile_number %>
 
-    <br/>
+      <% if !@user.mobile_number_visible? %>
+        <span class="dashboard__hidden-user-field">
+          (not publicly visible)
+        </span>
+      <% end %>
+    </p>
 
-    Bio:
-    <%= @user.bio %>
-
-    <br/>
-
-    Mobile number:
-    <%= @user.mobile_number %>
-    <% if !@user.mobile_number_visible? %>
-      Mobile number is hidden on public view
-    <% end %>
-
-    <br/>
-
-    Favourite cuisine:
-    <%= @user.favorite_cuisine %>
+    <h4 class="dashboard__user-field-heading">
+      Favourite cuisine
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.favorite_cuisine %>
+    </p>
   </div>
 </div>

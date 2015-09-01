@@ -56,15 +56,13 @@ describe "Account management" do
     expect(page).to have_content "Your profile has successfully been saved"
     expect(page).to have_content "Cookie Monster"
 
-    expect(page).to have_content "Email: user@example.com"
-    expect(page).to have_content "Date of birth: 18th June 1990"
-    expect(page).to have_content "Date of birth is hidden on public view"
-    expect(page).to have_content "Profession: Cookie monster"
-    expect(page).to have_content "Greeting: Cookies cookies cookies"
-    expect(page).to have_content "Bio: I like cookies"
-    expect(page).to have_content "Mobile number: 0123456789"
-    expect(page).to have_content "Mobile number is hidden on public view"
-    expect(page).to have_content "Favourite cuisine: Chocolate"
+    expect(page).to have_content "user@example.com"
+    expect(page).to have_content "18th June 1990 (not publicly visible)"
+    expect(page).to have_content "Cookie monster"
+    expect(page).to have_content "Cookies cookies cookies"
+    expect(page).to have_content "I like cookies"
+    expect(page).to have_content "0123456789 (not publicly visible)"
+    expect(page).to have_content "Chocolate"
   end
 
   context "as a user that has completed their profile" do
@@ -150,13 +148,13 @@ describe "Account management" do
         expect(page).to have_content "Your profile has successfully been saved"
         expect(page).to have_content "Cookie Monster"
 
-        expect(page).to have_content "Email: me@cookie.com"
-        expect(page).to have_content "Date of birth: 18th June 1990"
-        expect(page).to have_content "Profession: Cookie monster"
-        expect(page).to have_content "Bio: I like cookies"
-        expect(page).to have_content "Greeting: Cookies cookies cookies"
-        expect(page).to have_content "Mobile number: 0123456789"
-        expect(page).to have_content "Favourite cuisine: Chocolate"
+        expect(page).to have_content "me@cookie.com"
+        expect(page).to have_content "18th June 1990"
+        expect(page).to have_content "Cookie monster"
+        expect(page).to have_content "I like cookies"
+        expect(page).to have_content "Cookies cookies cookies"
+        expect(page).to have_content "0123456789"
+        expect(page).to have_content "Chocolate"
 
         click_link "Edit profile"
         expect(page).to have_field "user_date_of_birth", with: "1990-06-18"
