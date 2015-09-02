@@ -42,16 +42,18 @@ describe "Admin event management" do
     # public event page
     click_link "Sunday Roast"
     expect(page).to have_content "Sunday Roast"
-    expect(page).to have_content "Hosted by Joe Bloggs"
+    within('.event-show__host') do
+      expect(page).to have_content "Joe Bloggs"
+    end
     expect(page).to_not have_link "Joe Bloggs"
     expect(page).to have_content "1st January #{year} 7:00pm"
     expect(page).to have_link "London", href: "http://example.com"
     expect(page).to have_button "Book seat"
     expect(page).to have_content "£10"
-    within(".description") do
+    within(".event-show__event-description") do
       expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
     end
-    within(".menu") do
+    within(".event-show__event-menu") do
       expect(page).to have_content "Pumpkin Soup"
       expect(page).to have_content "Roast Lamb with trimmings"
       expect(page).to have_content "Tiramisu"
@@ -138,15 +140,17 @@ describe "Admin event management" do
     within(".event-show") do
       expect(find("img.event-show__primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
       expect(page).to have_content "Sunday Roast"
-      expect(page).to have_content "Hosted by Joeseph Bloggs"
+      within(".event-show__host") do
+        expect(page).to have_content "Joeseph Bloggs"
+      end
       expect(page).to have_link "Joeseph Bloggs", href: "/member/joe-bloggs"
       expect(page).to have_content "1st January #{year} 7:00pm"
       expect(page).to have_link "London", href: "http://example.com"
       expect(page).to have_content "£10"
-      within(".description") do
+      within(".event-show__event-description") do
         expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
       end
-      within(".menu") do
+      within(".event-show__event-menu") do
         expect(page).to have_content "Pumpkin Soup"
         expect(page).to have_content "Roast Lamb with trimmings"
         expect(page).to have_content "Tiramisu"

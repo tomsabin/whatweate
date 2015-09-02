@@ -24,3 +24,107 @@
     color: $primary-color;
   }
 }
+
+.event-show__host {
+  @include span(12 of 12);
+  padding-bottom: 16px;
+  padding-top: 16px;
+
+  @include breakpoint($tablet) {
+    @include span(5 of 12);
+    box-sizing: border-box;
+    padding-right: gutter(16px);
+  }
+
+  @include breakpoint($desktop) {
+    @include span(4 of 12);
+  }
+}
+
+.event-show__host-title {
+  @extend %heading-4;
+  margin: 8px 0 16px;
+  text-align: center;
+}
+
+.event-show__host-avatar {
+  border: 3px solid $gray-color;
+  border-radius: 50%;
+  display: block;
+  height: 200px;
+  margin: 0 auto;
+  object-fit: cover;
+  width: 200px;
+}
+
+.event-show__host-full-name {
+  @extend %heading-6;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.event-show__host-bio {
+  margin: 16px auto 0;
+  max-width: $desktop;
+  padding: 0 16px;
+  text-align: center;
+}
+
+.event-show__event-details {
+  @include span(12 of 12);
+
+  @include breakpoint($tablet) {
+    @include span(last 7 of 12);
+  }
+
+  @include breakpoint($desktop) {
+    @include span(last 8 of 12);
+  }
+}
+
+.event-show__event-description {
+  background-color: $pale-gray-color;
+  padding: 16px;
+}
+
+.event-show__event-menu {
+  padding: 16px;
+}
+
+.event-show__event-detail-title {
+  @extend %heading-4;
+  padding-bottom: 8px;
+}
+
+.event-show__markdown {
+  h1 {
+    @extend %heading-5;
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+
+  h2, h3, h4, h5, h6 {
+    @extend %heading-6;
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+
+  p {
+    padding-bottom: 8px;
+  }
+
+  blockquote {
+    border-left: 1px solid $primary-color;
+    background-color: darken($pale-gray-color, 5%);
+    padding: 16px 16px 8px;
+  }
+
+  hr {
+    margin-top: 22px;
+    padding-top: 22px;
+  }
+
+  ul, ol {
+    padding-bottom: 8px;
+  }
+}
