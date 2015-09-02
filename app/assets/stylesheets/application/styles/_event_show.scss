@@ -1,3 +1,7 @@
+.event-show {
+  @include container;
+}
+
 .event-show__primary-photo {
   display: block;
   width: 100%;
@@ -16,6 +20,19 @@
 .event-show__location {
   margin-top: 12px;
 }
+
+.event-show__event-date {
+  margin-top: 6px;
+}
+
+.event-show__event-time {
+  margin-top: 6px;
+}
+
+.event-show__event-price {
+  margin-top: 6px;
+}
+
 
 .event-show__map-link {
   text-decoration: underline;
@@ -59,6 +76,7 @@
 
 .event-show__host-full-name {
   @extend %heading-6;
+
   margin-top: 24px;
   text-align: center;
 }
@@ -85,6 +103,11 @@
 .event-show__event-description {
   background-color: $pale-gray-color;
   padding: 16px;
+
+  @include breakpoint($tablet) {
+    border-bottom: 1px solid $light-gray-color;
+    background-color: transparent;
+  }
 }
 
 .event-show__event-menu {
@@ -115,7 +138,7 @@
 
   blockquote {
     border-left: 1px solid $primary-color;
-    background-color: darken($pale-gray-color, 5%);
+    background-color: lighten($pale-gray-color, 2%);
     padding: 16px 16px 8px;
   }
 
@@ -127,4 +150,71 @@
   ul, ol {
     padding-bottom: 8px;
   }
+}
+
+.event-show__event-booking {
+  @include span(12 of 12);
+  background-color: $pale-gray-color;
+  padding-bottom: 16px;
+  padding-top: 16px;
+  text-align: center;
+
+  .stripe-button-el {
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    @extend .event-show__booking-button;
+    padding: 0;
+
+    span {
+      @extend %secondary-font;
+      background: none;;
+      border-radius: 0;
+      box-shadow: none;
+      font-size: 1em;
+      font-weight: normal;
+      text-shadow: none;
+      padding: 2px 8px;
+      word-spacing: 1px;
+    }
+
+    &:not(:disabled):active {
+      background: $primary-darken-color;
+
+      span {
+        background: $primary-darken-color;
+      }
+    }
+  }
+}
+
+.event-show__event-size {
+  margin-bottom: 8px;
+}
+
+.event-show__booking-button {
+  @extend %base-button-style;
+  background-color: $primary-color;
+  color: $white-color;
+  cursor: pointer;
+  font-size: 1em;
+  user-select: none;
+
+  &:focus {
+    outline: 2px solid $primary-color;
+  }
+
+  &:hover {
+    background-color: $primary-darken-color;
+  }
+
+  &:disabled {
+    background-color: lighten($gray-color, 15%);
+    cursor: default;
+  }
+}
+
+.event-show__booking-help-text {
+  color: $gray-color;
+  margin-top: 9px;
 }

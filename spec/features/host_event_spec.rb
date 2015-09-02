@@ -52,7 +52,7 @@ describe "Host event" do
 
     click_link "Sunday Roast"
 
-    within(".event-full") do
+    within(".event-show") do
       expect(find("img.event-show__primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
       expect(page).to have_link "Joe Bloggs"
       expect(page).to have_link "London", href: "http://example.com"
