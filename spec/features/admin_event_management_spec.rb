@@ -44,10 +44,8 @@ describe "Admin event management" do
     expect(page).to have_content "Sunday Roast"
     expect(page).to have_content "Hosted by Joe Bloggs"
     expect(page).to_not have_link "Joe Bloggs"
-    expect(page).to have_link "View on map"
     expect(page).to have_content "1st January #{year} 7:00pm"
-    expect(find_link("View on map")[:href]).to eq "http://example.com"
-    expect(page).to have_content "London"
+    expect(page).to have_link "London", href: "http://example.com"
     expect(page).to have_button "Book seat"
     expect(page).to have_content "£10"
     within(".description") do
@@ -138,14 +136,12 @@ describe "Admin event management" do
     end
 
     within(".event-show") do
-      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
+      expect(find("img.event-show__primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
       expect(page).to have_content "Sunday Roast"
       expect(page).to have_content "Hosted by Joeseph Bloggs"
       expect(page).to have_link "Joeseph Bloggs", href: "/member/joe-bloggs"
-      expect(page).to have_link "View on map"
       expect(page).to have_content "1st January #{year} 7:00pm"
-      expect(find_link("View on map")[:href]).to eq "http://example.com"
-      expect(page).to have_content "Londo"
+      expect(page).to have_link "London", href: "http://example.com"
       expect(page).to have_content "£10"
       within(".description") do
         expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
@@ -207,8 +203,8 @@ describe "Admin event management" do
     expect(find("img.event-thumbnail__primary-photo")["src"]).to have_content %r(\/uploads\/events\/(\d)+\/primary_photo\/thumb_(\h){32}.png)
 
     visit "events/sunday-roast"
-    expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"
-    expect(find("img.primary-photo")["src"]).to have_content %r(\/uploads\/events\/(\d)+\/primary_photo\/(\h){32}.png)
+    expect(find("img.event-show__primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"
+    expect(find("img.event-show__primary-photo")["src"]).to have_content %r(\/uploads\/events\/(\d)+\/primary_photo\/(\h){32}.png)
   end
 
   scenario "admin creates an event with additional photos" do

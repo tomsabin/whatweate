@@ -1,0 +1,26 @@
+.event-show__primary-photo {
+  display: block;
+  width: 100%;
+}
+
+.event-show__large-section {
+  background-color: $pale-gray-color;
+  text-align: center;
+  padding: 16px;
+}
+
+.event-show__title {
+  @extend %heading-3;
+}
+
+.event-show__location {
+  margin-top: 12px;
+}
+
+.event-show__map-link {
+  text-decoration: underline;
+
+  &:hover {
+    color: $primary-color;
+  }
+}

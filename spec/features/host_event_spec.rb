@@ -53,10 +53,10 @@ describe "Host event" do
     click_link "Sunday Roast"
 
     within(".event-full") do
-      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
+      expect(find("img.event-show__primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
       expect(page).to have_link "Joe Bloggs"
-      expect(page).to have_link "View on map", href: "http://example.com"
-      expect(page.find_link("View on map")["target"]).to have_content "_blank"
+      expect(page).to have_link "London", href: "http://example.com"
+      expect(page.find_link("London")["target"]).to have_content "_blank"
       expect(page).to_not have_button "Book seat"
       expect(page).to have_content "This is your own event"
     end
@@ -95,14 +95,14 @@ describe "Host event" do
     click_link "Create an event"
 
     within(".event-thumbnail") do
-      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
+      expect(find("img.event-show__primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
     end
 
     attach_file "eventPrimaryPhoto", Rails.root.join("fixtures/carrierwave/image.png")
 
     within(".event-thumbnail") do
-      find("img.primary-photo")["src"] # wait for image src to be replaced
-      expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
+      find("img.event-show__primary-photo")["src"] # wait for image src to be replaced
+      expect(find("img.event-show__primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
     end
   end
 
@@ -130,9 +130,9 @@ describe "Host event" do
     expect(find("img.event-thumbnail__primary-photo")["src"]).to have_content path
 
     click_link "Sunday Roast"
-    expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"
+    expect(find("img.event-show__primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"
     path = %r(\/uploads\/events\/(\d)+\/primary_photo\/(\h){32}.png)
-    expect(find("img.primary-photo")["src"]).to have_content path
+    expect(find("img.event-show__primary-photo")["src"]).to have_content path
   end
 
   scenario "host creates an event with additional photos" do
@@ -178,14 +178,14 @@ describe "Host event" do
     click_link "Create an event"
 
     within(".event-thumbnail") do
-      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
+      expect(find("img.event-show__primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
     end
 
     attach_file "eventPrimaryPhoto", Rails.root.join("fixtures/carrierwave/image.png")
 
     within(".event-thumbnail") do
-      find("img.primary-photo")["src"] # wait for image src to be replaced
-      expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
+      find("img.event-show__primary-photo")["src"] # wait for image src to be replaced
+      expect(find("img.event-show__primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
     end
   end
 

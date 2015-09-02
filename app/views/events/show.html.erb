@@ -1,31 +1,35 @@
 <% title "WhatWeAte - #{@event.title}" %>
 
-<div class="event-full wip">
-  <% if @already_booked %>
-    <p>You are booked on to this event</p>
-  <% elsif @current_user_is_event_host %>
-    <p>This is your own event</p>
-  <% elsif @event.sold_out? %>
-    <button type="button" class="book-seat" disabled>Book seat</button>
-  <% else %>
-    <%= form_tag event_bookings_path(@event) do %>
-      <%= submit_tag 'Book seat', id: "no-js-submit", class: "book-seat" %>
-      <% if user_signed_in? && current_user.completed_profile? %>
-        <script
-          src="https://checkout.stripe.com/checkout.js" class="stripe-button book-seat"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-label="Book seat"
-          data-email="<%= current_user.email %>"
-          data-image="<%= asset_url("icons/logo-icon-128.jpg") %>"
-          data-name="WhatWeAte"
-          data-description="<%= @event.title %>"
-          data-amount="<%= @event.price_in_pennies %>"
-          data-currency="<%= @event.currency %>">
-        </script>
-        <script>$("#no-js-submit").remove();</script>
+<div class="event-full">
+  <div class="event-show">
+    <%= render partial: "event_content", locals: { event: @event, host: @event_host, user: @event_user, guests: @guests } %>
+  </div>
+
+  <div class="wip">
+    <% if @already_booked %>
+      <p>You are booked on to this event</p>
+    <% elsif @current_user_is_event_host %>
+      <p>This is your own event</p>
+    <% elsif @event.sold_out? %>
+      <button type="button" class="book-seat" disabled>Book seat</button>
+    <% else %>
+      <%= form_tag event_bookings_path(@event) do %>
+        <%= submit_tag 'Book seat', id: "no-js-submit", class: "book-seat" %>
+        <% if user_signed_in? && current_user.completed_profile? %>
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button book-seat"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-label="Book seat"
+            data-email="<%= current_user.email %>"
+            data-image="<%= asset_url("icons/logo-icon-128.jpg") %>"
+            data-name="WhatWeAte"
+            data-description="<%= @event.title %>"
+            data-amount="<%= @event.price_in_pennies %>"
+            data-currency="<%= @event.currency %>">
+          </script>
+          <script>$("#no-js-submit").remove();</script>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-
-  <%= render partial: "event_content", locals: { event: @event, host: @event_host, user: @event_user, guests: @guests } %>
+  </div>
 </div>

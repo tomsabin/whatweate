@@ -1,48 +1,62 @@
-<div class="event-show wip">
-  <img src="<%= event.primary_photo.url %>" alt="<%= event.title %>" class="primary-photo">
+<img src="<%= event.primary_photo.url %>" alt="<%= event.title %>" class="event-show__primary-photo">
 
-  <%= humanized_money_with_symbol event.price %>
+<div class="event-show__large-section">
+  <h3 class="event-show__title">
+    <%= event.title %>
+  </h3>
 
-  <hr>
-
-  <p><%= event.title %></p>
-
-  <p><%= event.formatted_date %></p>
-
-  <p>Hosted by</p>
-
-  <img src="" alt="">
-
-  <p>
-    <% if user.present? %>
-      <%= link_to host.name, member_path(user) %>
+  <p class="event-show__location">
+    <i class="fa fa-map-marker"></i>
+    <% if event.location_url.present? %>
+      <span class="event-show__map-link">
+       <%= link_to event.location, event.location_url, target: "_blank" %>
+      </span>
     <% else %>
-      <%= host.name %>
+      <%= event.location %>
     <% end %>
   </p>
+</div>
 
-  <p><%= event.location %> | <%= link_to "View on map", event.location_url, target: "_blank" %> </p>
 
-  <h1>Details</h1>
-  <div class="markdown description">
-    <%= markdown(event.description).html_safe %>
-  </div>
+<%= humanized_money_with_symbol event.price %>
 
-  <h1>Menu</h1>
-  <div class="markdown menu">
-    <%= markdown(event.menu).html_safe %>
-  </div>
+<hr>
 
-  <p>Photos</p>
-  <div class="photos">
-    <% event.photos.each_with_index do |photo, index| %>
-      <img src="<%= photo.url %>" alt="Event photo" class="photo-<%= index + 1 %>">
-    <% end %>
-  </div>
 
-  <div class="guests">
-    <% guests.each do |guest| %>
-      <%= link_to guest.full_name, member_path(guest) %>
-    <% end %>
-  </div>
+<p><%= event.formatted_date %></p>
+
+<p>Hosted by</p>
+
+<img src="" alt="">
+
+<p>
+  <% if user.present? %>
+    <%= link_to host.name, member_path(user) %>
+  <% else %>
+    <%= host.name %>
+  <% end %>
+</p>
+
+
+<h1>Details</h1>
+<div class="markdown description">
+  <%= markdown(event.description).html_safe %>
+</div>
+
+<h1>Menu</h1>
+<div class="markdown menu">
+  <%= markdown(event.menu).html_safe %>
+</div>
+
+<p>Photos</p>
+<div class="photos">
+  <% event.photos.each_with_index do |photo, index| %>
+    <img src="<%= photo.url %>" alt="Event photo" class="photo-<%= index + 1 %>">
+  <% end %>
+</div>
+
+<div class="guests">
+  <% guests.each do |guest| %>
+    <%= link_to guest.full_name, member_path(guest) %>
+  <% end %>
 </div>
