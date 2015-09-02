@@ -31,8 +31,8 @@ describe "Member public profile" do
     expect(page).to have_content user.bio
     expect(page).to_not have_content user.mobile_number
     expect(page).to_not have_content user.favorite_cuisine
-    expect(page).to_not have_css "img[alt='Verified with Facebook']"
-    expect(page).to_not have_css "img[alt='Verified with Twitter']"
+    expect(page).to_not have_css "i[title='Verified with Facebook']"
+    expect(page).to_not have_css "i[title='Verified with Twitter']"
 
     within(".member-profile__guest-events .upcoming-events") do
       expect(page).to have_link "Booked event"
@@ -58,8 +58,8 @@ describe "Member public profile" do
     user = FactoryGirl.create(:user, :facebook, :twitter)
     visit member_path(user)
 
-    expect(page).to have_css "img[alt='Verified with Facebook']"
-    expect(page).to have_css "img[alt='Verified with Twitter']"
+    expect(page).to have_css "i[title='Verified with Facebook']"
+    expect(page).to have_css "i[title='Verified with Twitter']"
   end
 
   scenario "visits a profile from their generated slug and changes their username" do

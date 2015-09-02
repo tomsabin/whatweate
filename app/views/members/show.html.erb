@@ -11,15 +11,23 @@
 
   <div class="member-profile__social-verifications">
     <% if @verified_with_facebook %>
-      <img class="member-profile__social-verification" src="" alt="Verified with Facebook">
+      <span class="member-profile__verified-social-platform">
+        <i class="fa fa-facebook-square" title="Verified with Facebook"></i>
+      </span>
     <% else %>
-      <img class="member-profile__social-verification" src="" alt="Not verified with Facebook">
+      <span class="member-profile__unverified-social-platform">
+        <i class="fa fa-facebook-square" title="Not verified with Facebook"></i>
+      </span>
     <% end %>
 
     <% if @verified_with_twitter %>
-      <img class="member-profile__social-verification" src="" alt="Verified with Twitter">
+      <span class="member-profile__verified-social-platform">
+        <i class="fa fa-twitter-square" title="Verified with Twitter"></i>
+      </span>
     <% else %>
-      <img class="member-profile__social-verification" src="" alt="Not verified with Twitter">
+      <span class="member-profile__unverified-social-platform">
+        <i class="fa fa-twitter-square" title="Not verified with Twitter"></i>
+      </span>
     <% end %>
   </div>
 

@@ -229,7 +229,7 @@ describe "Account management" do
 
         click_link "Edit profile"
         click_link "View public profile", match: :first
-        expect(page).to have_css "img[alt='Verified with Facebook']"
+        expect(page).to have_css "i[title='Verified with Facebook']"
 
         click_link "Dashboard"
         click_link "Edit profile"
@@ -239,8 +239,8 @@ describe "Account management" do
 
         click_link "Edit profile"
         click_link "View public profile", match: :first
-        expect(page).to have_css "img[alt='Verified with Facebook']"
-        expect(page).to have_css "img[alt='Verified with Twitter']"
+        expect(page).to have_css "i[title='Verified with Facebook']"
+        expect(page).to have_css "i[title='Verified with Twitter']"
 
         click_link "Log out"
         click_link "Log in"
@@ -250,8 +250,8 @@ describe "Account management" do
         click_link "Dashboard"
         click_link "Edit profile"
         click_link "View public profile", match: :first
-        expect(page).to have_css "img[alt='Verified with Facebook']"
-        expect(page).to have_css "img[alt='Verified with Twitter']"
+        expect(page).to have_css "i[title='Verified with Facebook']"
+        expect(page).to have_css "i[title='Verified with Twitter']"
 
         click_link "Log out"
         click_link "Log in"
@@ -261,8 +261,8 @@ describe "Account management" do
         click_link "Dashboard"
         click_link "Edit profile"
         click_link "View public profile", match: :first
-        expect(page).to have_css "img[alt='Verified with Facebook']"
-        expect(page).to have_css "img[alt='Verified with Twitter']"
+        expect(page).to have_css "i[title='Verified with Facebook']"
+        expect(page).to have_css "i[title='Verified with Twitter']"
 
         click_link "Dashboard"
         click_link "Edit profile"
