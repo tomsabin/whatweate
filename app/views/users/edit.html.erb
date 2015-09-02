@@ -84,6 +84,9 @@
       <%= f.input :greeting,
             input_html: { class: "user-edit__text-input" },
             label_html: { class: "user-edit__text-label" } %>
+      <%= f.input :favorite_cuisine,
+            input_html: { class: "user-edit__text-input" },
+            label_html: { class: "user-edit__text-label" } %>
       <%= f.input :bio,
             input_html: { class: "user-edit__textarea-input" },
             label_html: { class: "user-edit__text-label" } %>
@@ -94,12 +97,12 @@
             input_html: { class: "user-edit__visibility-checkbox-input" },
             label_html: { class: "user-edit__visibility-checkbox-label" },
             wrapper_html: { class: "user-edit__visibility-checkbox" } %>
-      <%= f.input :favorite_cuisine,
-            input_html: { class: "user-edit__text-input" },
-            label_html: { class: "user-edit__text-label" } %>
       <%= f.input :slug,
             input_html: { class: "user-edit__text-input" },
             label_html: { class: "user-edit__text-label" } %>
+      <div class="user-edit__help-box">
+        <p>The location of your member profile (<%= request.base_url %>/member/<%= current_user.slug %>)</p>
+      </div>
       <%= f.button :submit, "Save profile", data: { disable_with: "Saving" }, class: "user-edit__submit" %>
       <%= link_to "Cancel", dashboard_path, class: "user-edit__cancel"%>
     <% end %>

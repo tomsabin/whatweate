@@ -154,6 +154,18 @@
   @extend %primary-font;
 }
 
+.user-edit__help-box {
+  @extend %primary-font;
+  background-color: $pale-gray-color;
+  box-sizing: border-box;
+  color: lighten($black-color, 15%);
+  display: block;
+  font-size: .8em;
+  padding: 4px;
+  text-align: left;
+  width: 100%;
+}
+
 .user-edit__submit {
   @extend %form-submit;
   margin-top: 8px;
