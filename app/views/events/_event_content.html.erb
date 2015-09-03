@@ -1,86 +1,103 @@
-<img src="<%= event.primary_photo.url %>" alt="<%= event.title %>" class="event-show__primary-photo">
-
-<div class="photos wip">
-  <% event.photos.each_with_index do |photo, index| %>
-    <img src="<%= photo.url %>" alt="Event photo" class="photo-<%= index + 1 %>">
-  <% end %>
-</div>
-
-<div class="event-show__large-section">
-  <h3 class="event-show__title">
-    <%= event.title %>
-  </h3>
-
-  <p class="event-show__location">
-    <i class="fa fa-map-marker"></i>
-    <% if event.location_url.present? %>
-      <span class="event-show__map-link">
-       <%= link_to event.location, event.location_url, target: "_blank" %>
-      </span>
-    <% else %>
-      <%= event.location %>
+<% if event.photos.present? %>
+  <div class="event-show__photo-gallery">
+    <img class="event-show__gallery-photo" src="<%= event.primary_photo.url %>" alt="<%= event.title %>">
+    <% event.photos.each_with_index do |photo, index| %>
+      <img class="event-show__gallery-photo" src="<%= photo.url %>" alt="Event photo">
     <% end %>
-  </p>
+  </div>
 
-  <p class="event-show__event-date">
-    <i class="fa fa-calendar"></i>
-    <%= event.formatted_date %>
-  </p>
+  <script>
+    $('.event-show__photo-gallery').flickity({
+      cellAlign: 'center',
+      imagesLoaded: true,
+      pageDots: false,
+      percentPosition: false,
+      wrapAround: true
+    });
+  </script>
+<% else %>
+  <div class="event-show__container">
+    <img src="<%= event.primary_photo.url %>" alt="<%= event.title %>" class="event-show__primary-photo">
+  </div>
+<% end %>
 
-  <p class="event-show__event-time">
-    <i class="fa fa-clock-o"></i>
-    <%= event.formatted_time %>
-  </p>
+<div class="event-show__container">
+  <div class="event-show__large-section">
+    <h3 class="event-show__title">
+      <%= event.title %>
+    </h3>
+
+    <p class="event-show__location">
+      <i class="fa fa-map-marker"></i>
+      <% if event.location_url.present? %>
+        <span class="event-show__map-link">
+         <%= link_to event.location, event.location_url, target: "_blank" %>
+        </span>
+      <% else %>
+        <%= event.location %>
+      <% end %>
+    </p>
+
+    <p class="event-show__event-date">
+      <i class="fa fa-calendar"></i>
+      <%= event.formatted_date %>
+    </p>
+
+    <p class="event-show__event-time">
+      <i class="fa fa-clock-o"></i>
+      <%= event.formatted_time %>
+    </p>
 
 
-  <p class="event-show__event-price">
-    <i class="fa fa-credit-card"></i>
-    <%= humanized_money_with_symbol event.price %>
-  </p>
-</div>
+    <p class="event-show__event-price">
+      <i class="fa fa-credit-card"></i>
+      <%= humanized_money_with_symbol event.price %>
+    </p>
+  </div>
 
-<div class="event-show__host">
-  <h4 class="event-show__host-title">
-    Your host
-  </h4>
+  <div class="event-show__host">
+    <h4 class="event-show__host-title">
+      Your host
+    </h4>
 
-  <% if user.present? %>
-    <%= link_to member_path(user) do %>
-      <%= gravatar_image_tag user.email, class: "event-show__host-avatar" %>
+    <% if user.present? %>
+      <%= link_to member_path(user) do %>
+        <%= gravatar_image_tag user.email, class: "event-show__host-avatar" %>
 
+        <h5 class="event-show__host-full-name">
+          <%= host.name %>
+        </h5>
+
+        <p class="event-show__host-bio">
+          <%= truncate(user.bio, length: 80, omission: "... (read more)") %>
+        </p>
+      <% end %>
+    <% else %>
       <h5 class="event-show__host-full-name">
         <%= host.name %>
       </h5>
-
-      <p class="event-show__host-bio">
-        <%= truncate(user.bio, length: 80, omission: "... (read more)") %>
-      </p>
     <% end %>
-  <% else %>
-    <h5 class="event-show__host-full-name">
-      <%= host.name %>
-    </h5>
-  <% end %>
-</div>
-
-<div class="event-show__event-details">
-  <div class="event-show__event-description">
-    <h4 class="event-show__event-detail-title">
-      About the meal
-    </h4>
-
-    <div class="event-show__markdown">
-      <%= markdown(event.description).html_safe %>
-    </div>
   </div>
 
-  <div class="event-show__event-menu">
-    <h4 class="event-show__event-detail-title">
-      Menu
-    </h4>
+  <div class="event-show__event-details">
+    <div class="event-show__event-description">
+      <h4 class="event-show__event-detail-title">
+        About the meal
+      </h4>
 
-    <div class="event-show__markdown">
-      <%= markdown(event.menu).html_safe %>
+      <div class="event-show__markdown">
+        <%= markdown(event.description).html_safe %>
+      </div>
+    </div>
+
+    <div class="event-show__event-menu">
+      <h4 class="event-show__event-detail-title">
+        Menu
+      </h4>
+
+      <div class="event-show__markdown">
+        <%= markdown(event.menu).html_safe %>
+      </div>
     </div>
   </div>
 </div>

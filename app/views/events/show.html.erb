@@ -1,8 +1,8 @@
 <% title "WhatWeAte - #{@event.title}" %>
 
-<div class="event-show">
-  <%= render partial: "event_content", locals: { event: @event, host: @event_host, user: @event_user } %>
+<%= render partial: "event_content", locals: { event: @event, host: @event_host, user: @event_user } %>
 
+<div class="event-show__container">
   <div class="event-show__event-booking">
     <p class="event-show__event-size">
       <i class="fa fa-users"></i>

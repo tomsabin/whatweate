@@ -2,8 +2,10 @@
 @import "breakpoint/breakpoint";
 @import "font-awesome/font-awesome";
 
+$container: 960px;
+
 $susy: (
-  container: 960px,
+  container: $container,
   columns: 12
 );
 
