@@ -186,6 +186,13 @@
       }
     }
   }
+
+  @include breakpoint($tablet) {
+    background-color: transparent;
+    border-top: 1px solid $light-gray-color;
+    padding-bottom: 64px;
+    padding-top: 32px;
+  }
 }
 
 .event-show__event-size {
