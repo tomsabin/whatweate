@@ -3,7 +3,7 @@
     <div class="event-show__photo-gallery">
       <img class="event-show__gallery-primary-photo" src="<%= event.primary_photo.url %>" alt="<%= event.title %>">
       <% event.photos.each_with_index do |photo, index| %>
-        <img class="event-show__gallery-photo" src="<%= photo.url %>" alt="Event photo">
+        <img class="event-show__gallery-photo" src="<%= photo.url %>" alt="Event photo" data-index="<%= index %>">
       <% end %>
     </div>
   </div>

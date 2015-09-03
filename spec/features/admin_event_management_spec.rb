@@ -139,8 +139,8 @@ describe "Admin event management" do
       end
     end
 
-    within(".event-show") do
-      expect(find("img.event-show__primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
+    within(".admin-preview__event-show") do
+      expect(find("img.event-show__gallery-primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
       expect(page).to have_content "Sunday Roast"
       within(".event-show__host") do
         expect(page).to have_content "Joeseph Bloggs"
@@ -157,11 +157,11 @@ describe "Admin event management" do
         expect(page).to have_content "Roast Lamb with trimmings"
         expect(page).to have_content "Tiramisu"
       end
-      within(".photos") do
+      within(".event-show__photo-gallery") do
         path = %r(\/uploads\/events\/(\d)+\/photos\/(\h){32}.png)
-        expect(find("img.photo-1")["src"]).to have_content path
-        expect(find("img.photo-2")["src"]).to have_content path
-        expect(find("img.photo-1")["src"]).to_not eq find("img.photo-2")["src"]
+        expect(find("img[@data-index='0']")["src"]).to have_content path
+        expect(find("img[@data-index='1']")["src"]).to have_content path
+        expect(find("img[@data-index='0']")["src"]).to_not eq find("img[@data-index='1']")["src"]
       end
     end
 
@@ -251,11 +251,11 @@ describe "Admin event management" do
 
     visit root_path
     click_link "Sunday Roast"
-    within(".photos") do
+    within(".event-show__photo-gallery") do
       path = %r(\/uploads\/events\/(\d)+\/photos\/(\h){32}.png)
-      expect(find("img.photo-1")["src"]).to have_content path
-      expect(find("img.photo-2")["src"]).to have_content path
-      expect(find("img.photo-1")["src"]).to_not eq find("img.photo-2")["src"]
+      expect(find("img[@data-index='0']")["src"]).to have_content path
+      expect(find("img[@data-index='1']")["src"]).to have_content path
+      expect(find("img[@data-index='0']")["src"]).to_not eq find("img[@data-index='1']")["src"]
     end
   end
 

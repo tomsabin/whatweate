@@ -14,6 +14,7 @@ class Admin
       @event = find_event.decorate
       @event_host = @event.host
       @event_user = @event_host.user
+      render layout: "admin_event_preview"
     end
 
     def new
