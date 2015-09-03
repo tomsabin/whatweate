@@ -11,6 +11,7 @@
   width: 100%;
 }
 
+.event-show__gallery-primary-photo,
 .event-show__gallery-photo {
   opacity: .5;
   width: 85%;
@@ -21,6 +22,23 @@
 
   &.is-selected {
     opacity: 1;
+  }
+}
+
+.no-js {
+  .event-show__no-js-container {
+    @include container;
+  }
+
+  .event-show__gallery-primary-photo {
+    opacity: 1;
+    width: 100%;
+  }
+
+  .event-show__gallery-photo {
+    float: left;
+    opacity: 1;
+    width: 33.33%;
   }
 }
 

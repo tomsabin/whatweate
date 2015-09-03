@@ -1,9 +1,11 @@
 <% if event.photos.present? %>
-  <div class="event-show__photo-gallery">
-    <img class="event-show__gallery-photo" src="<%= event.primary_photo.url %>" alt="<%= event.title %>">
-    <% event.photos.each_with_index do |photo, index| %>
-      <img class="event-show__gallery-photo" src="<%= photo.url %>" alt="Event photo">
-    <% end %>
+  <div class="event-show__no-js-container">
+    <div class="event-show__photo-gallery">
+      <img class="event-show__gallery-primary-photo" src="<%= event.primary_photo.url %>" alt="<%= event.title %>">
+      <% event.photos.each_with_index do |photo, index| %>
+        <img class="event-show__gallery-photo" src="<%= photo.url %>" alt="Event photo">
+      <% end %>
+    </div>
   </div>
 
   <script>
@@ -47,7 +49,6 @@
       <i class="fa fa-clock-o"></i>
       <%= event.formatted_time %>
     </p>
-
 
     <p class="event-show__event-price">
       <i class="fa fa-credit-card"></i>

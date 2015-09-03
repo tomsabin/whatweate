@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
+  <script>
+    (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)
+  </script>
   <%= render "layouts/head", layout: "application", title: content_for?(:title) ? yield(:title) : "WhatWeAte" %>
   <body id="<%= page_id %>">
     <% if page_id == "pages-home" %>
