@@ -23,6 +23,7 @@ describe Event do
     it { should allow_value("https://facebook.com", "https://twitter.com", "http://google.com", "http://www.fb.com").for(:location_url) }
     it { should_not allow_value("www.facebook.com", "facebook.com", "<script>alert('hello')</script>", "ftp://e.com").for(:location_url) }
     it { should allow_value(nil).for(:photos) }
+    it { should validate_length_of(:title).is_at_most(50) }
     it { should validate_length_of(:short_description).is_at_most(80) }
 
     describe "photos" do

@@ -8,7 +8,7 @@
 
   <%= f.input :slug, wrapper_html: { class: "col s12 m6" }, label: "URL" if @event.persisted? %>
 
-  <%= f.input :title, wrapper_html: { class: "col s12" } %>
+  <%= f.input :title, wrapper_html: { class: "col s12" }, input_html: { length: 50 } %>
 
   <%= f.input :date_date, as: :string, label: "Date", placeholder: "e.g. 2015-08-28",
                           wrapper_html: { class: "col s8 m5" },
