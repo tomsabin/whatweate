@@ -3,7 +3,7 @@ FactoryGirl.define do
     association       :host
     state             "available"
     date              { rand(5..20).days.from_now }
-    title             { Faker::Company.catch_phrase }
+    title             { Faker::Company.catch_phrase.truncate(50) }
     location          { Faker::Address.city }
     location_url      { Faker::Internet.url("example.com") }
     description       { Faker::Lorem.paragraph }
