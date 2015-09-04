@@ -1,0 +1,32 @@
+<p>Hi <%= @user_full_name %>,</p>
+
+<p>You are booked in to attend <%= @event.title %>.</p>
+
+<hr>
+
+<p><strong>Event details</strong></p>
+
+<p>
+  <%= @event.title %><br>
+  <%= @event.formatted_date_time %><br>
+  <%= @event.location %> (<%= link_to(@event.location_url, @event.location_url) %>)<br>
+</p>
+
+<p><strong>Order details</strong></p>
+
+<p>1 x seat (<%= @booking_total_payment %>)</p>
+
+<p>
+  TOTAL
+  <br>
+  <%= @booking_total_payment %>
+</p>
+
+<hr>
+
+<p>Please contact us at hello@whatweate.co for any queries about your booking.</p>
+
+<p>
+  Kind regards,<br>
+  <%= link_to("WhatWeAte", "http://whatweate.co") %>
+</p>

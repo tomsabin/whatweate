@@ -65,6 +65,14 @@
   padding-top: 16px;
 }
 
+.event-new__external-link {
+  text-decoration: underline;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
 .event-new__description-input {
   @extend %form-input;
   display: block;

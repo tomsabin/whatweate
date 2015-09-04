@@ -44,16 +44,23 @@ describe UserMailer do
     end
 
     it "includes the event overview" do
-      expect(mail.body.encoded).to include "You are booked in to attend #{event.title} at 20th January 2015 7:45pm."
+      expect(mail.body.encoded).to include "You are booked in to attend #{event.title}."
     end
 
-    it "includes the event details" do
-      expect(mail.body.encoded).to include "#{event.title}\r\n#{event.location} (#{event.location_url})\r\n20th January 2015 7:45pm"
+    it "includes the event title" do
+      expect(mail.body.encoded).to include "#{event.title}"
     end
 
-    it "includes the order details" do
-      expect(mail.body.encoded).to include "1 x seat (£15.00)"
-      expect(mail.body.encoded).to include "TOTAL\r\n£15.00"
+    it "includes the event location" do
+      expect(mail.body.encoded).to include "#{event.location}"
+    end
+
+    it "includes the event date" do
+      expect(mail.body.encoded).to include "20th January 2015 7:45pm"
+    end
+
+    it "includes the order price" do
+      expect(mail.body.encoded).to include "15.00"
     end
   end
 end
