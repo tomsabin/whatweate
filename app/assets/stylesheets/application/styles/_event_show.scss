@@ -198,10 +198,10 @@
   text-align: center;
 
   .stripe-button-el {
+    @extend .event-show__booking-button;
     background: none;
     border-radius: 0;
     box-shadow: none;
-    @extend .event-show__booking-button;
     padding: 0;
 
     span {
