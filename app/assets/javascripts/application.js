@@ -4,7 +4,6 @@
 //= require jquery.ajaxchimp
 //= require respond
 //= require moment
-//= require slick
 //= require flickity
 //= require_tree ./shared
 //= require_tree ./application

@@ -133,44 +133,35 @@
   <div class="site-quotes__container">
     <h3 class="site-quotes__title">What people are saying</h3>
 
-    <div class="site-quotes__quotes" id="siteQuotes">
-      <div>
-        <blockquote class="site-quotes__quote">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci enim non facilis, alias, amet nostrum nemo maxime culpa hic dicta tempora, maiores similique tenetur quia odit laudantium facere mollitia iusto!</p>
-          <footer>
-            <p><cite>Joe Bloggs</cite></p>
-          </footer>
-        </blockquote>
-      </div>
-      <div>
-        <blockquote class="site-quotes__quote">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci enim non facilis, alias, amet nostrum nemo maxime culpa hic dicta tempora, maiores similique tenetur quia odit laudantium facere mollitia iusto!</p>
-          <footer>
-            <p><cite>Joe Bloggs</cite></p>
-          </footer>
-        </blockquote>
-      </div>
-      <div>
-        <blockquote class="site-quotes__quote">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci enim non facilis, alias, amet nostrum nemo maxime culpa hic dicta tempora, maiores similique tenetur quia odit laudantium facere mollitia iusto!</p>
-          <footer>
-            <p><cite>Joe Bloggs</cite></p>
-          </footer>
-        </blockquote>
-      </div>
+    <div class="site-quotes__quotes">
+      <blockquote class="site-quotes__quote">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci enim non facilis, alias, amet nostrum nemo maxime culpa hic dicta tempora, maiores similique tenetur quia odit laudantium facere mollitia iusto!</p>
+        <footer>
+          <p><cite>Joe Bloggs</cite></p>
+        </footer>
+      </blockquote>
+      <blockquote class="site-quotes__quote">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci enim non facilis, alias, amet nostrum nemo maxime culpa hic dicta tempora, maiores similique tenetur quia odit laudantium facere mollitia iusto!</p>
+        <footer>
+          <p><cite>Joe Bloggs</cite></p>
+        </footer>
+      </blockquote>
+      <blockquote class="site-quotes__quote">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci enim non facilis, alias, amet nostrum nemo maxime culpa hic dicta tempora, maiores similique tenetur quia odit laudantium facere mollitia iusto!</p>
+        <footer>
+          <p><cite>Joe Bloggs</cite></p>
+        </footer>
+      </blockquote>
     </div>
   </div>
 </section>
 
 <script>
   mailChimpNewsletter.init("#newsletterForm", "#newsletterResponse p");
-  <% unless Rails.env.test? %>
-    $(document).ready(function() {
-      $("#siteQuotes").slick({
-        centerMode: true,
-        centerPadding: "32px",
-        arrows: false
-      });
-    });
-  <% end %>
+  $('.site-quotes__quotes').flickity({
+    cellAlign: 'center',
+    cellSelector: '.site-quotes__quote',
+    pageDots: false,
+    wrapAround: true
+  });
 </script>

@@ -2,7 +2,6 @@
   background-color: $pale-gray-color;
   padding-bottom: 32px;
   padding-top: 32px;
-  user-select: none;
 }
 
 .site-quotes__container {
@@ -16,34 +15,11 @@
 }
 
 .site-quotes__quotes {
-  cursor: grab;
-  margin: 0 auto;
-  max-width: 600px;
-  padding: 16px;
-  position: relative;
+  margin: 16px auto;
 
-  &:after,
-  &:before {
-    background-size: contain;
-    content: "";
-    height: 40px;
-    position: absolute;
-    width: 40px;
-  }
-
-  &:after {
-    background-image: image-url("icons/quotes-closing.png");
-    bottom: 0;
-    right: 32px;
-  }
-
-  &:before {
-    background-image: image-url("icons/quotes-opening.png");
-    left: 32px;
-    top: 0;
-  }
 }
 
 .site-quotes__quote {
-  padding: 0 8px;
+  padding: 0 32px;
+  width: 70%;
 }
