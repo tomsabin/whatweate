@@ -1,7 +1,41 @@
-<div class="wip">
-  <%= render partial: "partials/event_thumbnail", locals: { link: "#", event: @event } %>
-  <%= render partial: "events/event_content", locals: { event: @event, host: @event_host, user: @event_user, guests: [] } %>
+<style>
+  .admin-preview__event-thumbnail {
+    margin: 32px auto;
+    width: 292px;
+  }
 
+  .admin-preview__actions {
+    background-color: #26a69a;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 32px;
+
+    bottom: 0;
+    height: 85px;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+
+  .admin-preview__actions a {
+    color: #ffffff;
+    font-family: sans-serif;
+  }
+
+  .admin-preview__actions a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="admin-preview__event-thumbnail">
+  <%= render partial: "partials/event_thumbnail", locals: { link: "#", event: @event } %>
+</div>
+
+<div class="admin-preview__event-show">
+  <%= render partial: "events/event_content", locals: { event: @event, host: @event_host, user: @event_user, guests: [] } %>
+</div>
+
+<div class="admin-preview__actions">
   <%= form_for [:admin, @event] do |f| %>
     <%= f.hidden_field :host_id %>
     <%= f.hidden_field :title %>
@@ -14,7 +48,9 @@
     <%= f.hidden_field :menu %>
 
     <%= link_to "Back", admin_event_path(@event) %>
+    |
     <%= link_to "Edit event", edit_admin_event_path(@event) %>
+    |
     <%= link_to "Approve", approve_admin_event_path(@event), method: :patch if @event.pending? %>
   <% end %>
 </div>

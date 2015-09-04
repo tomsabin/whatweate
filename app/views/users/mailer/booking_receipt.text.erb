@@ -1,6 +1,6 @@
 Hi <%= @user_full_name %>,
 
-You are booked in to attend <%= @event.title %> at <%= @event.formatted_date %>.
+You are booked in to attend <%= @event.title %> at <%= @event.formatted_date_time %>.
 
 -------------
 Event details
@@ -8,7 +8,7 @@ Event details
 
 <%= @event.title %>
 <%= @event.location %> (<%= @event.location_url %>)
-<%= @event.formatted_date %>
+<%= @event.formatted_date_time %>
 
 -------------
 Order details

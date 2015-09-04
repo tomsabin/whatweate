@@ -16,7 +16,7 @@
             for <%= @event.seats %> seats
             at <%= humanized_money_with_symbol @event.price %>
           </p>
-          <p><%= @event.formatted_date %></p>
+          <p><%= @event.formatted_date_time %></p>
           <p><%= link_to @event.location, @event.location_url %></p>
         </div>
 
