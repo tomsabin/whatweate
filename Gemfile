@@ -32,6 +32,7 @@ gem "jquery-turbolinks"
 gem "newrelic_rpm"
 gem "sidekiq"
 gem "autoprefixer-rails"
+gem "carrierwave-aws"
 
 group :production do
   gem 'rails_12factor'
