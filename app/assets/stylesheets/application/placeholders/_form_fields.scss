@@ -1,0 +1,47 @@
+%input-label {
+  display: block;
+  margin: 1em 0 .5em;
+}
+
+%form-input,
+%form-textarea {
+  appearance: none;
+  background-color: $light-gray-color;
+  border: 1px solid $brown-color;
+  border-radius: 0;
+  box-sizing: border-box;
+  display: block;
+  font-size: .9em;
+  line-height: 1.4em;
+  padding: 8px;
+  margin: 0;
+  width: 100%;
+  word-spacing: 1px;
+
+  &:focus {
+    outline: 2px solid $primary-color;
+  }
+}
+
+%form-textarea {
+  vertical-align: top;
+}
+
+%form-submit {
+  @extend %button;
+  appearance: none;
+  background-color: $primary-color;
+  border-radius: 0;
+  color: $white-color;
+  cursor: pointer;
+  font-size: .9em;
+  line-height: 1.4em;
+
+  &:focus {
+    outline: 2px solid $primary-color;
+  }
+
+  &:hover {
+    background-color: $primary-darken-color;
+  }
+}

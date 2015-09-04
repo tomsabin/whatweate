@@ -1,0 +1,12 @@
+# https://github.com/brigade/scss-lint/blob/master/lib/scss_lint/linter/README.md#linters
+
+linters:
+  StringQuotes:
+    enabled: true
+    style: double_quotes
+  PlaceholderInExtend:
+    enabled: false
+  SelectorFormat:
+    convention: hyphenated_BEM
+  LeadingZero:
+    style: exclude_zero

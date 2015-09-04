@@ -1,0 +1,30 @@
+.site-header {
+  @include container;
+  box-sizing: border-box;
+  display: table;
+  padding: 8px;
+  width: 100%;
+}
+
+.site-header__container {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .3), rgba(0, 0, 0, .0));
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 3;
+}
+
+.site-header__logo,
+.site-header__navigation {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.site-header__navigation {
+  width: 100px;
+
+  @include breakpoint($tablet) {
+    width: auto;
+  }
+}

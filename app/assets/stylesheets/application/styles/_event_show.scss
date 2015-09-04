@@ -1,0 +1,265 @@
+.event-show__container {
+  @include container;
+}
+
+.event-show__primary-photo {
+  display: block;
+  width: 100%;
+}
+
+.event-show__photo-gallery {
+  width: 100%;
+}
+
+.event-show__gallery-primary-photo,
+.event-show__gallery-photo {
+  opacity: .5;
+  width: 85%;
+
+  @include breakpoint($container * 1.15) {
+    width: $container;
+  }
+
+  &.is-selected {
+    opacity: 1;
+  }
+}
+
+.no-js {
+  .event-show__no-js-container {
+    @include container;
+  }
+
+  .event-show__gallery-primary-photo {
+    opacity: 1;
+    width: 100%;
+  }
+
+  .event-show__gallery-photo {
+    float: left;
+    opacity: 1;
+    width: 33.33%;
+  }
+}
+
+.event-show__large-section {
+  background-color: $pale-gray-color;
+  padding: 16px;
+  text-align: center;
+}
+
+.event-show__title {
+  @extend %heading-3;
+}
+
+.event-show__location {
+  margin-top: 12px;
+}
+
+.event-show__event-date {
+  margin-top: 6px;
+}
+
+.event-show__event-time {
+  margin-top: 6px;
+}
+
+.event-show__event-price {
+  margin-top: 6px;
+}
+
+
+.event-show__map-link {
+  text-decoration: underline;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.event-show__host {
+  @include span(12 of 12);
+  padding-bottom: 16px;
+  padding-top: 8px;
+
+  @include breakpoint($tablet) {
+    @include span(5 of 12);
+    box-sizing: border-box;
+    padding-right: gutter(16px);
+  }
+
+  @include breakpoint($desktop) {
+    @include span(4 of 12);
+  }
+}
+
+.event-show__host-title {
+  @extend %heading-4;
+  margin: 8px 0 16px;
+  text-align: center;
+}
+
+.event-show__host-avatar {
+  border: 3px solid $gray-color;
+  border-radius: 50%;
+  display: block;
+  height: 200px;
+  margin: 0 auto;
+  object-fit: cover;
+  width: 200px;
+}
+
+.event-show__host-full-name {
+  @extend %heading-6;
+
+  margin-top: 24px;
+  text-align: center;
+}
+
+.event-show__host-bio {
+  margin: 16px auto 0;
+  max-width: $desktop;
+  padding: 0 16px;
+  text-align: center;
+}
+
+.event-show__event-details {
+  @include span(12 of 12);
+  box-sizing: border-box;
+  padding-right: 16px;
+
+  @include breakpoint($tablet) {
+    @include span(last 7 of 12);
+  }
+
+  @include breakpoint($desktop) {
+    @include span(last 8 of 12);
+  }
+}
+
+.event-show__event-description {
+  background-color: $pale-gray-color;
+  padding: 16px;
+
+  @include breakpoint($tablet) {
+    background-color: transparent;
+    border-bottom: 1px solid $light-gray-color;
+  }
+}
+
+.event-show__event-menu {
+  padding: 16px;
+}
+
+.event-show__event-detail-title {
+  @extend %heading-4;
+  padding-bottom: 8px;
+}
+
+.event-show__markdown {
+  h1 {
+    @extend %heading-5;
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+
+  h2, h3, h4, h5, h6 {
+    @extend %heading-6;
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+
+  p {
+    padding-bottom: 8px;
+  }
+
+  blockquote {
+    background-color: lighten($pale-gray-color, 2%);
+    border-left: 1px solid $primary-color;
+    padding: 16px 16px 8px;
+  }
+
+  hr {
+    margin-top: 22px;
+    padding-top: 22px;
+  }
+
+  ul,
+  ol {
+    padding-bottom: 8px;
+  }
+}
+
+.event-show__event-booking {
+  @include span(12 of 12);
+  background-color: $pale-gray-color;
+  padding-bottom: 16px;
+  padding-top: 16px;
+  text-align: center;
+
+  .stripe-button-el {
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    @extend .event-show__booking-button;
+    padding: 0;
+
+    span {
+      @extend %secondary-font;
+      background: none;
+      border-radius: 0;
+      box-shadow: none;
+      font-size: 1em;
+      font-weight: normal;
+      padding: 2px 8px;
+      text-shadow: none;
+      word-spacing: 1px;
+    }
+
+    &:not(:disabled):active {
+      background: $primary-darken-color;
+
+      span {
+        background: $primary-darken-color;
+      }
+    }
+  }
+
+  @include breakpoint($tablet) {
+    background-color: transparent;
+    border-top: 1px solid $light-gray-color;
+    padding-bottom: 64px;
+    padding-top: 32px;
+  }
+}
+
+.event-show__event-size {
+  margin-bottom: 8px;
+}
+
+.event-show__booking-button {
+  @extend %base-button-style;
+  background-color: $primary-color;
+  color: $white-color;
+  cursor: pointer;
+  font-size: 1em;
+  user-select: none;
+
+  &:focus {
+    outline: 2px solid $primary-color;
+  }
+
+  &:hover {
+    background-color: $primary-darken-color;
+  }
+
+  &:disabled {
+    background-color: lighten($gray-color, 15%);
+    cursor: default;
+  }
+}
+
+.event-show__booking-help-text {
+  color: $gray-color;
+  margin-top: 9px;
+}

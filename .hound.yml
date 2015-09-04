@@ -1,3 +1,8 @@
 ruby:
   enabled: false
   config_file: .rubocop.yml
+
+scss:
+  config_file: .scss-lint.yml
+  exclude:
+    - "app/vendor/stylesheets/**/*"

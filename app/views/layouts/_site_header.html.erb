@@ -1,0 +1,54 @@
+<header class="site-header">
+  <div class="site-header__logo">
+    <%= link_to root_path, alt: "WhatWeAte", title: "WhatWeAte", class: "site-logo" do %>
+      <%= image_tag "logo-icon.png", class: "site-logo__icon" %>
+      <%= image_tag "logo-text.png", class: "site-logo__text", alt: "WhatWeAte" %>
+    <% end %>
+  </div>
+
+  <div class="site-header__navigation">
+    <div class="navigation-menu">
+      <input class="navigation-menu__hidden-input" type="checkbox" id="mobile-header-menu">
+      <label class="navigation-menu__mobile-toggle" for="mobile-header-menu">Menu</label>
+      <ul class="navigation-menu__links">
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to dashboard_path, class: "navigation-menu__link-alt" do %>
+              <span>Dashboard</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete, class: "navigation-menu__link-alt" do %>
+              <span>Log out</span>
+            <% end %>
+          </li>
+          <% if current_user.host %>
+            <li>
+              <%= link_to new_event_path, class: "navigation-menu__link" do %>
+                <span>Create an event</span>
+              <% end %>
+            </li>
+          <% end %>
+        <% else %>
+          <li>
+            <%= link_to new_registration_path(:user), class: "navigation-menu__link-alt" do %>
+              <span>Sign up</span>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path, class: "navigation-menu__link-alt" do %>
+              <span>Log in</span>
+            <% end %>
+          </li>
+        <% end %>
+        <% unless current_user && current_user.host %>
+          <li>
+            <a href="https://whatweate.typeform.com/to/IXZyhO" class="navigation-menu__link typeform-share" data-mode="1" target="_blank" data-ga="conversion">
+              <span>Become a host</span>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</header>

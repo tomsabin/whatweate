@@ -1,0 +1,44 @@
+<div class="complete-profile">
+  <%= simple_form_for current_user, url: { action: "update" }, defaults: { error: true } do |f| %>
+    <div class="complete-profile__errors">
+      <%= f.error_notification %>
+    </div>
+
+    <%= f.input :email,
+          input_html: { class: "complete-profile__text-input" },
+          label_html: { class: "complete-profile__text-label" } %>
+    <%= f.input :first_name,
+          input_html: { class: "complete-profile__text-input" },
+          label_html: { class: "complete-profile__text-label" } %>
+    <%= f.input :last_name,
+          input_html: { class: "complete-profile__text-input" },
+          label_html: { class: "complete-profile__text-label" } %>
+    <%= f.input :date_of_birth, html5: true, placeholder: "YYYY-MM-DD",
+          input_html: { class: "complete-profile__text-input" },
+          label_html: { class: "complete-profile__text-label" } %>
+    <%= f.input :date_of_birth_visible, label: "Show on my profile",
+          input_html: { class: "complete-profile__visibility-checkbox-input" },
+          label_html: { class: "complete-profile__visibility-checkbox-label" },
+          wrapper_html: { class: "complete-profile__visibility-checkbox" } %>
+    <%= f.input :profession,
+          input_html: { class: "complete-profile__text-input" },
+          label_html: { class: "complete-profile__text-label" } %>
+    <%= f.input :greeting,
+          input_html: { class: "complete-profile__text-input" },
+          label_html: { class: "complete-profile__text-label" } %>
+    <%= f.input :bio,
+          input_html: { class: "complete-profile__textarea-input" },
+          label_html: { class: "complete-profile__text-label" } %>
+    <%= f.input :mobile_number, as: :tel, html5: true,
+          input_html: { class: "complete-profile__text-input" },
+          label_html: { class: "complete-profile__text-label" } %>
+    <%= f.input :mobile_number_visible, label: "Show on my profile",
+          input_html: { class: "complete-profile__visibility-checkbox-input" },
+          label_html: { class: "complete-profile__visibility-checkbox-label" },
+          wrapper_html: { class: "complete-profile__visibility-checkbox" } %>
+    <%= f.input :favorite_cuisine,
+          input_html: { class: "complete-profile__text-input" },
+          label_html: { class: "complete-profile__text-label" } %>
+    <%= f.button :submit, "Save profile", data: { disable_with: "Saving" }, class: "complete-profile__submit" %>
+  <% end %>
+</div>

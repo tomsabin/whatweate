@@ -47,6 +47,14 @@ describe CreateBooking do
 
     it { expect(described_class.perform(event, user, StripeHelpers::CARD_DECLINED_TOKEN)).to eq "Your card was declined." }
     it { expect { described_class.perform(event, user, StripeHelpers::CARD_DECLINED_TOKEN) }.to_not change { Booking.count } }
+
+    it "does not email a receipt to the User" do
+      ActionMailer::Base.deliveries.clear
+      user = FactoryGirl.create(:user)
+      expect(ActionMailer::Base.deliveries.count).to eq(0)
+      described_class.perform(event, user, StripeHelpers::CARD_DECLINED_TOKEN)
+      expect(ActionMailer::Base.deliveries.count).to eq(0)
+    end
   end
 
   context "booking successfully created" do
@@ -72,6 +80,18 @@ describe CreateBooking do
         described_class.perform(event, FactoryGirl.create(:user), StripeHelpers::VALID_CARD_TOKEN)
       end
       expect(Booking.count).to eq 2
+    end
+
+    it "emails a receipt to the User" do
+      ActionMailer::Base.deliveries.clear
+      user = FactoryGirl.create(:user)
+      expect(ActionMailer::Base.deliveries.count).to eq(0)
+      VCR.use_cassette("stripe/valid_card") do
+        described_class.perform(event, user, StripeHelpers::VALID_CARD_TOKEN)
+      end
+
+      expect(ActionMailer::Base.deliveries.count).to eq(1)
+      expect(ActionMailer::Base.deliveries.last.subject).to eq("Your receipt for #{event.title}")
     end
   end
 end

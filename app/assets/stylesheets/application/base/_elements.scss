@@ -1,0 +1,76 @@
+a {
+  color: $black-color;
+  text-decoration: none;
+}
+
+p {
+  @extend %primary-font;
+  color: $black-color;
+}
+
+b,
+strong {
+  font-weight: 600;
+}
+
+i,
+em,
+var,
+dfn {
+  font-style: italic;
+}
+
+cite:before {
+  content: "—";
+}
+
+u {
+  text-decoration: underline;
+}
+
+sup {
+  font-size: smaller;
+  vertical-align: super;
+}
+
+sub {
+  font-size: smaller;
+  vertical-align: sub;
+}
+
+small {
+  font-size: smaller;
+}
+
+abbr {
+  border-bottom: 1px dotted $gray-color;
+  cursor: help;
+}
+
+tt,
+kbd,
+code,
+samp {
+  font-family: monospace;
+}
+
+q {
+  quotes: initial;
+}
+
+q::before {
+  content: open-quote;
+}
+
+q::after {
+  content: close-quote;
+}
+
+mark {
+  background-color: lighten($primary-color, 30%);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid $light-gray-color;
+}

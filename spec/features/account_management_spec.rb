@@ -19,11 +19,11 @@ describe "Account management" do
 
     expect(page).to have_content "Please complete your profile"
 
-    click_link "Sign out"
+    click_link "Log out"
 
     visit root_path
-    click_link "Sign in"
-    click_button "Sign in"
+    click_link "Log in"
+    click_button "Log in"
 
     within(".user_email") { expect(page).to_not have_content "can't be blank" }
     expect(page).to_not have_content "Please review the following errors"
@@ -31,7 +31,7 @@ describe "Account management" do
 
     fill_in "Email", with: "user@example.com"
     fill_in "Password", with: "letmein!!"
-    click_button "Sign in"
+    click_button "Log in"
 
     expect(page).to_not have_content "Signed in successfully"
     expect(page).to have_field "user_email", with: "user@example.com"
@@ -54,18 +54,15 @@ describe "Account management" do
 
     click_button "Save profile"
     expect(page).to have_content "Your profile has successfully been saved"
+    expect(page).to have_content "Cookie Monster"
 
-    expect(page).to have_content "Email: user@example.com"
-    expect(page).to have_content "First name: Cookie"
-    expect(page).to have_content "Last name: Monster"
-    expect(page).to have_content "Date of birth: 18th June 1990"
-    expect(page).to have_content "Date of birth is hidden on public view"
-    expect(page).to have_content "Profession: Cookie monster"
-    expect(page).to have_content "Greeting: Cookies cookies cookies"
-    expect(page).to have_content "Bio: I like cookies"
-    expect(page).to have_content "Mobile number: 0123456789"
-    expect(page).to have_content "Mobile number is hidden on public view"
-    expect(page).to have_content "Favourite cuisine: Chocolate"
+    expect(page).to have_content "user@example.com"
+    expect(page).to have_content "18th June 1990 (not publicly visible)"
+    expect(page).to have_content "Cookie monster"
+    expect(page).to have_content "Cookies cookies cookies"
+    expect(page).to have_content "I like cookies"
+    expect(page).to have_content "0123456789 (not publicly visible)"
+    expect(page).to have_content "Chocolate"
   end
 
   context "as a user that has completed their profile" do
@@ -73,14 +70,13 @@ describe "Account management" do
 
     scenario "forgets their password" do
       visit root_path
-      click_link "Sign in"
-      click_button "Sign in"
+      click_link "Log in"
+      click_button "Log in"
 
       expect(page).to have_content "Your email/password combination was incorrect"
 
       click_link "Forgot your password?"
       click_button "Send me password reset instructions"
-      expect(page).to have_content "Please review the following errors"
       within(".user_email") { expect(page).to have_content "can't be blank" }
 
       fill_in "user_email", with: "user@example.com"
@@ -91,7 +87,7 @@ describe "Account management" do
 
       click_button "Change my password"
       expect(page).to have_content "Please review the following errors"
-      within(".user_password") { expect(page).to have_content "can't be blank" }
+      expect(page).to have_content "Password can't be blank"
 
       fill_in "user_password", with: "newpassword"
       fill_in "user_password_confirmation", with: "newpassword"
@@ -99,12 +95,12 @@ describe "Account management" do
 
       expect(page).to have_content "Your password has been changed successfully. You are now signed in."
 
-      click_link "Sign out"
-      click_link "Sign in"
+      click_link "Log out"
+      click_link "Log in"
 
       fill_in "user_email", with: "user@example.com"
       fill_in "user_password", with: "newpassword"
-      click_button "Sign in"
+      click_button "Log in"
 
       expect(page).to have_content "Signed in successfully"
       expect(page).to_not have_content "Please complete your profile"
@@ -117,14 +113,14 @@ describe "Account management" do
     context "having successfully signed in" do
       before(:each) do
         visit root_path
-        click_link "Sign in"
+        click_link "Log in"
         fill_in "Email", with: "user@example.com"
         fill_in "Password", with: "letmein!!"
-        click_button "Sign in"
+        click_button "Log in"
       end
 
       scenario "updates their profile" do
-        click_link "Profile"
+        click_link "Dashboard"
         click_link "Edit profile"
 
         fill_in "user_email", with: "invalid"
@@ -150,24 +146,24 @@ describe "Account management" do
 
         click_button "Save profile"
         expect(page).to have_content "Your profile has successfully been saved"
-        expect(page).to have_content "Email: me@cookie.com"
-        expect(page).to have_content "First name: Cookie"
-        expect(page).to have_content "Last name: Monster"
-        expect(page).to have_content "Date of birth: 18th June 1990"
-        expect(page).to have_content "Profession: Cookie monster"
-        expect(page).to have_content "Bio: I like cookies"
-        expect(page).to have_content "Greeting: Cookies cookies cookies"
-        expect(page).to have_content "Mobile number: 0123456789"
-        expect(page).to have_content "Favourite cuisine: Chocolate"
+        expect(page).to have_content "Cookie Monster"
+
+        expect(page).to have_content "me@cookie.com"
+        expect(page).to have_content "18th June 1990"
+        expect(page).to have_content "Cookie monster"
+        expect(page).to have_content "I like cookies"
+        expect(page).to have_content "Cookies cookies cookies"
+        expect(page).to have_content "0123456789"
+        expect(page).to have_content "Chocolate"
 
         click_link "Edit profile"
         expect(page).to have_field "user_date_of_birth", with: "1990-06-18"
       end
 
       scenario "user updates their password" do
-        click_link "Profile"
+        click_link "Dashboard"
         click_link "Edit profile"
-        click_link "Change your password"
+        click_link "Change your password", match: :first
 
         fill_in "user_current_password", with: "this-is-not-my-password"
         fill_in "user_password", with: "newpassword"
@@ -183,25 +179,25 @@ describe "Account management" do
 
         expect(page).to have_content "Your password has been changed successfully"
 
-        click_link "Sign out"
-        click_link "Sign in"
+        click_link "Log out"
+        click_link "Log in"
 
         fill_in "Email", with: "user@example.com"
         fill_in "Password", with: "letmein!!"
-        click_button "Sign in"
+        click_button "Log in"
 
         expect(page).to have_content "Your email/password combination was incorrect"
 
         fill_in "Password", with: "newpassword"
-        click_button "Sign in"
+        click_button "Log in"
 
         expect(page).to have_content "Signed in successfully"
       end
 
       scenario "deletes their account" do
-        click_link "Profile"
+        click_link "Dashboard"
         click_link "Edit profile"
-        click_link "Delete your account"
+        click_link "Delete your account", match: :first
 
         expect(page).to have_content "Are you sure you want to delete your account?"
         expect(page).to have_link "No, cancel"
@@ -211,60 +207,74 @@ describe "Account management" do
 
         expect(page).to have_content "Your account has been successfully been deleted. We hope to see you again soon"
 
-        click_link "Sign in"
+        click_link "Log in"
 
         fill_in "Email", with: "user@example.com"
         fill_in "Password", with: "letmein!!"
-        click_button "Sign in"
+        click_button "Log in"
 
         expect(page).to have_content "Your email/password combination was incorrect"
       end
 
-      scenario "adds social networks to verify account, uses them to sign in and unlinks them from the account" do
+      scenario "adds social networks to verify account, uses them to log in and unlinks them from the account" do
         setup_omniauth
         setup_valid_facebook_callback
         setup_valid_twitter_callback
 
-        click_link "Profile"
-        click_link "Verify your account with Facebook"
+        click_link "Dashboard"
+        click_link "Edit profile"
+        click_link "Connect with Facebook", match: :first
 
         expect(page).to have_content "Successfully verified your account with Facebook"
-        expect(page).to have_content "Verified with Facebook"
-
-        click_link "Verify your account with Twitter"
-
-        expect(page).to have_content "Successfully verified your account with Twitter"
-        expect(page).to have_content "Verified with Facebook"
-        expect(page).to have_content "Verified with Twitter"
-
-        click_link "Sign out"
-        click_link "Sign in"
-        within(".social-networks") { click_link "Facebook" }
-
-        expect(page).to have_content "Successfully authenticated from Facebook account"
-        click_link "Profile"
-        expect(page).to have_content "Verified with Facebook"
-        expect(page).to have_content "Verified with Twitter"
-
-        click_link "Sign out"
-        click_link "Sign in"
-        within(".social-networks") { click_link "Twitter" }
-
-        expect(page).to have_content "Successfully authenticated from Twitter account"
-        click_link "Profile"
-        expect(page).to have_content "Verified with Facebook"
-        expect(page).to have_content "Verified with Twitter"
 
         click_link "Edit profile"
-        click_link "Disconnect Facebook from your account"
+        click_link "View public profile", match: :first
+        expect(page).to have_css "i[title='Verified with Facebook']"
+
+        click_link "Dashboard"
+        click_link "Edit profile"
+        click_link "Connect with Twitter", match: :first
+
+        expect(page).to have_content "Successfully verified your account with Twitter"
+
+        click_link "Edit profile"
+        click_link "View public profile", match: :first
+        expect(page).to have_css "i[title='Verified with Facebook']"
+        expect(page).to have_css "i[title='Verified with Twitter']"
+
+        click_link "Log out"
+        click_link "Log in"
+        within(".user-sign-in") { click_link "Facebook" }
+
+        expect(page).to have_content "Successfully authenticated from Facebook account"
+        click_link "Dashboard"
+        click_link "Edit profile"
+        click_link "View public profile", match: :first
+        expect(page).to have_css "i[title='Verified with Facebook']"
+        expect(page).to have_css "i[title='Verified with Twitter']"
+
+        click_link "Log out"
+        click_link "Log in"
+        within(".user-sign-in") { click_link "Twitter" }
+
+        expect(page).to have_content "Successfully authenticated from Twitter account"
+        click_link "Dashboard"
+        click_link "Edit profile"
+        click_link "View public profile", match: :first
+        expect(page).to have_css "i[title='Verified with Facebook']"
+        expect(page).to have_css "i[title='Verified with Twitter']"
+
+        click_link "Dashboard"
+        click_link "Edit profile"
+        click_link "Disconnect from Facebook", match: :first
         expect(page).to have_content "Successfully disconnected Facebook from your account"
-        click_link "Disconnect Twitter from your account"
+        click_link "Disconnect from Twitter", match: :first
         expect(page).to have_content "Successfully disconnected Twitter from your account"
 
-        click_link "Sign out"
+        click_link "Log out"
         click_link "Sign up"
 
-        within(".social-networks") { click_link "Facebook" }
+        within(".user-sign-up") { click_link "Facebook" }
         expect(page).to have_content "Please complete your profile"
         expect(page).to_not have_field "user_email", with: "user@example.com"
       end
@@ -279,7 +289,7 @@ describe "Account management" do
 
       visit root_path
       click_link "Sign up"
-      within(".social-networks") { click_link "Facebook" }
+      within(".user-sign-up") { click_link "Facebook" }
 
       expect(page).to have_content "Successfully authenticated from Facebook account"
       expect(page).to have_content "Please complete your profile"
@@ -296,8 +306,7 @@ describe "Account management" do
 
       click_button "Save profile"
       expect(page).to have_content "Your profile has successfully been saved"
-      expect(page).to have_content "First name: C."
-      expect(page).to have_content "Last name: Monster"
+      expect(page).to have_content "C. Monster"
     end
 
     scenario "invalid facebook authentication" do
@@ -305,7 +314,7 @@ describe "Account management" do
 
       visit root_path
       click_link "Sign up"
-      within(".social-networks") { click_link "Facebook" }
+      within(".user-sign-up") { click_link "Facebook" }
 
       expect(page).to have_content 'Could not authenticate you from Facebook because "Invalid credentials"'
       expect(current_path).to eq new_user_registration_path
@@ -316,7 +325,7 @@ describe "Account management" do
 
       visit root_path
       click_link "Sign up"
-      within(".social-networks") { click_link "Twitter" }
+      within(".user-sign-up") { click_link "Twitter" }
 
       expect(page).to have_content "Successfully authenticated from Twitter account"
       expect(page).to have_content "Please complete your profile"
@@ -339,7 +348,7 @@ describe "Account management" do
 
       visit root_path
       click_link "Sign up"
-      within(".social-networks") { click_link "Twitter" }
+      within(".user-sign-up") { click_link "Twitter" }
 
       expect(page).to have_content 'Could not authenticate you from Twitter because "Invalid credentials"'
       expect(current_path).to eq new_user_registration_path
@@ -350,7 +359,7 @@ describe "Account management" do
 
       visit root_path
       click_link "Sign up"
-      within(".social-networks") { click_link "Facebook" }
+      within(".user-sign-up") { click_link "Facebook" }
 
       fill_in "user_first_name", with: "C."
       fill_in "user_date_of_birth", with: "1990-06-18"
@@ -362,13 +371,13 @@ describe "Account management" do
 
       click_button "Save profile"
 
-      click_link "Sign out"
+      click_link "Log out"
 
       setup_valid_twitter_callback
 
       visit root_path
       click_link "Sign up"
-      within(".social-networks") { click_link "Twitter" }
+      within(".user-sign-up") { click_link "Twitter" }
 
       expect(page).to have_content "Successfully authenticated from Twitter account"
       expect(page).to have_content "Please complete your profile"
@@ -382,10 +391,11 @@ describe "Account management" do
       fill_in "user_favorite_cuisine", with: "Food"
 
       click_button "Save profile"
+      click_link "Edit profile"
 
       setup_valid_facebook_callback
 
-      click_link "Verify your account with Facebook"
+      click_link "Connect with Facebook", match: :first
       expect(page).to have_content "Oops, we detected another account with the same Facebook authentication"
     end
   end

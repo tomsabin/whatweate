@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "4.2.1"
+gem "rails", "4.2.2"
 gem "pg"
 gem "puma"
 gem "uglifier"
@@ -26,11 +26,12 @@ gem "wisper-activerecord"
 gem "friendly_id"
 gem "stripe"
 gem "date_time_attribute"
-gem "carrierwave", github: "carrierwaveuploader/carrierwave", ref: "de2a955"
+gem "carrierwave", github: "carrierwaveuploader/carrierwave", ref: "c60ee75291de332fa341308d837f4cb0c15d44ca"
 gem "mini_magick"
 gem "jquery-turbolinks"
 gem "newrelic_rpm"
 gem "sidekiq"
+gem "autoprefixer-rails"
 
 group :production do
   gem 'rails_12factor'
@@ -47,7 +48,9 @@ end
 
 group :development do
   gem "spring"
-  gem "rubocop"
+  gem "rubocop", require: false
+  gem "guard-livereload", require: false
+  gem "scss_lint", require: false
 end
 
 group :test do

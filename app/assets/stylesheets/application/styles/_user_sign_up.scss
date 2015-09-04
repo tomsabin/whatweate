@@ -1,0 +1,83 @@
+.user-sign-up {
+  margin: 24px auto 0;
+  max-width: 280px;
+  padding-bottom: 48px;
+
+  @include breakpoint($tablet) {
+    margin-top: 48px;
+    padding-bottom: 64px;
+  }
+}
+
+.user-sign-up__title {
+  @extend %heading-5;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.user-sign-up__errors {
+  text-align: center;
+}
+
+.user-sign-up__input {
+  @extend %form-input;
+  display: block;
+}
+
+.user-sign-up__label {
+  @extend %primary-font;
+  box-sizing: border-box;
+  display: block;
+  margin-bottom: 2px;
+  margin-top: 8px;
+}
+
+.field-with-errors .user-sign-up__hint {
+  display: none;
+}
+
+.user-sign-up__hint {
+  @extend %primary-font;
+  background-color: $pale-gray-color;
+  box-sizing: border-box;
+  color: lighten($black-color, 15%);
+  display: block;
+  font-size: .8em;
+  padding: 4px;
+  text-align: left;
+  width: 100%;
+}
+
+.user-sign-up__submit,
+.user-sign-up__facebook,
+.user-sign-up__twitter {
+  @extend %form-submit;
+  width: 100px;
+}
+
+.user-sign-up__submit {
+  margin-top: 8px;
+}
+
+.user-sign-up__divider {
+  border-bottom: 1px solid lighten($gray-color, 35%);
+  line-height: .1em;
+  margin: 24px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.user-sign-up__divider-text {
+  @extend %primary-font;
+  background-color: $white-color;
+  color: $gray-color;
+  padding: 0 10px;
+}
+
+.user-sign-up__center-container {
+  text-align: center;
+}
+
+.user-sign-up__facebook {
+  margin-right: 6px;
+}

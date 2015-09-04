@@ -1,0 +1,71 @@
+.complete-profile {
+  margin: 24px auto 0;
+  padding: 0 16px 48px;
+
+  @include breakpoint($tablet) {
+    @include container;
+    margin-top: 48px;
+    max-width: $tablet - 32px;
+    padding-bottom: 64px;
+  }
+}
+
+.com-lete-profile__form {
+  @include breakpoint($tablet) {
+    @include span(6 of 12);
+  }
+}
+
+.complete-profile__errors {
+  text-align: center;
+}
+
+.complete-profile__text-input {
+  @extend %form-input;
+  display: block;
+}
+
+.complete-profile__textarea-input {
+  @extend %form-input;
+  display: block;
+  height: 6em;
+  resize: vertical;
+}
+
+.complete-profile__text-label {
+  @extend %primary-font;
+  box-sizing: border-box;
+  display: block;
+  margin-bottom: 2px;
+  margin-top: 8px;
+}
+
+.complete-profile__visibility-checkbox {
+  @extend %primary-font;
+  background-color: $pale-gray-color;
+  box-sizing: border-box;
+  color: lighten($black-color, 15%);
+  display: block;
+  font-size: .8em;
+  padding: 4px;
+  text-align: left;
+  width: 100%;
+}
+
+.complete-profile__visibility-checkbox-input,
+.complete-profile__visibility-checkbox-label {
+  display: inline-block;
+}
+
+.complete-profile__visibility-checkbox-input {
+  margin-right: 6px;
+}
+
+.complete-profile__visibility-checkbox-label {
+  @extend %primary-font;
+}
+
+.complete-profile__submit {
+  @extend %form-submit;
+  margin-top: 8px;
+}

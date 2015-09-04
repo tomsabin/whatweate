@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%= render partial: "layouts/head", locals: { layout: "application", title: "WhatWeAte Style Guide" } %>
+  <%= stylesheet_link_tag "style_guide", media: "all", "data-turbolinks-track" => true %>
+  <body id="<%= page_id %>">
+    <!-- BASE ELEMENTS -->
+    <%= render "style_guide/colors" %>
+    <%= render "style_guide/fonts" %>
+    <%= render "style_guide/headings" %>
+    <%= render "style_guide/paragraph" %>
+    <%= render "style_guide/inline_elements" %>
+    <%= render "style_guide/hr" %>
+    <%= render "style_guide/unordered_list" %>
+    <%= render "style_guide/ordered_list" %>
+    <%= render "style_guide/definition" %>
+    <!-- IMAGERY -->
+    <%= render "style_guide/logo" %>
+    <%= render "style_guide/proposition" %>
+    <%= render "style_guide/placeholder_image" %>
+    <%= render "style_guide/placeholder_thumbnail_image" %>
+    <%= render "style_guide/member_avatar" %>
+    <%= render "style_guide/icons" %>
+    <%= render "style_guide/social_icons" %>
+    <%= render "style_guide/favicon" %>
+    <!-- FORM ELEMENTS -->
+    <%= render "style_guide/text_fields" %>
+    <%= render "style_guide/html5_input" %>
+    <%= render "style_guide/input_error" %>
+    <%= render "style_guide/file_input" %>
+    <%= render "style_guide/select_menu" %>
+    <%= render "style_guide/checkbox" %>
+    <%= render "style_guide/radio_buttons" %>
+    <%= render "style_guide/buttons" %>
+  </body>
+</html>

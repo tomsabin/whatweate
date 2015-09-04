@@ -6,10 +6,10 @@ class Event < ActiveRecord::Base
   has_many :bookings, dependent: :destroy
   has_many :guests, through: :bookings, source: :user
 
-  validates :host_id, :date, :title, :location, :location_url, :description, :menu, :seats, :price_in_pennies, :currency, presence: true
+  validates :host_id, :date, :date_date, :date_time, :title, :location, :description, :menu, :seats, :price_in_pennies, :currency, presence: true
   validates :price, numericality: { greater_than: 0 }
   validates :seats, numericality: { only_integer: true, greater_than: 0 }
-  validates :location_url, url: true
+  validates :location_url, url: true, allow_blank: true
   validates :photos, length: { minimum: 2, maximum: 6, allow_blank: true }
   validates :short_description, length: { maximum: 80 }, presence: true
 
@@ -17,8 +17,8 @@ class Event < ActiveRecord::Base
 
   scope :most_recent, -> { order(created_at: :desc) }
   scope :approved, -> { where.not(state: :pending) }
-  scope :upcoming, -> { where("DATE >= ?", Date.today) }
-  scope :past, -> { where("DATE < ?", Date.today) }
+  scope :upcoming, -> { where("DATE >= ?", DateTime.current.beginning_of_day) }
+  scope :past, -> { where("DATE < ?", DateTime.current.beginning_of_day) }
   scope :booked_for, -> (user) { includes(:bookings).where("bookings.user_id = ?", user).references(:bookings) }
 
   friendly_id :title, use: :slugged

@@ -1,0 +1,25 @@
+.site-quotes {
+  background-color: $pale-gray-color;
+  padding-bottom: 32px;
+  padding-top: 32px;
+}
+
+.site-quotes__container {
+  @include container;
+  text-align: center;
+}
+
+.site-quotes__title {
+  @extend %heading-3;
+  padding-bottom: 12px;
+}
+
+.site-quotes__quotes {
+  margin: 16px auto;
+
+}
+
+.site-quotes__quote {
+  padding: 0 32px;
+  width: 70%;
+}

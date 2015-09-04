@@ -1,101 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>WhatWeAte</title>
-
-    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <!--[if lt IE 9]>
-      <%= javascript_include_tag "html5shiv.min.js" %>
-    <![endif]-->
-    <%= csrf_meta_tags %>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-  </head>
+<html lang="en" class="no-js">
+  <script>
+    (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)
+  </script>
+  <%= render "layouts/head", layout: "application", title: content_for?(:title) ? yield(:title) : "WhatWeAte" %>
   <body id="<%= page_id %>">
-
-    <header>
-      <div class="container">
-        <%= link_to root_path, alt: "WhatWeAte", title: "WhatWeAte", class: "logo" do %>
-          <%= image_tag "logo-icon.png", class: "logo-icon" %>
-          <%= image_tag "logo-text.png", class: "logo-text", alt: "WhatWeAte" %>
-        <% end %>
-
-        <nav>
-          <input type="checkbox" id="mobile-nav">
-          <label for="mobile-nav">menu</label>
-          <ul>
-            <%= link_to root_path(anchor: "how_it_works") do %>
-              <li>How it works</li>
-            <% end %>
-
-            <a href="https://whatweate.typeform.com/to/IXZyhO" class="cta typeform-share" data-mode="1" target="_blank" data-ga="conversion">
-              <li>Become a host</li>
-            </a>
-          </ul>
-        </nav>
+    <% if page_id == "pages-home" %>
+      <div class="site-header__container">
+        <%= render "layouts/site_header" %>
       </div>
-    </header>
+    <% else %>
+      <%= render "layouts/site_header" %>
+    <% end %>
 
-    <main>
-      <div class="wip">
-        <% if user_signed_in? %>
-          <%= link_to("Sign out", destroy_user_session_path, method: :delete) %>
-          <%= link_to("Profile", user_path) %>
-          <%= link_to("Create an event", new_event_path) if current_user.host.present? %>
-        <% else %>
-          <%= link_to("Sign in", new_user_session_path)  %>
-          <%= link_to("Sign up", new_registration_path(:user)) %>
-        <% end %>
+    <%= render "layouts/flash_messages" %>
+
+    <%= yield %>
+
+    <div class="sticky-footer">
+      <%= render "layouts/site_footer" %>
+
+      <div class="made-with-love">
+        <p class="made-with-love__text">
+          Made with <i class="fa fa-heart"></i> in London. &copy; WhatWeAte 2015
+        </p>
       </div>
+    </div>
 
-      <div class="flash-messages">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      </div>
-
-      <%= yield -%>
-    </main>
-
-    <footer class="footer">
-      <div class="container">
-        <ul class="social">
-          <a href="https://www.facebook.com/whatweate.co" class="facebook" data-ga="social">
-            Facebook
-          </a>
-          <a href="https://twitter.com/WhatWeAteCo" class="twitter" data-ga="social">
-            Twitter
-          </a>
-          <a href="http://instagram.com/whatweate.co" class="instagram" data-ga="social">
-            Instagram
-          </a>
-          <a href="mailto:hello@whatweate.co" class="email" data-ga="social">
-            Email
-          </a>
-        </ul>
-
-        <ul class="links">
-          <li><%= link_to 'How it works', root_path(anchor: 'how_it_works') %></li>
-          <li><a href="https://whatweate.typeform.com/to/IXZyhO" class="cta typeform-share" data-mode="1" target="_blank">Become a host</a></li>
-        </ul>
-
-        <div class="legal wip">
-          <ul>
-            <%= link_to root_path do %>
-              <li>Terms of use</li>
-            <% end %>
-
-            <%= link_to root_path do %>
-              <li>Privacy policy</li>
-            <% end %>
-          </ul>
-
-          <p>Copyright &copy; 2014-2015 WhatWeAte Ltd</p>
-        </div>
-      </div>
-    </footer>
-
-    <%= javascript_require "typeform", "google_analytics", "anchor_links", "newsletter" %>
+    <script>
+      var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id="typef_orm",b="https://s3-eu-west-1.amazonaws.com/share.typeform.com/";if(!gi.call(d,id)){js=ce.call(d,"script");js.id=id;js.src=b+"share.js";q=gt.call(d,"script")[0];q.parentNode.insertBefore(js,q)}id=id+"_";if(!gi.call(d,id)){qs=ce.call(d,"link");qs.rel="stylesheet";qs.id=id;qs.href=b+"share-button.css";s=gt.call(d,"head")[0];s.appendChild(qs,s)}
+      googleAnalyticsTracker.init("<%= Settings.ga_tracking_id %>");
+      googleAnalyticsConversions.init();
+      smoothAnchorLinks.init();
+    </script>
   </body>
 </html>

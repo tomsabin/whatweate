@@ -1,0 +1,16 @@
+.error-page {
+  margin-top: 24px;
+  text-align: center;
+
+  @include breakpoint($tablet) {
+    margin-top: 48px;
+  }
+}
+
+.error-page__title {
+  @extend %heading-3;
+}
+
+.error-page__error {
+  margin-top: 24px;
+}

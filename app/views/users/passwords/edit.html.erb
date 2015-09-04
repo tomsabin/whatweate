@@ -1,11 +1,29 @@
-<div class="wip">
-  <h2>Change your password</h2>
+<div class="user-reset-password">
+  <h2 class="user-reset-password__title">
+    Change your password
+  </h2>
 
-  <%= simple_form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, defaults: { error: true } do |f| %>
-    <%= f.error_notification %>
+  <%= simple_form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, defaults: { error: false } do |f| %>
+    <% if resource.errors.any? %>
+      <p class="user-reset-password__error-title">
+        Please review the following errors
+      </p>
+      <ul class="user-reset-password__errors">
+        <% resource.errors.full_messages.each do |message| %>
+          <li>
+            <%= message %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
     <%= f.hidden_field :reset_password_token %>
-    <%= f.input :password, autofocus: true, autocomplete: "off", label: "New password" %>
-    <%= f.input :password_confirmation, autocomplete: "off", label: "Confirm new password" %>
-    <%= f.button :submit, "Change my password" %>
+    <%= f.input :password, autofocus: true, autocomplete: "off", label: "New password",
+          input_html: { class: "user-reset-password__input" },
+          label_html: { class: "user-reset-password__label" } %>
+    <%= f.input :password_confirmation, autocomplete: "off", label: "Confirm new password",
+          input_html: { class: "user-reset-password__input" },
+          label_html: { class: "user-reset-password__label" } %>
+    <%= f.button :submit, "Change my password", class: "user-reset-password__submit" %>
   <% end %>
 </div>

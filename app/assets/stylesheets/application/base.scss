@@ -1,14 +1,20 @@
-@import "reset";
-@import "typography";
-@import "../shared/color";
-@import "../shared/utilities";
-@import "../shared/markdown";
-@import "mixins";
-@import "layout/header";
-@import "layout/body";
-@import "layout/footer";
-@import "layout/error_pages";
-@import "homepage/proposition";
-@import "homepage/newsletter";
-@import "homepage/how_it_works";
-@import "homepage/events";
+@import "susy/susy";
+@import "breakpoint/breakpoint";
+@import "font-awesome/font-awesome";
+
+$container: 960px;
+
+$susy: (
+  container: $container,
+  columns: 12
+);
+
+$tablet: 569px;
+$desktop: 737px;
+$site-footer-height: 256px;
+$site-footer-tablet-height: 160px;
+
+@import "../shared/*";
+@import "base/*";
+@import "placeholders/*";
+@import "styles/**/*";

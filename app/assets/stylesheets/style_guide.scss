@@ -1,0 +1,91 @@
+/*
+*= require reset
+*= require application
+ */
+
+@import "application/base";
+
+#style-guide-style-guide {
+  margin: 0 auto;
+  max-width: 960px;
+
+  [class^=outer-container-]:nth-of-type(even) {
+    background-color: lighten(rgba(255, 0, 0, .75), 45%);
+  }
+
+  [class^=outer-container-]:nth-of-type(odd) {
+    background-color: lighten(rgba(255, 0, 0, .75), 40%);
+  }
+
+  [class^=row-]:nth-of-type(even) {
+    background-color: lighten(rgba(0, 0, 255, .75), 45%);
+  }
+
+  [class^=row-]:nth-of-type(odd) {
+    background-color: lighten(rgba(0, 0, 255, .75), 40%);
+  }
+}
+
+.style-guide-navigation {
+  background-color: white;
+  left: 0;
+  position: fixed;
+  right: 0;
+  text-align: center;
+  top: 0;
+}
+
+.anchor-link {
+  display: block;
+  padding-top: 19px;
+}
+
+.pattern-header {
+  border-bottom: 1px solid $gray-color;
+  font-family: $primary-font;
+  font-size: 70%;
+  font-weight: normal;
+  margin: 2em 0;
+  padding: 1em 0;
+}
+
+.atoms-colors {
+  .pattern-body {
+    overflow: auto;
+  }
+
+  li {
+    border: 1px solid $light-gray-color;
+    float: left;
+    list-style: none;
+    margin: 0 .2em .2em 0;
+    padding: .3em;
+  }
+
+  .color-swatch {
+    display: block;
+    height: 4em;
+    margin-bottom: .2em;
+    width: 4em;
+  }
+}
+
+h1 { @extend %heading-1; }
+h2 { @extend %heading-2; }
+h3 { @extend %heading-3; }
+h4 { @extend %heading-4; }
+h5 { @extend %heading-5; }
+h6 { @extend %heading-6; }
+
+.brand-font { @extend %brand-font; }
+.primary-font { @extend %primary-font; }
+.secondary-font { @extend %secondary-font; }
+
+.input { @extend %form-input; }
+.textarea { @extend %form-textarea; }
+.input-label { @extend %input-label; }
+
+.btn { @extend %primary-button; }
+.btn-alt { @extend %button; }
+.btn-header { @extend %button-header; }
+.btn-header-active { @extend %active-button-header; }

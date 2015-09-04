@@ -1,52 +1,78 @@
-<div class="wip">
-  <%= gravatar_image_tag @user.email %>
+<div class="dashboard">
+  <div class="dashboard__profile">
+    <%= link_to member_path(@user) do %>
+      <%= gravatar_image_tag @user.email, class: "dashboard__avatar" %>
+      <h2 class="dashboard__user-name">
+        <%= @user.full_name %>
+      </h2>
+    <% end %>
 
-  <%= link_to("Edit profile", edit_user_path) %>
-  <%= link_to "View public profile", member_path(@user) %>
+    <div class="dashboard__user-actions">
+      <%= link_to "Dashboard", dashboard_path, class: "dashboard__active-user-action" %>
+      <%= link_to "Edit profile", edit_user_path, class: "dashboard__user-action" %>
+    </div>
+  </div>
 
-  Email:
-  <%= @user.email %>
+  <div class="dashboard__panel">
+    <h4 class="dashboard__user-field-heading">
+      Email
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.email %>
+    </p>
 
-  First name:
-  <%= @user.first_name %>
+    <h4 class="dashboard__user-field-heading">
+      Mobile number
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.mobile_number %>
 
-  Last name:
-  <%= @user.last_name %>
+      <% if !@user.mobile_number_visible? %>
+        <span class="dashboard__hidden-user-field">
+          (not publicly visible)
+        </span>
+      <% end %>
+    </p>
 
-  Date of birth:
-  <%= @user.date_of_birth %>
-  <% if !@user.date_of_birth_visible? %>
-    Date of birth is hidden on public view
-  <% end %>
+    <h4 class="dashboard__user-field-heading">
+      Profession
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.profession %>
+    </p>
 
-  Profession:
-  <%= @user.profession %>
+    <h4 class="dashboard__user-field-heading">
+      Greeting
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.greeting %>
+    </p>
 
-  Greeting:
-  <%= @user.greeting %>
+    <h4 class="dashboard__user-field-heading">
+      Favourite cuisine
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.favorite_cuisine %>
+    </p>
 
-  Bio:
-  <%= @user.bio %>
+    <h4 class="dashboard__user-field-heading">
+      Bio
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.bio %>
+    </p>
 
-  Mobile number:
-  <%= @user.mobile_number %>
-  <% if !@user.mobile_number_visible? %>
-    Mobile number is hidden on public view
-  <% end %>
+    <h4 class="dashboard__user-field-heading">
+      Date of birth
+    </h4>
+    <p class="dashboard__user-field">
+      <%= @user.date_of_birth %>
 
-  Favourite cuisine:
-  <%= @user.favorite_cuisine %>
-
-  <% if @verified_with_facebook %>
-    Verified with Facebook
-  <% end %>
-
-  <% if @verified_with_twitter %>
-    Verified with Twitter
-  <% end %>
-
-  <div class="social-networks">
-    <%= link_to "Verify your account with Facebook", user_omniauth_authorize_path(:facebook) unless @verified_with_facebook %>
-    <%= link_to "Verify your account with Twitter", user_omniauth_authorize_path(:twitter) unless @verified_with_twitter%>
+      <% if !@user.date_of_birth_visible? %>
+        <span class="dashboard__hidden-user-field">
+          (not publicly visible)
+        </span>
+      <% end %>
+    </p>
   </div>
 </div>

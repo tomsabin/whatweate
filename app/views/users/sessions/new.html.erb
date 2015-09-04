@@ -1,18 +1,31 @@
-<div class="wip">
-  <h2>Log in</h2>
+<div class="user-sign-in">
+  <h2 class="user-sign-in__title">Log in</h2>
 
   <%= simple_form_for resource, as: resource_name, url: session_path(resource_name), defaults: { required: false, error: true } do |f| %>
     <%= f.error_notification %>
-    <%= f.input :email, autofocus: true %>
-    <%= f.input :password %>
-    <%= f.input :remember_me, as: :boolean, label: "Remember me" %>
-    <%= f.button :submit, "Sign in" %>
+    <%= f.input :email, autofocus: true,
+          input_html: { class: "user-sign-in__email-input" },
+          label_html: { class: "user-sign-in__email-label" } %>
+    <%= f.input :password, input_html: { class: "user-sign-in__password-input" },
+                           label_html: { class: "user-sign-in__password-label" } %>
+
+    <div class="user-sign-in__right-container">
+      <%= f.input :remember_me, as: :boolean, label: "Remember me",
+            wrapper_html: { class: "user-sign-in__remember-me" },
+            input_html: { class: "user-sign-in__remember-me-input" },
+            label_html: { class: "user-sign-in__remember-me-label" } %>
+      <%= f.button :submit, "Log in", class: "user-sign-in__submit" %>
+      <%= link_to "Forgot your password?", new_password_path(resource_name), class: "user-sign-in__forgot-password" %>
+    </div>
   <% end %>
 
-  <div class="social-networks">
-    <%= link_to "Facebook", user_omniauth_authorize_path(:facebook) %>
-    <%= link_to "Twitter", user_omniauth_authorize_path(:twitter) %>
+  <div class="user-sign-in__right-container">
+    <div class="user-sign-in__divider">
+      <span class="user-sign-in__divider-text">
+        or
+      </span>
+    </div>
+    <%= link_to "Facebook", user_omniauth_authorize_path(:facebook), class: "user-sign-in__facebook" %>
+    <%= link_to "Twitter", user_omniauth_authorize_path(:twitter), class: "user-sign-in__twitter" %>
   </div>
-
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
 </div>

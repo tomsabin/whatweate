@@ -1,76 +1,63 @@
-<div class="wip">
-  <%= gravatar_image_tag @user.email %>
+<div class="member-profile">
+  <%= gravatar_image_tag @user.email, class: "member-profile__avatar" %>
 
-  Full name:
-  <%= @user.full_name %>
+  <h2 class="member-profile__full-name">
+    <%= @user.full_name %>
+  </h2>
 
-  First name:
-  <%= @user.first_name %>
+  <p class="member-profile__bio">
+    <%= @user.bio %>
+  </p>
 
-  Last name:
-  <%= @user.last_name %>
+  <div class="member-profile__social-verifications">
+    <% if @verified_with_facebook %>
+      <span class="member-profile__verified-social-platform">
+        <i class="fa fa-facebook-square" title="Verified with Facebook"></i>
+      </span>
+    <% else %>
+      <span class="member-profile__unverified-social-platform">
+        <i class="fa fa-facebook-square" title="Not verified with Facebook"></i>
+      </span>
+    <% end %>
 
-  <% if @user.date_of_birth_visible? %>
-    Date of birth:
-    <%= @user.date_of_birth %>
-  <% end %>
-
-  Profession:
-  <%= @user.profession %>
-
-  Greeting:
-  <%= @user.greeting %>
-
-  Bio:
-  <%= @user.bio %>
-
-  <% if @user.mobile_number_visible? %>
-    Mobile number:
-    <%= @user.mobile_number %>
-  <% end %>
-
-  Favourite cuisine:
-  <%= @user.favorite_cuisine %>
-
-  <% if @verified_with_facebook %>
-    Verified with Facebook
-  <% end %>
-
-  <% if @verified_with_twitter %>
-    Verified with Twitter
-  <% end %>
-
-  <div class="guest">
-    <div class="booked-events">
-      <h1>My booked events</h1>
-      <% @upcoming_booked_events.each do |event| %>
-        <%= link_to event.title, event_path(event) %>
-      <% end %>
-    </div>
-
-    <div class="past-events">
-      <h1>My past events</h1>
-      <% @past_booked_events.each do |event| %>
-        <%= link_to event.title, event_path(event) %>
-      <% end %>
-    </div>
+    <% if @verified_with_twitter %>
+      <span class="member-profile__verified-social-platform">
+        <i class="fa fa-twitter-square" title="Verified with Twitter"></i>
+      </span>
+    <% else %>
+      <span class="member-profile__unverified-social-platform">
+        <i class="fa fa-twitter-square" title="Not verified with Twitter"></i>
+      </span>
+    <% end %>
   </div>
 
-  <% if @user_is_host %>
-    <div class="host">
-      <div class="upcoming-events">
-        <h1>My upcoming events</h1>
-        <% @upcoming_hosted_events.each do |event| %>
-          <%= link_to event.title, event_path(event) %>
-        <% end %>
-      </div>
+  <% if @upcoming_booked_events.present? && @past_booked_events.present? %>
+    <div class="member-profile__guest-events">
+      <% if @upcoming_booked_events.present? %>
+        <div class="member-profile__event-group upcoming-events">
+          <%= render partial: "events", locals: { title: "Events I'm going to", events: @upcoming_booked_events } %>
+        </div>
+      <% end %>
+      <% if @past_booked_events.present? %>
+        <div class="member-profile__event-group past-events">
+          <%= render partial: "events", locals: { title: "Events I've been to", events: @past_booked_events } %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
-      <div class="past-events">
-        <h1>my past events</h1>
-        <% @past_hosted_events.each do |event| %>
-          <%= link_to event.title, event_path(event) %>
-        <% end %>
-      </div>
+  <% if @user_is_host && @upcoming_hosted_events.present? && @past_hosted_events.present? %>
+    <div class="member-profile__host-events">
+      <% if @upcoming_hosted_events.present? %>
+        <div class="member-profile__event-group upcoming-events">
+          <%= render partial: "events", locals: { title: "My upcoming events", events: @upcoming_hosted_events } %>
+        </div>
+      <% end %>
+      <% if @past_hosted_events.present? %>
+        <div class="member-profile__event-group past-events">
+          <%= render partial: "events", locals: { title: "My past events", events: @past_hosted_events } %>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>

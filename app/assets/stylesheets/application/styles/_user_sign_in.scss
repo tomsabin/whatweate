@@ -1,0 +1,103 @@
+.user-sign-in {
+  margin: 24px auto 0;
+  max-width: 280px;
+  padding-bottom: 48px;
+
+  @include breakpoint($tablet) {
+    margin-top: 48px;
+    padding-bottom: 64px;
+  }
+}
+
+.user-sign-in__title {
+  @extend %heading-5;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.user-sign-in__email-input,
+.user-sign-in__password-input {
+  @extend %form-input;
+  display: inline-block;
+  margin-bottom: 4px;
+  width: 75%;
+}
+
+.user-sign-in__email-label,
+.user-sign-in__password-label {
+  @extend %primary-font;
+  box-sizing: border-box;
+  display: inline-block;
+  padding-right: 8px;
+  text-align: right;
+  width: 25%;
+
+
+  &:after {
+    content: ":";
+  }
+}
+
+.user-sign-in__right-container {
+  padding-left: 25%;
+  width: 75%;
+}
+
+.user-sign-in__remember-me {
+  margin-top: 4px;
+}
+
+.user-sign-in__remember-me-label,
+.user-sign-in__remember-me-input {
+  display: inline-block;
+}
+
+.user-sign-in__remember-me-label {
+  @extend %primary-font;
+}
+
+.user-sign-in__remember-me-input {
+  margin-right: 6px;
+}
+
+.user-sign-in__submit {
+  @extend %form-submit;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.user-sign-in__forgot-password {
+  @extend %primary-font;
+  color: $primary-color;
+  display: block;
+  margin-top: 8px;
+
+  &:hover {
+    color: $primary-darken-color;
+  }
+}
+
+.user-sign-in__divider {
+  border-bottom: 1px solid lighten($gray-color, 35%);
+  line-height: .1em;
+  margin: 24px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.user-sign-in__divider-text {
+  @extend %primary-font;
+  background-color: $white-color;
+  color: $gray-color;
+  padding: 0 10px;
+}
+
+.user-sign-in__facebook,
+.user-sign-in__twitter {
+  @extend %form-submit;
+  width: 100px;
+}
+
+.user-sign-in__facebook {
+  margin-right: 6px;
+}

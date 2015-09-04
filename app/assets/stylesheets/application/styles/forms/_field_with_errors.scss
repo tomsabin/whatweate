@@ -1,0 +1,23 @@
+.field-with-errors input,
+.field-with-errors textarea {
+  border: 2px solid $primary-color;
+  border-bottom: 2px solid lighten($primary-color, 25%);
+}
+
+.field-with-errors span.error {
+  @extend %primary-font;
+  background-color: $pale-gray-color;
+  border: 2px solid $primary-color;
+  border-top: 0;
+  box-sizing: border-box;
+  color: lighten($black-color, 15%);
+  display: block;
+  font-size: .8em;
+  padding: 4px 8px;
+  text-align: left;
+  width: 100%;
+}
+
+.error-notification {
+  @extend %primary-font;
+}

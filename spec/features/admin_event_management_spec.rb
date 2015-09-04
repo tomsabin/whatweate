@@ -42,18 +42,19 @@ describe "Admin event management" do
     # public event page
     click_link "Sunday Roast"
     expect(page).to have_content "Sunday Roast"
-    expect(page).to have_content "Hosted by Joe Bloggs"
+    within('.event-show__host') do
+      expect(page).to have_content "Joe Bloggs"
+    end
     expect(page).to_not have_link "Joe Bloggs"
-    expect(page).to have_link "View on map"
-    expect(page).to have_content "1st January #{year} 7:00pm"
-    expect(find_link("View on map")[:href]).to eq "http://example.com"
-    expect(page).to have_content "London"
+    expect(page).to have_content "1st January #{year}"
+    expect(page).to have_content "7:00pm"
+    expect(page).to have_link "London", href: "http://example.com"
     expect(page).to have_button "Book seat"
     expect(page).to have_content "£10"
-    within(".description") do
+    within(".event-show__event-description") do
       expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
     end
-    within(".menu") do
+    within(".event-show__event-menu") do
       expect(page).to have_content "Pumpkin Soup"
       expect(page).to have_content "Roast Lamb with trimmings"
       expect(page).to have_content "Tiramisu"
@@ -65,7 +66,8 @@ describe "Admin event management" do
     expect(page).to have_content "Sunday Roast"
     expect(page).to have_content "Hosted by Joe Bloggs"
     expect(page).to have_content "London"
-    expect(page).to have_content "1st January #{year} 7:00pm"
+    expect(page).to have_content "1st January #{year}"
+    expect(page).to have_content "7:00pm"
     expect(page).to have_content "8 seats"
     expect(page).to have_content "£10"
     expect(page).to have_content "The perfect end to the weekend"
@@ -127,39 +129,39 @@ describe "Admin event management" do
     click_link "Preview"
 
     within(".event-thumbnail") do
-      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
+      expect(find("img.event-thumbnail__primary-photo")["src"]).to have_content "/assets/events/primary_default_thumb.png"
       expect(page).to have_content "Sunday Roast"
       expect(page).to have_content "1st January #{year} 7:00pm"
       expect(page).to have_content "£10"
       expect(page).to have_content "Londo"
-      within(".short-description") do
+      within(".event-thumbnail__short-description") do
         expect(page).to have_content "The perfect end to the weekend"
       end
     end
 
-    within(".event-show") do
-      expect(find("img.primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
+    within(".admin-preview__event-show") do
+      expect(find("img.event-show__gallery-primary-photo")["src"]).to have_content "/assets/events/primary_default.png"
       expect(page).to have_content "Sunday Roast"
-      expect(page).to have_content "Hosted by Joeseph Bloggs"
+      within(".event-show__host") do
+        expect(page).to have_content "Joeseph Bloggs"
+      end
       expect(page).to have_link "Joeseph Bloggs", href: "/member/joe-bloggs"
-      expect(page).to have_link "View on map"
       expect(page).to have_content "1st January #{year} 7:00pm"
-      expect(find_link("View on map")[:href]).to eq "http://example.com"
-      expect(page).to have_content "Londo"
+      expect(page).to have_link "London", href: "http://example.com"
       expect(page).to have_content "£10"
-      within(".description") do
+      within(".event-show__event-description") do
         expect(page).to have_content "A heart warming Sunday Roast cooked behind decades of experience for the perfect meal"
       end
-      within(".menu") do
+      within(".event-show__event-menu") do
         expect(page).to have_content "Pumpkin Soup"
         expect(page).to have_content "Roast Lamb with trimmings"
         expect(page).to have_content "Tiramisu"
       end
-      within(".photos") do
+      within(".event-show__photo-gallery") do
         path = %r(\/uploads\/events\/(\d)+\/photos\/(\h){32}.png)
-        expect(find("img.photo-1")["src"]).to have_content path
-        expect(find("img.photo-2")["src"]).to have_content path
-        expect(find("img.photo-1")["src"]).to_not eq find("img.photo-2")["src"]
+        expect(find("img[@data-index='0']")["src"]).to have_content path
+        expect(find("img[@data-index='1']")["src"]).to have_content path
+        expect(find("img[@data-index='0']")["src"]).to_not eq find("img[@data-index='1']")["src"]
       end
     end
 
@@ -193,7 +195,7 @@ describe "Admin event management" do
     click_link "Create new event"
 
     fill_in_event_form
-    attach_file "event_primary_photo", Rails.root.join("fixtures/carrierwave/image.png")
+    attach_file "eventPrimaryPhoto", Rails.root.join("fixtures/carrierwave/image.png")
 
     click_button "Create"
     click_link "Sunday Roast"
@@ -203,12 +205,12 @@ describe "Admin event management" do
     expect(find("img.event-primary-photo")["src"]).to have_content %r(\/uploads\/events\/(\d)+\/primary_photo\/(\h){32}.png)
 
     visit root_path
-    expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
-    expect(find("img.primary-photo")["src"]).to have_content %r(\/uploads\/events\/(\d)+\/primary_photo\/thumb_(\h){32}.png)
+    expect(find("img.event-thumbnail__primary-photo")["src"]).to_not have_content "/assets/events/primary_default_thumb.png"
+    expect(find("img.event-thumbnail__primary-photo")["src"]).to have_content %r(\/uploads\/events\/(\d)+\/primary_photo\/thumb_(\h){32}.png)
 
     visit "events/sunday-roast"
-    expect(find("img.primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"
-    expect(find("img.primary-photo")["src"]).to have_content %r(\/uploads\/events\/(\d)+\/primary_photo\/(\h){32}.png)
+    expect(find("img.event-show__primary-photo")["src"]).to_not have_content "/assets/events/primary_default.png"
+    expect(find("img.event-show__primary-photo")["src"]).to have_content %r(\/uploads\/events\/(\d)+\/primary_photo\/(\h){32}.png)
   end
 
   scenario "admin creates an event with additional photos" do
@@ -249,11 +251,11 @@ describe "Admin event management" do
 
     visit root_path
     click_link "Sunday Roast"
-    within(".photos") do
+    within(".event-show__photo-gallery") do
       path = %r(\/uploads\/events\/(\d)+\/photos\/(\h){32}.png)
-      expect(find("img.photo-1")["src"]).to have_content path
-      expect(find("img.photo-2")["src"]).to have_content path
-      expect(find("img.photo-1")["src"]).to_not eq find("img.photo-2")["src"]
+      expect(find("img[@data-index='0']")["src"]).to have_content path
+      expect(find("img[@data-index='1']")["src"]).to have_content path
+      expect(find("img[@data-index='0']")["src"]).to_not eq find("img[@data-index='1']")["src"]
     end
   end
 

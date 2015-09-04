@@ -12,7 +12,7 @@ FactoryGirl.define do
       profession       { Faker::Company.catch_phrase }
       bio              { Faker::Lorem.paragraph }
       mobile_number    { Faker::PhoneNumber.phone_number }
-      favorite_cuisine { Faker::Lorem.word }
+      favorite_cuisine { Faker::Lorem.words(3) }
       greeting         { Faker::Lorem.sentence }
 
       factory :user_with_profile_pending_transition do
