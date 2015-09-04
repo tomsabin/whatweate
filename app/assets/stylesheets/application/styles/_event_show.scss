@@ -80,7 +80,7 @@
 .event-show__host {
   @include span(12 of 12);
   padding-bottom: 16px;
-  padding-top: 16px;
+  padding-top: 8px;
 
   @include breakpoint($tablet) {
     @include span(5 of 12);
@@ -125,6 +125,8 @@
 
 .event-show__event-details {
   @include span(12 of 12);
+  box-sizing: border-box;
+  padding-right: 16px;
 
   @include breakpoint($tablet) {
     @include span(last 7 of 12);
