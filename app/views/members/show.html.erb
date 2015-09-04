@@ -31,7 +31,7 @@
     <% end %>
   </div>
 
-  <% if @upcoming_booked_events.present? && @past_booked_events.present? %>
+  <% if @upcoming_booked_events.present? || @past_booked_events.present? %>
     <div class="member-profile__guest-events">
       <% if @upcoming_booked_events.present? %>
         <div class="member-profile__event-group upcoming-events">
@@ -46,7 +46,7 @@
     </div>
   <% end %>
 
-  <% if @user_is_host && @upcoming_hosted_events.present? && @past_hosted_events.present? %>
+  <% if @user_is_host && (@upcoming_hosted_events.present? || @past_hosted_events.present?) %>
     <div class="member-profile__host-events">
       <% if @upcoming_hosted_events.present? %>
         <div class="member-profile__event-group upcoming-events">

@@ -1,4 +1,9 @@
 <h1 class="member-profile__event-title"><%= title %></h1>
-<% events.each do |event| %>
-  <%= render partial: "partials/event_thumbnail", locals: { link: event_path(event), event: event.decorate } %>
-<% end %>
+
+<div class="event-listing">
+  <% events.each do |event| %>
+    <div class="event-listing__event-thumbnail">
+      <%= render partial: "partials/event_thumbnail", locals: { link: event_path(event), event: event.decorate } %>
+    </div>
+  <% end %>
+</div>
